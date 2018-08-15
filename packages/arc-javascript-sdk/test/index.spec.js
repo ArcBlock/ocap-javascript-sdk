@@ -64,16 +64,22 @@ describe('OCAPClient#query', () => {
     expect(typeof client.transactionByHash).toEqual('function');
   });
 
-  test('should query methods work as expected', async () => {
-    const client = new OCAPClient({
-      dataSource: 'btc',
-    });
+  test(
+    'should query methods work as expected',
+    async () => {
+      const client = new OCAPClient({
+	dataSource: 'btc',
+      });
 
-    const result = await client.accountByAddress({ address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa' });
-    expect(result).toBeTruthy();
-    expect(result.accountByAddress).toBeTruthy();
-    expect(result.accountByAddress.address).toBeTruthy();
-  });
+      const result = await client.accountByAddress({
+	address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+      });
+      expect(result).toBeTruthy();
+      expect(result.accountByAddress).toBeTruthy();
+      expect(result.accountByAddress.address).toBeTruthy();
+    },
+    8000
+  );
 });
 
 describe('OCAPClient#subscription', () => {
@@ -86,11 +92,15 @@ describe('OCAPClient#subscription', () => {
     expect(typeof client.bigTransactionExecuted).toEqual('function');
   });
 
-  test('should subscribe to newBlockMined event', async () => {
-    // TODO: setup mock socket server for testing env
-    const subscription = await client.newBlockMined();
-    expect(subscription instanceof EventEmitter).toEqual(true);
-    expect(subscription.subscriptionId).toBeTruthy();
-    expect(Object.keys(client.subscriptions).length).toEqual(1);
-  });
+  test(
+    'should subscribe to newBlockMined event',
+    async () => {
+      // TODO: setup mock socket server for testing env
+      const subscription = await client.newBlockMined();
+      expect(subscription instanceof EventEmitter).toEqual(true);
+      expect(subscription.subscriptionId).toBeTruthy();
+      expect(Object.keys(client.subscriptions).length).toEqual(1);
+    },
+    5000
+  );
 });

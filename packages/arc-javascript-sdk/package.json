@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/node-ocap",
   "description": "Node.js SDK for OCAP Service by ArcBlock",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
@@ -35,9 +35,6 @@
     "prettier": "^1.6.1",
     "remark-cli": "^4.0.0",
     "remark-preset-github": "^0.0.6"
-  },
-  "engines": {
-    "node": ">=10"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
   "keywords": [
