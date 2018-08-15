@@ -17,6 +17,7 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@npm install
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
@@ -28,9 +29,11 @@ all: pre-build build post-build
 
 test:
 	@echo "Running test suites..."
+	@npm run test
 
 lint:
 	@echo "Linting the software..."
+	@npm run lint
 
 doc:
 	@echo "Building the documenation..."
