@@ -34,10 +34,8 @@ const OcapSDK = require('@arcblock/node-ocap');
 
 // init client
 const client = new OcapSDK({
-  appId: '<todo>',
-  appSecret: '<todo>',
   httpBaseUrl: 'https://ocap.arcblock.io/api', // we may have multiple hosts in future
-  socketBaseUrl: 'wss://ocap.arcblock.io/api/socket',
+  socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
   dataSource: 'eth', // btc, eth
 });
 
@@ -56,7 +54,8 @@ const subscription = await client.newBlockMined();
 subscription.on('data', data => console.log(data));
 ```
 
-See [docs/example.js](./docs/example.js) for real examples.
+See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
+See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
 See [docs/spec.md](./docs/spec.md) for full api support.
 
 

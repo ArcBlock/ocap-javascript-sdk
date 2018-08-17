@@ -18,7 +18,7 @@ class OCAPClient {
     this.config = Object.assign(
       {
 	httpBaseUrl: 'https://ocap.arcblock.io/api',
-	socketBaseUrl: 'wss://ocap.arcblock.io/api/socket',
+	socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
       },
       config
     );
@@ -237,7 +237,12 @@ class OCAPClient {
       return Promise.resolve(this.channel);
     }
 
-    this.socket = new Socket(this.config.socketBaseUrl);
+    const socketBaseUrl =
+      typeof this.config.socketBaseUrl === 'function'
+	? this.config.socketBaseUrl(this.config.dataSource)
+	: this.config.socketBaseUrl;
+
+    this.socket = new Socket(socketBaseUrl);
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {
       debug('socket.onMessage', { event, payload });

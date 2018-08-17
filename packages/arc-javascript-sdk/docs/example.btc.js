@@ -2,7 +2,7 @@
 const OCAPClient = require('../src/index');
 
 (async () => {
-  const client = new OCAPClient({ dataSource: 'eth' });
+  const client = new OCAPClient({ dataSource: 'btc' });
 
   // get supported api list
   const queries = client.getQueries();
@@ -12,7 +12,7 @@ const OCAPClient = require('../src/index');
 
   // query
   const account = await client.accountByAddress({
-    address: '0xe65d3128feafd14d472442608daf94bceb91e333',
+    address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
   });
   console.log(account);
 

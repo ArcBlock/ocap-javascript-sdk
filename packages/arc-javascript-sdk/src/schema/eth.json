@@ -98,6 +98,18 @@
 	{
 	  "type": {
 	    "ofType": null,
+	    "name": "Float",
+	    "kind": "SCALAR"
+	  },
+	  "name": "priceInUsd",
+	  "isDeprecated": false,
+	  "description": null,
+	  "deprecationReason": null,
+	  "args": []
+	},
+	{
+	  "type": {
+	    "ofType": null,
 	    "name": "String",
 	    "kind": "SCALAR"
 	  },
@@ -399,6 +411,18 @@
 	    "kind": "NON_NULL"
 	  },
 	  "name": "preHash",
+	  "isDeprecated": false,
+	  "description": null,
+	  "deprecationReason": null,
+	  "args": []
+	},
+	{
+	  "type": {
+	    "ofType": null,
+	    "name": "Float",
+	    "kind": "SCALAR"
+	  },
+	  "name": "priceInUsd",
 	  "isDeprecated": false,
 	  "description": null,
 	  "deprecationReason": null,
@@ -789,6 +813,18 @@
 	    "kind": "OBJECT"
 	  },
 	  "name": "parent",
+	  "isDeprecated": false,
+	  "description": null,
+	  "deprecationReason": null,
+	  "args": []
+	},
+	{
+	  "type": {
+	    "ofType": null,
+	    "name": "Float",
+	    "kind": "SCALAR"
+	  },
+	  "name": "priceInUsd",
 	  "isDeprecated": false,
 	  "description": null,
 	  "deprecationReason": null,
