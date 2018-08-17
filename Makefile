@@ -14,9 +14,11 @@ travis-init:
 
 install:
 	@echo "Install software required for this repo..."
+	@npm install -g lerna
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@npm run init
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
@@ -28,6 +30,7 @@ all: pre-build build post-build
 
 test:
 	@echo "Running test suites..."
+	@npm run test
 
 lint:
 	@echo "Linting the software..."

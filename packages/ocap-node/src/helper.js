@@ -65,15 +65,13 @@ const makeQuery = (fields, ignoreFields) => `
     .filter(x => ignoreFields.includes(x.path) === false)
     .map(x => x.name)
     .join('\n')}
-  ${
-    Array.isArray(fields.object)
-      ? fields.object
-	  .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
-	  .filter(x => ignoreFields.includes(x.path) === false)
-	  .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
-	  .join('\n')
-      : ''
-  }`;
+  ${Array.isArray(fields.object)
+    ? fields.object
+        .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
+        .filter(x => ignoreFields.includes(x.path) === false)
+        .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
+        .join('\n')
+    : ''}`;
 /* eslint-enable indent */
 
 /**
@@ -102,13 +100,13 @@ const formatArgs = (values, specs = {}) => {
       const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
       let value = '';
       if (kind === 'SCALAR') {
-	if (type === 'String') {
-	  value = `"${values[x].toString()}"`;
-	} else {
-	  value = values[x].toString();
-	}
+        if (type === 'String') {
+          value = `"${values[x].toString()}"`;
+        } else {
+          value = values[x].toString();
+        }
       } else {
-	value = JSON.stringify(values[x]);
+        value = JSON.stringify(values[x]);
       }
 
       // debug({ x, type, kind, spec: specs[x], value });
@@ -173,7 +171,7 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
     const fn = values => {
       const argStr = x.args.length ? `${formatArgs(values, args)}` : '';
       return print(
-	parse(`${prefix}{
+        parse(`${prefix}{
 	${x.name}${argStr ? `(${argStr})` : ''} {
 	  ${makeQuery(fields, typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields)}
 	}

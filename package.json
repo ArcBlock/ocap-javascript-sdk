@@ -3,12 +3,20 @@
   "private": true,
   "devDependencies": {
     "husky": "^0.14.3",
-    "lerna": "^3.0.6"
+    "lerna": "^3.0.6",
+    "lint-staged": "^7.2.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "scripts": {
+    "init": "lerna run init",
     "lint": "lerna run lint",
-    "precommit": "lerna run precommit",
-    "prepush": "lerna run prepush",
+    "precommit": "lint-staged && lerna run precommit",
+    "prepush": "lint-staged && lerna run prepush",
     "test": "lerna run test",
     "coverage": "lerna run coverage"
   }

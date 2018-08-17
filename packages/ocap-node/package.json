@@ -10,9 +10,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "contributors": [
-    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
-  ],
+  "contributors": ["wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"],
   "dependencies": {
     "axios": "^0.18.0",
     "debug": "^3.1.0",
@@ -29,44 +27,29 @@
     "eslint": "^5.3.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
-    "husky": "^0.14.3",
     "jest": "^23.5.0",
-    "lint-staged": "^4.0.4",
     "prettier": "^1.6.1",
     "remark-cli": "^4.0.0",
     "remark-preset-github": "^0.0.6"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
-  "keywords": [
-    "ocap",
-    "blockchain",
-    "arcblock",
-    "sdk",
-    "nodejs"
-  ],
+  "keywords": ["ocap", "blockchain", "arcblock", "sdk", "nodejs"],
   "license": "MIT",
-  "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "main": "src/index.js",
   "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
+    "plugins": ["preset-github"]
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
   },
   "scripts": {
+    "init": "yarn",
     "lint": "eslint src && remark . -qfo",
     "update-schema": "node tools/update-schema.js",
     "generate-docs": "node tools/generate-docs.js",
-    "precommit": "lint-staged && CI=1 npm test",
-    "prepush": "lint-staged && CI=1 npm test",
+    "precommit": "CI=1 npm test",
+    "prepush": "CI=1 npm test",
     "test": "npm run lint && node tools/jest.js",
     "coverage": "npm run test -- --coverage"
   }

@@ -17,8 +17,8 @@ class OCAPClient {
 
     this.config = Object.assign(
       {
-	httpBaseUrl: 'https://ocap.arcblock.io/api',
-	socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+        httpBaseUrl: 'https://ocap.arcblock.io/api',
+        socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
       },
       config
     );
@@ -78,8 +78,8 @@ class OCAPClient {
 
     Object.keys(builders).forEach(key => {
       const queryFn = async args => {
-	const query = builders[key](args);
-	return this._doRequest(query);
+        const query = builders[key](args);
+        return this._doRequest(query);
       };
 
       queryFn.type = 'query';
@@ -104,30 +104,30 @@ class OCAPClient {
 
     Object.keys(builders).forEach(key => {
       const subscriptionFn = async args => {
-	const query = builders[key](args);
-	const queryId = md5(query);
-	if (this.subscriptions[queryId]) {
-	  return Promise.resolve(this.subscriptions[queryId].emitter);
-	}
+        const query = builders[key](args);
+        const queryId = md5(query);
+        if (this.subscriptions[queryId]) {
+          return Promise.resolve(this.subscriptions[queryId].emitter);
+        }
 
-	const channel = await this._ensureSubscriptionChannel();
-	return new Promise((resolve, reject) => {
-	  channel
-	    .push('doc', { query })
-	    .receive('ok', res => {
-	      debug('subscription success', { queryId, res });
+        const channel = await this._ensureSubscriptionChannel();
+        return new Promise((resolve, reject) => {
+          channel
+            .push('doc', { query })
+            .receive('ok', res => {
+              debug('subscription success', { queryId, res });
 
-	      // create a new EventEmitter for each subscription
-	      this.subscriptions[queryId] = new EventEmitter();
-	      this.subscriptions[queryId].subscriptionId = res.subscriptionId;
+              // create a new EventEmitter for each subscription
+              this.subscriptions[queryId] = new EventEmitter();
+              this.subscriptions[queryId].subscriptionId = res.subscriptionId;
 
-	      resolve(this.subscriptions[queryId]);
-	    })
-	    .receive('error', err => {
-	      debug('subscription error', err);
-	      reject(err);
-	    });
-	});
+              resolve(this.subscriptions[queryId]);
+            })
+            .receive('error', err => {
+              debug('subscription error', err);
+              reject(err);
+            });
+        });
       };
 
       subscriptionFn.type = 'subscription';
@@ -152,9 +152,9 @@ class OCAPClient {
 
     Object.keys(builders).forEach(key => {
       const mutationFn = async args => {
-	// TODO: implement mutation logic
-	const query = builders[key](args);
-	return this._doRequest(query);
+        // TODO: implement mutation logic
+        const query = builders[key](args);
+        return this._doRequest(query);
       };
 
       mutationFn.type = 'mutation';
@@ -179,18 +179,18 @@ class OCAPClient {
       ignoreFields.push('miner.txsSent', 'miner.txsReceived');
       ignoreFields.push('data.miner.txsSent', 'data.miner.txsReceived');
       if (this.config.dataSource === 'eth') {
-	ignoreFields.push('total', 'numberTxs');
-	ignoreFields.push('data.total', 'data.numberTxs');
+        ignoreFields.push('total', 'numberTxs');
+        ignoreFields.push('data.total', 'data.numberTxs');
       }
     }
 
     if (this.config.dataSource === 'eth') {
       ignoreFields.push(
-	'parent',
-	'to.txsSent',
-	'from.txsSent',
-	'to.txsReceived',
-	'from.txsReceived'
+        'parent',
+        'to.txsSent',
+        'from.txsSent',
+        'to.txsReceived',
+        'from.txsReceived'
       );
       ignoreFields.push('data.to.txsSent', 'data.from.txsReceived');
       ignoreFields.push('author', 'transactions.data.parent');
@@ -199,8 +199,8 @@ class OCAPClient {
 
     return Object.keys(
       ignoreFields.reduce((memo, x) => {
-	memo[x] = true;
-	return memo;
+        memo[x] = true;
+        return memo;
       }, {})
     );
   }
@@ -245,21 +245,21 @@ class OCAPClient {
 
     const socketBaseUrl =
       typeof this.config.socketBaseUrl === 'function'
-	? this.config.socketBaseUrl(this.config.dataSource)
-	: this.config.socketBaseUrl;
+        ? this.config.socketBaseUrl(this.config.dataSource)
+        : this.config.socketBaseUrl;
 
     this.socket = new Socket(socketBaseUrl);
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {
       debug('socket.onMessage', { event, payload });
       if (event === 'subscription:data') {
-	const queryId = Object.keys(this.subscriptions).find(
-	  x => this.subscriptions[x].subscriptionId === payload.subscriptionId
-	);
-	if (queryId) {
-	  debug('subscription.onMessage', { queryId, subscriptionId: payload.subscriptionId });
-	  this.subscriptions[queryId].emit('data', payload.result.data);
-	}
+        const queryId = Object.keys(this.subscriptions).find(
+          x => this.subscriptions[x].subscriptionId === payload.subscriptionId
+        );
+        if (queryId) {
+          debug('subscription.onMessage', { queryId, subscriptionId: payload.subscriptionId });
+          this.subscriptions[queryId].emit('data', payload.result.data);
+        }
       }
     });
 
@@ -267,22 +267,22 @@ class OCAPClient {
     this.socket.onConnError(() => {
       debug('socket.reconnect.onConnError');
       setTimeout(() => {
-	this.socket.connect();
+        this.socket.connect();
       }, 1000);
     });
 
     this.channel = this.socket.channel('__absinthe__:control');
     return new Promise((resolve, reject) => {
       this.channel
-	.join()
-	.receive('ok', res => {
-	  debug('Channel join success', res);
-	  resolve(this.channel);
-	})
-	.receive('error', err => {
-	  debug('Channel join error', err);
-	  reject(err);
-	});
+        .join()
+        .receive('ok', res => {
+          debug('Channel join success', res);
+          resolve(this.channel);
+        })
+        .receive('error', err => {
+          debug('Channel join error', err);
+          reject(err);
+        });
     });
   }
 
