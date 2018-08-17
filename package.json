@@ -2,6 +2,14 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "husky": "^0.14.3",
     "lerna": "^3.0.6"
+  },
+  "scripts": {
+    "lint": "lerna run lint",
+    "precommit": "lerna run precommit",
+    "prepush": "lerna run prepush",
+    "test": "lerna run test",
+    "coverage": "lerna run coverage"
   }
 }
