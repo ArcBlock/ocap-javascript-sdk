@@ -14,6 +14,7 @@
 
 * [Install](#install)
 * [Usage](#usage)
+* [Documentation](#documentation)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -57,6 +58,12 @@ subscription.on('data', data => console.log(data));
 See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
 See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
 See [docs/spec.md](./docs/spec.md) for full api support.
+
+
+## Documentation
+
+* [Bitcoin](./docs/btc.md)
+* [Ethereum](./docs/eth.md)
 
 
 ## Contributors

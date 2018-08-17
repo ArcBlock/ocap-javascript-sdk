@@ -1,3 +1,6 @@
+## 0.3.0 (August 17, 2018)
+  - add doc auto generation script
+
 ## 0.2.0 (August 17, 2018)
   - support bitcoin subscriptions
   - update examples file

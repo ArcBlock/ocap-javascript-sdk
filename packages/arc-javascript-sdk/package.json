@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/node-ocap",
   "description": "Node.js SDK for OCAP Service by ArcBlock",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
@@ -64,6 +64,7 @@
   "scripts": {
     "lint": "eslint src && remark . -qfo",
     "update-schema": "node tools/update-schema.js",
+    "generate-docs": "node tools/generate-docs.js",
     "precommit": "lint-staged && CI=1 npm test",
     "prepush": "lint-staged && CI=1 npm test",
     "test": "npm run lint && node tools/jest.js",

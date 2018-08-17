@@ -83,6 +83,8 @@ class OCAPClient {
       };
 
       queryFn.type = 'query';
+      queryFn.args = builders[key].args;
+      queryFn.builder = builders[key];
 
       this[key] = queryFn;
     });
@@ -129,6 +131,8 @@ class OCAPClient {
       };
 
       subscriptionFn.type = 'subscription';
+      subscriptionFn.args = builders[key].args;
+      subscriptionFn.builder = builders[key];
 
       this[key] = subscriptionFn;
     });
@@ -154,6 +158,8 @@ class OCAPClient {
       };
 
       mutationFn.type = 'mutation';
+      mutationFn.args = builders[key].args;
+      mutationFn.builder = builders[key];
 
       this[key] = mutationFn;
     });
