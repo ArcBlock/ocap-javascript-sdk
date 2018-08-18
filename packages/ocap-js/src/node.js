@@ -2,7 +2,7 @@ const schemas = require('@arcblock/ocap-schema');
 const md5 = require('blueimp-md5');
 const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
-const BaseClient = require('@arcblock/ocap-util');
+const BaseClient = require('@arcblock/sdk-util');
 
 class OCAPClient extends BaseClient {
   _getSchema(dataSource) {
