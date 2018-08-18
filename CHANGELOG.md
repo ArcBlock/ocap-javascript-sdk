@@ -1,3 +1,6 @@
+## 0.3.1 (August 18, 2018)
+  - update docs for ocap-js
+
 ## 0.3.0 (August 18, 2018)
   - package renaming
   - add browser implem for ocap-js
