@@ -16,4 +16,4 @@ git checkout master
 git commit -am "update yarn.lock file"
 
 VERSION=$(cat version | awk '{$1=$1;print}')
-lerna publish $(VERSION) --yes
+lerna publish $VERSION --yes
