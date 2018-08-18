@@ -14,7 +14,8 @@ before_script: make travis-init
 script: make travis
 deploy:
   - provider: script
-    skip_cleanup: true
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
     script: make travis-deploy
     on:
       branch: master
