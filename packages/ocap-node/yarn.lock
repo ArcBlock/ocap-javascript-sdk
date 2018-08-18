@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@arcblock/ocap-schema@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@arcblock/ocap-schema/-/ocap-schema-0.1.0.tgz#db9aa505fa9c751220a23ad9785a76c76d92b504"
+
 "@arcblock/ocap-util@^0.2.4":
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/@arcblock/ocap-util/-/ocap-util-0.2.4.tgz#e376bb209761d47eaf7224f1bf4e421bb5d753e1"

@@ -1,7 +1,7 @@
 {
-  "name": "@arcblock/ocap-node",
-  "description": "Node.js SDK for OCAP Service by ArcBlock",
-  "version": "0.2.6",
+  "name": "@arcblock/ocap-schema",
+  "description": "Schema for OCAP service",
+  "version": "0.1.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
@@ -13,19 +13,11 @@
   "contributors": [
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
-  "dependencies": {
-    "@arcblock/ocap-schema": "^0.1.0",
-    "@arcblock/ocap-util": "^0.2.4",
-    "axios": "^0.18.0",
-    "debug": "^3.1.0",
-    "graphql": "^0.13.2",
-    "phoenix-channels": "^1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^5.3.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
-    "jest": "^23.5.0",
     "prettier": "^1.6.1"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
@@ -41,11 +33,6 @@
   "files": [
     "src"
   ],
-  "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
@@ -53,10 +40,8 @@
   "scripts": {
     "init": "yarn",
     "lint": "eslint src",
-    "generate-docs": "node tools/generate-docs.js",
-    "precommit": "CI=1 npm test",
-    "prepush": "CI=1 npm test",
-    "test": "npm run lint && node tools/jest.js",
-    "coverage": "npm run test -- --coverage"
+    "update-schema": "node tools/update-schema.js",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint"
   }
 }
