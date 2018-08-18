@@ -1,5 +1,4 @@
 const axios = require('axios');
-const EventEmitter = require('events');
 const { print, parse } = require('graphql');
 const {
   getQueryBuilders,
@@ -55,6 +54,10 @@ class OCAPClientBase {
 
   _getSocketImplementation() {
     throw new Error('_getSocketImplementation must be implemented in sub class');
+  }
+
+  _getEventImplementation() {
+    throw new Error('_getEventImplementation must be implemented in sub class');
   }
 
   _getQueryId() {
@@ -143,6 +146,7 @@ class OCAPClientBase {
               debug('subscription success', { queryId, res });
 
               // create a new EventEmitter for each subscription
+              const EventEmitter = this._getEventImplementation();
               this.subscriptions[queryId] = new EventEmitter();
               this.subscriptions[queryId].subscriptionId = res.subscriptionId;
 

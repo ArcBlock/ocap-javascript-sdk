@@ -1,5 +1,6 @@
 const schemas = require('@arcblock/ocap-schema');
 const md5 = require('blueimp-md5');
+const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
 const OCAPClientBase = require('./base');
 
@@ -14,6 +15,10 @@ class OCAPClient extends OCAPClientBase {
 
   _getSocketImplementation() {
     return Socket;
+  }
+
+  _getEventImplementation() {
+    return EventEmitter;
   }
 
   /**
