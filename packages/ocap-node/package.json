@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/ocap-node",
   "description": "Node.js SDK for OCAP Service by ArcBlock",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
@@ -14,8 +14,8 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/ocap-schema": "^0.1.0",
-    "@arcblock/ocap-util": "^0.2.4",
+    "@arcblock/ocap-schema": "^0.2.7",
+    "@arcblock/ocap-util": "^0.2.7",
     "axios": "^0.18.0",
     "debug": "^3.1.0",
     "graphql": "^0.13.2",
