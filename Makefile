@@ -9,7 +9,7 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
-travis-init:
+travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
 install:
@@ -18,6 +18,7 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@yarn
 	@npm run init
 
 pre-build: install dep
