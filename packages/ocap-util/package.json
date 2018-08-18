@@ -27,6 +27,7 @@
   "keywords": ["ocap", "blockchain", "arcblock", "sdk", "nodejs"],
   "license": "MIT",
   "main": "src/index.js",
+  "files": ["src"],
   "remarkConfig": {
     "plugins": ["preset-github"]
   },
