@@ -18,6 +18,7 @@ bump-version:
 	@echo "Bump version..."
 	@.makefiles/bump_version.sh
 	@test -f "package.json" && .makefiles/bump_node_version.sh
+	@test -f "lerna.json" && .makefiles/bump_lerna_version.sh
 
 create-pr:
 	@echo "Creating pull request..."
