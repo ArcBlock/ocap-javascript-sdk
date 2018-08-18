@@ -46,6 +46,7 @@
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
   },
   "scripts": {
+    "init": "yarn",
     "lint": "eslint src",
     "precommit": "CI=1 npm test",
     "prepush": "CI=1 npm test",

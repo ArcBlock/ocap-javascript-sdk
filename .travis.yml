@@ -3,6 +3,11 @@ language: node_js
 node_js:
   - "10"
 install: true
+cache:
+  yarn: true
+  directories:
+    - '.eslintcache'
+    - 'node_modules'
 branches:
   only:
     - master

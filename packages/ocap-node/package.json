@@ -50,6 +50,7 @@
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
   },
   "scripts": {
+    "init": "yarn",
     "lint": "eslint src",
     "update-schema": "node tools/update-schema.js",
     "generate-docs": "node tools/generate-docs.js",
