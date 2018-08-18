@@ -42,8 +42,9 @@ precommit: dep lint doc build test
 
 travis: precommit
 
-travis-deploy: release
+travis-deploy:
 	@echo "Deploy the software by travis"
+  @npm run deploy
 
 clean:
 	@echo "Cleaning the build..."
