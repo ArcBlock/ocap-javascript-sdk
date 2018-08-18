@@ -1,3 +1,8 @@
+## 0.2.7 (August 18, 2018)
+  - use ocap-schema in ocap-node
+  - add ocap-schema package
+  - refactor build
+
 ## 0.2.6 (August 18, 2018)
 
 
