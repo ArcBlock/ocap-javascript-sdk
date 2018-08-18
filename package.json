@@ -18,7 +18,7 @@
     "init": "lerna run init",
     "lint": "lerna run lint",
     "predeploy": "DEBUG=* node tools/setup-ci.js",
-    "deploy": "lerna publish --yes",
+    "deploy": "git checkout master && lerna publish --yes",
     "precommit": "lint-staged && lerna run precommit",
     "prepush": "lint-staged && lerna run prepush",
     "test": "lerna run test",
