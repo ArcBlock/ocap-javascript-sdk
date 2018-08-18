@@ -6,7 +6,6 @@ install: true
 cache:
   yarn: true
   directories:
-    - '.eslintcache'
     - 'node_modules'
 branches:
   only:
@@ -16,7 +15,7 @@ script: make travis
 deploy:
   - provider: script
     skip_cleanup: true
-    script: npm run deploy
+    script: make travis-deploy
     on:
       branch: master
 env:

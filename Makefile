@@ -32,7 +32,6 @@ all: pre-build build post-build
 
 test:
 	@echo "Running test suites..."
-	@npm run test
 
 lint:
 	@echo "Linting the software..."
