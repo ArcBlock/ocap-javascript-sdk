@@ -1,4 +1,4 @@
-# [**@arcblock/ocap-util**](https://github.com/arcblock/arc-javascript-sdk)
+# [**@arcblock/sdk-util**](https://github.com/arcblock/arc-javascript-sdk)
 
 [![build status](https://img.shields.io/travis/ArcBlock/arc-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/arc-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/arc-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/arc-javascript-sdk)
@@ -19,15 +19,15 @@
 ## Install
 
 ```sh
-npm install @arcblock/ocap-util
+npm install @arcblock/sdk-util
 // or
-yarn add @arcblock/ocap-util
+yarn add @arcblock/sdk-util
 ```
 
 ## Usage
 
 ```js
-const util = require('@arcblock/ocap-util');
+const BaseClient = require('@arcblock/sdk-util');
 ```
 
 ## Contributors
