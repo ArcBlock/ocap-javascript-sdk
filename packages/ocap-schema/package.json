@@ -1,0 +1,47 @@
+{
+  "name": "@arcblock/ocap-schema",
+  "description": "Schema for OCAP service",
+  "version": "0.1.0",
+  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "prettier": "^1.6.1"
+  },
+  "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
+  "keywords": [
+    "ocap",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/arc-javascript-sdk"
+  },
+  "scripts": {
+    "init": "yarn",
+    "lint": "eslint src",
+    "update-schema": "node tools/update-schema.js",
+    "precommit": "npm run lint",
+    "prepush": "npm run lint"
+  }
+}
