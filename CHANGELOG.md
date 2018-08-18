@@ -1,3 +1,9 @@
+## 0.3.0 (August 18, 2018)
+  - package renaming
+  - add browser implem for ocap-js
+  - update gitignore
+  - refactor build
+
 ## 0.2.7 (August 18, 2018)
   - use ocap-schema in ocap-node
   - add ocap-schema package
