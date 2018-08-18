@@ -22,13 +22,13 @@ const getTypeFilter = kind => x => {
  */
 const resolveFieldTree = (type, depth, map) => {
   const { fields } = type;
-  const scalarFields = fields.filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
+  const scalarFields = (fields || []).filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
 
   if (depth >= 4) {
     return { scalar: scalarFields.filter(x => Boolean(x.name)) };
   }
 
-  const objectFields = fields.filter(getTypeFilter('OBJECT')).map(x => {
+  const objectFields = (fields || []).filter(getTypeFilter('OBJECT')).map(x => {
     const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
     return {
       type: x.type.kind,
