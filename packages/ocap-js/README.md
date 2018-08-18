@@ -7,7 +7,9 @@
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
 [![license](https://img.shields.io/github/license/ArcBlock/arc-javascript-sdk.svg)](LICENSE)
 
-> Node.js SDK for OCAP Service by ArcBlock
+> Javascript SDK for OCAP Service by ArcBlock for both Node.js and Browser
+
+> If you are using this SDK in browser environment, [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill) is required.
 
 ## Table of Contents
 
