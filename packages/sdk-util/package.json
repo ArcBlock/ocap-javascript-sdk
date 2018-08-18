@@ -1,5 +1,5 @@
 {
-  "name": "@arcblock/ocap-util",
+  "name": "@arcblock/sdk-util",
   "description": "Helpers and utilities shared across ArcBlock Javascript SDK",
   "version": "0.3.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
