@@ -10,7 +10,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "contributors": ["wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"],
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
+  ],
   "dependencies": {
     "@arcblock/ocap-util": "^0.1.1",
     "axios": "^0.18.0",
@@ -19,7 +21,6 @@
     "phoenix-channels": "^1.0.0"
   },
   "devDependencies": {
-    "cross-env": "^5.0.5",
     "eslint": "^5.3.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
@@ -27,19 +28,28 @@
     "prettier": "^1.6.1"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
-  "keywords": ["ocap", "blockchain", "arcblock", "sdk", "nodejs"],
+  "keywords": [
+    "ocap",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
   "license": "MIT",
   "main": "src/index.js",
-  "files": ["src"],
+  "files": [
+    "src"
+  ],
   "remarkConfig": {
-    "plugins": ["preset-github"]
+    "plugins": [
+      "preset-github"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
   },
   "scripts": {
-    "init": "yarn",
     "lint": "eslint src",
     "update-schema": "node tools/update-schema.js",
     "generate-docs": "node tools/generate-docs.js",
