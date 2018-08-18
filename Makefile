@@ -15,6 +15,7 @@ travis-init: install dep
 install:
 	@echo "Install software required for this repo..."
 	@npm install -g lerna
+	@npm install -g yarn
 
 dep:
 	@echo "Install dependencies required for this repo..."

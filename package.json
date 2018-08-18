@@ -15,7 +15,7 @@
     ]
   },
   "scripts": {
-    "init": "lerna run init && lerna bootstrap",
+    "init": "lerna bootstrap",
     "lint": "lerna run lint",
     "predeploy": "node tools/setup-ci.js",
     "deploy": "lerna publish --yes",
