@@ -17,6 +17,7 @@
     "@arcblock/ocap-schema": "^0.2.7",
     "@arcblock/ocap-util": "^0.2.7",
     "axios": "^0.18.0",
+    "blueimp-md5": "^2.10.0",
     "debug": "^3.1.0",
     "graphql": "^0.13.2",
     "phoenix-channels": "^1.0.0"

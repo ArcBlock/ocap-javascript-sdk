@@ -1,172 +1,17 @@
-const axios = require('axios');
+const md5 = require('blueimp-md5');
 const schemas = require('@arcblock/ocap-schema');
-const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
-const { print, parse } = require('graphql');
-const {
-  getQueryBuilders,
-  getMutationBuilders,
-  getSubscriptionBuilders,
-} = require('@arcblock/ocap-util');
-
+const OCAPClientBase = require('./base');
 const { name } = require('../package.json');
 const debug = require('debug')(name);
 
-const { md5 } = require('./helper');
-
-class OCAPClient {
-  constructor(config) {
-    if (!config.dataSource) {
-      throw new Error('OCAPClient requires dataSource config');
-    }
-
-    this.config = Object.assign(
-      {
-        httpBaseUrl: 'https://ocap.arcblock.io/api',
-        socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
-      },
-      config
-    );
-
-    if (!schemas[this.config.dataSource]) {
-      throw new Error(`OCAPClient: unsupported dataSource ${this.config.dataSource}`);
-    }
-
-    this.schema = schemas[this.config.dataSource];
-    this.generateQueryFns(this.schema);
-    this.generateMutationFns(this.schema);
-    this.generateSubscriptionFns(this.schema);
-
-    this.subscriptions = {}; // event emitter objects
+class OCAPClient extends OCAPClientBase {
+  _getSchema(dataSource) {
+    return schemas[dataSource];
   }
 
-  getQueries() {
-    return this._getApiList('query');
-  }
-
-  getSubscriptions() {
-    return this._getApiList('subscription');
-  }
-
-  getMutations() {
-    return this._getApiList('mutation');
-  }
-
-  /**
-   * Send raw query to ocap and return results
-   *
-   * @param {*} query
-   * @memberof OCAPClient
-   * @return Promise
-   */
-  doRawQuery(query) {
-    try {
-      const cleanQuery = print(parse(query));
-      return this._doRequest(cleanQuery);
-    } catch (err) {
-      throw new Error(`OCAPClient: invalid raw query ${err.message || err.toString()}`);
-    }
-  }
-
-  generateQueryFns() {
-    const { types, queryType } = this.schema;
-    if (!queryType) {
-      return;
-    }
-
-    const builders = getQueryBuilders({
-      types,
-      rootName: queryType.name,
-      ignoreFields: this._getIgnoreFields.bind(this),
-    });
-
-    Object.keys(builders).forEach(key => {
-      const queryFn = async args => {
-        const query = builders[key](args);
-        return this._doRequest(query);
-      };
-
-      queryFn.type = 'query';
-      queryFn.args = builders[key].args;
-      queryFn.builder = builders[key];
-
-      this[key] = queryFn;
-    });
-  }
-
-  generateSubscriptionFns() {
-    const { types, subscriptionType } = this.schema;
-    if (!subscriptionType) {
-      return;
-    }
-
-    const builders = getSubscriptionBuilders({
-      types,
-      rootName: subscriptionType.name,
-      ignoreFields: this._getIgnoreFields.bind(this),
-    });
-
-    Object.keys(builders).forEach(key => {
-      const subscriptionFn = async args => {
-        const query = builders[key](args);
-        const queryId = md5(query);
-        if (this.subscriptions[queryId]) {
-          return Promise.resolve(this.subscriptions[queryId].emitter);
-        }
-
-        const channel = await this._ensureSubscriptionChannel();
-        return new Promise((resolve, reject) => {
-          channel
-            .push('doc', { query })
-            .receive('ok', res => {
-              debug('subscription success', { queryId, res });
-
-              // create a new EventEmitter for each subscription
-              this.subscriptions[queryId] = new EventEmitter();
-              this.subscriptions[queryId].subscriptionId = res.subscriptionId;
-
-              resolve(this.subscriptions[queryId]);
-            })
-            .receive('error', err => {
-              debug('subscription error', err);
-              reject(err);
-            });
-        });
-      };
-
-      subscriptionFn.type = 'subscription';
-      subscriptionFn.args = builders[key].args;
-      subscriptionFn.builder = builders[key];
-
-      this[key] = subscriptionFn;
-    });
-  }
-
-  generateMutationFns() {
-    const { types, mutationType } = this.schema;
-    if (!mutationType) {
-      return;
-    }
-
-    const builders = getMutationBuilders({
-      types,
-      rootName: mutationType.name,
-      ignoreFields: this._getIgnoreFields.bind(this),
-    });
-
-    Object.keys(builders).forEach(key => {
-      const mutationFn = async args => {
-        // TODO: implement mutation logic
-        const query = builders[key](args);
-        return this._doRequest(query);
-      };
-
-      mutationFn.type = 'mutation';
-      mutationFn.args = builders[key].args;
-      mutationFn.builder = builders[key];
-
-      this[key] = mutationFn;
-    });
+  _getQueryId(query) {
+    return md5(query);
   }
 
   /**
@@ -207,33 +52,6 @@ class OCAPClient {
         return memo;
       }, {})
     );
-  }
-
-  /**
-   * Send a request to ocap service
-   *
-   * @param {*} query
-   * @return Promise
-   * @memberof OCAPClient
-   */
-  async _doRequest(query) {
-    debug('doRequest.query', query);
-    const url = `${this.config.httpBaseUrl}/${this.config.dataSource}`;
-
-    // TODO: support user authentication and authorization through headers
-    const res = await axios.post(url, { query });
-
-    debug('doRequest.response', {
-      status: res.statusCode,
-      data: res.data.data,
-      errors: res.data.errors,
-    });
-
-    if (res.status === 200) {
-      return res.data.data;
-    }
-
-    throw new Error(`doRequest.error: ${res.status}`);
   }
 
   /**
@@ -288,17 +106,6 @@ class OCAPClient {
           reject(err);
         });
     });
-  }
-
-  /**
-   * Generate list of methods with certain type
-   *
-   * @param {*} type
-   * @returns
-   * @memberof OCAPClient
-   */
-  _getApiList(type) {
-    return Object.keys(this).filter(x => typeof this[x] === 'function' && this[x].type === type);
   }
 }
 

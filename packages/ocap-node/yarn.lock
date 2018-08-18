@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@arcblock/ocap-schema@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@arcblock/ocap-schema/-/ocap-schema-0.1.0.tgz#db9aa505fa9c751220a23ad9785a76c76d92b504"
+"@arcblock/ocap-schema@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@arcblock/ocap-schema/-/ocap-schema-0.2.7.tgz#7c64ea48d37bb09794ab750218cb77cfa6da9b69"
 
-"@arcblock/ocap-util@^0.2.4":
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/@arcblock/ocap-util/-/ocap-util-0.2.4.tgz#e376bb209761d47eaf7224f1bf4e421bb5d753e1"
+"@arcblock/ocap-util@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@arcblock/ocap-util/-/ocap-util-0.2.7.tgz#f33ac52ee537b03fd4f2a25f2f629812d7ad3831"
   dependencies:
     graphql "^0.13.2"
 
@@ -405,6 +405,10 @@ bcrypt-pbkdf@^1.0.0:
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
   dependencies:
     tweetnacl "^0.14.3"
+
+blueimp-md5@^2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/blueimp-md5/-/blueimp-md5-2.10.0.tgz#02f0843921f90dca14f5b8920a38593201d6964d"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
