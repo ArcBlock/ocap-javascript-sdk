@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@arcblock/ocap-schema@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@arcblock/ocap-schema/-/ocap-schema-0.2.7.tgz#7c64ea48d37bb09794ab750218cb77cfa6da9b69"
+"@arcblock/ocap-schema@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@arcblock/ocap-schema/-/ocap-schema-0.3.0.tgz#58189b954d08cfdf4bf9a2ee18be96159dacd714"
 
-"@arcblock/ocap-util@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@arcblock/ocap-util/-/ocap-util-0.2.7.tgz#f33ac52ee537b03fd4f2a25f2f629812d7ad3831"
+"@arcblock/ocap-util@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@arcblock/ocap-util/-/ocap-util-0.3.0.tgz#52fc59916765ff305caf975dae635884b87c17a6"
   dependencies:
     graphql "^0.13.2"
 
