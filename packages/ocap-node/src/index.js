@@ -1,6 +1,5 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
+const schemas = require('@arcblock/ocap-schema');
 const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
 const { print, parse } = require('graphql');
@@ -29,12 +28,11 @@ class OCAPClient {
       config
     );
 
-    const schemaFilePath = path.join(__dirname, 'schema', `${this.config.dataSource}.json`);
-    if (fs.existsSync(schemaFilePath) === false) {
+    if (!schemas[this.config.dataSource]) {
       throw new Error(`OCAPClient: unsupported dataSource ${this.config.dataSource}`);
     }
 
-    this.schema = require(schemaFilePath);
+    this.schema = schemas[this.config.dataSource];
     this.generateQueryFns(this.schema);
     this.generateMutationFns(this.schema);
     this.generateSubscriptionFns(this.schema);

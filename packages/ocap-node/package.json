@@ -15,6 +15,7 @@
   ],
   "dependencies": {
     "@arcblock/ocap-util": "^0.2.4",
+    "@arcblock/ocap-schema": "^0.1.0",
     "axios": "^0.18.0",
     "debug": "^3.1.0",
     "graphql": "^0.13.2",
@@ -52,7 +53,6 @@
   "scripts": {
     "init": "yarn",
     "lint": "eslint src",
-    "update-schema": "node tools/update-schema.js",
     "generate-docs": "node tools/generate-docs.js",
     "precommit": "CI=1 npm test",
     "prepush": "CI=1 npm test",
