@@ -1,3 +1,13 @@
+## 0.3.2 (August 19, 2018)
+  - format docs
+  - analytics api
+  - bugfix: fix empty selection query
+  - update docs
+  - cleanup dependencies
+  - bugfix: edge case
+  - remove useless files
+  - move base client to util
+
 ## 0.3.1 (August 18, 2018)
   - update docs for ocap-js
 

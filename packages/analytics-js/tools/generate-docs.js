@@ -2,8 +2,8 @@
 /* eslint indent:"off" */
 const fs = require('fs');
 const path = require('path');
-const { parse, print } = require('graphql');
-const OCAPClient = require('../');
+const { print, parse } = require('graphql');
+const Client = require('../src');
 
 const genSectionDoc = (title, methods) => {
   return `
@@ -41,16 +41,14 @@ ${print(parse(method.result))}
   }`;
 };
 
-const dataSources = ['btc', 'eth'];
+const dataSources = ['analytics'];
 dataSources.map(dataSource => {
-  const client = new OCAPClient({ dataSource });
+  const client = new Client({ dataSource });
   const map = {
     Queries: client.getQueries(),
     Subscriptions: client.getSubscriptions(),
     Mutations: client.getMutations(),
   };
-
-  // console.log(map.Queries.map(m => ({ name: m, args: client[m].args }))[0]);
 
   const paging = { size: 10 };
   const getResultFormat = m => {
@@ -66,6 +64,8 @@ dataSources.map(dataSource => {
 
         return obj;
       }, {});
+
+    console.log(m, argValues);
 
     return client[m].builder(argValues);
   };

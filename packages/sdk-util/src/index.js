@@ -1,17 +1,13 @@
 const axios = require('axios');
 const { print, parse } = require('graphql');
-const {
-  getQueryBuilders,
-  getMutationBuilders,
-  getSubscriptionBuilders,
-} = require('@arcblock/ocap-util');
+const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
 
-const debug = require('debug')('OCAPClient');
+const debug = require('debug')('BaseClient');
 
-class OCAPClientBase {
+class BaseClient {
   constructor(config) {
     if (!config.dataSource) {
-      throw new Error('OCAPClient requires dataSource config');
+      throw new Error('BaseClient requires dataSource config');
     }
 
     this.config = Object.assign(
@@ -27,7 +23,7 @@ class OCAPClientBase {
 
     this.schema = this._getSchema(this.config.dataSource);
     if (!this.schema) {
-      throw new Error(`OCAPClient: unsupported dataSource ${this.config.dataSource}`);
+      throw new Error(`BaseClient: unsupported dataSource ${this.config.dataSource}`);
     }
 
     if (this.config.enableQuery) {
@@ -80,7 +76,7 @@ class OCAPClientBase {
    * Send raw query to ocap and return results
    *
    * @param {*} query
-   * @memberof OCAPClient
+   * @memberof BaseClient
    * @return Promise
    */
   doRawQuery(query) {
@@ -88,7 +84,7 @@ class OCAPClientBase {
       const cleanQuery = print(parse(query));
       return this._doRequest(cleanQuery);
     } catch (err) {
-      throw new Error(`OCAPClient: invalid raw query ${err.message || err.toString()}`);
+      throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
     }
   }
 
@@ -199,7 +195,7 @@ class OCAPClientBase {
    *
    * @param {*} query
    * @return Promise
-   * @memberof OCAPClient
+   * @memberof BaseClient
    */
   async _doRequest(query) {
     debug('doRequest.query', query);
@@ -225,7 +221,7 @@ class OCAPClientBase {
    * Ensure we have a open socket connection and act as switcher on message received
    *
    * @returns Promise
-   * @memberof OCAPClient
+   * @memberof BaseClient
    */
   async _ensureSubscriptionChannel() {
     if (this.channel && this.channel.isJoined()) {
@@ -281,11 +277,11 @@ class OCAPClientBase {
    *
    * @param {*} type
    * @returns
-   * @memberof OCAPClient
+   * @memberof BaseClient
    */
   _getApiList(type) {
     return Object.keys(this).filter(x => typeof this[x] === 'function' && this[x].type === type);
   }
 }
 
-module.exports = OCAPClientBase;
+module.exports = BaseClient;

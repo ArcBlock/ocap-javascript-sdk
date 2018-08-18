@@ -1,4 +1,4 @@
-# [**@arcblock/ocap-util**](https://github.com/arcblock/arc-javascript-sdk)
+# [**@arcblock/analytics-js**](https://github.com/arcblock/arc-javascript-sdk)
 
 [![build status](https://img.shields.io/travis/ArcBlock/arc-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/arc-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/arc-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/arc-javascript-sdk)
@@ -7,7 +7,9 @@
 [![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
 [![license](https://img.shields.io/github/license/ArcBlock/arc-javascript-sdk.svg)](LICENSE)
 
-> Utilities and helpers shared across ArcBlock Javascript SDK
+> Analytics Javascript SDK for ArcBlock for both Node.js and Browser
+
+> If you are using this SDK in browser environment, [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill) is required.
 
 ## Table of Contents
 
@@ -19,15 +21,29 @@
 ## Install
 
 ```sh
-npm install @arcblock/ocap-util
+npm install @arcblock/ocap-js
 // or
-yarn add @arcblock/ocap-util
+yarn add @arcblock/ocap-js
 ```
 
 ## Usage
 
 ```js
-const util = require('@arcblock/ocap-util');
+const SDK = require('@arcblock/analytics-js');
+
+// init client
+const client = new SDK();
+
+const result = await client.createEvent({
+  clientTimestamp: 'abc',
+  deviceId: 'abc',
+  eventType: 'abc',
+  objectId: 'abc',
+  objectType: 'abc',
+  operation: 'abc',
+  source: 'abc',
+  userId: 'abc',
+});
 ```
 
 ## Contributors

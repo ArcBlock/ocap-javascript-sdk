@@ -22,13 +22,13 @@ const getTypeFilter = kind => x => {
  */
 const resolveFieldTree = (type, depth, map) => {
   const { fields } = type;
-  const scalarFields = fields.filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
+  const scalarFields = (fields || []).filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
 
   if (depth >= 4) {
     return { scalar: scalarFields.filter(x => Boolean(x.name)) };
   }
 
-  const objectFields = fields.filter(getTypeFilter('OBJECT')).map(x => {
+  const objectFields = (fields || []).filter(getTypeFilter('OBJECT')).map(x => {
     const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
     return {
       type: x.type.kind,
@@ -56,13 +56,15 @@ const makeQuery = (fields, ignoreFields) => `
     .filter(x => ignoreFields.includes(x.path) === false)
     .map(x => x.name)
     .join('\n')}
-  ${Array.isArray(fields.object)
-    ? fields.object
-        .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
-        .filter(x => ignoreFields.includes(x.path) === false)
-        .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
-        .join('\n')
-    : ''}`;
+  ${
+    Array.isArray(fields.object)
+      ? fields.object
+          .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
+          .filter(x => ignoreFields.includes(x.path) === false)
+          .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
+          .join('\n')
+      : ''
+  }`;
 /* eslint-enable indent */
 
 /**
@@ -160,12 +162,15 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
     /* eslint-disable indent */
     const fn = values => {
       const argStr = x.args.length ? `${formatArgs(values, args)}` : '';
+      const selection = makeQuery(
+        fields,
+        typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields
+      ).trim();
+
       return print(
-        parse(`${prefix}{
-	${x.name}${argStr ? `(${argStr})` : ''} {
-	  ${makeQuery(fields, typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields)}
-	}
-      }`)
+        parse(
+          `${prefix}{${x.name}${argStr ? `(${argStr})` : ''}${selection ? `{${selection}}` : ''}}`
+        )
       );
     };
     /* eslint-enable indent */

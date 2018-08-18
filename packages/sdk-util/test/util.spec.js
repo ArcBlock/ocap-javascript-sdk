@@ -7,7 +7,7 @@ const {
   getMutationBuilders,
   getSubscriptionBuilders,
   getGraphQLBuilders,
-} = require('../src/index');
+} = require('../src/util');
 
 describe('#getTypeFilter', () => {
   test('should return a function', () => {
