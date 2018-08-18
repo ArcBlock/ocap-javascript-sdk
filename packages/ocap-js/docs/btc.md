@@ -1,6 +1,5 @@
 # BTC API List
-
-
+ 
 ## Queries
 
 ### accountByAddress
@@ -26,6 +25,7 @@
     totalAmountSent
   }
 }
+
 ```
 
 ### blockByHash
@@ -69,71 +69,72 @@
     }
     transactions {
       data {
-	blockHash
-	blockHeight
-	fees
-	feesOverWeight
-	hash
-	index
-	lockTime
-	numberInputs
-	numberOutputs
-	priceInUsd
-	size
-	strippedSize
-	total
-	version
-	virtualSize
-	weight
-	witnessHash
-	inputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    preOutput
-	    preTx
-	    script
-	    scriptType
-	    sequence
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
-	outputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    script
-	    scriptType
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
+        blockHash
+        blockHeight
+        fees
+        feesOverWeight
+        hash
+        index
+        lockTime
+        numberInputs
+        numberOutputs
+        priceInUsd
+        size
+        strippedSize
+        total
+        version
+        virtualSize
+        weight
+        witnessHash
+        inputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            preOutput
+            preTx
+            script
+            scriptType
+            sequence
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+        outputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            script
+            scriptType
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### blockByHeight
@@ -177,71 +178,72 @@
     }
     transactions {
       data {
-	blockHash
-	blockHeight
-	fees
-	feesOverWeight
-	hash
-	index
-	lockTime
-	numberInputs
-	numberOutputs
-	priceInUsd
-	size
-	strippedSize
-	total
-	version
-	virtualSize
-	weight
-	witnessHash
-	inputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    preOutput
-	    preTx
-	    script
-	    scriptType
-	    sequence
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
-	outputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    script
-	    scriptType
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
+        blockHash
+        blockHeight
+        fees
+        feesOverWeight
+        hash
+        index
+        lockTime
+        numberInputs
+        numberOutputs
+        priceInUsd
+        size
+        strippedSize
+        total
+        version
+        virtualSize
+        weight
+        witnessHash
+        inputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            preOutput
+            preTx
+            script
+            scriptType
+            sequence
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+        outputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            script
+            scriptType
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### blocksByHeight
@@ -275,42 +277,42 @@
       version
       weight
       miner {
-	address
-	balance
-	numberTxsReceived
-	numberTxsSent
-	priceInUsd
-	pubKey
-	scriptType
-	subKeys
-	totalAmountReceived
-	totalAmountSent
+        address
+        balance
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        scriptType
+        subKeys
+        totalAmountReceived
+        totalAmountSent
       }
       transactions {
-	data {
-	  blockHash
-	  blockHeight
-	  fees
-	  feesOverWeight
-	  hash
-	  index
-	  lockTime
-	  numberInputs
-	  numberOutputs
-	  priceInUsd
-	  size
-	  strippedSize
-	  total
-	  version
-	  virtualSize
-	  weight
-	  witnessHash
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -320,6 +322,7 @@
     }
   }
 }
+
 ```
 
 ### emptyBlocks
@@ -353,42 +356,42 @@
       version
       weight
       miner {
-	address
-	balance
-	numberTxsReceived
-	numberTxsSent
-	priceInUsd
-	pubKey
-	scriptType
-	subKeys
-	totalAmountReceived
-	totalAmountSent
+        address
+        balance
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        scriptType
+        subKeys
+        totalAmountReceived
+        totalAmountSent
       }
       transactions {
-	data {
-	  blockHash
-	  blockHeight
-	  fees
-	  feesOverWeight
-	  hash
-	  index
-	  lockTime
-	  numberInputs
-	  numberOutputs
-	  priceInUsd
-	  size
-	  strippedSize
-	  total
-	  version
-	  virtualSize
-	  weight
-	  witnessHash
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -398,6 +401,7 @@
     }
   }
 }
+
 ```
 
 ### genesisBlock
@@ -441,71 +445,72 @@ No arguments
     }
     transactions {
       data {
-	blockHash
-	blockHeight
-	fees
-	feesOverWeight
-	hash
-	index
-	lockTime
-	numberInputs
-	numberOutputs
-	priceInUsd
-	size
-	strippedSize
-	total
-	version
-	virtualSize
-	weight
-	witnessHash
-	inputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    preOutput
-	    preTx
-	    script
-	    scriptType
-	    sequence
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
-	outputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    script
-	    scriptType
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
+        blockHash
+        blockHeight
+        fees
+        feesOverWeight
+        hash
+        index
+        lockTime
+        numberInputs
+        numberOutputs
+        priceInUsd
+        size
+        strippedSize
+        total
+        version
+        virtualSize
+        weight
+        witnessHash
+        inputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            preOutput
+            preTx
+            script
+            scriptType
+            sequence
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+        outputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            script
+            scriptType
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### richestAccounts
@@ -531,56 +536,56 @@ No arguments
       totalAmountReceived
       totalAmountSent
       txsReceived {
-	data {
-	  blockHash
-	  blockHeight
-	  fees
-	  feesOverWeight
-	  hash
-	  index
-	  lockTime
-	  numberInputs
-	  numberOutputs
-	  priceInUsd
-	  size
-	  strippedSize
-	  total
-	  version
-	  virtualSize
-	  weight
-	  witnessHash
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
       txsSent {
-	data {
-	  blockHash
-	  blockHeight
-	  fees
-	  feesOverWeight
-	  hash
-	  index
-	  lockTime
-	  numberInputs
-	  numberOutputs
-	  priceInUsd
-	  size
-	  strippedSize
-	  total
-	  version
-	  virtualSize
-	  weight
-	  witnessHash
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -590,6 +595,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### transactionByHash
@@ -622,45 +628,46 @@ No arguments
     witnessHash
     inputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	preOutput
-	preTx
-	script
-	scriptType
-	sequence
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        preOutput
+        preTx
+        script
+        scriptType
+        sequence
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
     outputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	script
-	scriptType
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        script
+        scriptType
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### transactionByIndex
@@ -695,45 +702,46 @@ No arguments
     witnessHash
     inputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	preOutput
-	preTx
-	script
-	scriptType
-	sequence
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        preOutput
+        preTx
+        script
+        scriptType
+        sequence
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
     outputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	script
-	scriptType
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        script
+        scriptType
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### transactionsByAddress
@@ -768,43 +776,43 @@ No arguments
       weight
       witnessHash
       inputs {
-	data {
-	  account
-	  blockHash
-	  blockHeight
-	  index
-	  preOutput
-	  preTx
-	  script
-	  scriptType
-	  sequence
-	  txHash
-	  txIndex
-	  value
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          preOutput
+          preTx
+          script
+          scriptType
+          sequence
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
       outputs {
-	data {
-	  account
-	  blockHash
-	  blockHeight
-	  index
-	  script
-	  scriptType
-	  txHash
-	  txIndex
-	  value
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          script
+          scriptType
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -814,6 +822,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### transactionsByIndex
@@ -850,43 +859,43 @@ No arguments
       weight
       witnessHash
       inputs {
-	data {
-	  account
-	  blockHash
-	  blockHeight
-	  index
-	  preOutput
-	  preTx
-	  script
-	  scriptType
-	  sequence
-	  txHash
-	  txIndex
-	  value
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          preOutput
+          preTx
+          script
+          scriptType
+          sequence
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
       outputs {
-	data {
-	  account
-	  blockHash
-	  blockHeight
-	  index
-	  script
-	  scriptType
-	  txHash
-	  txIndex
-	  value
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          script
+          scriptType
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -896,6 +905,7 @@ No arguments
     }
   }
 }
+
 ```
 
 ### zeroFeesBlocks
@@ -929,42 +939,42 @@ No arguments
       version
       weight
       miner {
-	address
-	balance
-	numberTxsReceived
-	numberTxsSent
-	priceInUsd
-	pubKey
-	scriptType
-	subKeys
-	totalAmountReceived
-	totalAmountSent
+        address
+        balance
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        scriptType
+        subKeys
+        totalAmountReceived
+        totalAmountSent
       }
       transactions {
-	data {
-	  blockHash
-	  blockHeight
-	  fees
-	  feesOverWeight
-	  hash
-	  index
-	  lockTime
-	  numberInputs
-	  numberOutputs
-	  priceInUsd
-	  size
-	  strippedSize
-	  total
-	  version
-	  virtualSize
-	  weight
-	  witnessHash
-	}
-	page {
-	  cursor
-	  next
-	  total
-	}
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
       }
     }
     page {
@@ -974,8 +984,8 @@ No arguments
     }
   }
 }
-```
 
+```
 
 ## Subscriptions
 
@@ -1009,52 +1019,53 @@ subscription {
     witnessHash
     inputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	preOutput
-	preTx
-	script
-	scriptType
-	sequence
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        preOutput
+        preTx
+        script
+        scriptType
+        sequence
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
     outputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	script
-	scriptType
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        script
+        scriptType
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### coinReceived
 
 #### Arguments
 
-* **address**, **required**,
+* **address**, **required**, 
 
 #### Result Format
 
@@ -1080,52 +1091,53 @@ subscription {
     witnessHash
     inputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	preOutput
-	preTx
-	script
-	scriptType
-	sequence
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        preOutput
+        preTx
+        script
+        scriptType
+        sequence
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
     outputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	script
-	scriptType
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        script
+        scriptType
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### coinSent
 
 #### Arguments
 
-* **address**, **required**,
+* **address**, **required**, 
 
 #### Result Format
 
@@ -1151,45 +1163,46 @@ subscription {
     witnessHash
     inputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	preOutput
-	preTx
-	script
-	scriptType
-	sequence
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        preOutput
+        preTx
+        script
+        scriptType
+        sequence
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
     outputs {
       data {
-	account
-	blockHash
-	blockHeight
-	index
-	script
-	scriptType
-	txHash
-	txIndex
-	value
+        account
+        blockHash
+        blockHeight
+        index
+        script
+        scriptType
+        txHash
+        txIndex
+        value
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
+
 ```
 
 ### newBlockMined
@@ -1233,81 +1246,74 @@ subscription {
     }
     transactions {
       data {
-	blockHash
-	blockHeight
-	fees
-	feesOverWeight
-	hash
-	index
-	lockTime
-	numberInputs
-	numberOutputs
-	priceInUsd
-	size
-	strippedSize
-	total
-	version
-	virtualSize
-	weight
-	witnessHash
-	inputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    preOutput
-	    preTx
-	    script
-	    scriptType
-	    sequence
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
-	outputs {
-	  data {
-	    account
-	    blockHash
-	    blockHeight
-	    index
-	    script
-	    scriptType
-	    txHash
-	    txIndex
-	    value
-	  }
-	  page {
-	    cursor
-	    next
-	    total
-	  }
-	}
+        blockHash
+        blockHeight
+        fees
+        feesOverWeight
+        hash
+        index
+        lockTime
+        numberInputs
+        numberOutputs
+        priceInUsd
+        size
+        strippedSize
+        total
+        version
+        virtualSize
+        weight
+        witnessHash
+        inputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            preOutput
+            preTx
+            script
+            scriptType
+            sequence
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+        outputs {
+          data {
+            account
+            blockHash
+            blockHeight
+            index
+            script
+            scriptType
+            txHash
+            txIndex
+            value
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       page {
-	cursor
-	next
-	total
+        cursor
+        next
+        total
       }
     }
   }
 }
-```
 
+```
 
 ## Mutations
 
 No Mutations supported yet.
-
-
-## Contributors
-
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
