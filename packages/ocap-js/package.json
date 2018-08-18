@@ -16,7 +16,6 @@
   "dependencies": {
     "@arcblock/ocap-schema": "^0.3.0",
     "@arcblock/ocap-util": "^0.3.0",
-    "axios": "^0.18.0",
     "blueimp-md5": "^2.10.0",
     "debug": "^3.1.0",
     "graphql": "^0.13.2",
@@ -46,14 +45,8 @@
   "browser": "./lib/browser.js",
   "files": [
     "dist",
-    "lib",
-    "module"
+    "lib"
   ],
-  "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
