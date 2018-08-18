@@ -35,16 +35,15 @@ const SDK = require('@arcblock/analytics-js');
 const client = new SDK();
 
 const result = await client.createEvent({
-  clientTimestamp: "abc"
-  deviceId: "abc"
-  eventType: "abc"
-  objectId: "abc"
-  objectType: "abc"
-  operation: "abc"
-  source: "abc"
-  userId: "abc"
+  clientTimestamp: 'abc',
+  deviceId: 'abc',
+  eventType: 'abc',
+  objectId: 'abc',
+  objectType: 'abc',
+  operation: 'abc',
+  source: 'abc',
+  userId: 'abc',
 });
-
 ```
 
 ## Contributors
