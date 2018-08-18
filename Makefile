@@ -46,7 +46,12 @@ travis: precommit
 
 travis-deploy:
 	@echo "Deploy the software by travis"
-	@npm run deploy
+	@git config --local user.name "wangshijun"
+	@git config --local user.email "wangshijun2010@gmail.com"
+	@DEBUG=* node tools/setup-ci.js
+	@git checkout master
+	@git commit -am "update yarn.lock file"
+	@lerna publish $(VERSION) --yes
 
 clean:
 	@echo "Cleaning the build..."
