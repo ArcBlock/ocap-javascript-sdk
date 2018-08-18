@@ -1,197 +1,287 @@
+const axios = require('axios');
 const { print, parse } = require('graphql');
+const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
 
-/**
- * Make a field filter fn
- *
- * @param {*} kind
- */
-const getTypeFilter = kind => x => {
-  if (x.type.ofType) {
-    return x.type.ofType.kind === kind;
-  }
-  return x.type.kind === kind;
-};
+const debug = require('debug')('BaseClient');
 
-/**
- * get fields and its dependencies based on schema
- *
- * @param {*} type
- * @param {*} depth
- * @param {*} map
- * @returns
- */
-const resolveFieldTree = (type, depth, map) => {
-  const { fields } = type;
-  const scalarFields = fields.filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
-
-  if (depth >= 4) {
-    return { scalar: scalarFields.filter(x => Boolean(x.name)) };
-  }
-
-  const objectFields = fields.filter(getTypeFilter('OBJECT')).map(x => {
-    const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
-    return {
-      type: x.type.kind,
-      name: x.name,
-      fields: resolveFieldTree(map[subType], depth + 1, map),
-    };
-  });
-
-  return {
-    scalar: scalarFields,
-    object: objectFields,
-  };
-};
-
-/**
- * make graphql query string based on field list
- *
- * @param {*} fields
- * @param {*} ignoreFields
- * @returns string
- */
-/* eslint-disable indent */
-const makeQuery = (fields, ignoreFields) => `
-  ${fields.scalar
-    .filter(x => ignoreFields.includes(x.path) === false)
-    .map(x => x.name)
-    .join('\n')}
-  ${Array.isArray(fields.object)
-    ? fields.object
-        .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
-        .filter(x => ignoreFields.includes(x.path) === false)
-        .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
-        .join('\n')
-    : ''}`;
-/* eslint-enable indent */
-
-/**
- * assemble graphql params
- *
- * @param {*} values
- * @param {*} specs
- * @returns string
- */
-const formatArgs = (values, specs = {}) => {
-  if (!values) {
-    throw new Error('Empty args when generating graphql query');
-  }
-
-  const isRequiredMissing = Object.keys(specs).some(
-    x => specs[x].type.kind === 'NON_NULL' && !values[x]
-  );
-  if (isRequiredMissing) {
-    throw new Error('Missing required args when generating graphql query');
-  }
-
-  return Object.keys(values || {})
-    .filter(x => specs[x])
-    .map(x => {
-      const type = specs[x].type.ofType ? specs[x].type.ofType.name : specs[x].type.name;
-      const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
-      let value = '';
-      if (kind === 'SCALAR') {
-        if (type === 'String') {
-          value = `"${values[x].toString()}"`;
-        } else {
-          value = values[x].toString();
-        }
-      } else {
-        value = JSON.stringify(values[x]);
-      }
-
-      return `${x}: ${value}`;
-    })
-    .join(', ');
-};
-
-/**
- * Add path for nested objects
- *
- * @param {*} fields
- * @param {string} [prefix='']
- */
-const addFieldsPath = (fields, prefix = '') => {
-  if (Array.isArray(fields.scalar)) {
-    fields.scalar.forEach(x => {
-      x.path = [prefix, x.name].filter(Boolean).join('.');
-    });
-  }
-
-  if (Array.isArray(fields.object)) {
-    fields.object.forEach(x => {
-      x.path = [prefix, x.name].filter(Boolean).join('.');
-      addFieldsPath(x.fields, x.path);
-    });
-  }
-};
-
-/**
- * generate methods for all queries found on RootQueryType
- *
- * @param {*} { types, rootName, ignoreFields, type }
- * @returns <queryName => queryGeneratorFn>
- */
-const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
-  const map = types.reduce((map, x) => {
-    if (x.name.startsWith('__') === false) {
-      map[x.name] = x;
+class BaseClient {
+  constructor(config) {
+    if (!config.dataSource) {
+      throw new Error('BaseClient requires dataSource config');
     }
-    return map;
-  }, {});
 
-  const prefix = {
-    query: '',
-    mutation: 'mutation',
-    subscription: 'subscription',
-  }[type];
+    this.config = Object.assign(
+      {
+        httpBaseUrl: 'https://ocap.arcblock.io/api',
+        socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+        enableQuery: true,
+        enableSubscription: true,
+        enableMutation: true,
+      },
+      config
+    );
 
-  return map[rootName].fields.reduce((fns, x) => {
-    const fields = resolveFieldTree(map[x.type.name], 0, map);
+    this.schema = this._getSchema(this.config.dataSource);
+    if (!this.schema) {
+      throw new Error(`BaseClient: unsupported dataSource ${this.config.dataSource}`);
+    }
 
-    addFieldsPath(fields);
-    // console.log(require('util').inspect(fields, { depth: 100 }));
+    if (this.config.enableQuery) {
+      this.generateQueryFns(this.schema);
+    }
 
-    const args = x.args.reduce((obj, a) => {
-      obj[a.name] = a;
-      return obj;
-    }, {});
+    if (this.config.enableSubscription) {
+      this.generateSubscriptionFns(this.schema);
+      this.subscriptions = {}; // event emitter objects
+    }
 
-    /* eslint-disable indent */
-    const fn = values => {
-      const argStr = x.args.length ? `${formatArgs(values, args)}` : '';
-      return print(
-        parse(`${prefix}{
-	${x.name}${argStr ? `(${argStr})` : ''} {
-	  ${makeQuery(fields, typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields)}
-	}
-      }`)
-      );
-    };
-    /* eslint-enable indent */
+    if (this.config.enableMutation) {
+      this.generateMutationFns(this.schema);
+    }
+  }
 
-    fn.args = args;
-    fns[x.name] = fn;
-    return fns;
-  }, {});
-};
+  _getSchema() {
+    throw new Error('_getSchema must be implemented in sub class');
+  }
 
-const getQueryBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'query' });
+  _getIgnoreFields() {
+    throw new Error('_getIgnoreFields must be implemented in sub class');
+  }
 
-const getMutationBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'mutation' });
+  _getSocketImplementation() {
+    throw new Error('_getSocketImplementation must be implemented in sub class');
+  }
 
-const getSubscriptionBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'subscription' });
+  _getEventImplementation() {
+    throw new Error('_getEventImplementation must be implemented in sub class');
+  }
 
-module.exports = {
-  getQueryBuilders,
-  getMutationBuilders,
-  getSubscriptionBuilders,
-  getGraphQLBuilders,
-  getTypeFilter,
-  resolveFieldTree,
-  makeQuery,
-  formatArgs,
-};
+  _getQueryId() {
+    throw new Error('_getQueryId must be implemented in sub class');
+  }
+
+  getQueries() {
+    return this._getApiList('query');
+  }
+
+  getSubscriptions() {
+    return this._getApiList('subscription');
+  }
+
+  getMutations() {
+    return this._getApiList('mutation');
+  }
+
+  /**
+   * Send raw query to ocap and return results
+   *
+   * @param {*} query
+   * @memberof BaseClient
+   * @return Promise
+   */
+  doRawQuery(query) {
+    try {
+      const cleanQuery = print(parse(query));
+      return this._doRequest(cleanQuery);
+    } catch (err) {
+      throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
+    }
+  }
+
+  generateQueryFns() {
+    const { types, queryType } = this.schema;
+    if (!queryType) {
+      return;
+    }
+
+    const builders = getQueryBuilders({
+      types,
+      rootName: queryType.name,
+      ignoreFields: this._getIgnoreFields.bind(this),
+    });
+
+    Object.keys(builders).forEach(key => {
+      const queryFn = async args => {
+        const query = builders[key](args);
+        return this._doRequest(query);
+      };
+
+      queryFn.type = 'query';
+      queryFn.args = builders[key].args;
+      queryFn.builder = builders[key];
+
+      this[key] = queryFn;
+    });
+  }
+
+  generateSubscriptionFns() {
+    const { types, subscriptionType } = this.schema;
+    if (!subscriptionType) {
+      return;
+    }
+
+    const builders = getSubscriptionBuilders({
+      types,
+      rootName: subscriptionType.name,
+      ignoreFields: this._getIgnoreFields.bind(this),
+    });
+
+    Object.keys(builders).forEach(key => {
+      const subscriptionFn = async args => {
+        const query = builders[key](args);
+        const queryId = this._getQueryId(query);
+        if (this.subscriptions[queryId]) {
+          return Promise.resolve(this.subscriptions[queryId].emitter);
+        }
+
+        const channel = await this._ensureSubscriptionChannel();
+        return new Promise((resolve, reject) => {
+          channel
+            .push('doc', { query })
+            .receive('ok', res => {
+              debug('subscription success', { queryId, res });
+
+              // create a new EventEmitter for each subscription
+              const EventEmitter = this._getEventImplementation();
+              this.subscriptions[queryId] = new EventEmitter();
+              this.subscriptions[queryId].subscriptionId = res.subscriptionId;
+
+              resolve(this.subscriptions[queryId]);
+            })
+            .receive('error', err => {
+              debug('subscription error', err);
+              reject(err);
+            });
+        });
+      };
+
+      subscriptionFn.type = 'subscription';
+      subscriptionFn.args = builders[key].args;
+      subscriptionFn.builder = builders[key];
+
+      this[key] = subscriptionFn;
+    });
+  }
+
+  generateMutationFns() {
+    const { types, mutationType } = this.schema;
+    if (!mutationType) {
+      return;
+    }
+
+    const builders = getMutationBuilders({
+      types,
+      rootName: mutationType.name,
+      ignoreFields: this._getIgnoreFields.bind(this),
+    });
+
+    Object.keys(builders).forEach(key => {
+      const mutationFn = async args => {
+        // TODO: implement mutation logic
+        const query = builders[key](args);
+        return this._doRequest(query);
+      };
+
+      mutationFn.type = 'mutation';
+      mutationFn.args = builders[key].args;
+      mutationFn.builder = builders[key];
+
+      this[key] = mutationFn;
+    });
+  }
+
+  /**
+   * Send a request to ocap service
+   *
+   * @param {*} query
+   * @return Promise
+   * @memberof BaseClient
+   */
+  async _doRequest(query) {
+    debug('doRequest.query', query);
+    const url = `${this.config.httpBaseUrl}/${this.config.dataSource}`;
+
+    // TODO: support user authentication and authorization through headers
+    const res = await axios.post(url, { query });
+
+    debug('doRequest.response', {
+      status: res.statusCode,
+      data: res.data.data,
+      errors: res.data.errors,
+    });
+
+    if (res.status === 200) {
+      return res.data.data;
+    }
+
+    throw new Error(`doRequest.error: ${res.status}`);
+  }
+
+  /**
+   * Ensure we have a open socket connection and act as switcher on message received
+   *
+   * @returns Promise
+   * @memberof BaseClient
+   */
+  async _ensureSubscriptionChannel() {
+    if (this.channel && this.channel.isJoined()) {
+      return Promise.resolve(this.channel);
+    }
+
+    const socketBaseUrl =
+      typeof this.config.socketBaseUrl === 'function'
+        ? this.config.socketBaseUrl(this.config.dataSource)
+        : this.config.socketBaseUrl;
+
+    const Socket = this._getSocket();
+    this.socket = new Socket(socketBaseUrl);
+    this.socket.connect();
+    this.socket.onMessage(({ event, payload }) => {
+      debug('socket.onMessage', { event, payload });
+      if (event === 'subscription:data') {
+        const queryId = Object.keys(this.subscriptions).find(
+          x => this.subscriptions[x].subscriptionId === payload.subscriptionId
+        );
+        if (queryId) {
+          debug('subscription.onMessage', { queryId, subscriptionId: payload.subscriptionId });
+          this.subscriptions[queryId].emit('data', payload.result.data);
+        }
+      }
+    });
+
+    // auto reconnect on error
+    this.socket.onConnError(() => {
+      debug('socket.reconnect.onConnError');
+      setTimeout(() => {
+        this.socket.connect();
+      }, 1000);
+    });
+
+    this.channel = this.socket.channel('__absinthe__:control');
+    return new Promise((resolve, reject) => {
+      this.channel
+        .join()
+        .receive('ok', res => {
+          debug('Channel join success', res);
+          resolve(this.channel);
+        })
+        .receive('error', err => {
+          debug('Channel join error', err);
+          reject(err);
+        });
+    });
+  }
+
+  /**
+   * Generate list of methods with certain type
+   *
+   * @param {*} type
+   * @returns
+   * @memberof BaseClient
+   */
+  _getApiList(type) {
+    return Object.keys(this).filter(x => typeof this[x] === 'function' && this[x].type === type);
+  }
+}
+
+module.exports = BaseClient;
