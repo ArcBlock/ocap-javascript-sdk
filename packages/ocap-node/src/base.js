@@ -19,6 +19,9 @@ class OCAPClientBase {
       {
         httpBaseUrl: 'https://ocap.arcblock.io/api',
         socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+        enableQuery: true,
+        enableSubscription: true,
+        enableMutation: true,
       },
       config
     );
@@ -28,27 +31,34 @@ class OCAPClientBase {
       throw new Error(`OCAPClient: unsupported dataSource ${this.config.dataSource}`);
     }
 
-    this.generateQueryFns(this.schema);
-    this.generateMutationFns(this.schema);
-    this.generateSubscriptionFns(this.schema);
+    if (this.config.enableQuery) {
+      this.generateQueryFns(this.schema);
+    }
 
-    this.subscriptions = {}; // event emitter objects
+    if (this.config.enableSubscription) {
+      this.generateSubscriptionFns(this.schema);
+      this.subscriptions = {}; // event emitter objects
+    }
+
+    if (this.config.enableMutation) {
+      this.generateMutationFns(this.schema);
+    }
   }
 
   _getSchema() {
     throw new Error('_getSchema must be implemented in sub class');
   }
 
-  _getQueryId() {
-    throw new Error('_getQueryId must be implemented in sub class');
-  }
-
   _getIgnoreFields() {
     throw new Error('_getIgnoreFields must be implemented in sub class');
   }
 
-  _ensureSubscriptionChannel() {
-    throw new Error('_ensureSubscriptionChannel must be implemented in sub class');
+  _getSocketImplementation() {
+    throw new Error('_getSocketImplementation must be implemented in sub class');
+  }
+
+  _getQueryId() {
+    throw new Error('_getQueryId must be implemented in sub class');
   }
 
   getQueries() {
@@ -205,6 +215,61 @@ class OCAPClientBase {
     }
 
     throw new Error(`doRequest.error: ${res.status}`);
+  }
+
+  /**
+   * Ensure we have a open socket connection and act as switcher on message received
+   *
+   * @returns Promise
+   * @memberof OCAPClient
+   */
+  async _ensureSubscriptionChannel() {
+    if (this.channel && this.channel.isJoined()) {
+      return Promise.resolve(this.channel);
+    }
+
+    const socketBaseUrl =
+      typeof this.config.socketBaseUrl === 'function'
+        ? this.config.socketBaseUrl(this.config.dataSource)
+        : this.config.socketBaseUrl;
+
+    const Socket = this._getSocket();
+    this.socket = new Socket(socketBaseUrl);
+    this.socket.connect();
+    this.socket.onMessage(({ event, payload }) => {
+      debug('socket.onMessage', { event, payload });
+      if (event === 'subscription:data') {
+        const queryId = Object.keys(this.subscriptions).find(
+          x => this.subscriptions[x].subscriptionId === payload.subscriptionId
+        );
+        if (queryId) {
+          debug('subscription.onMessage', { queryId, subscriptionId: payload.subscriptionId });
+          this.subscriptions[queryId].emit('data', payload.result.data);
+        }
+      }
+    });
+
+    // auto reconnect on error
+    this.socket.onConnError(() => {
+      debug('socket.reconnect.onConnError');
+      setTimeout(() => {
+        this.socket.connect();
+      }, 1000);
+    });
+
+    this.channel = this.socket.channel('__absinthe__:control');
+    return new Promise((resolve, reject) => {
+      this.channel
+        .join()
+        .receive('ok', res => {
+          debug('Channel join success', res);
+          resolve(this.channel);
+        })
+        .receive('error', err => {
+          debug('Channel join error', err);
+          reject(err);
+        });
+    });
   }
 
   /**
