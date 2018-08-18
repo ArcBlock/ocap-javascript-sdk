@@ -1,27 +1,19 @@
-language: elixir
-elixir: 1.6
-otp_release: 21.0
+sudo: false
+language: node_js
+node_js:
+  - "10"
+install: true
 branches:
   only:
     - master
-before_install:
-  - sudo apt-get install -y rpm2cpio wget
-  - nvm install 10
-install:
-  - epmd -daemon
-script: make travis
 before_script: make travis-init
-before_deploy: make travis-deploy
+script: make travis
 deploy:
-  - provider: releases
+  - provider: script
     skip_cleanup: true
-    api_key:
-      secure:
-    file_glob: true
-    file: src/_build/releases/*
+    script: npm run deploy
     on:
-      repo: ArcBlock/ocap-javascript-sdk
       branch: master
-notifications:
-  slack:
-    secure:
+env:
+  global:
+    secure: 'qoUuXfloyohbFX7yusha83hgvRpN0Z4wgDzJ+3+aR7okI+Fpc0B+NTzFPkV3ihlPXgBbDSUztPBMrM5bOT/+c8JB4UmeGvqcwwGn4+eAETSiEIHpzk7NAE9vnN74Us1+pW5FCVuswgcxrnEe3i+UgKNL8rEUVmFR9fD3lr92Sxh2w+0K3M8ywXNuRleNEfDDM4jvVs48aKlz2jtpgbL+s6ZBskkqUXAJc+rCvaWqF3zFKfw8jwImCOM8yrEwXgpSt/jZQIK03Cs1U+vxxFiPsnmbVVWxEdgh+Wlf/nUnv+wEQmni8A2pz0Vpsi5AB/rAPm42eJAhXrR4udfTNNyj4eBulhmbwvgOjC7+UVn8WIu06FSGNHcbKViHPuoge2lRcdlPysw7068xlq+bHtMjegywqnCWOydgiGTTthZlAnV60JsmMLGJahpXYMCMO5GRi8Zhyjf7DeU0Xw/IQEMKxpXCgztzDDzjdpRJ9b44KvxobuB05XbLFgPbEPcfFg9AuQamZhBgOUAYzj1h3IUwdd5riKaDdY5nvO5qn9qjBXC9k8IB4xx+hl86IXDoux2aApshvNK/ldoo68J3/zyu9lAhgliA9YJolNqmYzoa1DLeF5mQ12tNEB6simtP3j70paVgAccrxqN6magaCuxgrS9C3P60r/RBZAbB3MwkoDU='

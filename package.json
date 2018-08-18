@@ -2,17 +2,23 @@
   "name": "root",
   "private": true,
   "devDependencies": {
-    "prettier": "^1.6.1",
     "husky": "^0.14.3",
     "lerna": "^3.0.6",
-    "lint-staged": "^7.2.2"
+    "lint-staged": "^7.2.2",
+    "prettier": "^1.6.1",
+    "set-npm-auth-token-for-ci": "^2.0.13"
   },
   "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": ["prettier --write", "git add"]
+    "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "scripts": {
-    "init": "lerna run init && lerna bootstrap",
+    "init": "lerna bootstrap",
     "lint": "lerna run lint",
+    "predeploy": "node tools/setup-ci.js",
+    "deploy": "lerna publish --yes",
     "precommit": "lint-staged && lerna run precommit",
     "prepush": "lint-staged && lerna run prepush",
     "test": "lerna run test",

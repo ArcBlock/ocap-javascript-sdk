@@ -9,15 +9,17 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
-travis-init:
+travis-init: install dep
 	@echo "Initialize software required for travis (normally ubuntu software)"
 
 install:
 	@echo "Install software required for this repo..."
 	@npm install -g lerna
+	@npm install -g yarn
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@yarn
 	@npm run init
 
 pre-build: install dep
@@ -42,8 +44,9 @@ precommit: dep lint doc build test
 
 travis: precommit
 
-travis-deploy: release
+travis-deploy:
 	@echo "Deploy the software by travis"
+	@npm run deploy
 
 clean:
 	@echo "Cleaning the build..."
