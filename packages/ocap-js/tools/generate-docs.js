@@ -2,6 +2,7 @@
 /* eslint indent:"off" */
 const fs = require('fs');
 const path = require('path');
+const { parse, print } = require('graphql');
 const OCAPClient = require('../');
 
 const genSectionDoc = (title, methods) => {
@@ -32,7 +33,7 @@ ${
 #### Result Format
 
 \`\`\`graphql
-${method.result}
+${print(parse(method.result))}
 \`\`\``
           )
           .join('\n')
