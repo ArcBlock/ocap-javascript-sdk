@@ -46,7 +46,10 @@ travis: precommit
 
 travis-deploy:
 	@echo "Deploy the software by travis"
-	@npm run deploy
+	@DEBUG=* node tools/setup-ci.js
+	@git checkout master
+	@git checkout .
+	@lerna publish $(VERSION) --yes
 
 clean:
 	@echo "Cleaning the build..."
