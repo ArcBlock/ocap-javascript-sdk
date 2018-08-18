@@ -44,7 +44,7 @@ travis: precommit
 
 travis-deploy:
 	@echo "Deploy the software by travis"
-  @npm run deploy
+	@npm run deploy
 
 clean:
 	@echo "Cleaning the build..."
