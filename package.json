@@ -8,6 +8,10 @@
     "prettier": "^1.6.1",
     "set-npm-auth-token-for-ci": "^2.0.13"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk"
+  },
   "lint-staged": {
     "*.{js,jsx,mjs,ts,tsx,css,less,scss,json,graphql}": [
       "prettier --write",
