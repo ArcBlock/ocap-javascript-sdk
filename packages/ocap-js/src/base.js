@@ -1,7 +1,4 @@
 const axios = require('axios');
-const schemas = require('@arcblock/ocap-schema');
-const EventEmitter = require('events');
-const { Socket } = require('phoenix-channels');
 const { print, parse } = require('graphql');
 const {
   getQueryBuilders,
@@ -9,12 +6,9 @@ const {
   getSubscriptionBuilders,
 } = require('@arcblock/ocap-util');
 
-const { name } = require('../package.json');
-const debug = require('debug')(name);
+const debug = require('debug')('OCAPClient');
 
-const { md5 } = require('./helper');
-
-class OCAPClient {
+class OCAPClientBase {
   constructor(config) {
     if (!config.dataSource) {
       throw new Error('OCAPClient requires dataSource config');
@@ -24,20 +18,50 @@ class OCAPClient {
       {
         httpBaseUrl: 'https://ocap.arcblock.io/api',
         socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+        enableQuery: true,
+        enableSubscription: true,
+        enableMutation: true,
       },
       config
     );
 
-    if (!schemas[this.config.dataSource]) {
+    this.schema = this._getSchema(this.config.dataSource);
+    if (!this.schema) {
       throw new Error(`OCAPClient: unsupported dataSource ${this.config.dataSource}`);
     }
 
-    this.schema = schemas[this.config.dataSource];
-    this.generateQueryFns(this.schema);
-    this.generateMutationFns(this.schema);
-    this.generateSubscriptionFns(this.schema);
+    if (this.config.enableQuery) {
+      this.generateQueryFns(this.schema);
+    }
 
-    this.subscriptions = {}; // event emitter objects
+    if (this.config.enableSubscription) {
+      this.generateSubscriptionFns(this.schema);
+      this.subscriptions = {}; // event emitter objects
+    }
+
+    if (this.config.enableMutation) {
+      this.generateMutationFns(this.schema);
+    }
+  }
+
+  _getSchema() {
+    throw new Error('_getSchema must be implemented in sub class');
+  }
+
+  _getIgnoreFields() {
+    throw new Error('_getIgnoreFields must be implemented in sub class');
+  }
+
+  _getSocketImplementation() {
+    throw new Error('_getSocketImplementation must be implemented in sub class');
+  }
+
+  _getEventImplementation() {
+    throw new Error('_getEventImplementation must be implemented in sub class');
+  }
+
+  _getQueryId() {
+    throw new Error('_getQueryId must be implemented in sub class');
   }
 
   getQueries() {
@@ -109,7 +133,7 @@ class OCAPClient {
     Object.keys(builders).forEach(key => {
       const subscriptionFn = async args => {
         const query = builders[key](args);
-        const queryId = md5(query);
+        const queryId = this._getQueryId(query);
         if (this.subscriptions[queryId]) {
           return Promise.resolve(this.subscriptions[queryId].emitter);
         }
@@ -122,6 +146,7 @@ class OCAPClient {
               debug('subscription success', { queryId, res });
 
               // create a new EventEmitter for each subscription
+              const EventEmitter = this._getEventImplementation();
               this.subscriptions[queryId] = new EventEmitter();
               this.subscriptions[queryId].subscriptionId = res.subscriptionId;
 
@@ -170,46 +195,6 @@ class OCAPClient {
   }
 
   /**
-   * Get ignored field lists that need to be excluded when build graphql queries
-   * These fields are ignored because they may cause query failure
-   *
-   * @param {Type} t
-   * @return Array
-   */
-  _getIgnoreFields(t) {
-    const ignoreFields = ['merkleRoot', 'data.merkleRoot'];
-    ignoreFields.push('txsSent', 'txsReceived');
-    if (t.name.toLowerCase().indexOf('block') >= 0) {
-      ignoreFields.push('miner.txsSent', 'miner.txsReceived');
-      ignoreFields.push('data.miner.txsSent', 'data.miner.txsReceived');
-      if (this.config.dataSource === 'eth') {
-        ignoreFields.push('total', 'numberTxs');
-        ignoreFields.push('data.total', 'data.numberTxs');
-      }
-    }
-
-    if (this.config.dataSource === 'eth') {
-      ignoreFields.push(
-        'parent',
-        'to.txsSent',
-        'from.txsSent',
-        'to.txsReceived',
-        'from.txsReceived'
-      );
-      ignoreFields.push('data.to.txsSent', 'data.from.txsReceived');
-      ignoreFields.push('author', 'transactions.data.parent');
-      ignoreFields.push('data.author', 'data.transactions.data.parent');
-    }
-
-    return Object.keys(
-      ignoreFields.reduce((memo, x) => {
-        memo[x] = true;
-        return memo;
-      }, {})
-    );
-  }
-
-  /**
    * Send a request to ocap service
    *
    * @param {*} query
@@ -252,6 +237,7 @@ class OCAPClient {
         ? this.config.socketBaseUrl(this.config.dataSource)
         : this.config.socketBaseUrl;
 
+    const Socket = this._getSocket();
     this.socket = new Socket(socketBaseUrl);
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {
@@ -302,4 +288,4 @@ class OCAPClient {
   }
 }
 
-module.exports = OCAPClient;
+module.exports = OCAPClientBase;

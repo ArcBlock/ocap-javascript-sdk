@@ -10,32 +10,32 @@ const genSectionDoc = (title, methods) => {
 ${
     methods.length > 0
       ? methods
-	  .map(
-	    method => `
+          .map(
+            method => `
 ### ${method.name}
 
 #### Arguments
 
 ${
-	      Object.values(method.args).length
-		? Object.values(method.args)
-		    .map(
-		      arg =>
-			`* **${arg.name}**, ${
-			  arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'
-			}, ${arg.description}`
-		    )
-		    .join('\n')
-		: 'No arguments'
-	    }
+              Object.values(method.args).length
+                ? Object.values(method.args)
+                    .map(
+                      arg =>
+                        `* **${arg.name}**, ${
+                          arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'
+                        }, ${arg.description}`
+                    )
+                    .join('\n')
+                : 'No arguments'
+            }
 
 #### Result Format
 
 \`\`\`graphql
 ${method.result}
 \`\`\``
-	  )
-	  .join('\n')
+          )
+          .join('\n')
       : `\nNo ${title} supported yet.\n`
   }`;
 };
@@ -57,13 +57,13 @@ dataSources.map(dataSource => {
     const argValues = Object.values(args)
       .filter(x => x.type.kind === 'NON_NULL')
       .reduce((obj, x) => {
-	if (x.name === 'paging') {
-	  obj.paging = paging;
-	} else {
-	  obj[x.name] = x.type.ofType.name === 'String' ? 'abc' : 123;
-	}
+        if (x.name === 'paging') {
+          obj.paging = paging;
+        } else {
+          obj[x.name] = x.type.ofType.name === 'String' ? 'abc' : 123;
+        }
 
-	return obj;
+        return obj;
       }, {});
 
     return client[m].builder(argValues);

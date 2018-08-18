@@ -1,4 +1,4 @@
-# [**@arcblock/node-ocap**](https://github.com/arcblock/node-ocap)
+# [**@arcblock/ocap-js**](https://github.com/arcblock/arc-javascript-sdk)
 
 [![build status](https://img.shields.io/travis/ArcBlock/arc-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/arc-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/arc-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/arc-javascript-sdk)
@@ -9,35 +9,35 @@
 
 > Node.js SDK for OCAP Service by ArcBlock
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Contributors](#contributors)
-* [License](#license)
-
+- [Install](#install)
+- [Usage](#usage)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
+- [License](#license)
 
 ## Install
 
 ```sh
-npm install @arcblock/node-ocap
+npm install @arcblock/ocap-js
 // or
-yarn add @arcblock/node-ocap
+yarn add @arcblock/ocap-js
 ```
-
 
 ## Usage
 
 ```js
-const OcapSDK = require('@arcblock/node-ocap');
+const OCAPClient = require('@arcblock/ocap-js');
 
 // init client
-const client = new OcapSDK({
+const client = new OCAPClient({
   httpBaseUrl: 'https://ocap.arcblock.io/api', // we may have multiple hosts in future
   socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
   dataSource: 'eth', // btc, eth
+  enableQuery: true,
+  enableSubscription: true,
+  enableMutation: true,
 });
 
 // list api
@@ -59,12 +59,10 @@ See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
 See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
 See [docs/spec.md](./docs/spec.md) for full api support.
 
-
 ## Documentation
 
-* [Bitcoin](./docs/btc.md)
-* [Ethereum](./docs/eth.md)
-
+- [Bitcoin](./docs/btc.md)
+- [Ethereum](./docs/eth.md)
 
 ## Contributors
 
@@ -72,8 +70,7 @@ See [docs/spec.md](./docs/spec.md) for full api support.
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
 
-* wangshijun
-
+- wangshijun
 
 ## License
 
