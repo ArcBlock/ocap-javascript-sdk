@@ -4,10 +4,16 @@ const axios = require('axios');
 const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
 const { print, parse } = require('graphql');
+const {
+  getQueryBuilders,
+  getMutationBuilders,
+  getSubscriptionBuilders,
+} = require('@arcblock/ocap-util');
+
 const { name } = require('../package.json');
 const debug = require('debug')(name);
 
-const { md5, getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./helper');
+const { md5 } = require('./helper');
 
 class OCAPClient {
   constructor(config) {

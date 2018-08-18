@@ -7,7 +7,7 @@ const {
   getMutationBuilders,
   getSubscriptionBuilders,
   getGraphQLBuilders,
-} = require('../src/helper');
+} = require('../src/index');
 
 describe('#getTypeFilter', () => {
   test('should return a function', () => {
@@ -31,21 +31,21 @@ describe('#formatArgs', () => {
   const specs = {
     address: {
       type: {
-	ofType: {
-	  ofType: null,
-	  name: 'String',
-	  kind: 'SCALAR',
-	},
-	name: null,
-	kind: 'NON_NULL',
+        ofType: {
+          ofType: null,
+          name: 'String',
+          kind: 'SCALAR',
+        },
+        name: null,
+        kind: 'NON_NULL',
       },
       name: 'address',
     },
     height: {
       type: {
-	ofType: null,
-	name: 'Int',
-	kind: 'SCALAR',
+        ofType: null,
+        name: 'Int',
+        kind: 'SCALAR',
       },
       name: 'height',
     },

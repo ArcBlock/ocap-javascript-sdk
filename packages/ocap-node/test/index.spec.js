@@ -68,11 +68,11 @@ describe('OCAPClient#query', () => {
     'should query methods work as expected',
     async () => {
       const client = new OCAPClient({
-	dataSource: 'btc',
+        dataSource: 'btc',
       });
 
       const result = await client.accountByAddress({
-	address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+        address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
       });
       expect(result).toBeTruthy();
       expect(result.accountByAddress).toBeTruthy();
@@ -92,7 +92,7 @@ describe('OCAPClient#subscription', () => {
     expect(typeof client.bigTransactionExecuted).toEqual('function');
   });
 
-  test(
+  test.skip(
     'should subscribe to newBlockMined event',
     async () => {
       // TODO: setup mock socket server for testing env
