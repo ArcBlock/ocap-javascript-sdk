@@ -1,3 +1,6 @@
+## 0.3.7 (August 20, 2018)
+  - add script to update readme automatically
+
 ## 0.3.6 (August 20, 2018)
   - fix webpack library target
 
