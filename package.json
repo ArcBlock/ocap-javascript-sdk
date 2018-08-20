@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "lerna run lint",
-    "build": "lerna run build",
+    "build": "lerna run clean && lerna run build",
     "clean": "lerna clean",
     "test": "CI=1 lerna run test",
     "precommit": "lint-staged && lerna run precommit",

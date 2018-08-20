@@ -1,3 +1,6 @@
+## 0.3.5 (August 20, 2018)
+  - make browser bundle umd format
+
 ## 0.3.4 (August 20, 2018)
   - add browser generation before publish
 
