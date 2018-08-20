@@ -1,3 +1,6 @@
+## 0.3.6 (August 20, 2018)
+  - fix webpack library target
+
 ## 0.3.5 (August 20, 2018)
   - make browser bundle umd format
 
