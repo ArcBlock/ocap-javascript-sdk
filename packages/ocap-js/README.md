@@ -57,12 +57,14 @@ const subscription = await client.newBlockMined();
 subscription.on('data', data => console.log(data));
 ```
 
-See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
-See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
-See [docs/spec.md](./docs/spec.md) for full api support.
+Want more examples?
+
+- See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
+- See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
 
 ## Documentation
 
+- [Specification](./docs/spec.md)
 - [Bitcoin](./docs/btc.md)
 - [Ethereum](./docs/eth.md)
 
