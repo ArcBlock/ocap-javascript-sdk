@@ -1,3 +1,6 @@
+## 0.3.8 (August 20, 2018)
+
+
 ## 0.3.7 (August 20, 2018)
   - add script to update readme automatically
 
