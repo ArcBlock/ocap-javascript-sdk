@@ -1,3 +1,6 @@
+## 0.3.4 (August 20, 2018)
+  - add browser generation before publish
+
 ## 0.3.3 (August 20, 2018)
   - use yarn packages to manage monorep dependencies
   - cleanup eslint config and gitignore file

@@ -14,7 +14,8 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/sdk-util": "^0.3.3"
+    "@arcblock/sdk-util": "^0.3.3",
+    "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -24,7 +25,9 @@
     "eslint-plugin-prettier": "latest",
     "graphql": "^0.13.2",
     "jest": "^23.5.0",
-    "prettier": "^1.6.1"
+    "prettier": "^1.6.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
   "keywords": [
@@ -47,7 +50,7 @@
   },
   "scripts": {
     "lint": "eslint src",
-    "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./lib --source-maps --copy-files",
+    "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./lib --source-maps --copy-files && webpack -p",
     "build-node": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "build": "yarn build-node && yarn build-browser",
     "generate-docs": "node tools/generate-docs.js",
