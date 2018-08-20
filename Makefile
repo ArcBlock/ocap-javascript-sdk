@@ -20,7 +20,6 @@ install:
 dep:
 	@echo "Install dependencies required for this repo..."
 	@yarn
-	@npm run init
 
 pre-build: install dep
 	@echo "Running scripts before the build..."

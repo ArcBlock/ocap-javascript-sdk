@@ -1,6 +1,9 @@
 {
   "name": "root",
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "husky": "^0.14.3",
     "lerna": "^3.0.6",
@@ -19,8 +22,10 @@
     ]
   },
   "scripts": {
-    "init": "lerna run init",
     "lint": "lerna run lint",
+    "build": "lerna run build",
+    "clean": "lerna clean",
+    "test": "CI=1 lerna run test",
     "precommit": "lint-staged && lerna run precommit",
     "prepush": "lint-staged && lerna run prepush",
     "coverage": "lerna run coverage"
