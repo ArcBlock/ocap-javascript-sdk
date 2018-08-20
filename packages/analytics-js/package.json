@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/analytics-js",
   "description": "Analytics Javascript SDK for API Service by ArcBlock",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
