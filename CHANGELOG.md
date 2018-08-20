@@ -1,3 +1,7 @@
+## 0.3.3 (August 20, 2018)
+  - use yarn packages to manage monorep dependencies
+  - cleanup eslint config and gitignore file
+
 ## 0.3.2 (August 19, 2018)
   - format docs
   - analytics api

@@ -37,10 +37,9 @@
     "url": "https://github.com/ArcBlock/arc-javascript-sdk"
   },
   "scripts": {
-    "init": "yarn",
     "lint": "eslint src",
     "update-schema": "node tools/update-schema.js",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint"
+    "precommit": "yarn lint",
+    "prepush": "yarn lint"
   }
 }
