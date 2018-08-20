@@ -31,6 +31,7 @@
     "eslint-plugin-prettier": "latest",
     "jest": "^23.5.0",
     "prettier": "^1.6.1",
+    "rimraf": "^2.6.2",
     "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0"
   },
@@ -55,6 +56,7 @@
   },
   "scripts": {
     "lint": "eslint src",
+    "clean": "rimraf lib && rimraf dist",
     "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./lib --source-maps --copy-files && webpack -p",
     "build-node": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "build": "yarn build-node && yarn build-browser",

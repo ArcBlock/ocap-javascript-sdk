@@ -25,7 +25,8 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
     "jest": "^23.5.0",
-    "prettier": "^1.6.1"
+    "prettier": "^1.6.1",
+    "rimraf": "^2.6.2"
   },
   "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
   "keywords": [
@@ -48,6 +49,7 @@
   },
   "scripts": {
     "lint": "eslint src",
+    "clean": "rimraf lib && rimraf dist",
     "precommit": "CI=1 yarn test",
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
