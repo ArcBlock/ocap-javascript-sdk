@@ -6,6 +6,6 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'lib'),
     library: 'OCAPAnalytics',
-    libraryTarget: 'umd',
+    libraryTarget: 'window',
   },
 };
