@@ -14,8 +14,8 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/ocap-schema": "^0.3.3",
-    "@arcblock/sdk-util": "^0.3.5",
+    "@arcblock/ocap-schema": "^0.3.8",
+    "@arcblock/sdk-util": "^0.3.8",
     "babel-polyfill": "^6.26.0",
     "blueimp-md5": "^2.10.0",
     "graphql": "^0.13.2",

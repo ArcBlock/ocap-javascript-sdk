@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/ocap-schema",
   "description": "Schema for OCAP service",
-  "version": "0.3.3",
+  "version": "0.3.8",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
