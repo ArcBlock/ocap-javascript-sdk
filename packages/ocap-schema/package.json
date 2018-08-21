@@ -41,5 +41,6 @@
     "update-schema": "node tools/update-schema.js",
     "precommit": "yarn lint",
     "prepush": "yarn lint"
-  }
+  },
+  "gitHead": "f33b37d360560ce2f1c8b45652e599bf5ef89f60"
 }

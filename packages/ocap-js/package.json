@@ -65,5 +65,6 @@
     "prepush": "CI=1 yarn test",
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn test -- --coverage"
-  }
+  },
+  "gitHead": "f33b37d360560ce2f1c8b45652e599bf5ef89f60"
 }
