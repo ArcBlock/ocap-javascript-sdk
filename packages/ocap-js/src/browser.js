@@ -17,6 +17,11 @@ class OCAPBrowserClient extends BaseClient {
     return Socket;
   }
 
+  _getSocketOptions() {
+    // eslint-disable-next-line
+    return { transport: WebSocket };
+  }
+
   _getEventImplementation() {
     return EventEmitter;
   }
