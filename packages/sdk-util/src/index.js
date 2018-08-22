@@ -233,7 +233,7 @@ class BaseClient {
         ? this.config.socketBaseUrl(this.config.dataSource)
         : this.config.socketBaseUrl;
 
-    const Socket = this._getSocket();
+    const Socket = this._getSocketImplementation();
     this.socket = new Socket(socketBaseUrl);
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {

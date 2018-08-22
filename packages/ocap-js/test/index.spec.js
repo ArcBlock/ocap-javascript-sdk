@@ -94,16 +94,18 @@ const OCAPBrowserClient = require('../src/browser');
       expect(typeof client.bigTransactionExecuted).toEqual('function');
     });
 
-    test.skip(
-      'should subscribe to newBlockMined event',
-      async () => {
-        // TODO: setup mock socket server for testing env
-        const subscription = await client.newBlockMined();
-        expect(subscription instanceof EventEmitter).toEqual(true);
-        expect(subscription.subscriptionId).toBeTruthy();
-        expect(Object.keys(client.subscriptions).length).toEqual(1);
-      },
-      5000
-    );
+    if (Client.name !== 'OCAPBrowserClient') {
+      test(
+        'should subscribe to newBlockMined event',
+        async () => {
+          // TODO: setup mock socket server for testing env
+          const subscription = await client.newBlockMined();
+          expect(subscription instanceof EventEmitter).toEqual(true);
+          expect(subscription.subscriptionId).toBeTruthy();
+          expect(Object.keys(client.subscriptions).length).toEqual(1);
+        },
+        5000
+      );
+    }
   });
 });

@@ -1,3 +1,8 @@
+## 0.3.9 (August 22, 2018)
+  - fix sdk subscription
+  - update documentation
+  - update readme
+
 ## 0.3.8 (August 20, 2018)
 
 

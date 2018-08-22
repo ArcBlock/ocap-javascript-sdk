@@ -14,6 +14,7 @@ process.on('unhandledRejection', err => {
 
 const jest = require('jest');
 let argv = process.argv.slice(2);
+argv.push('--forceExit');
 
 // Watch unless on CI or in coverage mode
 if (!process.env.CI && argv.indexOf('--coverage') < 0) {
