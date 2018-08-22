@@ -52,6 +52,10 @@ class BaseClient {
     throw new Error('_getSocketImplementation must be implemented in sub class');
   }
 
+  _getSocketOptions() {
+    throw new Error('_getSocketOptions must be implemented in sub class');
+  }
+
   _getEventImplementation() {
     throw new Error('_getEventImplementation must be implemented in sub class');
   }
@@ -234,7 +238,7 @@ class BaseClient {
         : this.config.socketBaseUrl;
 
     const Socket = this._getSocketImplementation();
-    this.socket = new Socket(socketBaseUrl);
+    this.socket = new Socket(socketBaseUrl, this._getSocketOptions());
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {
       debug('socket.onMessage', { event, payload });
@@ -250,8 +254,11 @@ class BaseClient {
     });
 
     // auto reconnect on error
-    this.socket.onConnError(() => {
-      debug('socket.reconnect.onConnError');
+    this.socket.onConnError(err => {
+      debug('socket.reconnect.onConnError', err);
+      Object.keys(this.subscriptions).forEach(queryId => {
+        this.subscriptions[queryId].emit('error', err);
+      });
       setTimeout(() => {
         this.socket.connect();
       }, 1000);

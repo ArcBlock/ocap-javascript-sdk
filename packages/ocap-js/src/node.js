@@ -17,6 +17,10 @@ class OCAPClient extends BaseClient {
     return Socket;
   }
 
+  _getSocketOptions() {
+    return {};
+  }
+
   _getEventImplementation() {
     return EventEmitter;
   }
