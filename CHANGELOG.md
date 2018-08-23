@@ -1,3 +1,7 @@
+## 0.3.12 (August 23, 2018)
+  - udpate licence files #18
+  - update readme
+
 ## 0.3.11 (August 23, 2018)
   - update readme and updating scripts
 
