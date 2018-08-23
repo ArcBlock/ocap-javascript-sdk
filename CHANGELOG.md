@@ -1,3 +1,6 @@
+## 0.3.11 (August 23, 2018)
+  - update readme and updating scripts
+
 ## 0.3.10 (August 22, 2018)
   - fix socket in react-native
   - update readme
