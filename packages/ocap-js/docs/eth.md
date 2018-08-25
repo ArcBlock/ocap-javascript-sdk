@@ -53,10 +53,13 @@
     priceInUsd
     receiptsRoot
     reward
+    sealFields
     sha3Uncles
     size
     stateRoot
     time
+    totalDifficulty
+    transactionsRoot
     miner {
       address
       balance
@@ -70,33 +73,38 @@
     }
     transactions {
       data {
-        blockHash
-        blockHeight
-        condition
         contractFrom
-        contractTo
-        contractValue
-        creates
-        fees
-        gasLimit
-        gasPrice
-        gasUsed
-        hash
-        index
-        input
-        inputPlain
-        logsBloom
-        nonce
-        priceInUsd
-        publicKey
-        r
-        raw
-        size
-        standardV
-        status
         total
+        index
+        gasPrice
+        publicKey
+        hash
+        standardV
+        root
+        contractTo
+        status
+        fees
+        raw
+        logs
         txType
+        priceInUsd
+        input
+        r
+        gasUsed
+        creates
+        gasLimit
+        blockHash
+        contractAddress
+        logsBloom
         v
+        cumulativeGasUsed
+        nonce
+        size
+        s
+        contractValue
+        time
+        blockHeight
+        inputPlain
         from {
           address
           balance
@@ -157,10 +165,13 @@
     priceInUsd
     receiptsRoot
     reward
+    sealFields
     sha3Uncles
     size
     stateRoot
     time
+    totalDifficulty
+    transactionsRoot
     miner {
       address
       balance
@@ -174,33 +185,38 @@
     }
     transactions {
       data {
-        blockHash
-        blockHeight
-        condition
         contractFrom
-        contractTo
-        contractValue
-        creates
-        fees
-        gasLimit
-        gasPrice
-        gasUsed
-        hash
-        index
-        input
-        inputPlain
-        logsBloom
-        nonce
-        priceInUsd
-        publicKey
-        r
-        raw
-        size
-        standardV
-        status
         total
+        index
+        gasPrice
+        publicKey
+        hash
+        standardV
+        root
+        contractTo
+        status
+        fees
+        raw
+        logs
         txType
+        priceInUsd
+        input
+        r
+        gasUsed
+        creates
+        gasLimit
+        blockHash
+        contractAddress
+        logsBloom
         v
+        cumulativeGasUsed
+        nonce
+        size
+        s
+        contractValue
+        time
+        blockHeight
+        inputPlain
         from {
           address
           balance
@@ -264,10 +280,13 @@
       priceInUsd
       receiptsRoot
       reward
+      sealFields
       sha3Uncles
       size
       stateRoot
       time
+      totalDifficulty
+      transactionsRoot
       miner {
         address
         balance
@@ -281,33 +300,38 @@
       }
       transactions {
         data {
-          blockHash
-          blockHeight
-          condition
           contractFrom
-          contractTo
-          contractValue
-          creates
-          fees
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          index
-          input
-          inputPlain
-          logsBloom
-          nonce
-          priceInUsd
-          publicKey
-          r
-          raw
-          size
-          standardV
-          status
           total
+          index
+          gasPrice
+          publicKey
+          hash
+          standardV
+          root
+          contractTo
+          status
+          fees
+          raw
+          logs
           txType
+          priceInUsd
+          input
+          r
+          gasUsed
+          creates
+          gasLimit
+          blockHash
+          contractAddress
+          logsBloom
           v
+          cumulativeGasUsed
+          nonce
+          size
+          s
+          contractValue
+          time
+          blockHeight
+          inputPlain
           from {
             address
             balance
@@ -348,6 +372,473 @@
 
 ```
 
+### emptyBlocks
+
+#### Arguments
+
+* **fromHeight**, **required**, The height of block from which to return.
+* **paging**, optional, Describes which page of data to return.
+* **toHeight**, optional, The height of block to which to return.
+
+#### Result Format
+
+```graphql
+{
+  emptyBlocks(fromHeight: 123) {
+    data {
+      difficulty
+      extraData
+      extraDataPlain
+      fees
+      gasLimit
+      gasUsed
+      hash
+      height
+      logsBloom
+      mixHash
+      nonce
+      preHash
+      priceInUsd
+      receiptsRoot
+      reward
+      sealFields
+      sha3Uncles
+      size
+      stateRoot
+      time
+      totalDifficulty
+      transactionsRoot
+      miner {
+        address
+        balance
+        isContract
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        totalAmountReceived
+        totalAmountSent
+      }
+      transactions {
+        data {
+          contractFrom
+          total
+          index
+          gasPrice
+          publicKey
+          hash
+          standardV
+          root
+          contractTo
+          status
+          fees
+          raw
+          logs
+          txType
+          priceInUsd
+          input
+          r
+          gasUsed
+          creates
+          gasLimit
+          blockHash
+          contractAddress
+          logsBloom
+          v
+          cumulativeGasUsed
+          nonce
+          size
+          s
+          contractValue
+          time
+          blockHeight
+          inputPlain
+          from {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          to {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+
+```
+
+### erc20Tokens
+
+#### Arguments
+
+No arguments
+
+#### Result Format
+
+```graphql
+{
+  erc20Tokens {
+    data {
+      address
+      name
+      numHolders
+      symbol
+      totalSupply
+      website
+    }
+  }
+}
+
+```
+
+### genesisBlock
+
+#### Arguments
+
+No arguments
+
+#### Result Format
+
+```graphql
+{
+  genesisBlock {
+    difficulty
+    extraData
+    extraDataPlain
+    fees
+    gasLimit
+    gasUsed
+    hash
+    height
+    logsBloom
+    mixHash
+    nonce
+    preHash
+    priceInUsd
+    receiptsRoot
+    reward
+    sealFields
+    sha3Uncles
+    size
+    stateRoot
+    time
+    totalDifficulty
+    transactionsRoot
+    miner {
+      address
+      balance
+      isContract
+      numberTxsReceived
+      numberTxsSent
+      priceInUsd
+      pubKey
+      totalAmountReceived
+      totalAmountSent
+    }
+    transactions {
+      data {
+        contractFrom
+        total
+        index
+        gasPrice
+        publicKey
+        hash
+        standardV
+        root
+        contractTo
+        status
+        fees
+        raw
+        logs
+        txType
+        priceInUsd
+        input
+        r
+        gasUsed
+        creates
+        gasLimit
+        blockHash
+        contractAddress
+        logsBloom
+        v
+        cumulativeGasUsed
+        nonce
+        size
+        s
+        contractValue
+        time
+        blockHeight
+        inputPlain
+        from {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
+        to {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
+      }
+      page {
+        cursor
+        next
+        total
+      }
+    }
+  }
+}
+
+```
+
+### richestAccounts
+
+#### Arguments
+
+* **paging**, optional, Describes which page of data to return.
+
+#### Result Format
+
+```graphql
+{
+  richestAccounts {
+    data {
+      address
+      balance
+      isContract
+      numberTxsReceived
+      numberTxsSent
+      priceInUsd
+      pubKey
+      totalAmountReceived
+      totalAmountSent
+      txsReceived {
+        data {
+          contractFrom
+          total
+          index
+          gasPrice
+          publicKey
+          hash
+          standardV
+          root
+          contractTo
+          status
+          fees
+          raw
+          logs
+          txType
+          priceInUsd
+          input
+          r
+          gasUsed
+          creates
+          gasLimit
+          blockHash
+          contractAddress
+          logsBloom
+          v
+          cumulativeGasUsed
+          nonce
+          size
+          s
+          contractValue
+          time
+          blockHeight
+          inputPlain
+          from {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          to {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          parent {
+            difficulty
+            extraData
+            extraDataPlain
+            fees
+            gasLimit
+            gasUsed
+            hash
+            height
+            logsBloom
+            mixHash
+            nonce
+            numberTxs
+            preHash
+            priceInUsd
+            receiptsRoot
+            reward
+            sealFields
+            sha3Uncles
+            size
+            stateRoot
+            time
+            total
+            totalDifficulty
+            transactionsRoot
+          }
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+      txsSent {
+        data {
+          contractFrom
+          total
+          index
+          gasPrice
+          publicKey
+          hash
+          standardV
+          root
+          contractTo
+          status
+          fees
+          raw
+          logs
+          txType
+          priceInUsd
+          input
+          r
+          gasUsed
+          creates
+          gasLimit
+          blockHash
+          contractAddress
+          logsBloom
+          v
+          cumulativeGasUsed
+          nonce
+          size
+          s
+          contractValue
+          time
+          blockHeight
+          inputPlain
+          from {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          to {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          parent {
+            difficulty
+            extraData
+            extraDataPlain
+            fees
+            gasLimit
+            gasUsed
+            hash
+            height
+            logsBloom
+            mixHash
+            nonce
+            numberTxs
+            preHash
+            priceInUsd
+            receiptsRoot
+            reward
+            sealFields
+            sha3Uncles
+            size
+            stateRoot
+            time
+            total
+            totalDifficulty
+            transactionsRoot
+          }
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+
+```
+
 ### transactionByHash
 
 #### Arguments
@@ -359,33 +850,38 @@
 ```graphql
 {
   transactionByHash(hash: "abc") {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -426,33 +922,38 @@
 ```graphql
 {
   transactionByIndex(index: 123) {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -496,33 +997,38 @@
 {
   transactionsByIndex {
     data {
-      blockHash
-      blockHeight
-      condition
       contractFrom
-      contractTo
-      contractValue
-      creates
-      fees
-      gasLimit
-      gasPrice
-      gasUsed
-      hash
-      index
-      input
-      inputPlain
-      logsBloom
-      nonce
-      priceInUsd
-      publicKey
-      r
-      raw
-      size
-      standardV
-      status
       total
+      index
+      gasPrice
+      publicKey
+      hash
+      standardV
+      root
+      contractTo
+      status
+      fees
+      raw
+      logs
       txType
+      priceInUsd
+      input
+      r
+      gasUsed
+      creates
+      gasLimit
+      blockHash
+      contractAddress
+      logsBloom
       v
+      cumulativeGasUsed
+      nonce
+      size
+      s
+      contractValue
+      time
+      blockHeight
+      inputPlain
       from {
         address
         balance
@@ -535,115 +1041,38 @@
         totalAmountSent
         txsSent {
           data {
-            blockHash
-            blockHeight
-            condition
             contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
+            total
             index
-            input
-            inputPlain
-            logsBloom
-            nonce
-            priceInUsd
+            gasPrice
             publicKey
-            r
-            raw
-            size
+            hash
             standardV
+            root
+            contractTo
             status
-            total
+            fees
+            raw
+            logs
             txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
-      }
-      parent {
-        difficulty
-        extraData
-        extraDataPlain
-        fees
-        gasLimit
-        gasUsed
-        hash
-        height
-        logsBloom
-        merkleRoot
-        mixHash
-        nonce
-        numberTxs
-        preHash
-        priceInUsd
-        receiptsRoot
-        reward
-        sha3Uncles
-        size
-        stateRoot
-        time
-        total
-        author {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
-        }
-        miner {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
-        }
-        transactions {
-          data {
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
             blockHash
-            blockHeight
-            condition
-            contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            index
-            input
-            inputPlain
+            contractAddress
             logsBloom
-            nonce
-            priceInUsd
-            publicKey
-            r
-            raw
-            size
-            standardV
-            status
-            total
-            txType
             v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
           }
           page {
             cursor
@@ -664,33 +1093,116 @@
         totalAmountSent
         txsReceived {
           data {
-            blockHash
-            blockHeight
-            condition
             contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            index
-            input
-            inputPlain
-            logsBloom
-            nonce
-            priceInUsd
-            publicKey
-            r
-            raw
-            size
-            standardV
-            status
             total
+            index
+            gasPrice
+            publicKey
+            hash
+            standardV
+            root
+            contractTo
+            status
+            fees
+            raw
+            logs
             txType
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
+            blockHash
+            contractAddress
+            logsBloom
             v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+      }
+      parent {
+        difficulty
+        extraData
+        extraDataPlain
+        fees
+        gasLimit
+        gasUsed
+        hash
+        height
+        logsBloom
+        mixHash
+        nonce
+        numberTxs
+        preHash
+        priceInUsd
+        receiptsRoot
+        reward
+        sealFields
+        sha3Uncles
+        size
+        stateRoot
+        time
+        total
+        totalDifficulty
+        transactionsRoot
+        miner {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
+        transactions {
+          data {
+            contractFrom
+            total
+            index
+            gasPrice
+            publicKey
+            hash
+            standardV
+            root
+            contractTo
+            status
+            fees
+            raw
+            logs
+            txType
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
+            blockHash
+            contractAddress
+            logsBloom
+            v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
           }
           page {
             cursor
@@ -714,9 +1226,8 @@
 
 #### Arguments
 
-* **blockOffset**, **required**, Number of blocks to skip
 * **from**, optional, from address
-* **numBlocks**, optional, Number of blocks to scan for transactions.
+* **paging**, optional, Describes which page of data to return.
 * **to**, optional, to address
 * **token**, **required**, The token name of the transaction to return.
 
@@ -724,35 +1235,40 @@
 
 ```graphql
 {
-  transactionsByToken(blockOffset: 123, token: "abc") {
+  transactionsByToken(token: "abc") {
     data {
-      blockHash
-      blockHeight
-      condition
       contractFrom
-      contractTo
-      contractValue
-      creates
-      fees
-      gasLimit
-      gasPrice
-      gasUsed
-      hash
-      index
-      input
-      inputPlain
-      logsBloom
-      nonce
-      priceInUsd
-      publicKey
-      r
-      raw
-      size
-      standardV
-      status
       total
+      index
+      gasPrice
+      publicKey
+      hash
+      standardV
+      root
+      contractTo
+      status
+      fees
+      raw
+      logs
       txType
+      priceInUsd
+      input
+      r
+      gasUsed
+      creates
+      gasLimit
+      blockHash
+      contractAddress
+      logsBloom
       v
+      cumulativeGasUsed
+      nonce
+      size
+      s
+      contractValue
+      time
+      blockHeight
+      inputPlain
       from {
         address
         balance
@@ -765,115 +1281,38 @@
         totalAmountSent
         txsSent {
           data {
-            blockHash
-            blockHeight
-            condition
             contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
+            total
             index
-            input
-            inputPlain
-            logsBloom
-            nonce
-            priceInUsd
+            gasPrice
             publicKey
-            r
-            raw
-            size
+            hash
             standardV
+            root
+            contractTo
             status
-            total
+            fees
+            raw
+            logs
             txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
-      }
-      parent {
-        difficulty
-        extraData
-        extraDataPlain
-        fees
-        gasLimit
-        gasUsed
-        hash
-        height
-        logsBloom
-        merkleRoot
-        mixHash
-        nonce
-        numberTxs
-        preHash
-        priceInUsd
-        receiptsRoot
-        reward
-        sha3Uncles
-        size
-        stateRoot
-        time
-        total
-        author {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
-        }
-        miner {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
-        }
-        transactions {
-          data {
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
             blockHash
-            blockHeight
-            condition
-            contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            index
-            input
-            inputPlain
+            contractAddress
             logsBloom
-            nonce
-            priceInUsd
-            publicKey
-            r
-            raw
-            size
-            standardV
-            status
-            total
-            txType
             v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
           }
           page {
             cursor
@@ -894,33 +1333,38 @@
         totalAmountSent
         txsReceived {
           data {
-            blockHash
-            blockHeight
-            condition
             contractFrom
-            contractTo
-            contractValue
-            creates
-            fees
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            index
-            input
-            inputPlain
-            logsBloom
-            nonce
-            priceInUsd
-            publicKey
-            r
-            raw
-            size
-            standardV
-            status
             total
+            index
+            gasPrice
+            publicKey
+            hash
+            standardV
+            root
+            contractTo
+            status
+            fees
+            raw
+            logs
             txType
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
+            blockHash
+            contractAddress
+            logsBloom
             v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
           }
           page {
             cursor
@@ -929,6 +1373,210 @@
           }
         }
       }
+      parent {
+        difficulty
+        extraData
+        extraDataPlain
+        fees
+        gasLimit
+        gasUsed
+        hash
+        height
+        logsBloom
+        mixHash
+        nonce
+        numberTxs
+        preHash
+        priceInUsd
+        receiptsRoot
+        reward
+        sealFields
+        sha3Uncles
+        size
+        stateRoot
+        time
+        total
+        totalDifficulty
+        transactionsRoot
+        miner {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
+        transactions {
+          data {
+            contractFrom
+            total
+            index
+            gasPrice
+            publicKey
+            hash
+            standardV
+            root
+            contractTo
+            status
+            fees
+            raw
+            logs
+            txType
+            priceInUsd
+            input
+            r
+            gasUsed
+            creates
+            gasLimit
+            blockHash
+            contractAddress
+            logsBloom
+            v
+            cumulativeGasUsed
+            nonce
+            size
+            s
+            contractValue
+            time
+            blockHeight
+            inputPlain
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+      }
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+
+```
+
+### zeroFeesBlocks
+
+#### Arguments
+
+* **fromHeight**, **required**, The height of block from which to return.
+* **paging**, optional, Describes which page of data to return.
+* **toHeight**, optional, The height of block to which to return.
+
+#### Result Format
+
+```graphql
+{
+  zeroFeesBlocks(fromHeight: 123) {
+    data {
+      difficulty
+      extraData
+      extraDataPlain
+      fees
+      gasLimit
+      gasUsed
+      hash
+      height
+      logsBloom
+      mixHash
+      nonce
+      preHash
+      priceInUsd
+      receiptsRoot
+      reward
+      sealFields
+      sha3Uncles
+      size
+      stateRoot
+      time
+      totalDifficulty
+      transactionsRoot
+      miner {
+        address
+        balance
+        isContract
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        totalAmountReceived
+        totalAmountSent
+      }
+      transactions {
+        data {
+          contractFrom
+          total
+          index
+          gasPrice
+          publicKey
+          hash
+          standardV
+          root
+          contractTo
+          status
+          fees
+          raw
+          logs
+          txType
+          priceInUsd
+          input
+          r
+          gasUsed
+          creates
+          gasLimit
+          blockHash
+          contractAddress
+          logsBloom
+          v
+          cumulativeGasUsed
+          nonce
+          size
+          s
+          contractValue
+          time
+          blockHeight
+          inputPlain
+          from {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+          to {
+            address
+            balance
+            isContract
+            numberTxsReceived
+            numberTxsSent
+            priceInUsd
+            pubKey
+            totalAmountReceived
+            totalAmountSent
+          }
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+    }
+    page {
+      cursor
+      next
+      total
     }
   }
 }
@@ -948,33 +1596,38 @@
 ```graphql
 subscription {
   bigTransactionExecuted(token: "abc") {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -1013,33 +1666,38 @@ subscription {
 ```graphql
 subscription {
   contractExecuted(address: "abc") {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -1093,10 +1751,13 @@ subscription {
     priceInUsd
     receiptsRoot
     reward
+    sealFields
     sha3Uncles
     size
     stateRoot
     time
+    totalDifficulty
+    transactionsRoot
     miner {
       address
       balance
@@ -1110,33 +1771,38 @@ subscription {
     }
     transactions {
       data {
-        blockHash
-        blockHeight
-        condition
         contractFrom
-        contractTo
-        contractValue
-        creates
-        fees
-        gasLimit
-        gasPrice
-        gasUsed
-        hash
-        index
-        input
-        inputPlain
-        logsBloom
-        nonce
-        priceInUsd
-        publicKey
-        r
-        raw
-        size
-        standardV
-        status
         total
+        index
+        gasPrice
+        publicKey
+        hash
+        standardV
+        root
+        contractTo
+        status
+        fees
+        raw
+        logs
         txType
+        priceInUsd
+        input
+        r
+        gasUsed
+        creates
+        gasLimit
+        blockHash
+        contractAddress
+        logsBloom
         v
+        cumulativeGasUsed
+        nonce
+        size
+        s
+        contractValue
+        time
+        blockHeight
+        inputPlain
         from {
           address
           balance
@@ -1182,33 +1848,38 @@ No arguments
 ```graphql
 subscription {
   newContractCreated {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -1247,33 +1918,38 @@ subscription {
 ```graphql
 subscription {
   tokenReceived(address: "abc") {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance
@@ -1312,33 +1988,38 @@ subscription {
 ```graphql
 subscription {
   tokenSent(address: "abc") {
-    blockHash
-    blockHeight
-    condition
     contractFrom
-    contractTo
-    contractValue
-    creates
-    fees
-    gasLimit
-    gasPrice
-    gasUsed
-    hash
-    index
-    input
-    inputPlain
-    logsBloom
-    nonce
-    priceInUsd
-    publicKey
-    r
-    raw
-    size
-    standardV
-    status
     total
+    index
+    gasPrice
+    publicKey
+    hash
+    standardV
+    root
+    contractTo
+    status
+    fees
+    raw
+    logs
     txType
+    priceInUsd
+    input
+    r
+    gasUsed
+    creates
+    gasLimit
+    blockHash
+    contractAddress
+    logsBloom
     v
+    cumulativeGasUsed
+    nonce
+    size
+    s
+    contractValue
+    time
+    blockHeight
+    inputPlain
     from {
       address
       balance

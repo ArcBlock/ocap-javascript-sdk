@@ -1,5 +1,5 @@
 /* eslint no-console:"off" */
-const OCAPClient = require('../src');
+const OCAPClient = require('../src/node');
 
 (async () => {
   const client = new OCAPClient({ dataSource: 'eth' });
