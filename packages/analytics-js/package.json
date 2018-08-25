@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/analytics-js",
   "description": "Analytics Javascript SDK for API Service by ArcBlock",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
@@ -14,7 +14,7 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/sdk-util": "^0.4.0",
+    "@arcblock/sdk-util": "^0.5.0",
     "babel-polyfill": "^6.26.0"
   },
   "devDependencies": {
