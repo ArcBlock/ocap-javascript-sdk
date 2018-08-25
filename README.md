@@ -3,12 +3,12 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-> Javascript SDK for OCAP service for Node.js, Browser(ES6+ or ES5) and ReactNative, latest release at 8/25/2018, 11:36:38 PM
+> Javascript SDK for OCAP service for Node.js, Browser(ES6+ or ES5) and ReactNative, latest release at 8/25/2018, 11:42:01 PM
 
 ## Packages Included
 
 - [@arcblock/analytics-js v0.5.0](./packages/analytics-js)
-- [@arcblock/ocap-js v0.5.0](./packages/ocap-js)
+- [@arcblock/ocap-js v0.5.1](./packages/ocap-js)
 - [@arcblock/ocap-schema v0.5.0](./packages/ocap-schema)
 - [@arcblock/sdk-util v0.5.0](./packages/sdk-util)
 
