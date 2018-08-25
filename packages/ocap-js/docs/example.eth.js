@@ -10,13 +10,38 @@ const OCAPClient = require('../src/node');
   const mutations = client.getMutations();
   console.log({ queries, subscriptions, mutations });
 
-  // query
+  // shortcut query
   const account = await client.accountByAddress({
     address: '0xe65d3128feafd14d472442608daf94bceb91e333',
   });
-  console.log(account);
+  console.log('ShortcutQuery', account);
 
-  // subscription
+  // raw query
+  const result = await client.doRawQuery(`{
+    blockByHeight(height:5027689) {
+      time
+      size
+      gasUsed
+      gasLimit
+      nonce
+      reward
+      preHash
+      size
+    }
+  }`);
+  console.log('RawQuery', result);
+
+  // shortcut subscription
   const subscription = await client.newBlockMined();
-  subscription.on('data', data => console.log(data));
+  subscription.on('data', data => console.log('ShortcutSubscription', data));
+
+  // raw subscription
+  const rawSubscription = await client.doRawSubscription(`
+    subscription {
+      newBlockMined {
+        height
+        hash
+      }
+    }`);
+  rawSubscription.on('data', data => console.log('RawSubscription', data));
 })();

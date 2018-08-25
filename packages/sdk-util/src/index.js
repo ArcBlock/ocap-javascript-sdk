@@ -133,30 +133,7 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const subscriptionFn = async args => {
         const query = builders[key](args);
-        const queryId = this._getQueryId(query);
-        if (this.subscriptions[queryId]) {
-          return Promise.resolve(this.subscriptions[queryId].emitter);
-        }
-
-        const channel = await this._ensureSubscriptionChannel();
-        return new Promise((resolve, reject) => {
-          channel
-            .push('doc', { query })
-            .receive('ok', res => {
-              debug('subscription success', { queryId, res });
-
-              // create a new EventEmitter for each subscription
-              const EventEmitter = this._getEventImplementation();
-              this.subscriptions[queryId] = new EventEmitter();
-              this.subscriptions[queryId].subscriptionId = res.subscriptionId;
-
-              resolve(this.subscriptions[queryId]);
-            })
-            .receive('error', err => {
-              debug('subscription error', err);
-              reject(err);
-            });
-        });
+        return this.doRawSubscription(query);
       };
 
       subscriptionFn.type = 'subscription';
@@ -164,6 +141,33 @@ class BaseClient {
       subscriptionFn.builder = builders[key];
 
       this[key] = subscriptionFn;
+    });
+  }
+
+  async doRawSubscription(query) {
+    const queryId = this._getQueryId(query);
+    if (this.subscriptions[queryId]) {
+      return Promise.resolve(this.subscriptions[queryId].emitter);
+    }
+
+    const channel = await this._ensureSubscriptionChannel();
+    return new Promise((resolve, reject) => {
+      channel
+        .push('doc', { query })
+        .receive('ok', res => {
+          debug('subscription success', { queryId, res });
+
+          // create a new EventEmitter for each subscription
+          const EventEmitter = this._getEventImplementation();
+          this.subscriptions[queryId] = new EventEmitter();
+          this.subscriptions[queryId].subscriptionId = res.subscriptionId;
+
+          resolve(this.subscriptions[queryId]);
+        })
+        .receive('error', err => {
+          debug('subscription error', err);
+          reject(err);
+        });
     });
   }
 
