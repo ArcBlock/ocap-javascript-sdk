@@ -73,38 +73,38 @@
     }
     transactions {
       data {
-        contractFrom
-        total
-        index
-        gasPrice
-        publicKey
-        hash
-        standardV
-        root
-        contractTo
-        status
-        fees
-        raw
         logs
-        txType
+        inputPlain
         priceInUsd
-        input
-        r
+        total
         gasUsed
-        creates
-        gasLimit
+        index
+        standardV
+        publicKey
         blockHash
-        contractAddress
-        logsBloom
-        v
-        cumulativeGasUsed
         nonce
+        blockHeight
+        r
+        root
+        status
+        gasPrice
+        raw
+        fees
+        contractAddress
+        input
+        creates
+        contractTo
+        gasLimit
+        v
         size
         s
         contractValue
+        logsBloom
         time
-        blockHeight
-        inputPlain
+        hash
+        txType
+        contractFrom
+        cumulativeGasUsed
         from {
           address
           balance
@@ -185,38 +185,38 @@
     }
     transactions {
       data {
-        contractFrom
-        total
-        index
-        gasPrice
-        publicKey
-        hash
-        standardV
-        root
-        contractTo
-        status
-        fees
-        raw
         logs
-        txType
+        inputPlain
         priceInUsd
-        input
-        r
+        total
         gasUsed
-        creates
-        gasLimit
+        index
+        standardV
+        publicKey
         blockHash
-        contractAddress
-        logsBloom
-        v
-        cumulativeGasUsed
         nonce
+        blockHeight
+        r
+        root
+        status
+        gasPrice
+        raw
+        fees
+        contractAddress
+        input
+        creates
+        contractTo
+        gasLimit
+        v
         size
         s
         contractValue
+        logsBloom
         time
-        blockHeight
-        inputPlain
+        hash
+        txType
+        contractFrom
+        cumulativeGasUsed
         from {
           address
           balance
@@ -300,38 +300,38 @@
       }
       transactions {
         data {
-          contractFrom
-          total
-          index
-          gasPrice
-          publicKey
-          hash
-          standardV
-          root
-          contractTo
-          status
-          fees
-          raw
           logs
-          txType
+          inputPlain
           priceInUsd
-          input
-          r
+          total
           gasUsed
-          creates
-          gasLimit
+          index
+          standardV
+          publicKey
           blockHash
-          contractAddress
-          logsBloom
-          v
-          cumulativeGasUsed
           nonce
+          blockHeight
+          r
+          root
+          status
+          gasPrice
+          raw
+          fees
+          contractAddress
+          input
+          creates
+          contractTo
+          gasLimit
+          v
           size
           s
           contractValue
+          logsBloom
           time
-          blockHeight
-          inputPlain
+          hash
+          txType
+          contractFrom
+          cumulativeGasUsed
           from {
             address
             balance
@@ -421,38 +421,38 @@
       }
       transactions {
         data {
-          contractFrom
-          total
-          index
-          gasPrice
-          publicKey
-          hash
-          standardV
-          root
-          contractTo
-          status
-          fees
-          raw
           logs
-          txType
+          inputPlain
           priceInUsd
-          input
-          r
+          total
           gasUsed
-          creates
-          gasLimit
+          index
+          standardV
+          publicKey
           blockHash
-          contractAddress
-          logsBloom
-          v
-          cumulativeGasUsed
           nonce
+          blockHeight
+          r
+          root
+          status
+          gasPrice
+          raw
+          fees
+          contractAddress
+          input
+          creates
+          contractTo
+          gasLimit
+          v
           size
           s
           contractValue
+          logsBloom
           time
-          blockHeight
-          inputPlain
+          hash
+          txType
+          contractFrom
+          cumulativeGasUsed
           from {
             address
             balance
@@ -563,38 +563,38 @@ No arguments
     }
     transactions {
       data {
-        contractFrom
-        total
-        index
-        gasPrice
-        publicKey
-        hash
-        standardV
-        root
-        contractTo
-        status
-        fees
-        raw
         logs
-        txType
+        inputPlain
         priceInUsd
-        input
-        r
+        total
         gasUsed
-        creates
-        gasLimit
+        index
+        standardV
+        publicKey
         blockHash
-        contractAddress
-        logsBloom
-        v
-        cumulativeGasUsed
         nonce
+        blockHeight
+        r
+        root
+        status
+        gasPrice
+        raw
+        fees
+        contractAddress
+        input
+        creates
+        contractTo
+        gasLimit
+        v
         size
         s
         contractValue
+        logsBloom
         time
-        blockHeight
-        inputPlain
+        hash
+        txType
+        contractFrom
+        cumulativeGasUsed
         from {
           address
           balance
@@ -652,38 +652,38 @@ No arguments
       totalAmountSent
       txsReceived {
         data {
-          contractFrom
-          total
-          index
-          gasPrice
-          publicKey
-          hash
-          standardV
-          root
-          contractTo
-          status
-          fees
-          raw
           logs
-          txType
+          inputPlain
           priceInUsd
-          input
-          r
+          total
           gasUsed
-          creates
-          gasLimit
+          index
+          standardV
+          publicKey
           blockHash
-          contractAddress
-          logsBloom
-          v
-          cumulativeGasUsed
           nonce
+          blockHeight
+          r
+          root
+          status
+          gasPrice
+          raw
+          fees
+          contractAddress
+          input
+          creates
+          contractTo
+          gasLimit
+          v
           size
           s
           contractValue
+          logsBloom
           time
-          blockHeight
-          inputPlain
+          hash
+          txType
+          contractFrom
+          cumulativeGasUsed
           from {
             address
             balance
@@ -741,38 +741,38 @@ No arguments
       }
       txsSent {
         data {
-          contractFrom
-          total
-          index
-          gasPrice
-          publicKey
-          hash
-          standardV
-          root
-          contractTo
-          status
-          fees
-          raw
           logs
-          txType
+          inputPlain
           priceInUsd
-          input
-          r
+          total
           gasUsed
-          creates
-          gasLimit
+          index
+          standardV
+          publicKey
           blockHash
-          contractAddress
-          logsBloom
-          v
-          cumulativeGasUsed
           nonce
+          blockHeight
+          r
+          root
+          status
+          gasPrice
+          raw
+          fees
+          contractAddress
+          input
+          creates
+          contractTo
+          gasLimit
+          v
           size
           s
           contractValue
+          logsBloom
           time
-          blockHeight
-          inputPlain
+          hash
+          txType
+          contractFrom
+          cumulativeGasUsed
           from {
             address
             balance
@@ -850,38 +850,38 @@ No arguments
 ```graphql
 {
   transactionByHash(hash: "abc") {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -922,38 +922,38 @@ No arguments
 ```graphql
 {
   transactionByIndex(index: 123) {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -997,38 +997,38 @@ No arguments
 {
   transactionsByIndex {
     data {
-      contractFrom
-      total
-      index
-      gasPrice
-      publicKey
-      hash
-      standardV
-      root
-      contractTo
-      status
-      fees
-      raw
       logs
-      txType
+      inputPlain
       priceInUsd
-      input
-      r
+      total
       gasUsed
-      creates
-      gasLimit
+      index
+      standardV
+      publicKey
       blockHash
-      contractAddress
-      logsBloom
-      v
-      cumulativeGasUsed
       nonce
+      blockHeight
+      r
+      root
+      status
+      gasPrice
+      raw
+      fees
+      contractAddress
+      input
+      creates
+      contractTo
+      gasLimit
+      v
       size
       s
       contractValue
+      logsBloom
       time
-      blockHeight
-      inputPlain
+      hash
+      txType
+      contractFrom
+      cumulativeGasUsed
       from {
         address
         balance
@@ -1041,38 +1041,38 @@ No arguments
         totalAmountSent
         txsSent {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1093,38 +1093,38 @@ No arguments
         totalAmountSent
         txsReceived {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1171,38 +1171,38 @@ No arguments
         }
         transactions {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1237,38 +1237,38 @@ No arguments
 {
   transactionsByToken(token: "abc") {
     data {
-      contractFrom
-      total
-      index
-      gasPrice
-      publicKey
-      hash
-      standardV
-      root
-      contractTo
-      status
-      fees
-      raw
       logs
-      txType
+      inputPlain
       priceInUsd
-      input
-      r
+      total
       gasUsed
-      creates
-      gasLimit
+      index
+      standardV
+      publicKey
       blockHash
-      contractAddress
-      logsBloom
-      v
-      cumulativeGasUsed
       nonce
+      blockHeight
+      r
+      root
+      status
+      gasPrice
+      raw
+      fees
+      contractAddress
+      input
+      creates
+      contractTo
+      gasLimit
+      v
       size
       s
       contractValue
+      logsBloom
       time
-      blockHeight
-      inputPlain
+      hash
+      txType
+      contractFrom
+      cumulativeGasUsed
       from {
         address
         balance
@@ -1281,38 +1281,38 @@ No arguments
         totalAmountSent
         txsSent {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1333,38 +1333,38 @@ No arguments
         totalAmountSent
         txsReceived {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1411,38 +1411,38 @@ No arguments
         }
         transactions {
           data {
-            contractFrom
-            total
-            index
-            gasPrice
-            publicKey
-            hash
-            standardV
-            root
-            contractTo
-            status
-            fees
-            raw
             logs
-            txType
+            inputPlain
             priceInUsd
-            input
-            r
+            total
             gasUsed
-            creates
-            gasLimit
+            index
+            standardV
+            publicKey
             blockHash
-            contractAddress
-            logsBloom
-            v
-            cumulativeGasUsed
             nonce
+            blockHeight
+            r
+            root
+            status
+            gasPrice
+            raw
+            fees
+            contractAddress
+            input
+            creates
+            contractTo
+            gasLimit
+            v
             size
             s
             contractValue
+            logsBloom
             time
-            blockHeight
-            inputPlain
+            hash
+            txType
+            contractFrom
+            cumulativeGasUsed
           }
           page {
             cursor
@@ -1511,38 +1511,38 @@ No arguments
       }
       transactions {
         data {
-          contractFrom
-          total
-          index
-          gasPrice
-          publicKey
-          hash
-          standardV
-          root
-          contractTo
-          status
-          fees
-          raw
           logs
-          txType
+          inputPlain
           priceInUsd
-          input
-          r
+          total
           gasUsed
-          creates
-          gasLimit
+          index
+          standardV
+          publicKey
           blockHash
-          contractAddress
-          logsBloom
-          v
-          cumulativeGasUsed
           nonce
+          blockHeight
+          r
+          root
+          status
+          gasPrice
+          raw
+          fees
+          contractAddress
+          input
+          creates
+          contractTo
+          gasLimit
+          v
           size
           s
           contractValue
+          logsBloom
           time
-          blockHeight
-          inputPlain
+          hash
+          txType
+          contractFrom
+          cumulativeGasUsed
           from {
             address
             balance
@@ -1596,38 +1596,38 @@ No arguments
 ```graphql
 subscription {
   bigTransactionExecuted(token: "abc") {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -1666,38 +1666,38 @@ subscription {
 ```graphql
 subscription {
   contractExecuted(address: "abc") {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -1771,38 +1771,38 @@ subscription {
     }
     transactions {
       data {
-        contractFrom
-        total
-        index
-        gasPrice
-        publicKey
-        hash
-        standardV
-        root
-        contractTo
-        status
-        fees
-        raw
         logs
-        txType
+        inputPlain
         priceInUsd
-        input
-        r
+        total
         gasUsed
-        creates
-        gasLimit
+        index
+        standardV
+        publicKey
         blockHash
-        contractAddress
-        logsBloom
-        v
-        cumulativeGasUsed
         nonce
+        blockHeight
+        r
+        root
+        status
+        gasPrice
+        raw
+        fees
+        contractAddress
+        input
+        creates
+        contractTo
+        gasLimit
+        v
         size
         s
         contractValue
+        logsBloom
         time
-        blockHeight
-        inputPlain
+        hash
+        txType
+        contractFrom
+        cumulativeGasUsed
         from {
           address
           balance
@@ -1848,38 +1848,38 @@ No arguments
 ```graphql
 subscription {
   newContractCreated {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -1918,38 +1918,38 @@ subscription {
 ```graphql
 subscription {
   tokenReceived(address: "abc") {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
@@ -1988,38 +1988,38 @@ subscription {
 ```graphql
 subscription {
   tokenSent(address: "abc") {
-    contractFrom
-    total
-    index
-    gasPrice
-    publicKey
-    hash
-    standardV
-    root
-    contractTo
-    status
-    fees
-    raw
     logs
-    txType
+    inputPlain
     priceInUsd
-    input
-    r
+    total
     gasUsed
-    creates
-    gasLimit
+    index
+    standardV
+    publicKey
     blockHash
-    contractAddress
-    logsBloom
-    v
-    cumulativeGasUsed
     nonce
+    blockHeight
+    r
+    root
+    status
+    gasPrice
+    raw
+    fees
+    contractAddress
+    input
+    creates
+    contractTo
+    gasLimit
+    v
     size
     s
     contractValue
+    logsBloom
     time
-    blockHeight
-    inputPlain
+    hash
+    txType
+    contractFrom
+    cumulativeGasUsed
     from {
       address
       balance
