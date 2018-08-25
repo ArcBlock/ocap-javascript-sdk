@@ -1,7 +1,7 @@
 /* eslint no-console:"off" */
 const fs = require('fs');
 const path = require('path');
-const OCAPClient = require('../src/index');
+const OCAPClient = require('../../ocap-js/src/node');
 const { introspectionQuery } = require('graphql');
 
 const dataSources = ['btc', 'eth'];
