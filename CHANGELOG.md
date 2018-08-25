@@ -1,3 +1,11 @@
+## 0.4.0 (August 25, 2018)
+  - fix example files
+  - fix schema update script
+  - update schema
+  - update readme
+
+> Older versions does not work with latest ocap service schema, please use latest version.
+
 ## 0.3.12 (August 23, 2018)
   - udpate licence files #18
   - update readme
