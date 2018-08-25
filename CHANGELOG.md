@@ -1,3 +1,8 @@
+## 0.5.0 (August 26, 2018)
+  - add doRawSubscription support
+  - update schema
+  - update readme
+
 ## 0.4.0 (August 25, 2018)
   - fix example files
   - fix schema update script
