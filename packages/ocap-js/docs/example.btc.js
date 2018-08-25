@@ -1,5 +1,5 @@
 /* eslint no-console:"off" */
-const OCAPClient = require('../src/index');
+const OCAPClient = require('../src/node');
 
 (async () => {
   const client = new OCAPClient({ dataSource: 'btc' });
