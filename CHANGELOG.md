@@ -1,3 +1,6 @@
+## 0.5.1 (August 26, 2018)
+  - update ocap-js-sdk readme
+
 ## 0.5.0 (August 26, 2018)
   - add doRawSubscription support
   - update schema
