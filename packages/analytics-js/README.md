@@ -56,4 +56,4 @@ const result = await client.createEvent({
 
 ## License
 
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
+[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)

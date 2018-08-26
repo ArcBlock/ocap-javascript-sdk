@@ -40,4 +40,4 @@ const BaseClient = require('@arcblock/sdk-util');
 
 ## License
 
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
+[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)
