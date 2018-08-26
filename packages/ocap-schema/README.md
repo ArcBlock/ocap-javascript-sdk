@@ -39,4 +39,4 @@ const { btc, eth } = require('@arcblock/ocap-schema');
 
 ## License
 
-[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
+[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)
