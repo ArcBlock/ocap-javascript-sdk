@@ -1,3 +1,7 @@
+## 0.5.2 (August 26, 2018)
+  - fix license in readme
+  - update readme
+
 ## 0.5.1 (August 26, 2018)
   - update ocap-js-sdk readme
 
