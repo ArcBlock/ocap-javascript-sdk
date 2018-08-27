@@ -99,7 +99,14 @@ const formatArgs = (values, specs = {}) => {
           value = values[x].toString();
         }
       } else {
-        value = JSON.stringify(values[x]);
+        value = `{ ${Object.keys(values[x])
+          .map(
+            key =>
+              `${key}: ${
+                typeof values[x][key] === 'number' ? values[x][key] : `"${values[x][key]}"`
+              }`
+          )
+          .join(', ')} }`;
       }
 
       return `${x}: ${value}`;
@@ -167,11 +174,10 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
         typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields
       ).trim();
 
-      return print(
-        parse(
-          `${prefix}{${x.name}${argStr ? `(${argStr})` : ''}${selection ? `{${selection}}` : ''}}`
-        )
-      );
+      const queryStr = `${prefix}{${x.name}${argStr ? `(${argStr})` : ''}${
+        selection ? `{${selection}}` : ''
+      }}`;
+      return print(parse(queryStr));
     };
     /* eslint-enable indent */
 

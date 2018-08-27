@@ -49,6 +49,14 @@ describe('#formatArgs', () => {
       },
       name: 'height',
     },
+    paging: {
+      type: {
+        ofType: null,
+        name: 'object',
+        kind: 'PagedInput',
+      },
+      name: 'paging',
+    },
   };
 
   test('should be a function', () => {
@@ -75,6 +83,14 @@ describe('#formatArgs', () => {
   test('should process scalar types correctly', () => {
     const args = formatArgs({ address: 'xxx', height: 123 }, specs);
     expect(args).toEqual('address: "xxx", height: 123');
+  });
+
+  test('should process object types correctly', () => {
+    const args = formatArgs(
+      { address: 'xxx', height: 123, paging: { size: 10, cursor: 'abc' } },
+      specs
+    );
+    expect(args).toEqual('address: "xxx", height: 123, paging: { size: 10, cursor: "abc" }');
   });
 });
 

@@ -29,6 +29,14 @@ const OCAPClient = require('../src/node');
   }`);
   console.log('RawQuery', result);
 
+  // paged result with shortcut query
+  const pagedResult = await client.blocksByHeight({ fromHeight: 500000, toHeight: 500020 });
+  console.log('PagedQuery.1', pagedResult);
+  if (typeof pagedResult.next === 'function') {
+    const pagedResult2 = await pagedResult.next();
+    console.log('PagedQuery.2', pagedResult2);
+  }
+
   // shortcut subscription
   const subscription = await client.newBlockMined();
   subscription.on('data', data => console.log('ShortcutSubscription', data));

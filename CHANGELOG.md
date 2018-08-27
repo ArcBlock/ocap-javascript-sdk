@@ -1,3 +1,8 @@
+## 0.5.3 (August 27, 2018)
+  - update readme with paged queries
+  - add pagination for shortcut queries
+  - update readme
+
 ## 0.5.2 (August 26, 2018)
   - fix license in readme
   - update readme
