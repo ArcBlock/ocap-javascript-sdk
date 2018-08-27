@@ -40,30 +40,6 @@ class BaseClient {
     }
   }
 
-  _getSchema() {
-    throw new Error('_getSchema must be implemented in sub class');
-  }
-
-  _getIgnoreFields() {
-    throw new Error('_getIgnoreFields must be implemented in sub class');
-  }
-
-  _getSocketImplementation() {
-    throw new Error('_getSocketImplementation must be implemented in sub class');
-  }
-
-  _getSocketOptions() {
-    throw new Error('_getSocketOptions must be implemented in sub class');
-  }
-
-  _getEventImplementation() {
-    throw new Error('_getEventImplementation must be implemented in sub class');
-  }
-
-  _getQueryId() {
-    throw new Error('_getQueryId must be implemented in sub class');
-  }
-
   getQueries() {
     return this._getApiList('query');
   }
@@ -107,7 +83,15 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const queryFn = async args => {
         const query = builders[key](args);
-        return this._doRequest(query);
+        const result = await this._doRequest(query);
+        const pagedResult = this._getPagedResults({
+          result,
+          queryBuilder: builders[key],
+          args,
+          dataKey: key,
+        });
+
+        return pagedResult;
       };
 
       queryFn.type = 'query';
@@ -145,6 +129,7 @@ class BaseClient {
   }
 
   async doRawSubscription(query) {
+    debug('doSubscription.query', query);
     const queryId = this._getQueryId(query);
     if (this.subscriptions[queryId]) {
       return Promise.resolve(this.subscriptions[queryId].emitter);
@@ -292,6 +277,62 @@ class BaseClient {
    */
   _getApiList(type) {
     return Object.keys(this).filter(x => typeof this[x] === 'function' && this[x].type === type);
+  }
+
+  /**
+   * Make a paginated query
+   *
+   * @param {Object} { data, queryBuilder, args, type }
+   * @returns Object with possible `next` method
+   * @memberof BaseClient
+   */
+  _getPagedResults({ result, queryBuilder, args, dataKey }) {
+    if (
+      result[dataKey] &&
+      result[dataKey].page &&
+      result[dataKey].page.next &&
+      result[dataKey].page.cursor
+    ) {
+      result.next = async () => {
+        const newArgs = Object.assign({}, args, {
+          paging: { cursor: result[dataKey].page.cursor },
+        });
+        const query = queryBuilder(newArgs);
+        const newResult = await this._doRequest(query);
+        return this._getPagedResults({
+          result: newResult,
+          queryBuilder,
+          args: newArgs,
+          dataKey,
+        });
+      };
+    }
+
+    return result;
+  }
+
+  _getSchema() {
+    throw new Error('_getSchema must be implemented in sub class');
+  }
+
+  _getIgnoreFields() {
+    throw new Error('_getIgnoreFields must be implemented in sub class');
+  }
+
+  _getSocketImplementation() {
+    throw new Error('_getSocketImplementation must be implemented in sub class');
+  }
+
+  _getSocketOptions() {
+    throw new Error('_getSocketOptions must be implemented in sub class');
+  }
+
+  _getEventImplementation() {
+    throw new Error('_getEventImplementation must be implemented in sub class');
+  }
+
+  _getQueryId() {
+    throw new Error('_getQueryId must be implemented in sub class');
   }
 }
 
