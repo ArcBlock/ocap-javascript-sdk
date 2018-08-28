@@ -39,6 +39,16 @@ const OCAPBrowserClient = require('../src/browser');
 
       expect(Array.isArray(client.getMutations())).toEqual(true);
     });
+
+    test('should sanitize args', () => {
+      const client = new Client({
+        dataSource: 'eth',
+      });
+
+      const blockHash = '0x8c9e6c9d3066f88b46bfffb6b5922b34a97a51cb244464a6891402f8d3c856c3';
+      const args = client._sanitizeArgs({ hash: blockHash });
+      expect(args.hash).toEqual(blockHash.slice(2));
+    });
   });
 
   describe('#query', () => {
@@ -67,7 +77,7 @@ const OCAPBrowserClient = require('../src/browser');
     });
 
     test(
-      'should query methods work as expected',
+      'should query method {accountByAddress} work as expected',
       async () => {
         const client = new Client({
           dataSource: 'btc',
@@ -80,7 +90,59 @@ const OCAPBrowserClient = require('../src/browser');
         expect(result.accountByAddress).toBeTruthy();
         expect(result.accountByAddress.address).toBeTruthy();
       },
-      8000
+      5000
+    );
+
+    test(
+      'should query method {blockByHash} work as expected',
+      async () => {
+        const client = new Client({
+          dataSource: 'eth',
+        });
+
+        const [result1, result2] = await Promise.all([
+          client.blockByHash({
+            hash: '0x8c9e6c9d3066f88b46bfffb6b5922b34a97a51cb244464a6891402f8d3c856c3',
+          }),
+          client.blockByHash({
+            hash: '8c9e6c9d3066f88b46bfffb6b5922b34a97a51cb244464a6891402f8d3c856c3',
+          }),
+        ]);
+        expect(result1).toBeTruthy();
+        expect(result1.blockByHash).toBeTruthy();
+        expect(result1.blockByHash.height).toBeTruthy();
+        expect(result2).toBeTruthy();
+        expect(result2.blockByHash).toBeTruthy();
+        expect(result2.blockByHash.height).toBeTruthy();
+        expect(result1.blockByHash.height).toEqual(result2.blockByHash.height);
+      },
+      5000
+    );
+
+    test(
+      'should query method {transactionByHash} work as expected',
+      async () => {
+        const client = new Client({
+          dataSource: 'eth',
+        });
+
+        const [result1, result2] = await Promise.all([
+          client.transactionByHash({
+            hash: '0x009a7044ee159451e117b4aed9927e6b20008f14fff98063d77a2dd0e2c7f99e',
+          }),
+          client.transactionByHash({
+            hash: '009a7044ee159451e117b4aed9927e6b20008f14fff98063d77a2dd0e2c7f99e',
+          }),
+        ]);
+        expect(result1).toBeTruthy();
+        expect(result1.transactionByHash).toBeTruthy();
+        expect(result1.transactionByHash.hash).toBeTruthy();
+        expect(result2).toBeTruthy();
+        expect(result2.transactionByHash).toBeTruthy();
+        expect(result2.transactionByHash.hash).toBeTruthy();
+        expect(result2.transactionByHash.hash).toEqual(result1.transactionByHash.hash);
+      },
+      5000
     );
   });
 
