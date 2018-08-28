@@ -1,3 +1,8 @@
+## 0.6.0 (August 28, 2018)
+  - strip 0x from eth params
+  - fix broken code sample from readme
+  - update readme
+
 ## 0.5.4 (August 28, 2018)
   - fix repo url in package.json
   - update readme

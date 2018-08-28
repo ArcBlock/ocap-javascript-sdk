@@ -82,7 +82,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const queryFn = async args => {
-        const query = builders[key](args);
+        const query = builders[key](this._sanitizeArgs(args));
         const result = await this._doRequest(query);
         const pagedResult = this._getPagedResults({
           result,
@@ -116,7 +116,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const subscriptionFn = async args => {
-        const query = builders[key](args);
+        const query = builders[key](this._sanitizeArgs(args));
         return this.doRawSubscription(query);
       };
 
@@ -170,8 +170,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const mutationFn = async args => {
-        // TODO: implement mutation logic
-        const query = builders[key](args);
+        const query = builders[key](this._sanitizeArgs(args));
         return this._doRequest(query);
       };
 
@@ -277,6 +276,10 @@ class BaseClient {
    */
   _getApiList(type) {
     return Object.keys(this).filter(x => typeof this[x] === 'function' && this[x].type === type);
+  }
+
+  _sanitizeArgs(args) {
+    return args;
   }
 
   /**
