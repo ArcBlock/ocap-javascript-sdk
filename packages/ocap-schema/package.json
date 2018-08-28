@@ -4,7 +4,7 @@
   "version": "0.5.2",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
-    "url": "https://github.com/ArcBlock/arc-javascript-sdk/issues",
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk/issues",
     "email": "shijun@arcblock.io"
   },
   "publishConfig": {
@@ -19,7 +19,7 @@
     "eslint-plugin-prettier": "latest",
     "prettier": "^1.6.1"
   },
-  "homepage": "https://github.com/ArcBlock/arc-javascript-sdk",
+  "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",
   "keywords": [
     "ocap",
     "blockchain",
@@ -34,7 +34,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/arc-javascript-sdk"
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk"
   },
   "scripts": {
     "lint": "eslint src",
