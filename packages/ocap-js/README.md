@@ -43,8 +43,6 @@ const client = new OCAPClient({
   enableMutation: true,
 });
 
-console.log({ queries, subscriptions, mutations });
-
 // shortcut query
 const account = await client.accountByAddress({
   address: '0xe65d3128feafd14d472442608daf94bceb91e333',
