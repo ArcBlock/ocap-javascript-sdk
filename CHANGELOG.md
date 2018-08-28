@@ -1,3 +1,7 @@
+## 0.5.4 (August 28, 2018)
+  - fix repo url in package.json
+  - update readme
+
 ## 0.5.3 (August 27, 2018)
   - update readme with paged queries
   - add pagination for shortcut queries
