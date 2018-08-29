@@ -1,3 +1,7 @@
+## 0.6.1 (August 29, 2018)
+  - remove analytics sdk from public repo
+  - update readme
+
 ## 0.6.0 (August 28, 2018)
   - strip 0x from eth params
   - fix broken code sample from readme
