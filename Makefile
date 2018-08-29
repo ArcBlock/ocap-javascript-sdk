@@ -5,6 +5,7 @@ VERSION=$(strip $(shell cat version))
 
 build:
 	@echo "Building the software..."
+	@yarn build
 
 init: install dep
 	@echo "Initializing the repo..."
@@ -19,7 +20,7 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@yarn
+	@lerna bootstrap
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
@@ -31,9 +32,11 @@ all: pre-build build post-build
 
 test:
 	@echo "Running test suites..."
+	@yarn test
 
 lint:
 	@echo "Linting the software..."
+	@yarn lint
 
 doc:
 	@echo "Building the documenation..."
