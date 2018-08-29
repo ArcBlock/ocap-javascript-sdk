@@ -1,8 +1,6 @@
 {
   "version": "0.6.0",
-  "packages": [
-    "packages/*"
-  ],
   "useWorkspaces": true,
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "ignoreChanges": ["**/tools/**", "**/docs/**", "**/test/**", "**/*.md"]
 }
