@@ -1,3 +1,7 @@
+## 0.6.2 (August 29, 2018)
+  - fix publish script
+  - update readme
+
 ## 0.6.1 (August 29, 2018)
   - remove analytics sdk from public repo
   - update readme
