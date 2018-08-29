@@ -1,5 +1,6 @@
 {
   "version": "0.6.0",
   "useWorkspaces": true,
-  "npmClient": "yarn"
+  "npmClient": "yarn",
+  "ignoreChanges": ["**/tools/**", "**/docs/**", "**/test/**", "**/*.md"]
 }
