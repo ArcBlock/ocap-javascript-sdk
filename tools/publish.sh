@@ -5,7 +5,7 @@ git remote remove origin
 git remote add origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 
 changed=$(lerna changed)
-if ["$changed" != ""]; then
+if [ "$changed" != "" ]; then
   DEBUG=* node tools/setup-ci.js
 
   git checkout master
@@ -22,6 +22,6 @@ if ["$changed" != ""]; then
   git push origin master
 fi
 
-if ["$changed" = ""]; then
+if [ "$changed" = "" ]; then
   make release
 fi
