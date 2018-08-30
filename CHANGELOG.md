@@ -1,3 +1,6 @@
+## 0.6.3 (August 30, 2018)
+  - refactor: make sdk endpoints more flexiable
+
 ## 0.6.2 (August 29, 2018)
   - fix publish script
   - update readme
