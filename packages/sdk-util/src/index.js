@@ -10,10 +10,17 @@ class BaseClient {
       throw new Error('BaseClient requires dataSource config');
     }
 
+    if (config.httpBaseUrl) {
+      throw Error('config.httpBaseUrl is deprecated');
+    }
+    if (config.socketBaseUrl) {
+      throw Error('config.socketBaseUrl is deprecated');
+    }
+
     this.config = Object.assign(
       {
-        httpBaseUrl: 'https://ocap.arcblock.io/api',
-        socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+        httpEndpoint: ds => `https://ocap.arcblock.io/api/${ds}`,
+        socketEndpoint: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
         enableQuery: true,
         enableSubscription: true,
         enableMutation: true,
@@ -191,10 +198,13 @@ class BaseClient {
    */
   async _doRequest(query) {
     debug('doRequest.query', query);
-    const url = `${this.config.httpBaseUrl}/${this.config.dataSource}`;
+    const httpEndpoint =
+      typeof this.config.httpEndpoint === 'function'
+        ? this.config.httpEndpoint(this.config.dataSource)
+        : this.config.httpEndpoint;
 
     // TODO: support user authentication and authorization through headers
-    const res = await axios.post(url, { query });
+    const res = await axios.post(httpEndpoint, { query });
 
     debug('doRequest.response', {
       status: res.statusCode,
@@ -220,13 +230,13 @@ class BaseClient {
       return Promise.resolve(this.channel);
     }
 
-    const socketBaseUrl =
-      typeof this.config.socketBaseUrl === 'function'
-        ? this.config.socketBaseUrl(this.config.dataSource)
-        : this.config.socketBaseUrl;
+    const socketEndpoint =
+      typeof this.config.socketEndpoint === 'function'
+        ? this.config.socketEndpoint(this.config.dataSource)
+        : this.config.socketEndpoint;
 
     const Socket = this._getSocketImplementation();
-    this.socket = new Socket(socketBaseUrl, this._getSocketOptions());
+    this.socket = new Socket(socketEndpoint, this._getSocketOptions());
     this.socket.connect();
     this.socket.onMessage(({ event, payload }) => {
       debug('socket.onMessage', { event, payload });

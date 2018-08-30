@@ -18,9 +18,6 @@ const OcapSDK = require('@arcblock/node-ocap');
 
 // init client
 const client = new OcapSDK({
-  appId: '<todo>',
-  appSecret: '<todo>',
-  baseUrl: 'https://ocap.arcblock.io/api', // we may have multiple hosts in future
   dataSource: 'btc', // btc, eth
 });
 ```
