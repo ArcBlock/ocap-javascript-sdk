@@ -1,3 +1,7 @@
+## 0.6.4 (August 30, 2018)
+  - fix npm install twice during travis-ci
+  - update readme
+
 ## 0.6.3 (August 30, 2018)
   - refactor: make sdk endpoints more flexiable
 
