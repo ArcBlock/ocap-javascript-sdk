@@ -2,7 +2,14 @@
 const OCAPClient = require('../src/node');
 
 (async () => {
-  const client = new OCAPClient({ dataSource: 'btc' });
+  const client = new OCAPClient({
+    httpEndpoint: ds => `https://ocap.arcblock.io/api/${ds}`,
+    socketEndpoint: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
+    dataSource: 'btc',
+    enableQuery: true,
+    enableSubscription: true,
+    enableMutation: true,
+  });
 
   // get supported api list
   const queries = client.getQueries();

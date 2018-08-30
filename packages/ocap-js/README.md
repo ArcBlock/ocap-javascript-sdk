@@ -35,12 +35,7 @@ const OCAPClient = require('@arcblock/ocap-js');
 
 // init client
 const client = new OCAPClient({
-  httpBaseUrl: 'https://ocap.arcblock.io/api', // we may have multiple hosts in future
-  socketBaseUrl: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
   dataSource: 'eth', // btc, eth
-  enableQuery: true,
-  enableSubscription: true,
-  enableMutation: true,
 });
 
 // shortcut query
