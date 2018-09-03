@@ -33,6 +33,10 @@ const resolveFieldTree = (type, depth, map) => {
     return {
       type: x.type.kind,
       name: x.name,
+      args: (x.args || []).reduce((args, arg) => {
+        args[arg.name] = arg;
+        return args;
+      }, {}),
       fields: resolveFieldTree(map[subType], depth + 1, map),
     };
   });
@@ -51,7 +55,7 @@ const resolveFieldTree = (type, depth, map) => {
  * @returns string
  */
 /* eslint-disable indent */
-const makeQuery = (fields, ignoreFields) => `
+const makeQuery = (fields, ignoreFields, argValues = {}) => `
   ${fields.scalar
     .filter(x => ignoreFields.includes(x.path) === false)
     .map(x => x.name)
@@ -61,7 +65,17 @@ const makeQuery = (fields, ignoreFields) => `
       ? fields.object
           .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
           .filter(x => ignoreFields.includes(x.path) === false)
-          .map(x => `${x.name} {${makeQuery(x.fields, ignoreFields)}}`)
+          .map(x => {
+            const argStr = Object.keys(x.args).length
+              ? `${formatArgs(argValues[x.path] || {}, x.args)}`
+              : '';
+            const selection = makeQuery(x.fields, ignoreFields, argValues).trim();
+            const subQueryStr = `${x.name} ${argStr ? `(${argStr})` : ''} ${
+              selection ? `{${selection}}` : ''
+            }`;
+
+            return subQueryStr;
+          })
           .join('\n')
       : ''
   }`;
@@ -161,27 +175,35 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
     addFieldsPath(fields);
     // console.log(require('util').inspect(fields, { depth: 100 }));
 
-    const args = x.args.reduce((obj, a) => {
+    const argSpecs = x.args.reduce((obj, a) => {
       obj[a.name] = a;
       return obj;
     }, {});
 
     /* eslint-disable indent */
-    const fn = values => {
-      const argStr = x.args.length ? `${formatArgs(values, args)}` : '';
+    const fn = argValues => {
+      const argStr = x.args.length ? `${formatArgs(argValues, argSpecs)}` : '';
       const selection = makeQuery(
         fields,
-        typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields
+        typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields,
+        argValues
       ).trim();
 
       const queryStr = `${prefix}{${x.name}${argStr ? `(${argStr})` : ''}${
         selection ? `{${selection}}` : ''
       }}`;
-      return print(parse(queryStr));
+
+      try {
+        return print(parse(queryStr));
+      } catch (err) {
+        // eslint-disable-next-line
+        console.error('GraphQLBuilder Error:', queryStr);
+        throw err;
+      }
     };
     /* eslint-enable indent */
 
-    fn.args = args;
+    fn.args = argSpecs;
     fns[x.name] = fn;
     return fns;
   }, {});

@@ -299,27 +299,49 @@ class BaseClient {
    * @returns Object with possible `next` method
    * @memberof BaseClient
    */
-  _getPagedResults({ result, queryBuilder, args, dataKey }) {
-    if (
-      result[dataKey] &&
-      result[dataKey].page &&
-      result[dataKey].page.next &&
-      result[dataKey].page.cursor
-    ) {
-      result.next = async () => {
-        const newArgs = Object.assign({}, args, {
-          paging: { cursor: result[dataKey].page.cursor },
-        });
-        const query = queryBuilder(newArgs);
-        const newResult = await this._doRequest(query);
-        return this._getPagedResults({
-          result: newResult,
-          queryBuilder,
-          args: newArgs,
-          dataKey,
-        });
-      };
-    }
+  _getPagedResults({ result, queryBuilder, args, dataKey, prefix = '' }) {
+    const keys = Object.keys(result);
+    keys.forEach(key => {
+      if (!result[key] || typeof result[key] !== 'object' || Array.isArray(result[key])) {
+        return false;
+      }
+
+      const prefixStr = [prefix, key].filter(Boolean).join('.');
+      const argPrefixStr = prefixStr.replace(`${dataKey}`, '').replace(/^\./, '');
+
+      if (result[key].page && result[key].page.next && result[key].page.cursor) {
+        debug('_getPagedResults', { prefix, key, result: result[key] });
+        result[key].next = async () => {
+          const pagingArgs = {
+            paging: { cursor: result[key].page.cursor },
+          };
+          const newArgs = Object.assign(
+            {},
+            args,
+            argPrefixStr ? { [argPrefixStr]: pagingArgs } : pagingArgs
+          );
+          const query = queryBuilder(newArgs);
+
+          const newResult = await this._doRequest(query);
+          return this._getPagedResults({
+            result: newResult,
+            queryBuilder,
+            args: newArgs,
+            dataKey,
+            prefix,
+          });
+        };
+      }
+
+      // add pagination methods for nested fields
+      this._getPagedResults({
+        result: result[key],
+        queryBuilder,
+        args,
+        dataKey,
+        prefix: prefixStr,
+      });
+    });
 
     return result;
   }
