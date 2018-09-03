@@ -246,6 +246,96 @@
 
 ```
 
+### blockchainInfo
+
+#### Arguments
+
+* **instance**, **required**, The name of the blockchain instance.
+
+#### Result Format
+
+```graphql
+{
+  blockchainInfo(instance: "abc") {
+    avgBlockGap
+    avgFees
+    avgFeesOverWeight
+    avgTotal
+    consensus
+    instance
+    latestHash
+    latestHeight
+    latestUpdateTime
+    name
+    blocks {
+      data {
+        bits
+        fees
+        hash
+        height
+        medianTime
+        merkleRoot
+        nonce
+        numberTxs
+        preHash
+        priceInUsd
+        reward
+        size
+        strippedSize
+        time
+        total
+        version
+        weight
+        miner {
+          address
+          balance
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          scriptType
+          subKeys
+          totalAmountReceived
+          totalAmountSent
+        }
+        transactions {
+          data {
+            blockHash
+            blockHeight
+            fees
+            feesOverWeight
+            hash
+            index
+            lockTime
+            numberInputs
+            numberOutputs
+            priceInUsd
+            size
+            strippedSize
+            total
+            version
+            virtualSize
+            weight
+            witnessHash
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+      }
+      page {
+        cursor
+        next
+        total
+      }
+    }
+  }
+}
+
+```
+
 ### blocksByHeight
 
 #### Arguments
