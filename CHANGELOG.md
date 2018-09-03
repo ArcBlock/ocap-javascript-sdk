@@ -1,3 +1,9 @@
+## 0.7.0 (September 03, 2018)
+  - update documentation and code samples for paged subquery
+  - feature: support paginated query on nested fields
+  - make watch and rebuild work
+  - update schema
+
 ## 0.6.4 (August 30, 2018)
   - fix npm install twice during travis-ci
   - update readme
