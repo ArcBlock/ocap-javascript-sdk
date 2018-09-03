@@ -144,6 +144,51 @@ const OCAPBrowserClient = require('../src/browser');
       },
       5000
     );
+
+    test(
+      'should query method {blocksByHeight} work as expected',
+      async () => {
+        const client = new Client({
+          dataSource: 'eth',
+        });
+
+        const { blocksByHeight: blocks } = await client.blocksByHeight({
+          fromHeight: 1000000,
+          toHeight: 1000019,
+        });
+        expect(blocks).toBeTruthy();
+        expect(blocks.data).toBeTruthy();
+        expect(typeof blocks.next === 'function').toBeTruthy();
+
+        const { blocksByHeight: blocks2 } = await blocks.next();
+        expect(blocks).toBeTruthy();
+        expect(blocks.data).toBeTruthy();
+        expect(typeof blocks2.next === 'function').toBeFalsy();
+        expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
+      },
+      5000
+    );
+
+    test(
+      'should query method {blockByHeight} work as expected',
+      async () => {
+        const client = new Client({
+          dataSource: 'eth',
+        });
+
+        const { blockByHeight: block } = await client.blockByHeight({ height: 5000000 });
+        expect(block).toBeTruthy();
+        expect(block.transactions).toBeTruthy();
+        expect(typeof block.transactions.next === 'function').toBeTruthy();
+
+        const { blockByHeight: block2 } = await block.transactions.next();
+        expect(block2).toBeTruthy();
+        expect(block2.transactions).toBeTruthy();
+        expect(typeof block2.transactions.next === 'function').toBeTruthy();
+        expect(block.transactions.data[0].hash).not.toEqual(block2.transactions.data[0].hash);
+      },
+      5000
+    );
   });
 
   describe('#subscription', () => {

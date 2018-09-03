@@ -60,11 +60,11 @@ const result = await client.doRawQuery(`{
 console.log('RawQuery', result);
 
 // paged result with shortcut query
-const pagedResult = await client.blocksByHeight({ fromHeight: 1000000, toHeight: 1000020 });
-console.log('PagedQuery.1', pagedResult);
-if (typeof pagedResult.next === 'function') {
-  const pagedResult2 = await pagedResult.next();
-  console.log('PagedQuery.2', pagedResult2);
+const { blocksByHeight: blocks } = await client.blocksByHeight({ fromHeight: 1000000, toHeight: 1000020 });
+console.log('PagedQuery.1', blocks.data.map(x => x.hash));
+if (typeof blocks.next === 'function') {
+  const { blocksByHeight: blocks2 } = await blocks.next();
+  console.log('PagedQuery.2', blocks2.data.map(x => x.hash));
 }
 
 // shortcut subscription
