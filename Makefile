@@ -54,7 +54,7 @@ clean:
 watch:
 	@make build
 	@echo "Watching templates and slides changes..."
-	@fswatch -o src/ | xargs -n1 -I{} make build
+	@fswatch -o packages/ | xargs -n1 -I{} make build
 
 run:
 	@echo "Running the software..."
