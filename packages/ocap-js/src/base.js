@@ -39,7 +39,6 @@ class OCAPBaseClient extends BaseClient {
    */
   _getIgnoreFields(t) {
     const ignoreFields = ['merkleRoot', 'data.merkleRoot'];
-    ignoreFields.push('txsSent', 'txsReceived');
     if (t.name.toLowerCase().indexOf('block') >= 0) {
       ignoreFields.push('miner.txsSent', 'miner.txsReceived');
       ignoreFields.push('data.miner.txsSent', 'data.miner.txsReceived');
