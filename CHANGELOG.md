@@ -1,3 +1,7 @@
+## 0.7.1 (September 04, 2018)
+  - revert ignored fields on `accountByAdderss`
+  - update readme
+
 ## 0.7.0 (September 03, 2018)
   - update documentation and code samples for paged subquery
   - feature: support paginated query on nested fields
