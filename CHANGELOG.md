@@ -1,3 +1,7 @@
+## 0.7.2 (September 05, 2018)
+  - support uppercase eth address
+  - update readme
+
 ## 0.7.1 (September 04, 2018)
   - revert ignored fields on `accountByAdderss`
   - update readme

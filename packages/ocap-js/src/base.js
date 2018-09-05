@@ -21,8 +21,11 @@ class OCAPBaseClient extends BaseClient {
     if (args && typeof args === 'object' && this.config.dataSource === 'eth') {
       const possibleKeys = ['hash', 'address'];
       Object.keys(args).forEach(key => {
-        if (possibleKeys.includes(key) && args[key].startsWith('0x')) {
-          args[key] = args[key].slice(2);
+        if (possibleKeys.includes(key)) {
+          args[key] = args[key].toLowerCase();
+          if (args[key].startsWith('0x')) {
+            args[key] = args[key].slice(2);
+          }
         }
       });
     }
