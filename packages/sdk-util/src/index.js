@@ -310,18 +310,18 @@ class BaseClient {
       const argPrefixStr = prefixStr.replace(`${dataKey}`, '').replace(/^\./, '');
 
       if (result[key].page && result[key].page.next && result[key].page.cursor) {
-        debug('_getPagedResults', { prefix, key, result: result[key] });
-        result[key].next = async () => {
-          const pagingArgs = {
-            paging: { cursor: result[key].page.cursor },
-          };
-          const newArgs = Object.assign(
-            {},
-            args,
-            argPrefixStr ? { [argPrefixStr]: pagingArgs } : pagingArgs
-          );
-          const query = queryBuilder(newArgs);
+        const pagingArgs = {
+          paging: { cursor: result[key].page.cursor },
+        };
+        const newArgs = Object.assign(
+          {},
+          args,
+          argPrefixStr ? { [argPrefixStr]: pagingArgs } : pagingArgs
+        );
+        debug('_getPagedResults', { prefix, key, page: result[key].page, args, newArgs });
 
+        result[key].next = async () => {
+          const query = queryBuilder(newArgs);
           const newResult = await this._doRequest(query);
           return this._getPagedResults({
             result: newResult,
@@ -339,7 +339,7 @@ class BaseClient {
         queryBuilder,
         args,
         dataKey,
-        prefix: prefixStr,
+        prefix,
       });
     });
 

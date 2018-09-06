@@ -1,3 +1,7 @@
+## 0.7.3 (September 06, 2018)
+  - fix prefix arg for subquery pagination
+  - update readme
+
 ## 0.7.2 (September 05, 2018)
   - support uppercase eth address
   - update readme
