@@ -1,3 +1,11 @@
+## 0.7.5 (September 10, 2018)
+  - (chore): update bitcoin example file
+  - (chore): add ignore fields
+  - (chore): update eth example files
+  - (bugfix): required arg checking for falsy value
+  - (bugfix): set default value to empty object for args
+  - (improve): output missing arg name when required arg missing
+
 ## 0.7.4 (September 07, 2018)
   - fix folder name for node.js and browser builds
   - update readme

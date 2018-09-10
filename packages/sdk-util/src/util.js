@@ -93,11 +93,19 @@ const formatArgs = (values, specs = {}) => {
     throw new Error('Empty args when generating graphql query');
   }
 
-  const isRequiredMissing = Object.keys(specs).some(
-    x => specs[x].type.kind === 'NON_NULL' && !values[x]
-  );
+  const missingArgs = [];
+  const isRequiredMissing = Object.keys(specs).some(x => {
+    const isMissing = specs[x].type.kind === 'NON_NULL' && typeof values[x] === 'undefined';
+    if (isMissing) {
+      missingArgs.push(x);
+    }
+
+    return isMissing;
+  });
   if (isRequiredMissing) {
-    throw new Error('Missing required args when generating graphql query');
+    throw new Error(
+      `Missing required args {${missingArgs.toString()}} when generating graphql query`
+    );
   }
 
   return Object.keys(values || {})
@@ -181,7 +189,7 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
     }, {});
 
     /* eslint-disable indent */
-    const fn = argValues => {
+    const fn = (argValues = {}) => {
       const argStr = x.args.length ? `${formatArgs(argValues, argSpecs)}` : '';
       const selection = makeQuery(
         fields,

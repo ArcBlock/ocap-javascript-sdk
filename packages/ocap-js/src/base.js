@@ -40,36 +40,26 @@ class OCAPBaseClient extends BaseClient {
    * @param {Type} t
    * @return Array
    */
-  _getIgnoreFields(t) {
-    const ignoreFields = ['merkleRoot', 'data.merkleRoot'];
-    if (t.name.toLowerCase().indexOf('block') >= 0) {
-      ignoreFields.push('miner.txsSent', 'miner.txsReceived');
-      ignoreFields.push('data.miner.txsSent', 'data.miner.txsReceived');
-      if (this.config.dataSource === 'eth') {
-        ignoreFields.push('total', 'numberTxs');
-        ignoreFields.push('data.total', 'data.numberTxs');
-      }
-    }
+  _getIgnoreFields() {
+    const ignoreFields = [];
+    ignoreFields.push('miner.txsSent', 'miner.txsReceived');
+    ignoreFields.push('to.txsSent', 'to.txsReceived');
+    ignoreFields.push('from.txsSent', 'from.txsReceived');
+    ignoreFields.push('data.miner.txsSent', 'data.miner.txsReceived');
+    ignoreFields.push('data.to.txsSent', 'data.to.txsReceived');
+    ignoreFields.push('data.from.txsSent', 'data.from.txsReceived');
+    ignoreFields.push('data.txsSent.data.parent', 'data.txsReceived.data.parent');
+    ignoreFields.push('parent', 'data.parent.transactions', 'transactions.data.parent');
+    ignoreFields.push('data.author', 'data.transactions.data.parent');
 
-    if (this.config.dataSource === 'eth') {
-      ignoreFields.push(
-        'parent',
-        'to.txsSent',
-        'from.txsSent',
-        'to.txsReceived',
-        'from.txsReceived'
-      );
-      ignoreFields.push('data.to.txsSent', 'data.from.txsReceived');
-      ignoreFields.push('author', 'transactions.data.parent');
-      ignoreFields.push('data.author', 'data.transactions.data.parent');
-    }
-
-    return Object.keys(
+    const fields = Object.keys(
       ignoreFields.reduce((memo, x) => {
         memo[x] = true;
         return memo;
       }, {})
     );
+
+    return fields;
   }
 }
 
