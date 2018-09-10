@@ -11,17 +11,45 @@ const OCAPClient = require('../src/node');
     enableMutation: true,
   });
 
+  const consoleOutput = (title, data, type = 'info') => {
+    console.log(`======${title}========`);
+    console[type](data);
+    console.log('');
+    console.log('');
+  };
+
   // 1. get supported api list
   const queries = client.getQueries();
   const subscriptions = client.getSubscriptions();
   const mutations = client.getMutations();
-  console.log({ queries, subscriptions, mutations });
+  consoleOutput('API LIST', { queries, subscriptions, mutations });
 
   // 2. shortcut query
-  const account = await client.accountByAddress({
-    address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+  const doShortcutQuery = async (method, args) => {
+    try {
+      const result = await client[method](args || {});
+      consoleOutput(`ShortcutQuery.${method}`, result);
+    } catch (err) {
+      consoleOutput(`ShortcutQuery.${method}`, err, 'error');
+    }
+  };
+
+  // 2. shortcut query
+  await doShortcutQuery('accountByAddress', { address: '36n452uGq1x4mK7bfyZR8wgE47AnBb2pzi' });
+  await doShortcutQuery('blockByHash', {
+    hash: '00000000000000000009240731986544fb2ee774281fa7973e1f7e5fa6c02f0b',
   });
-  console.log('ShortcutQuery', account);
+  await doShortcutQuery('blockByHeight', { height: 540752 });
+  await doShortcutQuery('blockchainInfo', { instance: 'main' });
+  await doShortcutQuery('emptyBlocks', { fromHeight: 1 });
+  await doShortcutQuery('genesisBlock');
+  await doShortcutQuery('richestAccounts', { paging: { size: 1 } });
+  await doShortcutQuery('transactionByHash', {
+    hash: '977d894328e513c3f800026865de9659a7cae459ec80c9d924ddc18b13316f11',
+  });
+  await doShortcutQuery('transactionByIndex', { blockHeight: 540752, index: 0 });
+  await doShortcutQuery('transactionsByAddress', { sender: '36n452uGq1x4mK7bfyZR8wgE47AnBb2pzi' });
+  await doShortcutQuery('zeroFeesBlocks', { fromHeight: 1 });
 
   // 3. raw query
   const result = await client.doRawQuery(`{
@@ -34,30 +62,30 @@ const OCAPClient = require('../src/node');
       }
     }
   }`);
-  console.log('RawQuery', result);
+  consoleOutput('RawQuery', result);
 
   // 4. paged result with shortcut query
   const { blocksByHeight: blocks } = await client.blocksByHeight({
     fromHeight: 500000,
     toHeight: 500020,
   });
-  console.log('PagedQuery.1', blocks.data.map(x => x.hash));
+  consoleOutput('PagedQuery.1', blocks.data.map(x => x.hash));
   if (typeof blocks.next === 'function') {
     const { blocksByHeight: blocks2 } = await blocks.next();
-    console.log('PagedQuery.2', blocks2.data.map(x => x.hash));
+    consoleOutput('PagedQuery.2', blocks2.data.map(x => x.hash));
   }
 
   // 5. nested paged result with shortcut query
   const { blockByHeight: block } = await client.blockByHeight({ height: 500000 });
-  console.log('PagedSubQuery.1', block.transactions.data.map(x => x.hash));
+  consoleOutput('PagedSubQuery.1', block.transactions.data.map(x => x.hash));
   if (typeof block.transactions.next === 'function') {
     const { blockByHeight: block2 } = await block.transactions.next();
-    console.log('PagedSubQuery.2', block2.transactions.data.map(x => x.hash));
+    consoleOutput('PagedSubQuery.2', block2.transactions.data.map(x => x.hash));
   }
 
   // 6. shortcut subscription
   const subscription = await client.newBlockMined();
-  subscription.on('data', data => console.log('ShortcutSubscription', data));
+  subscription.on('data', data => consoleOutput('ShortcutSubscription', data));
 
   // 7. raw subscription
   const rawSubscription = await client.doRawSubscription(`{
@@ -68,5 +96,5 @@ const OCAPClient = require('../src/node');
       }
 
   }`);
-  rawSubscription.on('data', data => console.log('RawSubscription', data));
+  rawSubscription.on('data', data => consoleOutput('RawSubscription', data));
 })();
