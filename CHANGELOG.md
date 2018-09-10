@@ -1,3 +1,7 @@
+## 0.7.4 (September 07, 2018)
+  - fix folder name for node.js and browser builds
+  - update readme
+
 ## 0.7.3 (September 06, 2018)
   - fix prefix arg for subquery pagination
   - update readme

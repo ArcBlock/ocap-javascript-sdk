@@ -23,8 +23,8 @@
 
 **Start building OCAP DApp without setting up environment.**
 
-- [arcblock/ocap-react-starter v2](https://codesandbox.io/s/lppjkmov49)
-- [arcblock/ocap-vue-starter v1](https://codesandbox.io/s/o4q563jvv6)
+- [arcblock/ocap-react-starter](https://codesandbox.io/s/lppjkmov49)
+- [arcblock/ocap-vue-starter](https://codesandbox.io/s/o4q563jvv6)
 
 ## OCAP Service CheatSheet
 
