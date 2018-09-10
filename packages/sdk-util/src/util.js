@@ -95,7 +95,7 @@ const formatArgs = (values, specs = {}) => {
 
   const missingArgs = [];
   const isRequiredMissing = Object.keys(specs).some(x => {
-    const isMissing = specs[x].type.kind === 'NON_NULL' && !values[x];
+    const isMissing = specs[x].type.kind === 'NON_NULL' && typeof values[x] === 'undefined';
     if (isMissing) {
       missingArgs.push(x);
     }
