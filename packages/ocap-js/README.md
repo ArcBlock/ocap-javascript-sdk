@@ -11,15 +11,6 @@
 
 > If you are using this SDK in browser environment, [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill) is required.
 
-## Table of Contents
-
-- [Install](#install)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
-- [License](#license)
-
 ## Install
 
 ```sh
