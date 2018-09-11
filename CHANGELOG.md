@@ -1,3 +1,6 @@
+## 0.7.7 (September 11, 2018)
+  - add chinese version for generated docs
+
 ## 0.7.6 (September 11, 2018)
   - add chinese documentation for ocap js sdk
   - remove toc for readme file (#43)

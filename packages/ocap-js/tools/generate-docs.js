@@ -5,7 +5,7 @@ const path = require('path');
 const { parse, print } = require('graphql');
 const OCAPClient = require('../');
 
-const genSectionDoc = (title, methods) => {
+const genSectionDoc = (title, methods, lang = 'en') => {
   return `
 ## ${title}
 ${
@@ -15,7 +15,7 @@ ${
             method => `
 ### ${method.name}
 
-#### Arguments
+#### ${lang === 'en' ? 'Arguments' : '参数列表'}
 
 ${
               Object.values(method.args).length
@@ -23,17 +23,25 @@ ${
                     .map(
                       arg =>
                         `* **${arg.name}**, ${
-                          arg.type.kind === 'NON_NULL' ? '**required**' : 'optional'
+                          arg.type.kind === 'NON_NULL'
+                            ? lang === 'en'
+                              ? '**required**'
+                              : '**必须**'
+                            : lang === 'en'
+                              ? 'optional'
+                              : '可选'
                         }, ${arg.description}`
                     )
                     .join('\n')
-                : 'No arguments'
+                : lang === 'en'
+                  ? 'No arguments'
+                  : '无需参数'
             }
 
-#### Result Format
+#### ${lang === 'en' ? 'Raw Query' : '查询串'}
 
 \`\`\`graphql
-${print(parse(method.result))}
+${print(parse(method.rawQuery))}
 \`\`\``
           )
           .join('\n')
@@ -73,11 +81,39 @@ dataSources.map(dataSource => {
   const docs = Object.keys(map).map(x =>
     genSectionDoc(
       x,
-      map[x].map(m => ({ name: m, args: client[m].args || {}, result: getResultFormat(m) }))
+      map[x].map(m => ({ name: m, args: client[m].args || {}, rawQuery: getResultFormat(m) }))
+    )
+  );
+
+  const docsCN = Object.keys(map).map(x =>
+    genSectionDoc(
+      x,
+      map[x].map(m => ({ name: m, args: client[m].args || {}, rawQuery: getResultFormat(m) })),
+      'cn'
     )
   );
 
   const docFile = path.join(__dirname, '../docs', `${dataSource}.md`);
-  fs.writeFileSync(docFile, `# ${dataSource.toUpperCase()} API List\n ${docs.join('\n')}`);
+  fs.writeFileSync(
+    docFile,
+    `# ${dataSource.toUpperCase()} API List
+
+> 中文版文档请猛击 [${dataSource}.cn.md](./${dataSource}.cn.md)
+
+> Raw Query also tells us the shape of the response
+${docs.join('\n')}`
+  );
   console.log('generated docs: ', docFile);
+
+  const docFileCN = path.join(__dirname, '../docs', `${dataSource}.cn.md`);
+  fs.writeFileSync(
+    docFileCN,
+    `# ${dataSource.toUpperCase()} API 列表
+
+> For English documentation please checkout [${dataSource}.md](./${dataSource}.md)
+
+> 查询串其实已经定义了查询结果的数据结构
+${docsCN.join('\n')}`
+  );
+  console.log('generated docs: ', docFileCN);
 });

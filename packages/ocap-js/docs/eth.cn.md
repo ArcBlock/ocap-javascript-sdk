@@ -1,18 +1,18 @@
-# ETH API List
+# ETH API 列表
 
-> 中文版文档请猛击 [eth.cn.md](./eth.cn.md)
+> For English documentation please checkout [eth.md](./eth.md)
 
-> Raw Query also tells us the shape of the response
+> 查询串其实已经定义了查询结果的数据结构
 
 ## Queries
 
 ### accountByAddress
 
-#### Arguments
+#### 参数列表
 
-* **address**, **required**, The address generated based on the public key of the account.
+* **address**, **必须**, The address generated based on the public key of the account.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -233,11 +233,11 @@
 
 ### blockByHash
 
-#### Arguments
+#### 参数列表
 
-* **hash**, **required**, The hash of the block.
+* **hash**, **必须**, The hash of the block.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -347,11 +347,11 @@
 
 ### blockByHeight
 
-#### Arguments
+#### 参数列表
 
-* **height**, **required**, The number of blocks ahead of this block.
+* **height**, **必须**, The number of blocks ahead of this block.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -461,11 +461,11 @@
 
 ### blockchainInfo
 
-#### Arguments
+#### 参数列表
 
-* **instance**, **required**, The name of the blockchain instance.
+* **instance**, **必须**, The name of the blockchain instance.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -572,13 +572,13 @@
 
 ### blocksByHeight
 
-#### Arguments
+#### 参数列表
 
-* **fromHeight**, **required**, The height of block from which to return.
-* **paging**, optional, Describes which page of data to return.
-* **toHeight**, optional, The height of block to which to return.
+* **fromHeight**, **必须**, The height of block from which to return.
+* **paging**, 可选, Describes which page of data to return.
+* **toHeight**, 可选, The height of block to which to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -695,13 +695,13 @@
 
 ### emptyBlocks
 
-#### Arguments
+#### 参数列表
 
-* **fromHeight**, **required**, The height of block from which to return.
-* **paging**, optional, Describes which page of data to return.
-* **toHeight**, optional, The height of block to which to return.
+* **fromHeight**, **必须**, The height of block from which to return.
+* **paging**, 可选, Describes which page of data to return.
+* **toHeight**, 可选, The height of block to which to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -818,12 +818,12 @@
 
 ### erc20Tokens
 
-#### Arguments
+#### 参数列表
 
-* **address**, optional, the address of the token
-* **token**, optional, the name of the token
+* **address**, 可选, the address of the token
+* **token**, 可选, the name of the token
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -842,11 +842,11 @@
 
 ### genesisBlock
 
-#### Arguments
+#### 参数列表
 
-No arguments
+无需参数
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -956,11 +956,11 @@ No arguments
 
 ### richestAccounts
 
-#### Arguments
+#### 参数列表
 
-* **paging**, optional, Describes which page of data to return.
+* **paging**, 可选, Describes which page of data to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1114,11 +1114,11 @@ No arguments
 
 ### transactionByHash
 
-#### Arguments
+#### 参数列表
 
-* **hash**, **required**, The hash of the transaction to return.
+* **hash**, **必须**, The hash of the transaction to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1184,13 +1184,13 @@ No arguments
 
 ### transactionByIndex
 
-#### Arguments
+#### 参数列表
 
-* **blockHash**, optional, The hash of the block containing the target transaction.
-* **blockHeight**, optional, The height of the block containing the target transaction.
-* **index**, **required**, The index of the transaction insdie the block.
+* **blockHash**, 可选, The hash of the block containing the target transaction.
+* **blockHeight**, 可选, The height of the block containing the target transaction.
+* **index**, **必须**, The index of the transaction insdie the block.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1256,15 +1256,15 @@ No arguments
 
 ### transactionsByIndex
 
-#### Arguments
+#### 参数列表
 
-* **blockHash**, optional, The hash of the block containing the target transactions.
-* **blockHeight**, optional, The height of the block containing the target transactions.
-* **fromIndex**, optional, The index of the transaction from which to return.
-* **paging**, optional, Describes which page of data to return.
-* **toIndex**, optional, The index of the transaction to which to return.
+* **blockHash**, 可选, The hash of the block containing the target transactions.
+* **blockHeight**, 可选, The height of the block containing the target transactions.
+* **fromIndex**, 可选, The index of the transaction from which to return.
+* **paging**, 可选, Describes which page of data to return.
+* **toIndex**, 可选, The index of the transaction to which to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1374,14 +1374,14 @@ No arguments
 
 ### transactionsByToken
 
-#### Arguments
+#### 参数列表
 
-* **from**, optional, from address
-* **paging**, optional, Describes which page of data to return.
-* **to**, optional, to address
-* **token**, **required**, The token name of the transaction to return.
+* **from**, 可选, from address
+* **paging**, 可选, Describes which page of data to return.
+* **to**, 可选, to address
+* **token**, **必须**, The token name of the transaction to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1491,13 +1491,13 @@ No arguments
 
 ### zeroFeesBlocks
 
-#### Arguments
+#### 参数列表
 
-* **fromHeight**, **required**, The height of block from which to return.
-* **paging**, optional, Describes which page of data to return.
-* **toHeight**, optional, The height of block to which to return.
+* **fromHeight**, **必须**, The height of block from which to return.
+* **paging**, 可选, Describes which page of data to return.
+* **toHeight**, 可选, The height of block to which to return.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 {
@@ -1616,11 +1616,11 @@ No arguments
 
 ### bigTransactionExecuted
 
-#### Arguments
+#### 参数列表
 
-* **token**, **required**, could be "normal", "abt" or a token address.
+* **token**, **必须**, could be "normal", "abt" or a token address.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
@@ -1686,11 +1686,11 @@ subscription {
 
 ### contractExecuted
 
-#### Arguments
+#### 参数列表
 
-* **address**, **required**, The contract address to listen.
+* **address**, **必须**, The contract address to listen.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
@@ -1756,11 +1756,11 @@ subscription {
 
 ### newBlockMined
 
-#### Arguments
+#### 参数列表
 
-No arguments
+无需参数
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
@@ -1870,11 +1870,11 @@ subscription {
 
 ### newContractCreated
 
-#### Arguments
+#### 参数列表
 
-No arguments
+无需参数
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
@@ -1940,11 +1940,11 @@ subscription {
 
 ### tokenReceived
 
-#### Arguments
+#### 参数列表
 
-* **address**, **required**, must be a normal wallet address.
+* **address**, **必须**, must be a normal wallet address.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
@@ -2010,11 +2010,11 @@ subscription {
 
 ### tokenSent
 
-#### Arguments
+#### 参数列表
 
-* **address**, **required**, must be a normal wallet address.
+* **address**, **必须**, must be a normal wallet address.
 
-#### Raw Query
+#### 查询串
 
 ```graphql
 subscription {
