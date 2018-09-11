@@ -2,14 +2,14 @@
 
 [![build status](https://img.shields.io/travis/ArcBlock/ocap-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/ocap-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/ocap-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/ocap-javascript-sdk)
-[![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![made with lass](https://img.shields.io/badge/made_with-lass-95CC28.svg)](https://lass.js.org)
 [![license](https://img.shields.io/github/license/ArcBlock/ocap-javascript-sdk.svg)](LICENSE)
 
-> Javascript SDK for OCAP Service by ArcBlock for both Node.js, browser and react-native
+> Javascript SDK for OCAP Service by ArcBlock for both Node.js, browser and react-native.
 
 > If you are using this SDK in browser environment, [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill) is required.
+
+> 中文版文档，请移步[这里](./README.cn.md).
 
 ## Install
 
@@ -51,7 +51,10 @@ const result = await client.doRawQuery(`{
 console.log('RawQuery', result);
 
 // paged result with shortcut query
-const { blocksByHeight: blocks } = await client.blocksByHeight({ fromHeight: 1000000, toHeight: 1000020 });
+const { blocksByHeight: blocks } = await client.blocksByHeight({
+  fromHeight: 1000000,
+  toHeight: 1000020,
+});
 console.log('PagedQuery.1', blocks.data.map(x => x.hash));
 if (typeof blocks.next === 'function') {
   const { blocksByHeight: blocks2 } = await blocks.next();
@@ -106,11 +109,7 @@ Want more examples?
 
 ## Contributors
 
-| Name           | Website                    |
-| -------------- | -------------------------- |
-| **wangshijun** | <https://ocap.arcblock.io> |
-
-- wangshijun
+- [wangshijun](https://github.com/wangshijun)
 
 ## License
 
