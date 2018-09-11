@@ -1,3 +1,8 @@
+## 0.7.6 (September 11, 2018)
+  - add chinese documentation for ocap js sdk
+  - remove toc for readme file (#43)
+  - update readme
+
 ## 0.7.5 (September 10, 2018)
   - (chore): update bitcoin example file
   - (chore): add ignore fields
