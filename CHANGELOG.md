@@ -1,3 +1,6 @@
+## 0.7.8 (September 12, 2018)
+  - (bugfix): DateTime and ID type not encoded as string in params
+
 ## 0.7.7 (September 11, 2018)
   - add chinese version for generated docs
 
