@@ -1,3 +1,6 @@
+## 0.7.10 (September 13, 2018)
+
+
 ## 0.7.9 (September 13, 2018)
   - (bugfix): code example file error handling
   - update readme

@@ -6,10 +6,23 @@
 [![license](https://img.shields.io/github/license/ArcBlock/ocap-javascript-sdk.svg)](LICENSE)
 
 > Javascript SDK for OCAP Service by ArcBlock for both Node.js, browser and react-native.
-
+>
 > If you are using this SDK in browser environment, [babel-polyfill](https://babeljs.io/docs/en/babel-polyfill) is required.
-
+>
 > 中文版文档，请移步[这里](./README.cn.md).
+
+
+## Table of Contents
+
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Starter Templates](#starter-templates)
+* [CodeSandbox Projects](#codesandbox-projects)
+* [OCAP Service CheatSheet](#ocap-service-cheatsheet)
+* [Contributors](#contributors)
+* [License](#license)
+
 
 ## Install
 
@@ -18,6 +31,7 @@ npm install @arcblock/ocap-js
 // or
 yarn add @arcblock/ocap-js
 ```
+
 
 ## Usage
 
@@ -78,39 +92,49 @@ rawSubscription.on('data', data => console.log('RawSubscription', data));
 
 Want more examples?
 
-- See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
-- See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
+* See [docs/example.btc.js](./docs/example.btc.js) for Bitcoin examples.
+* See [docs/example.eth.js](./docs/example.btc.js) for Ethereum examples.
+
 
 ## Documentation
 
-- [Specification](./docs/spec.md)
-- [Bitcoin](./docs/btc.md)
-- [Ethereum](./docs/eth.md)
+* [Specification](./docs/spec.md)
+* [Bitcoin](./docs/btc.md)
+* [Ethereum](./docs/eth.md)
+
 
 ## Starter Templates
 
 **Start building OCAP DApp with just one command**.
 
-- [ocap-vue-starter](https://github.com/ArcBlock/ocap-vue-starter)
-- [ocap-react-starter](https://github.com/ArcBlock/ocap-react-starter)
-- [ocap-react-native-starter](https://github.com/ArcBlock/ocap-react-native-starter)
+* [ocap-vue-starter](https://github.com/ArcBlock/ocap-vue-starter)
+* [ocap-react-starter](https://github.com/ArcBlock/ocap-react-starter)
+* [ocap-react-native-starter](https://github.com/ArcBlock/ocap-react-native-starter)
+
 
 ## CodeSandbox Projects
 
 **Start building OCAP DApp without setting up environment.**
 
-- [arcblock/ocap-react-starter](https://codesandbox.io/s/lppjkmov49)
-- [arcblock/ocap-vue-starter](https://codesandbox.io/s/o4q563jvv6)
+* [arcblock/ocap-react-starter](https://codesandbox.io/s/lppjkmov49)
+* [arcblock/ocap-vue-starter](https://codesandbox.io/s/o4q563jvv6)
+
 
 ## OCAP Service CheatSheet
 
-- [Bitcoin CheatSheet](./docs/cheatsheet.bitcoin.png)
-- [Ethereum CheatSheet](./docs/cheatsheet.bitcoin.png)
+* [Bitcoin CheatSheet](./docs/cheatsheet.bitcoin.png)
+* [Ethereum CheatSheet](./docs/cheatsheet.bitcoin.png)
+
 
 ## Contributors
 
-- [wangshijun](https://github.com/wangshijun)
+| Name           | Website                    |
+| -------------- | -------------------------- |
+| **wangshijun** | <https://ocap.arcblock.io> |
+
+* [wangshijun](https://github.com/wangshijun)
+
 
 ## License
 
-[MIT](LICENSE) © [ArcBlock](https://www.arcblock.io)
+[MIT](LICENSE) © [wangshijun](https://ocap.arcblock.io)
