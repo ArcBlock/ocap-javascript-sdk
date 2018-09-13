@@ -1,3 +1,7 @@
+## 0.7.9 (September 13, 2018)
+  - (bugfix): code example file error handling
+  - update readme
+
 ## 0.7.8 (September 12, 2018)
   - (bugfix): DateTime and ID type not encoded as string in params
 
