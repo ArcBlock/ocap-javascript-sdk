@@ -101,6 +101,8 @@ dataSources.map(dataSource => {
 > 中文版文档请猛击 [${dataSource}.cn.md](./${dataSource}.cn.md)
 
 > Raw Query also tells us the shape of the response
+
+## Table of Contents
 ${docs.join('\n')}`
   );
   console.log('generated docs: ', docFile);
@@ -113,6 +115,9 @@ ${docs.join('\n')}`
 > For English documentation please checkout [${dataSource}.md](./${dataSource}.md)
 
 > 查询串其实已经定义了查询结果的数据结构
+
+## Table of Contents
+
 ${docsCN.join('\n')}`
   );
   console.log('generated docs: ', docFileCN);
