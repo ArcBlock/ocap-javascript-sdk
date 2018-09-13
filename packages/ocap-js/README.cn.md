@@ -50,7 +50,7 @@ const result = await client.doRawQuery(`{
 }`);
 console.log('RawQuery', result);
 
-// 查询结果跟级别的数据翻页
+// 查询结果翻页
 const { blocksByHeight: blocks } = await client.blocksByHeight({
   fromHeight: 1000000,
   toHeight: 1000020,
@@ -76,7 +76,7 @@ const rawSubscription = await client.doRawSubscription(`
 rawSubscription.on('data', data => console.log('RawSubscription', data));
 ```
 
-所有快捷方法列表，必须传入的参数，参数格式参见：
+更多 API 调用代码示例：
 
 - 比特币接口：[docs/example.btc.js](./docs/example.btc.js)
 - 以太坊接口：[docs/example.eth.js](./docs/example.btc.js)
@@ -90,7 +90,7 @@ rawSubscription.on('data', data => console.log('RawSubscription', data));
 
 ## 种子项目
 
-**为节省开发者时间，我们准备了如下的种子项目，在其中集成了 OCAP JS SDK，仅需一条命令就可以开始构建 DAPP**.
+**为节省开发者时间，我们准备了如下的种子项目，在其中集成了 OCAP JS SDK，仅需一条命令就可以开始构建 DAPP**。
 
 - Vue.js: [ocap-vue-starter](https://github.com/ArcBlock/ocap-vue-starter)
 - React: [ocap-react-starter](https://github.com/ArcBlock/ocap-react-starter)
@@ -100,7 +100,7 @@ rawSubscription.on('data', data => console.log('RawSubscription', data));
 
 ## CodeSandbox 项目
 
-**如果你想直接在浏览器中开始开发 DApp，我们还准备了 CodeSandbox 上面的种子项目，可以 fork 后开始开发**
+**如果你想直接在浏览器中开始开发 DApp，我们还准备了 CodeSandbox 上面的种子项目，可以 fork 后开始开发**。
 
 - Vue.js: [arcblock/ocap-vue-starter](https://codesandbox.io/s/o4q563jvv6)
 - React: [arcblock/ocap-react-starter](https://codesandbox.io/s/lppjkmov49)
