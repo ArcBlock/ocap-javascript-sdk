@@ -94,16 +94,26 @@ const OCAPClient = require('../src/node');
   }
 
   // 6. shortcut subscription
-  const subscription = await client.newBlockMined();
-  subscription.on('data', data => consoleOutput('ShortcutSubscription.newBlockMined', data));
+  try {
+    const subscription = await client.newBlockMined();
+    console.info('Subscription.newBlockMined.subscribed');
+    subscription.on('data', data => consoleOutput('ShortcutSubscription.newBlockMined', data));
+  } catch (err) {
+    console.error('Subscription.newBlockMined.error', err.errors.shift());
+  }
 
   // 7. raw subscription
-  const rawSubscription = await client.doRawSubscription(`
+  try {
+    const rawSubscription = await client.doRawSubscription(`
     subscription {
       newBlockMined {
         height
         hash
       }
     }`);
-  rawSubscription.on('data', data => consoleOutput('RawSubscription.newBlockMined', data));
+    console.info('Subscription.rawSubscription.subscribed');
+    rawSubscription.on('data', data => consoleOutput('RawSubscription.newBlockMined', data));
+  } catch (err) {
+    console.error('Subscription.rawSubscription.error', err.errors.shift());
+  }
 })();
