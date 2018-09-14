@@ -46,6 +46,11 @@ const OCAPClient = require('../src/node');
   await doShortcutQuery('erc20Tokens', { token: 'abt' });
   await doShortcutQuery('genesisBlock');
   await doShortcutQuery('richestAccounts');
+  await doShortcutQuery('cryptoHistoryPrice', {
+    token: 'prs',
+    startDate: '2018-06-01T00:00:00.000Z',
+    endDate: '2018-09-10T13:59:45.789Z',
+  });
   await doShortcutQuery('transactionByHash', {
     hash: '0x569c5b35f203ca6db6e2cec44bceba756fad513384e2bd79c06a8c0181273379',
   });

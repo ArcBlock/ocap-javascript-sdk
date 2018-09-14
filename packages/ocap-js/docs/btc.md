@@ -13,6 +13,7 @@
   * [blockByHeight](#blockbyheight)
   * [blockchainInfo](#blockchaininfo)
   * [blocksByHeight](#blocksbyheight)
+  * [cryptoHistoryPrice](#cryptohistoryprice)
   * [emptyBlocks](#emptyblocks)
   * [genesisBlock](#genesisblock)
   * [richestAccounts](#richestaccounts)
@@ -27,7 +28,6 @@
   * [coinSent](#coinsent)
   * [newBlockMined](#newblockmined)
 * [Mutations](#mutations)
-* [Contributors](#contributors)
 
 
 ## Queries
@@ -563,6 +563,33 @@
           total
         }
       }
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+```
+
+### cryptoHistoryPrice
+
+#### Arguments
+
+* **endDate**, **required**, the end_date of the interval
+* **paging**, optional, Describes which page of data to return.
+* **startDate**, **required**, the start_date of the interval
+* **token**, **required**, the name of the token
+
+#### Raw Query
+
+```graphql
+{
+  cryptoHistoryPrice(endDate: "123", startDate: "123", token: "abc") {
+    data {
+      date
+      price
     }
     page {
       cursor

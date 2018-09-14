@@ -44,6 +44,11 @@ const OCAPClient = require('../src/node');
   await doShortcutQuery('emptyBlocks', { fromHeight: 1 });
   await doShortcutQuery('genesisBlock');
   await doShortcutQuery('richestAccounts', { paging: { size: 1 } });
+  await doShortcutQuery('cryptoHistoryPrice', {
+    token: 'prs',
+    startDate: '2018-06-01T00:00:00.000Z',
+    endDate: '2018-09-10T13:59:45.789Z',
+  });
   await doShortcutQuery('transactionByHash', {
     hash: '977d894328e513c3f800026865de9659a7cae459ec80c9d924ddc18b13316f11',
   });
