@@ -1,14 +1,14 @@
 /* eslint no-console:"off" */
 const fs = require('fs');
 const path = require('path');
-const OCAPClient = require('../../ocap-js/src/node');
+const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
+const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
 
 const dataSources = ['btc', 'eth'];
 dataSources.map(async dataSource => {
-  const client = new OCAPClient({ dataSource });
   try {
-    const result = await client.doRawQuery(introspectionQuery);
+    const result = await request(httpEndpoint(dataSource), introspectionQuery);
     if (result.__schema) {
       const schemaFile = path.join(__dirname, '../src/schema', `${dataSource}.json`);
       const schemaJson = JSON.stringify(result.__schema, true, '  ');
