@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parse, print } = require('graphql');
-const OCAPClient = require('../');
+const OCAPClient = require('../src/node');
 
 const genSectionDoc = (title, methods, lang = 'en') => {
   return `

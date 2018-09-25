@@ -67,6 +67,7 @@
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize
@@ -132,6 +133,7 @@
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize
@@ -241,6 +243,7 @@
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize
@@ -350,6 +353,7 @@
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize
@@ -471,6 +475,7 @@
             priceInUsd
             size
             strippedSize
+            time
             total
             version
             virtualSize
@@ -551,6 +556,7 @@
           priceInUsd
           size
           strippedSize
+          time
           total
           version
           virtualSize
@@ -657,6 +663,7 @@
           priceInUsd
           size
           strippedSize
+          time
           total
           version
           virtualSize
@@ -733,6 +740,7 @@
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize
@@ -824,6 +832,7 @@
           priceInUsd
           size
           strippedSize
+          time
           total
           version
           virtualSize
@@ -850,6 +859,7 @@
           priceInUsd
           size
           strippedSize
+          time
           total
           version
           virtualSize
@@ -895,6 +905,7 @@
     priceInUsd
     size
     strippedSize
+    time
     total
     version
     virtualSize
@@ -968,6 +979,7 @@
     priceInUsd
     size
     strippedSize
+    time
     total
     version
     virtualSize
@@ -1042,6 +1054,7 @@
       priceInUsd
       size
       strippedSize
+      time
       total
       version
       virtualSize
@@ -1124,6 +1137,7 @@
       priceInUsd
       size
       strippedSize
+      time
       total
       version
       virtualSize
@@ -1235,6 +1249,7 @@
           priceInUsd
           size
           strippedSize
+          time
           total
           version
           virtualSize
@@ -1283,6 +1298,7 @@ subscription {
     priceInUsd
     size
     strippedSize
+    time
     total
     version
     virtualSize
@@ -1354,6 +1370,7 @@ subscription {
     priceInUsd
     size
     strippedSize
+    time
     total
     version
     virtualSize
@@ -1425,6 +1442,7 @@ subscription {
     priceInUsd
     size
     strippedSize
+    time
     total
     version
     virtualSize
@@ -1527,6 +1545,7 @@ subscription {
         priceInUsd
         size
         strippedSize
+        time
         total
         version
         virtualSize

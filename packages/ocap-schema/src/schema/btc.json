@@ -904,6 +904,18 @@
         },
         {
           "type": {
+            "ofType": null,
+            "name": "DateTime",
+            "kind": "SCALAR"
+          },
+          "name": "time",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
             "ofType": {
               "ofType": null,
               "name": "Int",
@@ -2401,6 +2413,144 @@
     },
     {
       "possibleTypes": null,
+      "name": "__EnumValue",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "deprecationReason",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "isDeprecated",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": null
+    },
+    {
+      "possibleTypes": null,
+      "name": "__Schema",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__Directive",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "directives",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "mutationType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "queryType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "subscriptionType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__Type",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "types",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": "Represents a schema"
+    },
+    {
+      "possibleTypes": null,
       "name": "__InputValue",
       "kind": "OBJECT",
       "interfaces": [],
@@ -2708,197 +2858,6 @@
     },
     {
       "possibleTypes": null,
-      "name": "__EnumValue",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "deprecationReason",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "isDeprecated",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__DirectiveLocation",
-      "kind": "ENUM",
-      "interfaces": null,
-      "inputFields": null,
-      "fields": null,
-      "enumValues": [
-        {
-          "name": "FIELD",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "FRAGMENT_DEFINITION",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "FRAGMENT_SPREAD",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "INLINE_FRAGMENT",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "MUTATION",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "QUERY",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "SUBSCRIPTION",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        }
-      ],
-      "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Schema",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Directive",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "directives",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "mutationType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "queryType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "subscriptionType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Type",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "types",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a schema"
-    },
-    {
-      "possibleTypes": null,
       "name": "__Directive",
       "kind": "OBJECT",
       "interfaces": [],
@@ -2999,6 +2958,59 @@
       ],
       "enumValues": null,
       "description": "Represents a directive"
+    },
+    {
+      "possibleTypes": null,
+      "name": "__DirectiveLocation",
+      "kind": "ENUM",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": [
+        {
+          "name": "FIELD",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "FRAGMENT_DEFINITION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "FRAGMENT_SPREAD",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "INLINE_FRAGMENT",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "MUTATION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "QUERY",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "SUBSCRIPTION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        }
+      ],
+      "description": null
     }
   ],
   "subscriptionType": {
@@ -3011,7 +3023,11 @@
   "directives": [
     {
       "name": "include",
-      "locations": ["INLINE_FRAGMENT", "FRAGMENT_SPREAD", "FIELD"],
+      "locations": [
+        "INLINE_FRAGMENT",
+        "FRAGMENT_SPREAD",
+        "FIELD"
+      ],
       "description": "Directs the executor to include this field or fragment only when the `if` argument is true.\"",
       "args": [
         {
@@ -3032,7 +3048,11 @@
     },
     {
       "name": "skip",
-      "locations": ["INLINE_FRAGMENT", "FRAGMENT_SPREAD", "FIELD"],
+      "locations": [
+        "INLINE_FRAGMENT",
+        "FRAGMENT_SPREAD",
+        "FIELD"
+      ],
       "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
       "args": [
         {

@@ -57,7 +57,7 @@ const resolveFieldTree = (type, depth, map) => {
 /* eslint-disable indent */
 const makeQuery = (fields, ignoreFields, argValues = {}) => `
   ${fields.scalar
-    .filter(x => ignoreFields.includes(x.path) === false)
+    .filter(x => !ignoreFields.some(y => (y instanceof RegExp ? y.test(x.path) : y === x.path)))
     .map(x => x.name)
     .join('\n')}
   ${
