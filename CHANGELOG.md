@@ -1,3 +1,8 @@
+## 0.8.1 (September 25, 2018)
+  - update docs since schema update
+  - update schema
+  - update readme
+
 ## 0.8.0 (September 15, 2018)
   - (chore): update documentation and code samples for ocap-js
   - (feature): update ocap-schema to support tokenHistoryPrice api
