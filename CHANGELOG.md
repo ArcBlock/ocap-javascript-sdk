@@ -1,3 +1,6 @@
+## 0.8.2 (September 25, 2018)
+  - (bugfix): ocap-schema change not tiggering a valida lerna release
+
 ## 0.8.1 (September 25, 2018)
   - update docs since schema update
   - update schema
