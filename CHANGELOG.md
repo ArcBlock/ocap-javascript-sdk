@@ -1,3 +1,8 @@
+## 0.8.2 (September 25, 2018)
+  - support regexp in ignoreFields
+  - update schema
+  - update docs
+
 ## 0.8.1 (September 25, 2018)
   - update docs since schema update
   - update schema
