@@ -57,39 +57,50 @@
     totalAmountSent
     txsReceived {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
+        to {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
         parent {
           difficulty
           extraData
@@ -126,17 +137,6 @@
             totalAmountReceived
             totalAmountSent
           }
-        }
-        to {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
         }
         from {
           address
@@ -158,39 +158,50 @@
     }
     txsSent {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
+        to {
+          address
+          balance
+          isContract
+          numberTxsReceived
+          numberTxsSent
+          priceInUsd
+          pubKey
+          totalAmountReceived
+          totalAmountSent
+        }
         parent {
           difficulty
           extraData
@@ -227,17 +238,6 @@
             totalAmountReceived
             totalAmountSent
           }
-        }
-        to {
-          address
-          balance
-          isContract
-          numberTxsReceived
-          numberTxsSent
-          priceInUsd
-          pubKey
-          totalAmountReceived
-          totalAmountSent
         }
         from {
           address
@@ -309,39 +309,39 @@
     }
     transactions {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
         to {
           address
           balance
@@ -423,39 +423,39 @@
     }
     transactions {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
         to {
           address
           balance
@@ -549,39 +549,39 @@
         }
         transactions {
           data {
-            txType
+            gasLimit
+            logs
+            gasUsed
+            nonce
             total
+            blockHash
             index
+            txType
             publicKey
-            r
-            priceInUsd
             contractFrom
             root
-            status
-            fees
-            nonce
             logsBloom
-            raw
-            historyPrice
-            contractTo
-            cumulativeGasUsed
-            input
-            blockHeight
-            v
-            standardV
-            creates
+            status
             gasPrice
+            raw
+            fees
             contractAddress
-            gasUsed
-            logs
-            gasLimit
-            blockHash
+            contractTo
+            input
+            r
+            blockHeight
+            inputPlain
+            standardV
+            hash
+            creates
             size
             s
-            inputPlain
-            hash
+            cumulativeGasUsed
+            priceInUsd
             time
+            v
             contractValue
+            historyPrice
           }
           page {
             cursor
@@ -651,39 +651,39 @@
       }
       transactions {
         data {
-          txType
+          gasLimit
+          logs
+          gasUsed
+          nonce
           total
+          blockHash
           index
+          txType
           publicKey
-          r
-          priceInUsd
           contractFrom
           root
-          status
-          fees
-          nonce
           logsBloom
-          raw
-          historyPrice
-          contractTo
-          cumulativeGasUsed
-          input
-          blockHeight
-          v
-          standardV
-          creates
+          status
           gasPrice
+          raw
+          fees
           contractAddress
-          gasUsed
-          logs
-          gasLimit
-          blockHash
+          contractTo
+          input
+          r
+          blockHeight
+          inputPlain
+          standardV
+          hash
+          creates
           size
           s
-          inputPlain
-          hash
+          cumulativeGasUsed
+          priceInUsd
           time
+          v
           contractValue
+          historyPrice
           to {
             address
             balance
@@ -801,39 +801,39 @@
       }
       transactions {
         data {
-          txType
+          gasLimit
+          logs
+          gasUsed
+          nonce
           total
+          blockHash
           index
+          txType
           publicKey
-          r
-          priceInUsd
           contractFrom
           root
-          status
-          fees
-          nonce
           logsBloom
-          raw
-          historyPrice
-          contractTo
-          cumulativeGasUsed
-          input
-          blockHeight
-          v
-          standardV
-          creates
+          status
           gasPrice
+          raw
+          fees
           contractAddress
-          gasUsed
-          logs
-          gasLimit
-          blockHash
+          contractTo
+          input
+          r
+          blockHeight
+          inputPlain
+          standardV
+          hash
+          creates
           size
           s
-          inputPlain
-          hash
+          cumulativeGasUsed
+          priceInUsd
           time
+          v
           contractValue
+          historyPrice
           to {
             address
             balance
@@ -944,39 +944,39 @@ No arguments
     }
     transactions {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
         to {
           address
           balance
@@ -1033,39 +1033,39 @@ No arguments
       totalAmountSent
       txsReceived {
         data {
-          txType
+          gasLimit
+          logs
+          gasUsed
+          nonce
           total
+          blockHash
           index
+          txType
           publicKey
-          r
-          priceInUsd
           contractFrom
           root
-          status
-          fees
-          nonce
           logsBloom
-          raw
-          historyPrice
-          contractTo
-          cumulativeGasUsed
-          input
-          blockHeight
-          v
-          standardV
-          creates
+          status
           gasPrice
+          raw
+          fees
           contractAddress
-          gasUsed
-          logs
-          gasLimit
-          blockHash
+          contractTo
+          input
+          r
+          blockHeight
+          inputPlain
+          standardV
+          hash
+          creates
           size
           s
-          inputPlain
-          hash
+          cumulativeGasUsed
+          priceInUsd
           time
+          v
           contractValue
+          historyPrice
           to {
             address
             balance
@@ -1097,39 +1097,39 @@ No arguments
       }
       txsSent {
         data {
-          txType
+          gasLimit
+          logs
+          gasUsed
+          nonce
           total
+          blockHash
           index
+          txType
           publicKey
-          r
-          priceInUsd
           contractFrom
           root
-          status
-          fees
-          nonce
           logsBloom
-          raw
-          historyPrice
-          contractTo
-          cumulativeGasUsed
-          input
-          blockHeight
-          v
-          standardV
-          creates
+          status
           gasPrice
+          raw
+          fees
           contractAddress
-          gasUsed
-          logs
-          gasLimit
-          blockHash
+          contractTo
+          input
+          r
+          blockHeight
+          inputPlain
+          standardV
+          hash
+          creates
           size
           s
-          inputPlain
-          hash
+          cumulativeGasUsed
+          priceInUsd
           time
+          v
           contractValue
+          historyPrice
           to {
             address
             balance
@@ -1180,39 +1180,39 @@ No arguments
 ```graphql
 {
   transactionByHash(hash: "abc") {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -1252,39 +1252,39 @@ No arguments
 ```graphql
 {
   transactionByIndex(index: 123) {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -1327,39 +1327,50 @@ No arguments
 {
   transactionsByIndex {
     data {
-      txType
+      gasLimit
+      logs
+      gasUsed
+      nonce
       total
+      blockHash
       index
+      txType
       publicKey
-      r
-      priceInUsd
       contractFrom
       root
-      status
-      fees
-      nonce
       logsBloom
-      raw
-      historyPrice
-      contractTo
-      cumulativeGasUsed
-      input
-      blockHeight
-      v
-      standardV
-      creates
+      status
       gasPrice
+      raw
+      fees
       contractAddress
-      gasUsed
-      logs
-      gasLimit
-      blockHash
+      contractTo
+      input
+      r
+      blockHeight
+      inputPlain
+      standardV
+      hash
+      creates
       size
       s
-      inputPlain
-      hash
+      cumulativeGasUsed
+      priceInUsd
       time
+      v
       contractValue
+      historyPrice
+      to {
+        address
+        balance
+        isContract
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        totalAmountReceived
+        totalAmountSent
+      }
       parent {
         difficulty
         extraData
@@ -1396,17 +1407,6 @@ No arguments
           totalAmountReceived
           totalAmountSent
         }
-      }
-      to {
-        address
-        balance
-        isContract
-        numberTxsReceived
-        numberTxsSent
-        priceInUsd
-        pubKey
-        totalAmountReceived
-        totalAmountSent
       }
       from {
         address
@@ -1444,39 +1444,50 @@ No arguments
 {
   transactionsByToken(token: "abc") {
     data {
-      txType
+      gasLimit
+      logs
+      gasUsed
+      nonce
       total
+      blockHash
       index
+      txType
       publicKey
-      r
-      priceInUsd
       contractFrom
       root
-      status
-      fees
-      nonce
       logsBloom
-      raw
-      historyPrice
-      contractTo
-      cumulativeGasUsed
-      input
-      blockHeight
-      v
-      standardV
-      creates
+      status
       gasPrice
+      raw
+      fees
       contractAddress
-      gasUsed
-      logs
-      gasLimit
-      blockHash
+      contractTo
+      input
+      r
+      blockHeight
+      inputPlain
+      standardV
+      hash
+      creates
       size
       s
-      inputPlain
-      hash
+      cumulativeGasUsed
+      priceInUsd
       time
+      v
       contractValue
+      historyPrice
+      to {
+        address
+        balance
+        isContract
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        totalAmountReceived
+        totalAmountSent
+      }
       parent {
         difficulty
         extraData
@@ -1513,17 +1524,6 @@ No arguments
           totalAmountReceived
           totalAmountSent
         }
-      }
-      to {
-        address
-        balance
-        isContract
-        numberTxsReceived
-        numberTxsSent
-        priceInUsd
-        pubKey
-        totalAmountReceived
-        totalAmountSent
       }
       from {
         address
@@ -1597,39 +1597,39 @@ No arguments
       }
       transactions {
         data {
-          txType
+          gasLimit
+          logs
+          gasUsed
+          nonce
           total
+          blockHash
           index
+          txType
           publicKey
-          r
-          priceInUsd
           contractFrom
           root
-          status
-          fees
-          nonce
           logsBloom
-          raw
-          historyPrice
-          contractTo
-          cumulativeGasUsed
-          input
-          blockHeight
-          v
-          standardV
-          creates
+          status
           gasPrice
+          raw
+          fees
           contractAddress
-          gasUsed
-          logs
-          gasLimit
-          blockHash
+          contractTo
+          input
+          r
+          blockHeight
+          inputPlain
+          standardV
+          hash
+          creates
           size
           s
-          inputPlain
-          hash
+          cumulativeGasUsed
+          priceInUsd
           time
+          v
           contractValue
+          historyPrice
           to {
             address
             balance
@@ -1683,39 +1683,39 @@ No arguments
 ```graphql
 subscription {
   bigTransactionExecuted(token: "abc") {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -1753,39 +1753,39 @@ subscription {
 ```graphql
 subscription {
   contractExecuted(address: "abc") {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -1860,39 +1860,39 @@ subscription {
     }
     transactions {
       data {
-        txType
+        gasLimit
+        logs
+        gasUsed
+        nonce
         total
+        blockHash
         index
+        txType
         publicKey
-        r
-        priceInUsd
         contractFrom
         root
-        status
-        fees
-        nonce
         logsBloom
-        raw
-        historyPrice
-        contractTo
-        cumulativeGasUsed
-        input
-        blockHeight
-        v
-        standardV
-        creates
+        status
         gasPrice
+        raw
+        fees
         contractAddress
-        gasUsed
-        logs
-        gasLimit
-        blockHash
+        contractTo
+        input
+        r
+        blockHeight
+        inputPlain
+        standardV
+        hash
+        creates
         size
         s
-        inputPlain
-        hash
+        cumulativeGasUsed
+        priceInUsd
         time
+        v
         contractValue
+        historyPrice
         to {
           address
           balance
@@ -1937,39 +1937,39 @@ No arguments
 ```graphql
 subscription {
   newContractCreated {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -2007,39 +2007,39 @@ subscription {
 ```graphql
 subscription {
   tokenReceived(address: "abc") {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
@@ -2077,39 +2077,39 @@ subscription {
 ```graphql
 subscription {
   tokenSent(address: "abc") {
-    txType
+    gasLimit
+    logs
+    gasUsed
+    nonce
     total
+    blockHash
     index
+    txType
     publicKey
-    r
-    priceInUsd
     contractFrom
     root
-    status
-    fees
-    nonce
     logsBloom
-    raw
-    historyPrice
-    contractTo
-    cumulativeGasUsed
-    input
-    blockHeight
-    v
-    standardV
-    creates
+    status
     gasPrice
+    raw
+    fees
     contractAddress
-    gasUsed
-    logs
-    gasLimit
-    blockHash
+    contractTo
+    input
+    r
+    blockHeight
+    inputPlain
+    standardV
+    hash
+    creates
     size
     s
-    inputPlain
-    hash
+    cumulativeGasUsed
+    priceInUsd
     time
+    v
     contractValue
+    historyPrice
     to {
       address
       balance
