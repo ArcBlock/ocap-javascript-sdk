@@ -3,7 +3,7 @@
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
-> Javascript SDK for OCAP service for Node.js, Browser(ES6+ or ES5) and ReactNative, latest release at 9/25/2018, 2:59:46 AM
+> Javascript SDK for OCAP service for Node.js, Browser(ES6+ or ES5) and ReactNative, latest release at 9/25/2018, 3:02:07 AM
 
 ## Packages Included
 
