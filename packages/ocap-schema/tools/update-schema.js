@@ -6,19 +6,32 @@ const { introspectionQuery } = require('graphql');
 const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
 
 const dataSources = ['btc', 'eth'];
-dataSources.map(async dataSource => {
+dataSources.map(async ds => {
   try {
-    const result = await request(httpEndpoint(dataSource), introspectionQuery);
+    const result = await request(httpEndpoint(ds), introspectionQuery);
     if (result.__schema) {
-      const schemaFile = path.join(__dirname, '../src/schema', `${dataSource}.json`);
+      const schemaFile = path.join(__dirname, '../src/schema', `${ds}.json`);
       const schemaJson = JSON.stringify(result.__schema, true, '  ');
       fs.writeFileSync(schemaFile, schemaJson);
-      console.log(`${dataSource} schema update success`, schemaFile);
+      console.log(`${ds} schema update success`, schemaFile);
     } else {
-      console.log(`${dataSource} schema fetch failure`);
+      console.log(`${ds} schema fetch failure`);
     }
   } catch (err) {
     console.error(err);
-    console.log(`${dataSource} schema update error`);
+    console.log(`${ds} schema update error`);
   }
 });
+
+// update index.js file
+const entryFile = path.join(__dirname, '../src/index.js');
+const updatedAt = new Date().toISOString();
+fs.writeFileSync(
+  entryFile,
+  `// Last updated at ${updatedAt}
+
+module.exports = {
+${dataSources.map(ds => `  ${ds}: require('./schema/${ds}.json'),`).join('\n')}
+};
+`
+);
