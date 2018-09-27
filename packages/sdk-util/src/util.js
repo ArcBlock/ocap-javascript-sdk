@@ -41,6 +41,9 @@ const resolveFieldTree = (type, depth, map) => {
     };
   });
 
+  scalarFields.sort((a, b) => a.name - b.name);
+  objectFields.sort((a, b) => a.name - b.name);
+
   return {
     scalar: scalarFields,
     object: objectFields,
