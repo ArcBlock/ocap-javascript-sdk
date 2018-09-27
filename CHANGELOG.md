@@ -1,3 +1,9 @@
+## 0.8.3 (September 27, 2018)
+  - update docs
+  - update schema json: new api supported on eth
+  - make fields sort stable in docs
+  - update readme
+
 ## 0.8.2 (September 25, 2018)
   - support regexp in ignoreFields
   - update schema
