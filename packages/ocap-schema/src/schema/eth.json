@@ -953,15 +953,11 @@
       "fields": [
         {
           "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "Int",
-              "kind": "SCALAR"
-            },
-            "name": null,
-            "kind": "NON_NULL"
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
           },
-          "name": "blockHeight",
+          "name": "contractFrom",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -973,19 +969,7 @@
             "name": "String",
             "kind": "SCALAR"
           },
-          "name": "logs",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "EthereumBlock",
-            "kind": "OBJECT"
-          },
-          "name": "parent",
+          "name": "r",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -997,7 +981,7 @@
             "name": "String",
             "kind": "SCALAR"
           },
-          "name": "contractAddress",
+          "name": "logsBloom",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1010,6 +994,22 @@
             "kind": "SCALAR"
           },
           "name": "total",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "Int",
+              "kind": "SCALAR"
+            },
+            "name": null,
+            "kind": "NON_NULL"
+          },
+          "name": "nonce",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1050,10 +1050,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "BigNumber",
+            "name": "String",
             "kind": "SCALAR"
           },
-          "name": "gasPrice",
+          "name": "inputPlain",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1062,10 +1062,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
+            "name": "EthereumBlock",
+            "kind": "OBJECT"
           },
-          "name": "r",
+          "name": "parent",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1074,10 +1074,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "Int",
             "kind": "SCALAR"
           },
-          "name": "creates",
+          "name": "gasLimit",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1098,10 +1098,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "Int",
+            "name": "BigNumber",
             "kind": "SCALAR"
           },
-          "name": "gasLimit",
+          "name": "gasPrice",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1126,22 +1126,6 @@
             "kind": "SCALAR"
           },
           "name": "standardV",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "BigNumber",
-              "kind": "SCALAR"
-            },
-            "name": null,
-            "kind": "NON_NULL"
-          },
-          "name": "fees",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1178,10 +1162,98 @@
         {
           "type": {
             "ofType": null,
+            "name": "EthereumAccount",
+            "kind": "OBJECT"
+          },
+          "name": "to",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
             "name": "String",
             "kind": "SCALAR"
           },
           "name": "raw",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "creates",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "input",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "String",
+              "kind": "SCALAR"
+            },
+            "name": null,
+            "kind": "NON_NULL"
+          },
+          "name": "hash",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "contractAddress",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "logs",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Float",
+            "kind": "SCALAR"
+          },
+          "name": "historyPrice",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1202,114 +1274,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "logsBloom",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "Int",
-              "kind": "SCALAR"
-            },
-            "name": null,
-            "kind": "NON_NULL"
-          },
-          "name": "nonce",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "EthereumAccount",
-            "kind": "OBJECT"
-          },
-          "name": "to",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "input",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
             "name": "Int",
             "kind": "SCALAR"
           },
           "name": "gasUsed",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "v",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "inputPlain",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Int",
-            "kind": "SCALAR"
-          },
-          "name": "cumulativeGasUsed",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "EthereumAccount",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "NON_NULL"
-          },
-          "name": "from",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1353,7 +1321,7 @@
             "name": null,
             "kind": "NON_NULL"
           },
-          "name": "hash",
+          "name": "blockHash",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1362,10 +1330,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "BigNumber",
+            "name": "Int",
             "kind": "SCALAR"
           },
-          "name": "contractValue",
+          "name": "cumulativeGasUsed",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1386,22 +1354,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "BigNumber",
             "kind": "SCALAR"
           },
-          "name": "contractFrom",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Float",
-            "kind": "SCALAR"
-          },
-          "name": "historyPrice",
+          "name": "contractValue",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -1411,13 +1367,57 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "BigNumber",
               "kind": "SCALAR"
             },
             "name": null,
             "kind": "NON_NULL"
           },
-          "name": "blockHash",
+          "name": "fees",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "EthereumAccount",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "NON_NULL"
+          },
+          "name": "from",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "v",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "Int",
+              "kind": "SCALAR"
+            },
+            "name": null,
+            "kind": "NON_NULL"
+          },
+          "name": "blockHeight",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -2226,6 +2226,49 @@
             "name": "PagedEthereumTransactions",
             "kind": "OBJECT"
           },
+          "name": "transactionsByAddress",
+          "isDeprecated": false,
+          "description": "Returns transactions with paginations.",
+          "deprecationReason": null,
+          "args": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "PageInput",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "paging",
+              "description": "Describes which page of data to return.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "receiver",
+              "description": "Specifies the receiver's address.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "String",
+                "kind": "SCALAR"
+              },
+              "name": "sender",
+              "description": "Specifies the sender's address.",
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "PagedEthereumTransactions",
+            "kind": "OBJECT"
+          },
           "name": "transactionsByIndex",
           "isDeprecated": false,
           "description": "Returns transactions within a block by given the block hash or height and the range of the transaction index.",
@@ -2546,130 +2589,11 @@
     },
     {
       "possibleTypes": null,
-      "name": "__Directive",
+      "name": "__EnumValue",
       "kind": "OBJECT",
       "interfaces": [],
       "inputFields": null,
       "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__InputValue",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "args",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__DirectiveLocation",
-              "kind": "ENUM"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "locations",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onField",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FIELD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onFragment",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onOperation",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value OPERATION",
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a directive"
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Field",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__InputValue",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "args",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
         {
           "type": {
             "ofType": null,
@@ -2717,101 +2641,10 @@
           "description": null,
           "deprecationReason": null,
           "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "type",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
         }
       ],
       "enumValues": null,
       "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Schema",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Directive",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "directives",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "mutationType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "queryType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "subscriptionType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Type",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "types",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a schema"
     },
     {
       "possibleTypes": null,
@@ -3035,18 +2868,22 @@
     },
     {
       "possibleTypes": null,
-      "name": "__EnumValue",
+      "name": "__Schema",
       "kind": "OBJECT",
       "interfaces": [],
       "inputFields": null,
       "fields": [
         {
           "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
+            "ofType": {
+              "ofType": null,
+              "name": "__Directive",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
           },
-          "name": "deprecationReason",
+          "name": "directives",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -3055,10 +2892,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
+            "name": "__Type",
+            "kind": "OBJECT"
           },
-          "name": "description",
+          "name": "mutationType",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -3067,10 +2904,10 @@
         {
           "type": {
             "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
+            "name": "__Type",
+            "kind": "OBJECT"
           },
-          "name": "isDeprecated",
+          "name": "queryType",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -3079,10 +2916,26 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
+            "name": "__Type",
+            "kind": "OBJECT"
           },
-          "name": "name",
+          "name": "subscriptionType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__Type",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "types",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -3090,7 +2943,7 @@
         }
       ],
       "enumValues": null,
-      "description": null
+      "description": "Represents a schema"
     },
     {
       "possibleTypes": null,
@@ -3143,6 +2996,196 @@
           "deprecationReason": null
         }
       ],
+      "description": null
+    },
+    {
+      "possibleTypes": null,
+      "name": "__Directive",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__InputValue",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "args",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__DirectiveLocation",
+              "kind": "ENUM"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "locations",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onField",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FIELD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onFragment",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onOperation",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value OPERATION",
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": "Represents a directive"
+    },
+    {
+      "possibleTypes": null,
+      "name": "__Field",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__InputValue",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "args",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "deprecationReason",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "isDeprecated",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "type",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
       "description": null
     }
   ],

@@ -44,6 +44,10 @@ const OCAPClient = require('../src/node');
   await doShortcutQuery('blockchainInfo', { instance: 'main' });
   await doShortcutQuery('emptyBlocks', { fromHeight: 1 });
   await doShortcutQuery('erc20Tokens', { token: 'abt' });
+  await doShortcutQuery('erc20TokenBalance', {
+    token: 'abt',
+    accountAddress: '0x6f6e3e7cfe884663053fb02b17cf13f77ddce8e1',
+  });
   await doShortcutQuery('genesisBlock');
   await doShortcutQuery('richestAccounts');
   await doShortcutQuery('cryptoHistoryPrice', {
@@ -56,6 +60,9 @@ const OCAPClient = require('../src/node');
   });
   await doShortcutQuery('transactionByIndex', { blockHeight: 5000000, index: 0 });
   await doShortcutQuery('transactionsByToken', { token: 'abt' });
+  await doShortcutQuery('transactionsByAddress', {
+    sender: '0x6f6e3e7cfe884663053fb02b17cf13f77ddce8e1',
+  });
   await doShortcutQuery('zeroFeesBlocks', { fromHeight: 1 });
 
   // 3. raw query
