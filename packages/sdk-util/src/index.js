@@ -222,7 +222,7 @@ class BaseClient {
       return res.data.data;
     }
 
-    throw new Error(`doRequest.error: ${res.status}`);
+    throw new Error(`GraphQL Status Error ${res.status}`);
   }
 
   /**
