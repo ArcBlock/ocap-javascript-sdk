@@ -213,6 +213,12 @@ class BaseClient {
     });
 
     if (res.status === 200) {
+      if (Array.isArray(res.data.errors) && res.data.errors.length) {
+        const error = new Error('GraphQL Response Error');
+        error.errors = res.data.errors;
+        throw error;
+      }
+
       return res.data.data;
     }
 
