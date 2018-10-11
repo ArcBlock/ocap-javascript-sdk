@@ -166,7 +166,7 @@ const OCAPBrowserClient = require('../src/browser');
         expect(typeof blocks2.next === 'function').toBeFalsy();
         expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
       },
-      5000
+      8000
     );
 
     test(

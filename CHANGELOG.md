@@ -1,3 +1,7 @@
+## 0.8.4 (October 11, 2018)
+  - (feat): add error handling for graphql response
+  - update readme
+
 ## 0.8.3 (September 27, 2018)
   - update docs
   - update schema json: new api supported on eth
