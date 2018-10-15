@@ -1,3 +1,7 @@
+## 0.8.5 (October 15, 2018)
+  - (feat): support custome axios options in _doRequest methods
+  - update readme
+
 ## 0.8.4 (October 11, 2018)
   - (feat): add error handling for graphql response
   - update readme
