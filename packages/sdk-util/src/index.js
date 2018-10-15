@@ -66,10 +66,10 @@ class BaseClient {
    * @memberof BaseClient
    * @return Promise
    */
-  doRawQuery(query) {
+  doRawQuery(query, requestOptions = {}) {
     try {
       const cleanQuery = print(parse(query));
-      return this._doRequest(cleanQuery);
+      return this._doRequest(cleanQuery, requestOptions);
     } catch (err) {
       throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
     }
@@ -88,14 +88,15 @@ class BaseClient {
     });
 
     Object.keys(builders).forEach(key => {
-      const queryFn = async args => {
+      const queryFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args));
-        const result = await this._doRequest(query);
+        const result = await this._doRequest(query, requestOptions);
         const pagedResult = this._getPagedResults({
           result,
           queryBuilder: builders[key],
           args,
           dataKey: key,
+          requestOptions,
         });
 
         return pagedResult;
@@ -176,9 +177,9 @@ class BaseClient {
     });
 
     Object.keys(builders).forEach(key => {
-      const mutationFn = async args => {
+      const mutationFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args));
-        return this._doRequest(query);
+        return this._doRequest(query, requestOptions);
       };
 
       mutationFn.type = 'mutation';
@@ -192,11 +193,12 @@ class BaseClient {
   /**
    * Send a request to ocap service
    *
-   * @param {*} query
+   * @param {string} query
+   * @param {object} requestOptions
    * @return Promise
    * @memberof BaseClient
    */
-  async _doRequest(query) {
+  async _doRequest(query, requestOptions) {
     debug('doRequest.query', query);
     const httpEndpoint =
       typeof this.config.httpEndpoint === 'function'
@@ -204,7 +206,7 @@ class BaseClient {
         : this.config.httpEndpoint;
 
     // TODO: support user authentication and authorization through headers
-    const res = await axios.post(httpEndpoint, { query });
+    const res = await axios.post(httpEndpoint, { query }, requestOptions || {});
 
     debug('doRequest.response', {
       status: res.statusCode,
@@ -305,7 +307,7 @@ class BaseClient {
    * @returns Object with possible `next` method
    * @memberof BaseClient
    */
-  _getPagedResults({ result, queryBuilder, args, dataKey, prefix = '' }) {
+  _getPagedResults({ result, queryBuilder, args, dataKey, prefix = '', requestOptions = {} }) {
     const keys = Object.keys(result);
     keys.forEach(key => {
       if (!result[key] || typeof result[key] !== 'object' || Array.isArray(result[key])) {
@@ -328,13 +330,14 @@ class BaseClient {
 
         result[key].next = async () => {
           const query = queryBuilder(newArgs);
-          const newResult = await this._doRequest(query);
+          const newResult = await this._doRequest(query, requestOptions);
           return this._getPagedResults({
             result: newResult,
             queryBuilder,
             args: newArgs,
             dataKey,
             prefix,
+            requestOptions,
           });
         };
       }
