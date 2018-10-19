@@ -1,0 +1,35 @@
+{
+  "dependencies": {
+    "bip39": "^2.5.0",
+    "commander": "^2.19.0",
+    "debug": "^4.1.0",
+    "eth-sig-util": "^2.1.0",
+    "ethereumjs-util": "^6.0.0",
+    "ethereumjs-wallet": "^0.6.2",
+    "inquirer": "^6.2.0",
+    "password-validator": "^4.1.1"
+  },
+  "name": "@arcblock/ocap-cli",
+  "description": "Public command line tools to use together with OCAP",
+  "version": "0.1.0",
+  "bin": {
+    "ocap": "src/ocap"
+  },
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcBlock/ocap-cli.git"
+  },
+  "keywords": [],
+  "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/ocap-cli/issues"
+  },
+  "homepage": "https://github.com/ArcBlock/ocap-cli#readme"
+}

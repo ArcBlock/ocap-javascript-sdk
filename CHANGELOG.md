@@ -1,3 +1,6 @@
+## 0.9.0 (October 19, 2018)
+  - (feat): add ocap-cli package
+
 ## 0.8.5 (October 15, 2018)
   - (feat): support custome axios options in _doRequest methods
   - update readme
