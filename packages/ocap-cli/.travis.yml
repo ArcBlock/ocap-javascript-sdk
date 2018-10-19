@@ -3,25 +3,28 @@ elixir: 1.6
 otp_release: 21.0
 branches:
   only:
-    - master
+  - master
 before_install:
-  - sudo apt-get install -y rpm2cpio wget
-  - nvm install 10
+- sudo apt-get install -y rpm2cpio wget
+- nvm install 10
 install:
-  - epmd -daemon
+- epmd -daemon
 script: make travis
 before_script: make travis-init
 before_deploy: make travis-deploy
 deploy:
-  - provider: releases
-    skip_cleanup: true
-    api_key:
-      secure:
-    file_glob: true
-    file: src/_build/releases/*
-    on:
-      repo: ArcBlock/ocap-cli
-      branch: master
+- provider: releases
+  skip_cleanup: true
+  api_key:
+    secure:
+  file_glob: true
+  file: src/_build/releases/*
+  on:
+    repo: ArcBlock/ocap-cli
+    branch: master
 notifications:
   slack:
     secure:
+env:
+  global:
+    secure: B2OHLxRQGQo3HBzqLb/VV2nOsWojGtzeFKJiqzhKVPu5G9mSgLOkPB2EkX/iZHpCQ6g6lVvp0ZEEvlJsN/4Sihbni9SV0A5h2cY3bdgriv92p2LuPlKrtJO40LzSSHTcV6+NrDs6NJF25f0fLF7W0DrgwIAQEmgJ6X7JcOzL/PbLACduaNbnZngq+MK1Ga9MXvzh6EbgjRwLFmVT8efn6i1udfA2HeaUjAHttb47a0RBYqaKERuPwXpaxN5kNFn30Pg5oIhonhWmjiZfiacWCfm7TUGZY1fpRUiALJv6ft9f8U4L1UMWRY7rtdb60z0hRR1yGfJBOxqaTFb6TPaLDJf03PxV9Dlc+gH1+sSWTwJTZf0hS10GJ42oeQrh3snRUKaYFw2Yp4COq6goHmZGpI4k4FtQ7MJObIpQEPM+7wFrvfE/kPBsZTJHPXVoMyus1pq6yGAkLyoYhPX+/Cl/5S2F1KsQvXzTn+CahryLXIIfG6meowgVg0zQjstdwJrsoyFGD67R1hLm3bjZW3sCuH19sfzkNU1Wa87CBdmdrf3SkDo2FoXpP++cjGLdGSn3S469pIJejg12huuNO4gyz0KFSJ1GDH1gdjdYpHnb/mAbzEhFMn1TyEyVx6DF+tQH8hGb9TKF3+JXmlD9pHvuQF7kl1/QI8uIX1Prn0+Wers=
