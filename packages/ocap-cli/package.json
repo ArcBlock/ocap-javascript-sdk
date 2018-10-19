@@ -1,4 +1,5 @@
 {
+  "version": "0.9.0",
   "dependencies": {
     "bip39": "^2.5.0",
     "commander": "^2.19.0",
@@ -11,25 +12,33 @@
   },
   "name": "@arcblock/ocap-cli",
   "description": "Public command line tools to use together with OCAP",
-  "version": "0.9.0",
   "bin": {
     "ocap": "src/ocap"
   },
-  "main": "index.js",
+  "main": "src/ocap",
   "directories": {
     "doc": "docs"
   },
-  "scripts": {},
+  "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",
+  "keywords": [
+    "ocap",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ArcBlock/ocap-cli.git"
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk"
   },
-  "keywords": [],
-  "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",
-  "license": "MIT",
+  "scripts": {},
+  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
-    "url": "https://github.com/ArcBlock/ocap-cli/issues"
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk/issues",
+    "email": "shijun@arcblock.io"
   },
-  "homepage": "https://github.com/ArcBlock/ocap-cli#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "37516a24b8dd8b39384f9b1b245eb537f05aa495"
 }

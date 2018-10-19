@@ -1,3 +1,7 @@
+## 0.9.1 (October 19, 2018)
+  - (fix): fix ocap-cli release
+  - update readme
+
 ## 0.9.0 (October 19, 2018)
   - (feat): add ocap-cli package
 
