@@ -61,7 +61,7 @@ async function ensureWallet() {
     },
     {
       type: 'input',
-      name: 'keyFile',
+      name: 'keystoreFile',
       message: 'Please enter the file path of key store file',
       when: args => args.type === TYPE_KEY_STORE,
       filter: x => x.trim(),
@@ -69,7 +69,7 @@ async function ensureWallet() {
     },
     {
       type: 'password',
-      name: 'keyFilePassword',
+      name: 'keystorePassword',
       message: 'Please enter key store file password',
       when: args => args.type === TYPE_KEY_STORE,
       filter: x => x.trim(),
@@ -89,8 +89,8 @@ async function ensureWallet() {
     }
   }
   if (args.type === TYPE_KEY_STORE) {
-    const keyFile = fs.readFileSync(args.keyFile).toString();
-    wallet = EthWallet.fromV3(keyFile, args.password, true);
+    const keystoreFile = fs.readFileSync(args.keystoreFile).toString();
+    wallet = EthWallet.fromV3(keystoreFile, args.keystorePassword, true);
   }
 
   return wallet;
