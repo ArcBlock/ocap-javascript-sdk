@@ -7,7 +7,7 @@ module.exports = program => {
   program
     .command(
       'eth-sign-personal [message]',
-      'Sign message with an ethereum wallet and produce a MetaMask like signature'
+      'Sign message with an ethereum wallet key to get a MetaMask compatible signature'
     )
     .action(async (_, message) => {
       const wallet = await ensureWallet();

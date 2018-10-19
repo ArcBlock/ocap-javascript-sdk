@@ -5,7 +5,8 @@
     "eth-sig-util": "^2.1.0",
     "ethereumjs-util": "^6.0.0",
     "ethereumjs-wallet": "^0.6.2",
-    "inquirer": "^6.2.0"
+    "inquirer": "^6.2.0",
+    "password-validator": "^4.1.1"
   },
   "name": "@arcblock/ocap-cli",
   "description": "Public command line tools to use together with OCAP",

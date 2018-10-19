@@ -2,15 +2,31 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
 const EthUtil = require('ethereumjs-util');
-const SigUtil = require('eth-sig-util');
+const PasswordValidator = require('password-validator');
 
 const debug = require('debug')(require('../package.json').name);
 
-const TYPE_PRIVATE_KEY = 'Private Key';
-const TYPE_KEY_STORE = 'Key Store File';
-const TYPE_HD_WALLET = 'HD Wallet Mnemonic';
+const passwordValidator = new PasswordValidator();
+passwordValidator
+  .is()
+  .min(8)
+  .is()
+  .max(20)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits()
+  .has()
+  .not()
+  .spaces();
 
 async function ensureWallet() {
+  const TYPE_PRIVATE_KEY = 'Private Key';
+  const TYPE_KEY_STORE = 'Key Store File';
+  const TYPE_HD_WALLET = 'HD Wallet Mnemonic';
+
   const prompts = [
     {
       type: 'list',
@@ -80,6 +96,32 @@ async function ensureWallet() {
   return wallet;
 }
 
+function printWallet(wallet, showPrivate) {
+  printAddress(wallet.getAddressString());
+  console.log('Public key: ' + wallet.getPublicKeyString());
+  if (showPrivate) {
+    console.log('Private key: ' + wallet.getPrivateKeyString());
+  }
+}
+
+function printAddress(address) {
+  console.log('Address: ' + address);
+  console.log('Address (checksum): ' + EthUtil.toChecksumAddress(address));
+}
+
+function saveKeystore(wallet, password) {
+  const v3String = wallet.toV3String(password);
+  const filename = wallet.getV3Filename();
+
+  fs.writeFileSync(filename, new Buffer(v3String));
+  console.log('Key store file saved as:', filename);
+}
+
 module.exports = {
   ensureWallet,
+  printWallet,
+  printAddress,
+  saveKeystore,
+  passwordValidator,
+  debug,
 };
