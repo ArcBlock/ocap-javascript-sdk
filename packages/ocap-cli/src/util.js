@@ -25,7 +25,7 @@ async function ensureWallet() {
       message: 'Please enter the privateKey',
       filter: x => x.trim(),
       when: args => args.type === TYPE_PRIVATE_KEY,
-      validate: x => !!x,
+      validate: x => !!x && EthUtil.isValidPrivate(x),
     },
     {
       type: 'password',
@@ -40,7 +40,7 @@ async function ensureWallet() {
       message: 'Please enter the file path of key store file',
       when: args => args.type === TYPE_KEY_STORE,
       filter: x => x.trim(),
-      validate: x => !!x,
+      validate: x => !!x && fs.existsSync(x),
     },
     {
       type: 'password',

@@ -6,7 +6,7 @@ const { ensureWallet } = require('../util');
 module.exports = program => {
   program
     .command(
-      'signPersonalMessage [message]',
+      'sign-personal [message]',
       'Sign a message and produce a metamask like signature'
     )
     .action(async (_, message) => {
