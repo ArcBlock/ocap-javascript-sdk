@@ -1,18 +1,12 @@
 const fs = require('fs');
 const EthUtil = require('ethereumjs-util');
 const SigUtil = require('eth-sig-util');
-const { ensureWallet } = require('../util');
+const { ensureWallet, debug } = require('../util');
 
-const action = async (_, message) => {
+const action = async message => {
+  console.log('SignPersonal', { message });
   const wallet = await ensureWallet();
-
-  let msg;
-  try {
-    msg = fs.readFileSync(message);
-  } catch (e) {
-    msg = EthUtil.toBuffer(message);
-  }
-
+  const msg = Buffer.from(fs.existsSync(message) ? fs.readFileSync(message) : message, 'utf8');
   const msgHex = EthUtil.bufferToHex(msg);
   console.log('Input message: ' + msg);
   console.log('Input message (hex): ' + msgHex);
