@@ -6,7 +6,7 @@ const { ensureWallet } = require('../util');
 module.exports = program => {
   program
     .command(
-      'eth-sign-personal [message]',
+      'eth:signPersonal [message]',
       'Sign message with an ethereum wallet key to get a MetaMask compatible signature'
     )
     .action(async (_, message) => {

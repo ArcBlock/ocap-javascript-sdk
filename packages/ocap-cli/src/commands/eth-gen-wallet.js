@@ -50,6 +50,6 @@ const action = async () => {
 
 module.exports = program => {
   program
-    .command('eth-gen-wallet', 'Generate an ethereum wallet (public/private key pair, keystore)')
+    .command('eth:genWallet', 'Generate an ethereum wallet (public/private key pair, keystore)')
     .action(action);
 };
