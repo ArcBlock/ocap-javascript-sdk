@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bip39": "^2.5.0",
     "commander": "^2.19.0",
     "debug": "^4.1.0",
     "eth-sig-util": "^2.1.0",

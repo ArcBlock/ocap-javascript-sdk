@@ -1,7 +1,9 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
+const HDWallet = require('ethereumjs-wallet/hdkey');
 const EthUtil = require('ethereumjs-util');
+const BIP39 = require('bip39');
 const PasswordValidator = require('password-validator');
 
 const debug = require('debug')(require('../package.json').name);
@@ -57,6 +59,7 @@ async function ensureWallet() {
       name: 'mnemonic',
       message: 'Please enter the mnemonic for HD Wallet',
       when: args => args.type === TYPE_HD_WALLET,
+      filter: x => x.trim(),
       validate: x => !!x,
     },
     {
@@ -93,7 +96,37 @@ async function ensureWallet() {
     wallet = EthWallet.fromV3(keystoreFile, args.keystorePassword, true);
   }
 
-  wallet.__type = args.type;
+  if (args.type === TYPE_HD_WALLET) {
+    const parentWallet = HDWallet.fromMasterSeed(BIP39.mnemonicToSeed(args.mnemonic));
+    const wallets = {};
+    const choices = [];
+    for (let i = 0; i < 20; i++) {
+      const path = `m/44'/60'/0'/0/${i}`;
+      const childWallet = EthWallet.fromExtendedPrivateKey(
+	parentWallet.derivePath(path).privateExtendedKey()
+      );
+      const address = childWallet.getAddressString();
+      wallets[address] = childWallet;
+      choices.push({ name: `${i} - ${address}`, value: address });
+    }
+
+    const choice = await inquirer.prompt([
+      {
+	type: 'list',
+	name: 'address',
+	default: TYPE_PRIVATE_KEY,
+	message: 'Choose wallet address from the list',
+	choices,
+      },
+    ]);
+
+    wallet = wallets[choice.address];
+  }
+
+  if (wallet) {
+    wallet.__type = args.type;
+  }
+
   return wallet;
 }
 
