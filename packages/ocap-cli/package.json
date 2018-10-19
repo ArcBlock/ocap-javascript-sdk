@@ -11,7 +11,7 @@
   },
   "name": "@arcblock/ocap-cli",
   "description": "Public command line tools to use together with OCAP",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "bin": {
     "ocap": "src/ocap"
   },
@@ -19,7 +19,6 @@
   "directories": {
     "doc": "docs"
   },
-  "devDependencies": {},
   "scripts": {},
   "repository": {
     "type": "git",
