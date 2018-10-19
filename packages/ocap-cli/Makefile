@@ -5,6 +5,7 @@ VERSION=$(strip $(shell cat version))
 
 build:
 	@echo "Building the software..."
+	@npm install -g .
 
 init: install dep
 	@echo "Initializing the repo..."
@@ -17,6 +18,7 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
+	@yarn
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
