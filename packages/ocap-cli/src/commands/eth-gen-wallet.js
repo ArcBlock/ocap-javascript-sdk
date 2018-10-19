@@ -1,4 +1,5 @@
 const fs = require('fs');
+const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
 const EthUtil = require('ethereumjs-util');
 const { debug, printWallet, passwordValidator, saveKeystore } = require('../util');
@@ -50,6 +51,7 @@ const action = async () => {
 
 module.exports = program => {
   program
-    .command('eth:genWallet', 'Generate an ethereum wallet (public/private key pair, keystore)')
+    .command('eth:genWallet')
+    .description('Generate an ethereum wallet (public/private key pair, keystore)')
     .action(action);
 };
