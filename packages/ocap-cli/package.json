@@ -19,6 +19,18 @@
   "directories": {
     "doc": "docs"
   },
+  "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",
+  "keywords": [
+    "ocap",
+    "blockchain",
+    "arcblock",
+    "sdk",
+    "nodejs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/ocap-javascript-sdk"
+  },
   "scripts": {},
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
@@ -28,6 +40,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/ArcBlock/ocap-cli#readme",
   "gitHead": "37516a24b8dd8b39384f9b1b245eb537f05aa495"
 }
