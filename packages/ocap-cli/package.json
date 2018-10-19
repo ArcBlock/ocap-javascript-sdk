@@ -30,5 +30,6 @@
   "bugs": {
     "url": "https://github.com/ArcBlock/ocap-cli/issues"
   },
-  "homepage": "https://github.com/ArcBlock/ocap-cli#readme"
+  "homepage": "https://github.com/ArcBlock/ocap-cli#readme",
+  "gitHead": "37516a24b8dd8b39384f9b1b245eb537f05aa495"
 }

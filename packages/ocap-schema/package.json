@@ -43,5 +43,5 @@
     "precommit": "yarn lint",
     "prepush": "yarn lint"
   },
-  "gitHead": "f33b37d360560ce2f1c8b45652e599bf5ef89f60"
+  "gitHead": "37516a24b8dd8b39384f9b1b245eb537f05aa495"
 }
