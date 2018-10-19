@@ -25,7 +25,16 @@ async function ensureWallet() {
       message: 'Please enter the privateKey',
       filter: x => x.trim(),
       when: args => args.type === TYPE_PRIVATE_KEY,
-      validate: x => !!x && EthUtil.isValidPrivate(x),
+      validate: x => {
+	if (!x) {
+	  return 'privateKey should not be empty';
+	}
+	if (!EthUtil.isValidPrivate(Buffer.from(EthUtil.stripHexPrefix(x), 'hex'))) {
+	  return 'privateKey should be valid `0x` prefixed hex format';
+	}
+
+	return true;
+      },
     },
     {
       type: 'password',
