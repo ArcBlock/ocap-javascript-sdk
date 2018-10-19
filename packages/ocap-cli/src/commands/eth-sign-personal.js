@@ -4,11 +4,10 @@ const SigUtil = require('eth-sig-util');
 const { ensureWallet, debug } = require('../util');
 
 const action = async message => {
-  console.log('SignPersonal', { message });
   const wallet = await ensureWallet();
   const msg = Buffer.from(fs.existsSync(message) ? fs.readFileSync(message) : message, 'utf8');
   const msgHex = EthUtil.bufferToHex(msg);
-  console.log('Input message: ' + msg);
+  console.log('Input message: ' + message);
   console.log('Input message (hex): ' + msgHex);
 
   const privateKey = EthUtil.stripHexPrefix(wallet.getPrivateKey());

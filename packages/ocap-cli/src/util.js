@@ -25,7 +25,7 @@ passwordValidator
 async function ensureWallet() {
   const TYPE_PRIVATE_KEY = 'Private Key';
   const TYPE_KEY_STORE = 'Key Store File';
-  const TYPE_HD_WALLET = 'HD Wallet Mnemonic';
+  const TYPE_HD_WALLET = 'HD Wallet';
 
   const prompts = [
     {
@@ -55,7 +55,7 @@ async function ensureWallet() {
     {
       type: 'password',
       name: 'mnemonic',
-      message: 'Please enter the mnemonic',
+      message: 'Please enter the mnemonic for HD Wallet',
       when: args => args.type === TYPE_HD_WALLET,
       validate: x => !!x,
     },
@@ -93,20 +93,24 @@ async function ensureWallet() {
     wallet = EthWallet.fromV3(keystoreFile, args.keystorePassword, true);
   }
 
+  wallet.__type = args.type;
   return wallet;
 }
 
 function printWallet(wallet, showPrivate) {
+  if (wallet.__type) {
+    console.log('Wallet Type: ', wallet.__type);
+  }
   printAddress(wallet.getAddressString());
-  console.log('Public key: ' + wallet.getPublicKeyString());
+  console.log('Public key: ', wallet.getPublicKeyString());
   if (showPrivate) {
-    console.log('Private key: ' + wallet.getPrivateKeyString());
+    console.log('Private key: ', wallet.getPrivateKeyString());
   }
 }
 
 function printAddress(address) {
   console.log('Address: ' + address);
-  console.log('Address (checksum): ' + EthUtil.toChecksumAddress(address));
+  console.log('Address (checksum): ', EthUtil.toChecksumAddress(address));
 }
 
 function saveKeystore(wallet, password) {

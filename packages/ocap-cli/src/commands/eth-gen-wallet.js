@@ -1,7 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
-const EthUtil = require('ethereumjs-util');
 const { debug, printWallet, passwordValidator, saveKeystore } = require('../util');
 
 const action = async () => {
