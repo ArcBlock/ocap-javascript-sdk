@@ -1,5 +1,5 @@
 {
-  "version": "0.9.0",
+  "version": "0.9.1",
   "dependencies": {
     "bip39": "^2.5.0",
     "commander": "^2.19.0",
