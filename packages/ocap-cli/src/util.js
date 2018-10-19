@@ -90,7 +90,7 @@ async function ensureWallet() {
   }
   if (args.type === TYPE_KEY_STORE) {
     const keyFile = fs.readFileSync(args.keyFile).toString();
-    wallet = EthWallet.fromV3(keyFile, password, true);
+    wallet = EthWallet.fromV3(keyFile, args.password, true);
   }
 
   return wallet;
