@@ -24,6 +24,8 @@ class BaseClient {
         enableQuery: true,
         enableSubscription: true,
         enableMutation: true,
+        accessKey: '',
+        accessSecret: '',
       },
       config
     );
@@ -205,8 +207,13 @@ class BaseClient {
         ? this.config.httpEndpoint(this.config.dataSource)
         : this.config.httpEndpoint;
 
-    // TODO: support user authentication and authorization through headers
-    const res = await axios.post(httpEndpoint, { query }, requestOptions || {});
+    // combine custom headers and auth headers
+    const options = requestOptions || {};
+    const authHeaders = this._getAuthHeaders(query);
+    options.headers = Object.assign(options.headers || {}, authHeaders);
+    debug('_doRequest.headers', options.headers);
+
+    const res = await axios.post(httpEndpoint, { query }, options);
 
     debug('doRequest.response', {
       status: res.statusCode,
@@ -378,6 +385,11 @@ class BaseClient {
   _getQueryId() {
     throw new Error('_getQueryId must be implemented in sub class');
   }
+
+  _getAuthHeaders() {
+    return {};
+  }
 }
 
 module.exports = BaseClient;
+//# sourceMappingURL=index.js.map
