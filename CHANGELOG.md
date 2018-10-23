@@ -1,3 +1,7 @@
+## 0.10.0 (October 22, 2018)
+  - (feat): support signed requests with hmac-sha256
+  - update readme
+
 ## 0.9.1 (October 19, 2018)
   - (fix): fix ocap-cli release
   - update readme
