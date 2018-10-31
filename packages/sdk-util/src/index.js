@@ -326,7 +326,7 @@ class BaseClient {
 
       if (result[key].page && result[key].page.next && result[key].page.cursor) {
         const pagingArgs = {
-          paging: { cursor: result[key].page.cursor },
+          paging: Object.assign({}, args.paging || {}, { cursor: result[key].page.cursor }),
         };
         const newArgs = Object.assign(
           {},
