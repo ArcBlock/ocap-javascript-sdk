@@ -91,7 +91,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const queryFn = async (args, requestOptions = {}) => {
-        const query = builders[key](this._sanitizeArgs(args));
+        const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
         const result = await this._doRequest(query, requestOptions);
         const pagedResult = this._getPagedResults({
           result,
@@ -180,7 +180,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const mutationFn = async (args, requestOptions = {}) => {
-        const query = builders[key](this._sanitizeArgs(args));
+        const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
         return this._doRequest(query, requestOptions);
       };
 
@@ -326,7 +326,7 @@ class BaseClient {
 
       if (result[key].page && result[key].page.next && result[key].page.cursor) {
         const pagingArgs = {
-          paging: { cursor: result[key].page.cursor },
+          paging: Object.assign({}, args.paging || {}, { cursor: result[key].page.cursor }),
         };
         const newArgs = Object.assign(
           {},

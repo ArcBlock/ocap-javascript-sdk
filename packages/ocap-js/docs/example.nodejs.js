@@ -35,16 +35,23 @@ const OCAPClient = require('../src/node');
     console.log('');
   };
 
-  const doShortcutQuery = async (method, args) => {
+  const doShortcutQuery = async (method, args, options) => {
     try {
-      const result = await client[method](args || {});
+      const result = await client[method](args || {}, options);
       consoleOutput(`ShortcutQuery.${method}`, result);
     } catch (err) {
       consoleOutput(`ShortcutQuery.${method}`, err);
     }
   };
 
-  await doShortcutQuery('accountByAddress', {
-    address: '0xe65d3128feafd14d472442608daf94bceb91e333',
-  });
+  await doShortcutQuery(
+    'transactionsByAddress',
+    {
+      sender: '0xe65d3128feafd14d472442608daf94bceb91e333',
+      paging: { size: 20 },
+    },
+    {
+      ignoreFields: ['data.parent', 'data.publicKey', 'data.to', 'data.from'],
+    }
+  );
 })();

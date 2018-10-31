@@ -1,3 +1,7 @@
+## 0.11.0 (October 31, 2018)
+  - (feat): support custom ignoreFields on shortcut methods
+  - update readme
+
 ## 0.10.0 (October 22, 2018)
   - (feat): support signed requests with hmac-sha256
   - update readme
