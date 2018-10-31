@@ -91,7 +91,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const queryFn = async (args, requestOptions = {}) => {
-        const query = builders[key](this._sanitizeArgs(args));
+        const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
         const result = await this._doRequest(query, requestOptions);
         const pagedResult = this._getPagedResults({
           result,
@@ -180,7 +180,7 @@ class BaseClient {
 
     Object.keys(builders).forEach(key => {
       const mutationFn = async (args, requestOptions = {}) => {
-        const query = builders[key](this._sanitizeArgs(args));
+        const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
         return this._doRequest(query, requestOptions);
       };
 

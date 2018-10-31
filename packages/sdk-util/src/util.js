@@ -191,12 +191,14 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
       return obj;
     }, {});
 
+    const globalIgnore = typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields || [];
+
     /* eslint-disable indent */
-    const fn = (argValues = {}) => {
+    const fn = (argValues = {}, _ignoreFields = []) => {
       const argStr = x.args.length ? `${formatArgs(argValues, argSpecs)}` : '';
       const selection = makeQuery(
         fields,
-        typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields,
+        [].concat(_ignoreFields || []).concat(globalIgnore),
         argValues
       ).trim();
 

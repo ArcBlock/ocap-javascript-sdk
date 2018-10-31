@@ -189,6 +189,30 @@ const OCAPBrowserClient = require('../src/browser');
       },
       5000
     );
+
+    test(
+      'should query method {transactionsByAddress} work as expected',
+      async () => {
+        const client = new Client({
+          dataSource: 'eth',
+        });
+
+        // we have a custom ignore on each call
+        const { transactionsByAddress: transactions } = await client.transactionsByAddress(
+          { sender: '0x60dfe511ef939e25843471e34e856e5b2e07c92a' },
+          {
+            ignoreFields: ['data.parent', 'data.to', 'data.from'],
+          }
+        );
+
+        expect(transactions).toBeTruthy();
+        expect(transactions.data.length).toBeTruthy();
+        expect(transactions.data[0].parent).toBeFalsy();
+        expect(transactions.data[0].to).toBeFalsy();
+        expect(transactions.data[0].from).toBeFalsy();
+      },
+      5000
+    );
   });
 
   describe('#subscription', () => {
