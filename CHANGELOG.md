@@ -1,3 +1,7 @@
+## 0.11.1 (November 01, 2018)
+  - (feat): support new hmac signature spec
+  - update readme
+
 ## 0.11.0 (October 31, 2018)
   - (feat): support custom ignoreFields on shortcut methods
   - update readme
