@@ -4,6 +4,20 @@ const EventEmitter = require('events');
 const { Socket } = require('phoenix-channels');
 const OCAPBaseClient = require('./base');
 
+const sortObjectKeys = params => {
+  return Object.keys(params)
+    .filter(x => !!params[x])
+    .sort()
+    .reduce((obj, key) => {
+      if (params[key] && typeof params[key] === 'object') {
+        obj[key] = sortObjectKeys(params[key]);
+      } else {
+        obj[key] = params[key];
+      }
+      return obj;
+    }, {});
+};
+
 class OCAPClient extends OCAPBaseClient {
   _getSocketImplementation() {
     return Socket;
@@ -17,7 +31,7 @@ class OCAPClient extends OCAPBaseClient {
     return EventEmitter;
   }
 
-  _getAuthHeaders(query) {
+  _getAuthHeaders(query, variables) {
     const { accessKey, accessSecret } = this.config;
     if (!accessKey || !accessSecret) {
       return {};
@@ -27,13 +41,9 @@ class OCAPClient extends OCAPBaseClient {
     const hmac = crypto.createHmac('sha256', accessSecret);
 
     // Force param order to achieve consistent signature
-    const params = { accessKey, query, timestamp };
-    const sortedParams = Object.keys(params)
-      .sort()
-      .reduce((obj, key) => {
-        obj[key] = params[key];
-        return obj;
-      }, {});
+    const params = { accessKey, query: { query, variables }, timestamp };
+    const sortedParams = sortObjectKeys(params);
+    sortedParams.query = JSON.stringify(sortedParams.query);
 
     hmac.update(qs.stringify(sortedParams));
 
