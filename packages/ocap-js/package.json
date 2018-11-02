@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/ocap-js",
   "description": "Javascript SDK for OCAP Service by ArcBlock",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/ocap-javascript-sdk/issues",
