@@ -14,6 +14,7 @@
 
 ## Table of Contents
 
+* [Notes](#notes)
 * [Install](#install)
 * [Usage](#usage)
 * [Documentation](#documentation)
@@ -23,11 +24,13 @@
 * [Contributors](#contributors)
 * [License](#license)
 
+
 ## Notes
 
-**Since @arcblock/ocap-js v0.10.0, we support user specific rate-limit and page size limit on signed data request, instructions and code snippets to perform signed requests can be found [here](./docs/example.nodejs.js).**
+**Since [@arcblock/ocap-js](https://github.com/arcblock/ocap-js) v0.11.0, we support user specific rate-limit and page size limit on signed data request, instructions and code snippets to perform signed requests can be found [here](./docs/example.nodejs.js).**
 
 **For security reasons, signed requests are only supported in node.js by now, if you want to leverage increased rate-limit and page sizing limit in the browser, consider building an API proxy layer in your DApp.**
+
 
 ## Install
 

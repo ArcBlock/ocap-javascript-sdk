@@ -4,6 +4,7 @@ const OCAPClient = require('../src/node');
 (async () => {
   const client = new OCAPClient({
     httpEndpoint: ds => `https://ocap.arcblock.io/api/${ds}`,
+    // httpEndpoint: ds => `http://localhost:8080/api/${ds}`,
     socketEndpoint: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
     dataSource: 'eth',
     enableQuery: true,
@@ -43,9 +44,9 @@ const OCAPClient = require('../src/node');
   await doShortcutQuery('blockByHeight', { height: 5000000 });
   await doShortcutQuery('blockchainInfo', { instance: 'main' });
   await doShortcutQuery('emptyBlocks', { fromHeight: 1 });
-  await doShortcutQuery('erc20Tokens', { token: 'abt' });
+  await doShortcutQuery('erc20Tokens', { symbol: 'ABT' });
   await doShortcutQuery('erc20TokenBalance', {
-    token: 'abt',
+    symbol: 'ABT',
     accountAddress: '0x6f6e3e7cfe884663053fb02b17cf13f77ddce8e1',
   });
   await doShortcutQuery('genesisBlock');
@@ -59,7 +60,7 @@ const OCAPClient = require('../src/node');
     hash: '0x569c5b35f203ca6db6e2cec44bceba756fad513384e2bd79c06a8c0181273379',
   });
   await doShortcutQuery('transactionByIndex', { blockHeight: 5000000, index: 0 });
-  await doShortcutQuery('transactionsByToken', { token: 'abt' });
+  await doShortcutQuery('transfersInContract', { symbol: 'ABT' });
   await doShortcutQuery(
     'transactionsByAddress',
     {
