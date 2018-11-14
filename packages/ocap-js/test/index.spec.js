@@ -162,10 +162,13 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           dataSource: 'eth',
         });
 
-        const { blocksByHeight: blocks } = await client.blocksByHeight({
-          fromHeight: 1000000,
-          toHeight: 1000019,
-        });
+        const { blocksByHeight: blocks } = await client.blocksByHeight(
+          {
+            fromHeight: 1000000,
+            toHeight: 1000019,
+          },
+          { paging: { size: 1 } }
+        );
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
         expect(typeof blocks.next === 'function').toBeTruthy();

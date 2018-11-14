@@ -14,15 +14,16 @@
 
 ## Table of Contents
 
-* [Notes](#notes)
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Starter Templates](#starter-templates)
-* [CodeSandbox Projects](#codesandbox-projects)
-* [OCAP Service CheatSheet](#ocap-service-cheatsheet)
-* [Contributors](#contributors)
-* [License](#license)
+  - [Table of Contents](#table-of-contents)
+  - [Notes](#notes)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
+  - [Starter Templates](#starter-templates)
+  - [CodeSandbox Projects](#codesandbox-projects)
+  - [OCAP Service CheatSheet](#ocap-service-cheatsheet)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 
 ## Notes
@@ -76,6 +77,8 @@ console.log('RawQuery', result);
 const { blocksByHeight: blocks } = await client.blocksByHeight({
   fromHeight: 1000000,
   toHeight: 1000020,
+}, {
+  paging: { size: 5 },
 });
 console.log('PagedQuery.1', blocks.data.map(x => x.hash));
 if (typeof blocks.next === 'function') {

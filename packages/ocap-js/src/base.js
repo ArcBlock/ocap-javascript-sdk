@@ -58,10 +58,6 @@ class OCAPBaseClient extends BaseClient {
     ignoreFields.push('data.txsSent.data.parent', 'data.txsReceived.data.parent');
     ignoreFields.push('parent', 'data.parent.transactions', 'transactions.data.parent');
     ignoreFields.push('data.author', 'data.transactions.data.parent');
-    ignoreFields.push('uncleReward', 'data.uncleReward'); // TODO: remove this when server is ok
-    ignoreFields.push('functionInput', 'data.functionInput'); // TODO: remove this when server is ok
-    ignoreFields.push('functionSignature', 'data.functionSignature'); // TODO: remove this when server is ok
-    ignoreFields.push('receiptStatus', 'data.receiptStatus'); // TODO: remove this when server is ok
     ignoreFields.push(
       'uncles',
       'data.uncles',
