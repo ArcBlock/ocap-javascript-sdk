@@ -1,3 +1,9 @@
+## 0.12.0 (November 13, 2018)
+  - (chore): upgrade ocap-schema with eth-v2
+  - (feat): add local env endpoint in schema updating script
+  - (feat): add local env endpoint in test script
+  - update readme
+
 ## 0.11.1 (November 01, 2018)
   - (feat): support new hmac signature spec
   - update readme

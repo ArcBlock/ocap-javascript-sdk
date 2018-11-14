@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { request } = require('graphql-request');
 const { introspectionQuery } = require('graphql');
+// const httpEndpoint = ds => `http://localhost:8080/api/${ds}`;
 const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
 
 const dataSources = ['btc', 'eth'];

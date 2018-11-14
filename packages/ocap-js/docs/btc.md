@@ -56,14 +56,15 @@
     txsReceived {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -72,7 +73,7 @@
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account
@@ -122,14 +123,15 @@
     txsSent {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -138,7 +140,7 @@
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account
@@ -201,14 +203,15 @@
 {
   blockByHash(hash: "abc") {
     bits
-    fees
+    weight
     hash
     height
+    historyPrice
     medianTime
     merkleRoot
     nonce
     numberTxs
-    preHash
+    fees
     priceInUsd
     reward
     size
@@ -216,7 +219,7 @@
     time
     total
     version
-    weight
+    preHash
     miner {
       address
       balance
@@ -232,14 +235,15 @@
     transactions {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -248,7 +252,7 @@
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account
@@ -311,14 +315,15 @@
 {
   blockByHeight(height: 123) {
     bits
-    fees
+    weight
     hash
     height
+    historyPrice
     medianTime
     merkleRoot
     nonce
     numberTxs
-    preHash
+    fees
     priceInUsd
     reward
     size
@@ -326,7 +331,7 @@
     time
     total
     version
-    weight
+    preHash
     miner {
       address
       balance
@@ -342,14 +347,15 @@
     transactions {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -358,7 +364,7 @@
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account
@@ -433,14 +439,15 @@
     blocks {
       data {
         bits
-        fees
+        weight
         hash
         height
+        historyPrice
         medianTime
         merkleRoot
         nonce
         numberTxs
-        preHash
+        fees
         priceInUsd
         reward
         size
@@ -448,7 +455,7 @@
         time
         total
         version
-        weight
+        preHash
         miner {
           address
           balance
@@ -468,6 +475,7 @@
             fees
             feesOverWeight
             hash
+            historyPrice
             index
             lockTime
             numberInputs
@@ -514,14 +522,15 @@
   blocksByHeight(fromHeight: 123) {
     data {
       bits
-      fees
+      weight
       hash
       height
+      historyPrice
       medianTime
       merkleRoot
       nonce
       numberTxs
-      preHash
+      fees
       priceInUsd
       reward
       size
@@ -529,7 +538,7 @@
       time
       total
       version
-      weight
+      preHash
       miner {
         address
         balance
@@ -545,14 +554,15 @@
       transactions {
         data {
           blockHash
-          blockHeight
+          witnessHash
           fees
           feesOverWeight
           hash
+          historyPrice
           index
           lockTime
           numberInputs
-          numberOutputs
+          blockHeight
           priceInUsd
           size
           strippedSize
@@ -561,7 +571,7 @@
           version
           virtualSize
           weight
-          witnessHash
+          numberOutputs
         }
         page {
           cursor
@@ -621,14 +631,15 @@
   emptyBlocks(fromHeight: 123) {
     data {
       bits
-      fees
+      weight
       hash
       height
+      historyPrice
       medianTime
       merkleRoot
       nonce
       numberTxs
-      preHash
+      fees
       priceInUsd
       reward
       size
@@ -636,7 +647,7 @@
       time
       total
       version
-      weight
+      preHash
       miner {
         address
         balance
@@ -652,14 +663,15 @@
       transactions {
         data {
           blockHash
-          blockHeight
+          witnessHash
           fees
           feesOverWeight
           hash
+          historyPrice
           index
           lockTime
           numberInputs
-          numberOutputs
+          blockHeight
           priceInUsd
           size
           strippedSize
@@ -668,7 +680,7 @@
           version
           virtualSize
           weight
-          witnessHash
+          numberOutputs
         }
         page {
           cursor
@@ -698,14 +710,15 @@ No arguments
 {
   genesisBlock {
     bits
-    fees
+    weight
     hash
     height
+    historyPrice
     medianTime
     merkleRoot
     nonce
     numberTxs
-    preHash
+    fees
     priceInUsd
     reward
     size
@@ -713,7 +726,7 @@ No arguments
     time
     total
     version
-    weight
+    preHash
     miner {
       address
       balance
@@ -729,14 +742,15 @@ No arguments
     transactions {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -745,7 +759,7 @@ No arguments
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account
@@ -821,14 +835,15 @@ No arguments
       txsReceived {
         data {
           blockHash
-          blockHeight
+          witnessHash
           fees
           feesOverWeight
           hash
+          historyPrice
           index
           lockTime
           numberInputs
-          numberOutputs
+          blockHeight
           priceInUsd
           size
           strippedSize
@@ -837,7 +852,7 @@ No arguments
           version
           virtualSize
           weight
-          witnessHash
+          numberOutputs
         }
         page {
           cursor
@@ -848,14 +863,15 @@ No arguments
       txsSent {
         data {
           blockHash
-          blockHeight
+          witnessHash
           fees
           feesOverWeight
           hash
+          historyPrice
           index
           lockTime
           numberInputs
-          numberOutputs
+          blockHeight
           priceInUsd
           size
           strippedSize
@@ -864,7 +880,7 @@ No arguments
           version
           virtualSize
           weight
-          witnessHash
+          numberOutputs
         }
         page {
           cursor
@@ -894,14 +910,15 @@ No arguments
 {
   transactionByHash(hash: "abc") {
     blockHash
-    blockHeight
+    witnessHash
     fees
     feesOverWeight
     hash
+    historyPrice
     index
     lockTime
     numberInputs
-    numberOutputs
+    blockHeight
     priceInUsd
     size
     strippedSize
@@ -910,21 +927,21 @@ No arguments
     version
     virtualSize
     weight
-    witnessHash
+    numberOutputs
     inputs {
       data {
         account
-        blockHash
+        value
         blockHeight
         index
         preOutput
         preTx
-        script
+        blockHash
         scriptType
         sequence
         txHash
         txIndex
-        value
+        script
       }
       page {
         cursor
@@ -968,14 +985,15 @@ No arguments
 {
   transactionByIndex(index: 123) {
     blockHash
-    blockHeight
+    witnessHash
     fees
     feesOverWeight
     hash
+    historyPrice
     index
     lockTime
     numberInputs
-    numberOutputs
+    blockHeight
     priceInUsd
     size
     strippedSize
@@ -984,21 +1002,21 @@ No arguments
     version
     virtualSize
     weight
-    witnessHash
+    numberOutputs
     inputs {
       data {
         account
-        blockHash
+        value
         blockHeight
         index
         preOutput
         preTx
-        script
+        blockHash
         scriptType
         sequence
         txHash
         txIndex
-        value
+        script
       }
       page {
         cursor
@@ -1043,14 +1061,15 @@ No arguments
   transactionsByAddress {
     data {
       blockHash
-      blockHeight
+      witnessHash
       fees
       feesOverWeight
       hash
+      historyPrice
       index
       lockTime
       numberInputs
-      numberOutputs
+      blockHeight
       priceInUsd
       size
       strippedSize
@@ -1059,21 +1078,21 @@ No arguments
       version
       virtualSize
       weight
-      witnessHash
+      numberOutputs
       inputs {
         data {
           account
-          blockHash
+          value
           blockHeight
           index
           preOutput
           preTx
-          script
+          blockHash
           scriptType
           sequence
           txHash
           txIndex
-          value
+          script
         }
         page {
           cursor
@@ -1126,14 +1145,15 @@ No arguments
   transactionsByIndex {
     data {
       blockHash
-      blockHeight
+      witnessHash
       fees
       feesOverWeight
       hash
+      historyPrice
       index
       lockTime
       numberInputs
-      numberOutputs
+      blockHeight
       priceInUsd
       size
       strippedSize
@@ -1142,21 +1162,21 @@ No arguments
       version
       virtualSize
       weight
-      witnessHash
+      numberOutputs
       inputs {
         data {
           account
-          blockHash
+          value
           blockHeight
           index
           preOutput
           preTx
-          script
+          blockHash
           scriptType
           sequence
           txHash
           txIndex
-          value
+          script
         }
         page {
           cursor
@@ -1207,14 +1227,15 @@ No arguments
   zeroFeesBlocks(fromHeight: 123) {
     data {
       bits
-      fees
+      weight
       hash
       height
+      historyPrice
       medianTime
       merkleRoot
       nonce
       numberTxs
-      preHash
+      fees
       priceInUsd
       reward
       size
@@ -1222,7 +1243,7 @@ No arguments
       time
       total
       version
-      weight
+      preHash
       miner {
         address
         balance
@@ -1238,14 +1259,15 @@ No arguments
       transactions {
         data {
           blockHash
-          blockHeight
+          witnessHash
           fees
           feesOverWeight
           hash
+          historyPrice
           index
           lockTime
           numberInputs
-          numberOutputs
+          blockHeight
           priceInUsd
           size
           strippedSize
@@ -1254,7 +1276,7 @@ No arguments
           version
           virtualSize
           weight
-          witnessHash
+          numberOutputs
         }
         page {
           cursor
@@ -1287,14 +1309,15 @@ No arguments
 subscription {
   bigTransactionExecuted {
     blockHash
-    blockHeight
+    witnessHash
     fees
     feesOverWeight
     hash
+    historyPrice
     index
     lockTime
     numberInputs
-    numberOutputs
+    blockHeight
     priceInUsd
     size
     strippedSize
@@ -1303,21 +1326,21 @@ subscription {
     version
     virtualSize
     weight
-    witnessHash
+    numberOutputs
     inputs {
       data {
         account
-        blockHash
+        value
         blockHeight
         index
         preOutput
         preTx
-        script
+        blockHash
         scriptType
         sequence
         txHash
         txIndex
-        value
+        script
       }
       page {
         cursor
@@ -1359,14 +1382,15 @@ subscription {
 subscription {
   coinReceived(address: "abc") {
     blockHash
-    blockHeight
+    witnessHash
     fees
     feesOverWeight
     hash
+    historyPrice
     index
     lockTime
     numberInputs
-    numberOutputs
+    blockHeight
     priceInUsd
     size
     strippedSize
@@ -1375,21 +1399,21 @@ subscription {
     version
     virtualSize
     weight
-    witnessHash
+    numberOutputs
     inputs {
       data {
         account
-        blockHash
+        value
         blockHeight
         index
         preOutput
         preTx
-        script
+        blockHash
         scriptType
         sequence
         txHash
         txIndex
-        value
+        script
       }
       page {
         cursor
@@ -1431,14 +1455,15 @@ subscription {
 subscription {
   coinSent(address: "abc") {
     blockHash
-    blockHeight
+    witnessHash
     fees
     feesOverWeight
     hash
+    historyPrice
     index
     lockTime
     numberInputs
-    numberOutputs
+    blockHeight
     priceInUsd
     size
     strippedSize
@@ -1447,21 +1472,21 @@ subscription {
     version
     virtualSize
     weight
-    witnessHash
+    numberOutputs
     inputs {
       data {
         account
-        blockHash
+        value
         blockHeight
         index
         preOutput
         preTx
-        script
+        blockHash
         scriptType
         sequence
         txHash
         txIndex
-        value
+        script
       }
       page {
         cursor
@@ -1503,14 +1528,15 @@ No arguments
 subscription {
   newBlockMined {
     bits
-    fees
+    weight
     hash
     height
+    historyPrice
     medianTime
     merkleRoot
     nonce
     numberTxs
-    preHash
+    fees
     priceInUsd
     reward
     size
@@ -1518,7 +1544,7 @@ subscription {
     time
     total
     version
-    weight
+    preHash
     miner {
       address
       balance
@@ -1534,14 +1560,15 @@ subscription {
     transactions {
       data {
         blockHash
-        blockHeight
+        witnessHash
         fees
         feesOverWeight
         hash
+        historyPrice
         index
         lockTime
         numberInputs
-        numberOutputs
+        blockHeight
         priceInUsd
         size
         strippedSize
@@ -1550,7 +1577,7 @@ subscription {
         version
         virtualSize
         weight
-        witnessHash
+        numberOutputs
         inputs {
           data {
             account

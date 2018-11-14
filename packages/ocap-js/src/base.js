@@ -43,8 +43,12 @@ class OCAPBaseClient extends BaseClient {
   _getIgnoreFields() {
     const ignoreFields = [];
     ignoreFields.push(/\.raw$/, /.logs$/, /\.logsBloom$/);
-    ignoreFields.push('txsSent.data.raw', 'txsSent.data.logs', 'txsSent.data.logsBloom');
-    ignoreFields.push('txsReceived.data.raw', 'txsReceived.data.logs', 'txsReceived.data.logsBloom');
+    ignoreFields.push('txsSent.data.raw', 'txsSent.data.parent', 'txsSent.data.logsBloom');
+    ignoreFields.push(
+      'txsReceived.data.raw',
+      'txsReceived.data.parent',
+      'txsReceived.data.logsBloom'
+    );
     ignoreFields.push('miner.txsSent', 'miner.txsReceived');
     ignoreFields.push('to.txsSent', 'to.txsReceived');
     ignoreFields.push('from.txsSent', 'from.txsReceived');
@@ -54,6 +58,34 @@ class OCAPBaseClient extends BaseClient {
     ignoreFields.push('data.txsSent.data.parent', 'data.txsReceived.data.parent');
     ignoreFields.push('parent', 'data.parent.transactions', 'transactions.data.parent');
     ignoreFields.push('data.author', 'data.transactions.data.parent');
+    ignoreFields.push(
+      'uncles',
+      'data.uncles',
+      'transactions.data.uncles',
+      'txsSent.data.uncles',
+      'txsReceived.data.uncles'
+    );
+    ignoreFields.push(
+      'logs',
+      'data.logs',
+      'transactions.data.logs',
+      'txsSent.data.logs',
+      'txsReceived.data.logs'
+    );
+    ignoreFields.push(
+      'traces',
+      'data.traces',
+      'transactions.data.traces',
+      'txsSent.data.traces',
+      'txsReceived.data.traces'
+    );
+    ignoreFields.push(
+      'creates',
+      'data.creates',
+      'transactions.data.creates',
+      'txsSent.data.creates',
+      'txsReceived.data.creates'
+    );
 
     return ignoreFields;
   }

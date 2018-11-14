@@ -1,6 +1,8 @@
 const EventEmitter = require('events');
 const OCAPClient = require('../src/node');
 const OCAPBrowserClient = require('../src/browser');
+// const httpEndpoint = ds => `http://localhost:8080/api/${ds}`;
+const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
 
 [OCAPClient, OCAPBrowserClient].forEach(Client => {
   describe(Client.name, () => {
@@ -26,6 +28,7 @@ const OCAPBrowserClient = require('../src/browser');
 
     test('should list api as array', () => {
       const client = new Client({
+        httpEndpoint,
         dataSource: 'eth',
       });
 
@@ -42,6 +45,7 @@ const OCAPBrowserClient = require('../src/browser');
 
     test('should sanitize args', () => {
       const client = new Client({
+        httpEndpoint,
         dataSource: 'eth',
       });
 
@@ -54,6 +58,7 @@ const OCAPBrowserClient = require('../src/browser');
   describe('#query', () => {
     test('should have basic query methods for btc', () => {
       const client = new Client({
+        httpEndpoint,
         dataSource: 'btc',
       });
 
@@ -66,6 +71,7 @@ const OCAPBrowserClient = require('../src/browser');
 
     test('should have basic query methods for eth', () => {
       const client = new Client({
+        httpEndpoint,
         dataSource: 'eth',
       });
 
@@ -80,6 +86,7 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {accountByAddress} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'btc',
         });
 
@@ -97,6 +104,7 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {blockByHash} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'eth',
         });
 
@@ -123,6 +131,7 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {transactionByHash} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'eth',
         });
 
@@ -149,13 +158,17 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {blocksByHeight} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'eth',
         });
 
-        const { blocksByHeight: blocks } = await client.blocksByHeight({
-          fromHeight: 1000000,
-          toHeight: 1000019,
-        });
+        const { blocksByHeight: blocks } = await client.blocksByHeight(
+          {
+            fromHeight: 1000000,
+            toHeight: 1000019,
+          },
+          { paging: { size: 1 } }
+        );
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
         expect(typeof blocks.next === 'function').toBeTruthy();
@@ -173,6 +186,7 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {blockByHeight} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'eth',
         });
 
@@ -194,6 +208,7 @@ const OCAPBrowserClient = require('../src/browser');
       'should query method {transactionsByAddress} work as expected',
       async () => {
         const client = new Client({
+          httpEndpoint,
           dataSource: 'eth',
         });
 
@@ -217,6 +232,7 @@ const OCAPBrowserClient = require('../src/browser');
 
   describe('#subscription', () => {
     const client = new Client({
+      httpEndpoint,
       dataSource: 'eth',
     });
 

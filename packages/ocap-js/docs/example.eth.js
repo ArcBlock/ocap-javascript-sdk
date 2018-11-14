@@ -4,6 +4,7 @@ const OCAPClient = require('../src/node');
 (async () => {
   const client = new OCAPClient({
     httpEndpoint: ds => `https://ocap.arcblock.io/api/${ds}`,
+    // httpEndpoint: ds => `http://localhost:8080/api/${ds}`,
     socketEndpoint: ds => `wss://ocap.arcblock.io/api/${ds}/socket`,
     dataSource: 'eth',
     enableQuery: true,
@@ -24,9 +25,9 @@ const OCAPClient = require('../src/node');
   const mutations = client.getMutations();
   consoleOutput('API LIST', { queries, subscriptions, mutations });
 
-  const doShortcutQuery = async (method, args) => {
+  const doShortcutQuery = async (method, args, params) => {
     try {
-      const result = await client[method](args || {});
+      const result = await client[method](args || {}, params);
       consoleOutput(`ShortcutQuery.${method}`, result);
     } catch (err) {
       consoleOutput(`ShortcutQuery.${method}`, err);
@@ -43,23 +44,41 @@ const OCAPClient = require('../src/node');
   await doShortcutQuery('blockByHeight', { height: 5000000 });
   await doShortcutQuery('blockchainInfo', { instance: 'main' });
   await doShortcutQuery('emptyBlocks', { fromHeight: 1 });
-  await doShortcutQuery('erc20Tokens', { token: 'abt' });
+  await doShortcutQuery('erc20Tokens', { symbol: 'ABT' });
   await doShortcutQuery('erc20TokenBalance', {
-    token: 'abt',
+    symbol: 'ABT',
     accountAddress: '0x6f6e3e7cfe884663053fb02b17cf13f77ddce8e1',
   });
   await doShortcutQuery('genesisBlock');
-  await doShortcutQuery('richestAccounts');
+  await doShortcutQuery(
+    'richestAccounts',
+    {},
+    {
+      ignoreFields: ['data.txsReceived', 'data.txsSent'],
+    }
+  );
   await doShortcutQuery('cryptoHistoryPrice', {
     token: 'prs',
     startDate: '2018-06-01T00:00:00.000Z',
     endDate: '2018-09-10T13:59:45.789Z',
   });
   await doShortcutQuery('transactionByHash', {
+    // ether-transaction
     hash: '0x569c5b35f203ca6db6e2cec44bceba756fad513384e2bd79c06a8c0181273379',
   });
+  await doShortcutQuery('transactionByHash', {
+    // contract-execution
+    hash: '0x706f51639f0f7af21b13eae2b8dadb3cb52a8a3e4c7995eee6340c72c4db75eb',
+  });
+  await doShortcutQuery('transactionByHash', {
+    // contract-creation
+    hash: '0xf9c088a928e578987c1cf81e95d630918d91653d96adbf00ccddc382cff59ab2',
+  });
   await doShortcutQuery('transactionByIndex', { blockHeight: 5000000, index: 0 });
-  await doShortcutQuery('transactionsByToken', { token: 'abt' });
+  await doShortcutQuery('transfersInContract', {
+    symbol: 'ABT',
+    to: '0x6f6e3e7cfe884663053fb02b17cf13f77ddce8e1',
+  });
   await doShortcutQuery(
     'transactionsByAddress',
     {
@@ -69,7 +88,11 @@ const OCAPClient = require('../src/node');
       ignoreFields: ['data.parent'],
     }
   );
-  await doShortcutQuery('zeroFeesBlocks', { fromHeight: 1 });
+  await doShortcutQuery(
+    'zeroFeesBlocks',
+    { fromHeight: 1 },
+    { ignoreFields: ['data.transactions'] }
+  );
 
   // 3. raw query
   const result = await client.doRawQuery(`{
