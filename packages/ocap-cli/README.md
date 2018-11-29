@@ -1,6 +1,6 @@
 # OCAP CLI
 
-> Command Line Tools to use together with OCAP, most are related to blockchain.
+> Command line tools to ease development for ArcBlock Developers
 
 ## Installation
 
