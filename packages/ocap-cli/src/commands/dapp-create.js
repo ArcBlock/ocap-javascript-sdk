@@ -1,4 +1,7 @@
 /* eslint no-console:"off" */
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
 const inquirer = require('inquirer');
 const { spawn } = require('child_process');
 
@@ -41,8 +44,21 @@ const action = async () => {
     stdio: 'inherit',
   };
 
+  const folder = path.join(process.cwd(), args.name);
+  if (fs.existsSync(folder)) {
+    console.log(
+      `${cross} Folder ${chalk.cyan(
+        folder
+      )} already exist! Remove the directory or choose another name!`
+    );
+    process.exit(0);
+    return;
+  }
+
   if (args.type === TYPE_REACT) {
-    await ensureCommand('create-react-app', 'npm install -g create-react-app');
+    await ensureCommand('create-react-app', 'npm install -g create-react-app', {
+      forceLatest: true,
+    });
     const child = spawn(
       'create-react-app',
       `${args.name} --scripts-version @arcblock/react-scripts`.split(/\s+/),
@@ -51,7 +67,9 @@ const action = async () => {
 
     child.on('close', () => {
       console.log('');
-      console.log(`${check} Project initialized successfully!`);
+      console.log(
+        `${check} DApp initialized successfully! Visit http://ocap-docs.arcblock.io for docs!`
+      );
       console.log('');
       process.exit(0);
     });
@@ -60,7 +78,7 @@ const action = async () => {
   }
 
   if (args.type === TYPE_VUE) {
-    await ensureCommand('vue', 'npm install -g @vue/cli');
+    await ensureCommand('vue', 'npm install -g @vue/cli', { forceLatest: true });
     const child = spawn(
       'vue',
       `create --preset Arcblock/ocap-vue-starter ${args.name}`.split(/\s+/),
@@ -69,7 +87,9 @@ const action = async () => {
 
     child.on('close', () => {
       console.log('');
-      console.log(`${check} Project initialized successfully!`);
+      console.log(
+        `${check} DApp initialized successfully! Visit http://ocap-docs.arcblock.io for docs!`
+      );
       console.log('');
       process.exit(0);
     });

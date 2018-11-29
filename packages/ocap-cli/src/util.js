@@ -31,14 +31,17 @@ passwordValidator
 
 const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
 
-function ensureCommand(commandName, installCommand) {
+function ensureCommand(commandName, installCommand, { forceLatest = false } = {}) {
   return new Promise((resolve, reject) => {
     // TODO: install latest commandline tools
     exec(`which ${commandName}`, {}, async (err, stdout, stderr) => {
-      if (err) {
-        console.log(
-          `${cross} It seems ${commandName} is not installed, installing with: ${installCommand}...`
-        );
+      if (err || forceLatest) {
+        if (err) {
+          console.log(`${cross} ${commandName} not found, installing with: ${installCommand}...`);
+        }
+        if (forceLatest) {
+          console.log(`⏳ installing latest ${commandName}: ${installCommand}...`);
+        }
         if (!installCommand) {
           return reject(err);
         }
@@ -220,4 +223,5 @@ module.exports = {
   debug,
   cross,
   check,
+  delay,
 };
