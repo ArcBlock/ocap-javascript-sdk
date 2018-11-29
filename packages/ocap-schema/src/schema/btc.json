@@ -26,7 +26,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "Int",
+            "name": "Long",
             "kind": "SCALAR"
           },
           "name": "balance",
@@ -74,7 +74,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "HexString",
             "kind": "SCALAR"
           },
           "name": "pubKey",
@@ -99,7 +99,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -114,7 +114,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "Int",
+            "name": "Long",
             "kind": "SCALAR"
           },
           "name": "totalAmountReceived",
@@ -126,7 +126,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "Int",
+            "name": "Long",
             "kind": "SCALAR"
           },
           "name": "totalAmountSent",
@@ -196,7 +196,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -212,7 +212,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -228,7 +228,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -284,7 +284,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -312,7 +312,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -344,7 +344,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -372,7 +372,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -436,7 +436,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -475,7 +475,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -620,7 +620,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "HexString",
             "kind": "SCALAR"
           },
           "name": "latestHash",
@@ -684,7 +684,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -716,7 +716,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -748,7 +748,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -815,7 +815,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -942,7 +942,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -958,7 +958,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -1006,7 +1006,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -1089,6 +1089,16 @@
     },
     {
       "possibleTypes": null,
+      "name": "HexString",
+      "kind": "SCALAR",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": null,
+      "description": "The `HexString` type represnets hexadecimal encoded binary data, i.e. 0xff01.\n"
+    },
+    {
+      "possibleTypes": null,
       "name": "Int",
       "kind": "SCALAR",
       "interfaces": null,
@@ -1096,6 +1106,16 @@
       "fields": null,
       "enumValues": null,
       "description": "The `Int` scalar type represents non-fractional signed whole numeric values.\nInt can represent values between `-(2^53 - 1)` and `2^53 - 1` since it is\nrepresented in JSON as double-precision floating point numbers specified\nby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point)."
+    },
+    {
+      "possibleTypes": null,
+      "name": "Long",
+      "kind": "SCALAR",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": null,
+      "description": "The `Long` type represnets 64 bits signed integer.\n"
     },
     {
       "possibleTypes": null,
@@ -1511,7 +1531,7 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "String",
+                  "name": "HexString",
                   "kind": "SCALAR"
                 },
                 "name": null,
@@ -1786,7 +1806,7 @@
               "type": {
                 "ofType": {
                   "ofType": null,
-                  "name": "String",
+                  "name": "HexString",
                   "kind": "SCALAR"
                 },
                 "name": null,
@@ -1812,7 +1832,7 @@
             {
               "type": {
                 "ofType": null,
-                "name": "String",
+                "name": "HexString",
                 "kind": "SCALAR"
               },
               "name": "blockHash",
@@ -1902,7 +1922,7 @@
             {
               "type": {
                 "ofType": null,
-                "name": "String",
+                "name": "HexString",
                 "kind": "SCALAR"
               },
               "name": "blockHash",
@@ -2124,7 +2144,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2188,7 +2208,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2203,7 +2223,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "HexString",
             "kind": "SCALAR"
           },
           "name": "script",
@@ -2228,7 +2248,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2244,7 +2264,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2276,7 +2296,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2315,7 +2335,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2362,7 +2382,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "String",
+            "name": "HexString",
             "kind": "SCALAR"
           },
           "name": "script",
@@ -2387,7 +2407,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "String",
+              "name": "HexString",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2419,7 +2439,7 @@
           "type": {
             "ofType": {
               "ofType": null,
-              "name": "Int",
+              "name": "Long",
               "kind": "SCALAR"
             },
             "name": null,
@@ -2437,55 +2457,61 @@
     },
     {
       "possibleTypes": null,
-      "name": "__DirectiveLocation",
-      "kind": "ENUM",
-      "interfaces": null,
+      "name": "__InputValue",
+      "kind": "OBJECT",
+      "interfaces": [],
       "inputFields": null,
-      "fields": null,
-      "enumValues": [
+      "fields": [
         {
-          "name": "FIELD",
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "defaultValue",
           "isDeprecated": false,
           "description": null,
-          "deprecationReason": null
+          "deprecationReason": null,
+          "args": []
         },
         {
-          "name": "FRAGMENT_DEFINITION",
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
           "isDeprecated": false,
           "description": null,
-          "deprecationReason": null
+          "deprecationReason": null,
+          "args": []
         },
         {
-          "name": "FRAGMENT_SPREAD",
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
           "isDeprecated": false,
           "description": null,
-          "deprecationReason": null
+          "deprecationReason": null,
+          "args": []
         },
         {
-          "name": "INLINE_FRAGMENT",
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "type",
           "isDeprecated": false,
           "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "MUTATION",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "QUERY",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
-        },
-        {
-          "name": "SUBSCRIPTION",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null
+          "deprecationReason": null,
+          "args": []
         }
       ],
+      "enumValues": null,
       "description": null
     },
     {
@@ -2633,247 +2659,6 @@
       ],
       "enumValues": null,
       "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__InputValue",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "defaultValue",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "type",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Schema",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Directive",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "directives",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "mutationType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "queryType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "subscriptionType",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__Type",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "types",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a schema"
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Directive",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__InputValue",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "args",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__DirectiveLocation",
-              "kind": "ENUM"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "locations",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onField",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FIELD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onFragment",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onOperation",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value OPERATION",
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a directive"
     },
     {
       "possibleTypes": null,
@@ -3035,6 +2820,241 @@
       ],
       "enumValues": null,
       "description": "Represents scalars, interfaces, object types, unions, enums in the system"
+    },
+    {
+      "possibleTypes": null,
+      "name": "__DirectiveLocation",
+      "kind": "ENUM",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": [
+        {
+          "name": "FIELD",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "FRAGMENT_DEFINITION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "FRAGMENT_SPREAD",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "INLINE_FRAGMENT",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "MUTATION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "QUERY",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        },
+        {
+          "name": "SUBSCRIPTION",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null
+        }
+      ],
+      "description": null
+    },
+    {
+      "possibleTypes": null,
+      "name": "__Directive",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__InputValue",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "args",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__DirectiveLocation",
+              "kind": "ENUM"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "locations",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onField",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FIELD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onFragment",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onOperation",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value OPERATION",
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": "Represents a directive"
+    },
+    {
+      "possibleTypes": null,
+      "name": "__Schema",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__Directive",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "directives",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "mutationType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "queryType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "subscriptionType",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__Type",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "types",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": "Represents a schema"
     }
   ],
   "subscriptionType": {
@@ -3047,7 +3067,11 @@
   "directives": [
     {
       "name": "include",
-      "locations": ["INLINE_FRAGMENT", "FRAGMENT_SPREAD", "FIELD"],
+      "locations": [
+        "INLINE_FRAGMENT",
+        "FRAGMENT_SPREAD",
+        "FIELD"
+      ],
       "description": "Directs the executor to include this field or fragment only when the `if` argument is true.\"",
       "args": [
         {
@@ -3068,7 +3092,11 @@
     },
     {
       "name": "skip",
-      "locations": ["INLINE_FRAGMENT", "FRAGMENT_SPREAD", "FIELD"],
+      "locations": [
+        "INLINE_FRAGMENT",
+        "FRAGMENT_SPREAD",
+        "FIELD"
+      ],
       "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
       "args": [
         {

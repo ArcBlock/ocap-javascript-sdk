@@ -1,3 +1,9 @@
+## 0.13.0 (November 29, 2018)
+  - (feat): force using latest cli tools
+  - (feat): add dapp create command
+  - (chore): format and add hd wallet in genWallet
+  - update readme
+
 ## 0.12.0 (November 13, 2018)
   - (chore): upgrade ocap-schema with eth-v2
   - (feat): add local env endpoint in schema updating script

@@ -118,7 +118,7 @@ const formatArgs = (values, specs = {}) => {
       const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
       let value = '';
       if (kind === 'SCALAR') {
-        if (['String', 'DateTime', 'ID'].includes(type)) {
+        if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
           value = `"${values[x].toString()}"`;
         } else {
           value = values[x].toString();

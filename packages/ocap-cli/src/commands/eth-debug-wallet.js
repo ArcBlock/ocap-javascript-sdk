@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { ensureWallet, printWallet } = require('../util');
 
 const action = async () => {

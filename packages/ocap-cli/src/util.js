@@ -1,12 +1,17 @@
+/* eslint no-console:"off" */
 const fs = require('fs');
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 const EthWallet = require('ethereumjs-wallet');
 const HDWallet = require('ethereumjs-wallet/hdkey');
 const EthUtil = require('ethereumjs-util');
 const BIP39 = require('bip39');
 const PasswordValidator = require('password-validator');
+const { exec, spawn } = require('child_process');
 
 const debug = require('debug')(require('../package.json').name);
+const cross = chalk.red('✘');
+const check = chalk.green('✔︎');
 
 const passwordValidator = new PasswordValidator();
 passwordValidator
@@ -23,6 +28,59 @@ passwordValidator
   .has()
   .not()
   .spaces();
+
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
+
+function ensureCommand(commandName, installCommand, { forceLatest = false } = {}) {
+  return new Promise((resolve, reject) => {
+    exec(`which ${commandName}`, {}, async (err, stdout, stderr) => {
+      if (err || forceLatest) {
+        if (err) {
+          console.log(`${cross} ${commandName} not found, installing with: ${installCommand}...`);
+        }
+        if (forceLatest) {
+          console.log(`⏳ installing latest ${commandName}: ${installCommand}...`);
+        }
+        if (!installCommand) {
+          return reject(err);
+        }
+
+        const parts = installCommand.split(' ');
+        const child = spawn(parts.shift(), parts, {
+          cwd: process.cwd(),
+          detached: false,
+          stdio: 'inherit',
+        });
+
+        child.on('close', () => {
+          exec(`which ${commandName}`, {}, async (__err, __stdout, __stderr) => {
+            if (__stderr) {
+              console.error(__stderr);
+              return reject(__stderr);
+            }
+
+            console.log(`${check} ${commandName} is installed successfully!`);
+            await delay(2000);
+            resolve();
+          });
+        });
+
+        child.on('error', reject);
+        return;
+      }
+
+      debug('ensureCommand', { stdout, stderr, commandName, installCommand });
+      if (stderr) {
+        console.error(stderr);
+        return reject(stderr);
+      }
+
+      console.log(`${check} ${commandName} is already installed!`);
+      await delay(2000);
+      resolve();
+    });
+  });
+}
 
 async function ensureWallet() {
   const TYPE_PRIVATE_KEY = 'Private Key';
@@ -44,14 +102,14 @@ async function ensureWallet() {
       filter: x => x.trim(),
       when: args => args.type === TYPE_PRIVATE_KEY,
       validate: x => {
-	if (!x) {
-	  return 'privateKey should not be empty';
-	}
-	if (!EthUtil.isValidPrivate(Buffer.from(EthUtil.stripHexPrefix(x), 'hex'))) {
-	  return 'privateKey should be valid `0x` prefixed hex format';
-	}
+        if (!x) {
+          return 'privateKey should not be empty';
+        }
+        if (!EthUtil.isValidPrivate(Buffer.from(EthUtil.stripHexPrefix(x), 'hex'))) {
+          return 'privateKey should be valid `0x` prefixed hex format';
+        }
 
-	return true;
+        return true;
       },
     },
     {
@@ -103,7 +161,7 @@ async function ensureWallet() {
     for (let i = 0; i < 20; i++) {
       const path = `m/44'/60'/0'/0/${i}`;
       const childWallet = EthWallet.fromExtendedPrivateKey(
-	parentWallet.derivePath(path).privateExtendedKey()
+        parentWallet.derivePath(path).privateExtendedKey()
       );
       const address = childWallet.getAddressString();
       wallets[address] = childWallet;
@@ -112,11 +170,11 @@ async function ensureWallet() {
 
     const choice = await inquirer.prompt([
       {
-	type: 'list',
-	name: 'address',
-	default: TYPE_PRIVATE_KEY,
-	message: 'Choose wallet address from the list',
-	choices,
+        type: 'list',
+        name: 'address',
+        default: TYPE_PRIVATE_KEY,
+        message: 'Choose wallet address from the list',
+        choices,
       },
     ]);
 
@@ -155,10 +213,14 @@ function saveKeystore(wallet, password) {
 }
 
 module.exports = {
+  ensureCommand,
   ensureWallet,
   printWallet,
   printAddress,
   saveKeystore,
   passwordValidator,
   debug,
+  cross,
+  check,
+  delay,
 };

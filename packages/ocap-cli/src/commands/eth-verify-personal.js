@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const fs = require('fs');
 const EthUtil = require('ethereumjs-util');
 const SigUtil = require('eth-sig-util');
