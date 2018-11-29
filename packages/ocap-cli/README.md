@@ -10,7 +10,7 @@ npm install -g @arcblock/ocap-cli
 
 ## Usage
 
-### Help
+### Available Commands
 
 ```shell
 ❯ ocap
@@ -26,6 +26,14 @@ Commands:
   eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore, HD Wallet)
   eth:signPersonal [message]                Sign message with an ethereum wallet key to get a MetaMask compatible signature
   eth:verifyPersonal [message] [signature]  Verify a signature produced from eth:signPersonal
+```
+
+### Bootstrap an DAPP
+
+> Used when bootstrap an DApp with our starter projects: [ocap-react-starter](https://github.com/ArcBlock/ocap-react-starter), [ocap-vue-starter](https://github.com/ArcBlock/ocap-vue-starter)
+
+```shell
+ocap dapp:create
 ```
 
 ### Sign personal message
