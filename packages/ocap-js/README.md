@@ -14,16 +14,15 @@
 
 ## Table of Contents
 
-  - [Table of Contents](#table-of-contents)
-  - [Notes](#notes)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [Starter Templates](#starter-templates)
-  - [CodeSandbox Projects](#codesandbox-projects)
-  - [OCAP Service CheatSheet](#ocap-service-cheatsheet)
-  - [Contributors](#contributors)
-  - [License](#license)
+* [Notes](#notes)
+* [Install](#install)
+* [Usage](#usage)
+* [Documentation](#documentation)
+* [Starter Templates](#starter-templates)
+* [CodeSandbox Projects](#codesandbox-projects)
+* [OCAP Service CheatSheet](#ocap-service-cheatsheet)
+* [Contributors](#contributors)
+* [License](#license)
 
 
 ## Notes

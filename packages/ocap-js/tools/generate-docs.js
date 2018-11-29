@@ -69,7 +69,7 @@ dataSources.map(dataSource => {
         if (x.name === 'paging') {
           obj.paging = paging;
         } else {
-          obj[x.name] = x.type.ofType.name === 'String' ? 'abc' : 123;
+          obj[x.name] = x.type.ofType.name.indexOf('String') > -1 ? 'abc' : 123;
         }
 
         return obj;
