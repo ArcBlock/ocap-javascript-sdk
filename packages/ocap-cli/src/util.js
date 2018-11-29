@@ -33,7 +33,6 @@ const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, tim
 
 function ensureCommand(commandName, installCommand, { forceLatest = false } = {}) {
   return new Promise((resolve, reject) => {
-    // TODO: install latest commandline tools
     exec(`which ${commandName}`, {}, async (err, stdout, stderr) => {
       if (err || forceLatest) {
         if (err) {
