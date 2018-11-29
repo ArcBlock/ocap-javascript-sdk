@@ -1,3 +1,4 @@
+/* eslint no-console:"off" */
 const fs = require('fs');
 const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
@@ -44,14 +45,14 @@ async function ensureWallet() {
       filter: x => x.trim(),
       when: args => args.type === TYPE_PRIVATE_KEY,
       validate: x => {
-	if (!x) {
-	  return 'privateKey should not be empty';
-	}
-	if (!EthUtil.isValidPrivate(Buffer.from(EthUtil.stripHexPrefix(x), 'hex'))) {
-	  return 'privateKey should be valid `0x` prefixed hex format';
-	}
+        if (!x) {
+          return 'privateKey should not be empty';
+        }
+        if (!EthUtil.isValidPrivate(Buffer.from(EthUtil.stripHexPrefix(x), 'hex'))) {
+          return 'privateKey should be valid `0x` prefixed hex format';
+        }
 
-	return true;
+        return true;
       },
     },
     {
@@ -103,7 +104,7 @@ async function ensureWallet() {
     for (let i = 0; i < 20; i++) {
       const path = `m/44'/60'/0'/0/${i}`;
       const childWallet = EthWallet.fromExtendedPrivateKey(
-	parentWallet.derivePath(path).privateExtendedKey()
+        parentWallet.derivePath(path).privateExtendedKey()
       );
       const address = childWallet.getAddressString();
       wallets[address] = childWallet;
@@ -112,11 +113,11 @@ async function ensureWallet() {
 
     const choice = await inquirer.prompt([
       {
-	type: 'list',
-	name: 'address',
-	default: TYPE_PRIVATE_KEY,
-	message: 'Choose wallet address from the list',
-	choices,
+        type: 'list',
+        name: 'address',
+        default: TYPE_PRIVATE_KEY,
+        message: 'Choose wallet address from the list',
+        choices,
       },
     ]);
 

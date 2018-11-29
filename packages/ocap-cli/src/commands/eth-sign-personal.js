@@ -1,7 +1,8 @@
+/* eslint no-console:"off" */
 const fs = require('fs');
 const EthUtil = require('ethereumjs-util');
 const SigUtil = require('eth-sig-util');
-const { ensureWallet, debug } = require('../util');
+const { ensureWallet } = require('../util');
 
 const action = async message => {
   const wallet = await ensureWallet();
