@@ -13,6 +13,7 @@ npm install -g @arcblock/ocap-cli
 ### Help
 
 ```shell
+❯ ocap
 Usage: ocap [options] [command]
 
 Options:
@@ -20,8 +21,9 @@ Options:
   -h, --help                                output usage information
 
 Commands:
+  dapp:create                               Bootstrap a new DAPP that have OCAP service SDK integrated
   eth:debugWallet                           Print wallet info detail such as type, address, privateKey, publicKey
-  eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore)
+  eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore, HD Wallet)
   eth:signPersonal [message]                Sign message with an ethereum wallet key to get a MetaMask compatible signature
   eth:verifyPersonal [message] [signature]  Verify a signature produced from eth:signPersonal
 ```
