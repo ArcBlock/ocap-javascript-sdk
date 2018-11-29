@@ -1,13 +1,17 @@
 /* eslint no-console:"off" */
 const fs = require('fs');
 const inquirer = require('inquirer');
+const chalk = require('chalk');
 const EthWallet = require('ethereumjs-wallet');
 const HDWallet = require('ethereumjs-wallet/hdkey');
 const EthUtil = require('ethereumjs-util');
 const BIP39 = require('bip39');
 const PasswordValidator = require('password-validator');
+const { exec, spawn } = require('child_process');
 
 const debug = require('debug')(require('../package.json').name);
+const cross = chalk.red('✘');
+const check = chalk.green('✔︎');
 
 const passwordValidator = new PasswordValidator();
 passwordValidator
@@ -24,6 +28,57 @@ passwordValidator
   .has()
   .not()
   .spaces();
+
+const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
+
+function ensureCommand(commandName, installCommand) {
+  return new Promise((resolve, reject) => {
+    // TODO: install latest commandline tools
+    exec(`which ${commandName}`, {}, async (err, stdout, stderr) => {
+      if (err) {
+        console.log(
+          `${cross} It seems ${commandName} is not installed, installing with: ${installCommand}...`
+        );
+        if (!installCommand) {
+          return reject(err);
+        }
+
+        const parts = installCommand.split(' ');
+        const child = spawn(parts.shift(), parts, {
+          cwd: process.cwd(),
+          detached: false,
+          stdio: 'inherit',
+        });
+
+        child.on('close', () => {
+          exec(`which ${commandName}`, {}, async (__err, __stdout, __stderr) => {
+            if (__stderr) {
+              console.error(__stderr);
+              return reject(__stderr);
+            }
+
+            console.log(`${check} ${commandName} is installed successfully!`);
+            await delay(2000);
+            resolve();
+          });
+        });
+
+        child.on('error', reject);
+        return;
+      }
+
+      debug('ensureCommand', { stdout, stderr, commandName, installCommand });
+      if (stderr) {
+        console.error(stderr);
+        return reject(stderr);
+      }
+
+      console.log(`${check} ${commandName} is already installed!`);
+      await delay(2000);
+      resolve();
+    });
+  });
+}
 
 async function ensureWallet() {
   const TYPE_PRIVATE_KEY = 'Private Key';
@@ -156,10 +211,13 @@ function saveKeystore(wallet, password) {
 }
 
 module.exports = {
+  ensureCommand,
   ensureWallet,
   printWallet,
   printAddress,
   saveKeystore,
   passwordValidator,
   debug,
+  cross,
+  check,
 };
