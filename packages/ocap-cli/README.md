@@ -38,6 +38,12 @@ Commands:
 ocap dapp:create
 ```
 
+Then you can start the DApp with:
+
+```shell
+ocap dapp:start
+```
+
 ### Sign personal message
 
 > Used when verify wallet address in [OCAP Developer Console](https://developer.ocap.io)
