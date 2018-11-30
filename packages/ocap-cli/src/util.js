@@ -1,5 +1,6 @@
 /* eslint no-console:"off" */
 const fs = require('fs');
+const path = require('path');
 const inquirer = require('inquirer');
 const chalk = require('chalk');
 const EthWallet = require('ethereumjs-wallet');
@@ -30,6 +31,16 @@ passwordValidator
   .spaces();
 
 const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
+
+function ensurePackageJson() {
+  const filePath = path.join(process.cwd(), 'package.json');
+  if (fs.existsSync(filePath) === false) {
+    console.log(`${cross} Oops package.json file not found on this directory`);
+    process.exit(0);
+  }
+
+  return JSON.parse(fs.readFileSync(filePath));
+}
 
 function ensureCommand(commandName, installCommand, { forceLatest = false } = {}) {
   return new Promise((resolve, reject) => {
@@ -213,6 +224,7 @@ function saveKeystore(wallet, password) {
 }
 
 module.exports = {
+  ensurePackageJson,
   ensureCommand,
   ensureWallet,
   printWallet,

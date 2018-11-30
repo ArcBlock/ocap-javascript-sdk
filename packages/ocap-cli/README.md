@@ -1,6 +1,6 @@
 # OCAP CLI
 
-> Command Line Tools to use together with OCAP, most are related to blockchain.
+> Command line tools to ease development for ArcBlock Developers
 
 ## Installation
 
@@ -10,9 +10,10 @@ npm install -g @arcblock/ocap-cli
 
 ## Usage
 
-### Help
+### Available Commands
 
 ```shell
+❯ ocap
 Usage: ocap [options] [command]
 
 Options:
@@ -20,10 +21,27 @@ Options:
   -h, --help                                output usage information
 
 Commands:
+  dapp:create                               Bootstrap a new DAPP that have OCAP service SDK integrated
+  dapp:build                                Build an DApp bootstrapped with `ocap dapp:create`
+  dapp:start                                Start an DApp bootstrapped with `ocap dapp:create`
   eth:debugWallet                           Print wallet info detail such as type, address, privateKey, publicKey
-  eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore)
+  eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore, HD Wallet)
   eth:signPersonal [message]                Sign message with an ethereum wallet key to get a MetaMask compatible signature
   eth:verifyPersonal [message] [signature]  Verify a signature produced from eth:signPersonal
+```
+
+### Bootstrap an DAPP
+
+> Used when bootstrap an DApp with our starter projects: [ocap-react-starter](https://github.com/ArcBlock/ocap-react-starter), [ocap-vue-starter](https://github.com/ArcBlock/ocap-vue-starter)
+
+```shell
+ocap dapp:create
+```
+
+Then you can start the DApp with:
+
+```shell
+ocap dapp:start
 ```
 
 ### Sign personal message
