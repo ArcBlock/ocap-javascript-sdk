@@ -22,6 +22,8 @@ Options:
 
 Commands:
   dapp:create                               Bootstrap a new DAPP that have OCAP service SDK integrated
+  dapp:build                                Build an DApp bootstrapped with `ocap dapp:create`
+  dapp:start                                Start an DApp bootstrapped with `ocap dapp:create`
   eth:debugWallet                           Print wallet info detail such as type, address, privateKey, publicKey
   eth:genWallet                             Generate an ethereum wallet (public/private key pair, keystore, HD Wallet)
   eth:signPersonal [message]                Sign message with an ethereum wallet key to get a MetaMask compatible signature
