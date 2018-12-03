@@ -58,18 +58,74 @@ dataSources.map(dataSource => {
     Mutations: client.getMutations(),
   };
 
-  // console.log(map.Queries.map(m => ({ name: m, args: client[m].args }))[0]);
+  const { types } = client._getSchema(dataSource);
+  const typesMap = types.reduce((map, x) => {
+    map[x.name] = x;
+    return map;
+  }, {});
 
-  const paging = { size: 10 };
+  const randomArgs = spec => {
+    const args = {};
+    spec.inputFields.forEach(x => {
+      // If list, we do not force it to be NON_NULL
+      if (x.type.kind === 'LIST') {
+        args[x.name] = [randomArgs(typesMap[x.type.ofType.name])];
+      }
+
+      // NULLABLE fields
+      if (x.type.kind === 'SCALAR') {
+        processArg(args, x.name, x.type);
+      }
+
+      // NON_NULLABLE fields
+      if (x.type.kind === 'NON_NULL') {
+        processArg(args, x.name, x.type.ofType);
+      }
+    });
+
+    // HACK: required here for single list
+    const keys = Object.keys(args);
+    if (keys.length === 1 && Array.isArray(args[keys[0]])) {
+      return args[keys[0]];
+    }
+
+    return args;
+  };
+
+  const processArg = (args, name, type) => {
+    if (['String', 'HexString'].includes(type.name)) {
+      args[name] = 'abc';
+    }
+    if (type.name === 'Boolean') {
+      args[name] = true;
+    }
+    if (type.name === 'DateTime') {
+      args[name] = new Date().toISOString();
+    }
+    if (['BigNumber', 'Int', 'Float'].includes(type.name)) {
+      args[name] = 123;
+    }
+    if (type.kind === 'INPUT_OBJECT') {
+      args[name] = randomArgs(typesMap[type.name]);
+    }
+  };
+
   const getResultFormat = m => {
     const args = client[m].args;
     const argValues = Object.values(args)
       .filter(x => x.type.kind === 'NON_NULL')
       .reduce((obj, x) => {
         if (x.name === 'paging') {
-          obj.paging = paging;
-        } else {
-          obj[x.name] = x.type.ofType.name.indexOf('String') > -1 ? 'abc' : 123;
+          obj.paging = { size: 10 };
+        }
+
+        if (x.type.ofType.kind === 'SCALAR') {
+          processArg(obj, x.name, x.type.ofType);
+        }
+
+        // process input_object
+        if (x.type.ofType.kind === 'INPUT_OBJECT') {
+          obj[x.name] = randomArgs(typesMap[x.type.ofType.name]);
         }
 
         return obj;
