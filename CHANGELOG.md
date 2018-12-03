@@ -1,3 +1,7 @@
+## 0.15.1 (December 03, 2018)
+  - (fix): support complex query variable generating and format
+  - update readme
+
 ## 0.15.0 (November 30, 2018)
   - (chore): upgrade ocap schema
   - update readme

@@ -87,6 +87,8 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
 /**
  * assemble graphql params
  *
+ * FIXME: the specs used here is not a full set of possible specs in keys contained in values
+ *
  * @param {*} values
  * @param {*} specs
  * @returns string
@@ -106,11 +108,26 @@ const formatArgs = (values, specs = {}) => {
     return isMissing;
   });
   if (isRequiredMissing) {
-    throw new Error(
-      `Missing required args {${missingArgs.toString()}} when generating graphql query`
-    );
+    const message = `Missing required args {${missingArgs.toString()}} when generating query`;
+    // console.error(message, values); // eslint-disable-line
+    throw new Error(message);
   }
 
+  const formatScalarArg = (type, value) => {
+    if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
+      return `"${value.toString()}"`;
+    } else {
+      return value.toString();
+    }
+  };
+
+  const formatObjectArg = arg => {
+    return `{ ${Object.keys(arg)
+      .map(key => `${key}: ${typeof arg[key] === 'number' ? arg[key] : `"${arg[key]}"`}`)
+      .join(', ')} }`;
+  };
+
+  // TODO: enum types not supported yet
   return Object.keys(values || {})
     .filter(x => specs[x])
     .map(x => {
@@ -118,20 +135,18 @@ const formatArgs = (values, specs = {}) => {
       const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
       let value = '';
       if (kind === 'SCALAR') {
-        if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
-          value = `"${values[x].toString()}"`;
-        } else {
-          value = values[x].toString();
-        }
+        value = formatScalarArg(type, values[x]);
+      } else if (Array.isArray(values[x])) {
+        value = `[${values[x]
+          .map(v => {
+            if (typeof v === 'object') {
+              return formatObjectArg(v);
+            }
+            return typeof v === 'number' ? v : `"${v}"`;
+          })
+          .join(',')}]`;
       } else {
-        value = `{ ${Object.keys(values[x])
-          .map(
-            key =>
-              `${key}: ${
-                typeof values[x][key] === 'number' ? values[x][key] : `"${values[x][key]}"`
-              }`
-          )
-          .join(', ')} }`;
+        value = formatObjectArg(values[x]);
       }
 
       return `${x}: ${value}`;
