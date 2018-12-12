@@ -602,7 +602,7 @@
 
 ```graphql
 {
-  cryptoHistoryPrice(endDate: "2018-12-03T04:25:40.710Z", startDate: "2018-12-03T04:25:40.710Z", token: "abc") {
+  cryptoHistoryPrice(endDate: "2018-12-12T09:45:12.032Z", startDate: "2018-12-12T09:45:12.032Z", token: "abc") {
     data {
       date
       price
