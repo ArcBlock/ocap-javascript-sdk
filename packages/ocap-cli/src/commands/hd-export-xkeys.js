@@ -37,6 +37,7 @@ const action = async () => {
 
   const master = HDKey.fromMasterSeed(BIP39.mnemonicToSeed(args.mnemonic));
   const child = master.derive(args.derivePath);
+  child.wipePrivateData();
   console.log(child.toJSON());
 
   process.exit(0);
