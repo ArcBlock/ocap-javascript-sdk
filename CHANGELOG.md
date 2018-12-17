@@ -1,3 +1,7 @@
+## 0.15.2 (December 17, 2018)
+  - (feat): add new command export extended keys from mnemonic
+  - update readme
+
 ## 0.15.1 (December 03, 2018)
   - (fix): support complex query variable generating and format
   - update readme
