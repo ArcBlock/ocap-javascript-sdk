@@ -1,3 +1,7 @@
+## 0.15.4 (December 19, 2018)
+  - (chore): upgrade ocap schema
+  - update readme
+
 ## 0.15.3 (December 17, 2018)
   - (feat): wipe xpriv when export xpriv key
   - update readme
