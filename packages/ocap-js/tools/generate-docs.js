@@ -2,8 +2,10 @@
 /* eslint indent:"off" */
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 const { parse, print } = require('graphql');
 const OCAPClient = require('../src/node');
+const $inspect = data => util.inspect(data, { depth: 8 });
 
 const genSectionDoc = (title, methods, lang = 'en') => {
   return `
@@ -102,7 +104,7 @@ dataSources.map(dataSource => {
     if (type.name === 'DateTime') {
       args[name] = new Date().toISOString();
     }
-    if (['BigNumber', 'Int', 'Float'].includes(type.name)) {
+    if (['BigNumber', 'Int', 'Float', 'Long'].includes(type.name)) {
       args[name] = 123;
     }
     if (type.kind === 'INPUT_OBJECT') {
@@ -130,6 +132,9 @@ dataSources.map(dataSource => {
 
         return obj;
       }, {});
+    // if (m === 'sendTransaction') {
+    //   $inspect({ m, args, argValues }, { depth: 5 });
+    // }
 
     return client[m].builder(argValues);
   };

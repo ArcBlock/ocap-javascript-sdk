@@ -141,7 +141,7 @@
             "name": "PagedBitcoinTransactions",
             "kind": "OBJECT"
           },
-          "name": "txsReceived",
+          "name": "transactions",
           "isDeprecated": false,
           "description": null,
           "deprecationReason": null,
@@ -153,30 +153,27 @@
                 "kind": "INPUT_OBJECT"
               },
               "name": "paging",
-              "description": null,
+              "description": "The common arguments for quering data with pagination.",
               "defaultValue": null
-            }
-          ]
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "PagedBitcoinTransactions",
-            "kind": "OBJECT"
-          },
-          "name": "txsSent",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": [
+            },
             {
               "type": {
                 "ofType": null,
-                "name": "PageInput",
+                "name": "BitcoinParticipantRole",
+                "kind": "ENUM"
+              },
+              "name": "role",
+              "description": "Filter the records by the role played by the account in transactions.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "TimeFilter",
                 "kind": "INPUT_OBJECT"
               },
-              "name": "paging",
-              "description": null,
+              "name": "timeFilter",
+              "description": "Filter the records by block height or time.",
               "defaultValue": null
             }
           ]
@@ -184,6 +181,47 @@
       ],
       "enumValues": null,
       "description": "The btcoin account object implements the Account interface for Bitcoin chain."
+    },
+    {
+      "possibleTypes": null,
+      "name": "BitcoinAddressFilter",
+      "kind": "INPUT_OBJECT",
+      "interfaces": null,
+      "inputFields": [
+        {
+          "type": {
+            "ofType": null,
+            "name": "TransactionDirection",
+            "kind": "ENUM"
+          },
+          "name": "direction",
+          "description": null,
+          "defaultValue": null
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "receiver",
+          "description": null,
+          "defaultValue": null
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "sender",
+          "description": null,
+          "defaultValue": null
+        }
+      ],
+      "fields": null,
+      "enumValues": null,
+      "description": "Filters the records by addresses."
     },
     {
       "possibleTypes": null,
@@ -259,7 +297,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "Float",
+            "name": "String",
             "kind": "SCALAR"
           },
           "name": "historyPrice",
@@ -462,11 +500,41 @@
             {
               "type": {
                 "ofType": null,
+                "name": "BitcoinAddressFilter",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "addressFilter",
+              "description": "Filters the records by addresses.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Int",
+                "kind": "SCALAR"
+              },
+              "name": "fromIndex",
+              "description": "The index of the transaction from which to return.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
                 "name": "PageInput",
                 "kind": "INPUT_OBJECT"
               },
               "name": "paging",
-              "description": null,
+              "description": "The common arguments for quering data with pagination.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "Int",
+                "kind": "SCALAR"
+              },
+              "name": "toIndex",
+              "description": "The index of the transaction to which to return.",
               "defaultValue": null
             }
           ]
@@ -580,7 +648,7 @@
                 "kind": "INPUT_OBJECT"
               },
               "name": "paging",
-              "description": null,
+              "description": "The common arguments for quering data with pagination.",
               "defaultValue": null
             }
           ]
@@ -675,6 +743,41 @@
     },
     {
       "possibleTypes": null,
+      "name": "BitcoinParticipantRole",
+      "kind": "ENUM",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": [
+        {
+          "name": "BOTH",
+          "isDeprecated": false,
+          "description": "The account is a sender and a receiver in the transactions at the same time.",
+          "deprecationReason": null
+        },
+        {
+          "name": "EITHER",
+          "isDeprecated": false,
+          "description": "The account a sender or a receiver in the transactions.",
+          "deprecationReason": null
+        },
+        {
+          "name": "RECEIVER",
+          "isDeprecated": false,
+          "description": "The account is a receiver in the transactions.",
+          "deprecationReason": null
+        },
+        {
+          "name": "SENDER",
+          "isDeprecated": false,
+          "description": "The account is a sender in the transactions.",
+          "deprecationReason": null
+        }
+      ],
+      "description": "Represents the role that an account plays in a transaction."
+    },
+    {
+      "possibleTypes": null,
       "name": "BitcoinTransaction",
       "kind": "OBJECT",
       "interfaces": [],
@@ -763,7 +866,7 @@
         {
           "type": {
             "ofType": null,
-            "name": "Float",
+            "name": "String",
             "kind": "SCALAR"
           },
           "name": "historyPrice",
@@ -806,7 +909,7 @@
                 "kind": "INPUT_OBJECT"
               },
               "name": "paging",
-              "description": null,
+              "description": "The common arguments for quering data with pagination.",
               "defaultValue": null
             }
           ]
@@ -877,7 +980,7 @@
                 "kind": "INPUT_OBJECT"
               },
               "name": "paging",
-              "description": null,
+              "description": "The common arguments for quering data with pagination.",
               "defaultValue": null
             }
           ]
@@ -1600,53 +1703,6 @@
         {
           "type": {
             "ofType": null,
-            "name": "PagedBitcoinBlocks",
-            "kind": "OBJECT"
-          },
-          "name": "blocksByHeight",
-          "isDeprecated": false,
-          "description": "Returns blockks with paginations based on their height.",
-          "deprecationReason": null,
-          "args": [
-            {
-              "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Int",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "fromHeight",
-              "description": "The height of block from which to return.",
-              "defaultValue": null
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "PageInput",
-                "kind": "INPUT_OBJECT"
-              },
-              "name": "paging",
-              "description": "Describes which page of data to return.",
-              "defaultValue": null
-            },
-            {
-              "type": {
-                "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
-              },
-              "name": "toHeight",
-              "description": "The height of block to which to return.",
-              "defaultValue": null
-            }
-          ]
-        },
-        {
-          "type": {
-            "ofType": null,
             "name": "PagedCryptoHistoryPrice",
             "kind": "OBJECT"
           },
@@ -1722,20 +1778,6 @@
           "args": [
             {
               "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Int",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "fromHeight",
-              "description": "The height of block from which to return.",
-              "defaultValue": null
-            },
-            {
-              "type": {
                 "ofType": null,
                 "name": "PageInput",
                 "kind": "INPUT_OBJECT"
@@ -1747,11 +1789,11 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
+                "name": "TimeFilter",
+                "kind": "INPUT_OBJECT"
               },
-              "name": "toHeight",
-              "description": "The height of block to which to return.",
+              "name": "timeFilter",
+              "description": "Filters the records by block height or time.",
               "defaultValue": null
             }
           ]
@@ -1767,6 +1809,82 @@
           "description": "Returns the genesis block.",
           "deprecationReason": null,
           "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "PagedBitcoinBlocks",
+            "kind": "OBJECT"
+          },
+          "name": "listBlocks",
+          "isDeprecated": false,
+          "description": "Returns blockks with paginations based on height or time.",
+          "deprecationReason": null,
+          "args": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "PageInput",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "paging",
+              "description": "Describes which page of data to return.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "TimeFilter",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "timeFilter",
+              "description": "Filters the records by block height or time.",
+              "defaultValue": null
+            }
+          ]
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "PagedBitcoinTransactions",
+            "kind": "OBJECT"
+          },
+          "name": "listTransactions",
+          "isDeprecated": false,
+          "description": "Returns transactions with paginations.",
+          "deprecationReason": null,
+          "args": [
+            {
+              "type": {
+                "ofType": null,
+                "name": "BitcoinAddressFilter",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "addressFilter",
+              "description": "Filter the records by addresses.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "PageInput",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "paging",
+              "description": "Describes which page of data to return.",
+              "defaultValue": null
+            },
+            {
+              "type": {
+                "ofType": null,
+                "name": "TimeFilter",
+                "kind": "INPUT_OBJECT"
+              },
+              "name": "timeFilter",
+              "description": "Filters the records by block height or time.",
+              "defaultValue": null
+            }
+          ]
         },
         {
           "type": {
@@ -1984,20 +2102,6 @@
           "args": [
             {
               "type": {
-                "ofType": {
-                  "ofType": null,
-                  "name": "Int",
-                  "kind": "SCALAR"
-                },
-                "name": null,
-                "kind": "NON_NULL"
-              },
-              "name": "fromHeight",
-              "description": "The height of block from which to return.",
-              "defaultValue": null
-            },
-            {
-              "type": {
                 "ofType": null,
                 "name": "PageInput",
                 "kind": "INPUT_OBJECT"
@@ -2009,11 +2113,11 @@
             {
               "type": {
                 "ofType": null,
-                "name": "Int",
-                "kind": "SCALAR"
+                "name": "TimeFilter",
+                "kind": "INPUT_OBJECT"
               },
-              "name": "toHeight",
-              "description": "The height of block to which to return.",
+              "name": "timeFilter",
+              "description": "Filters the records by block height or time.",
               "defaultValue": null
             }
           ]
@@ -2120,6 +2224,86 @@
       ],
       "enumValues": null,
       "description": null
+    },
+    {
+      "possibleTypes": null,
+      "name": "TimeFilter",
+      "kind": "INPUT_OBJECT",
+      "interfaces": null,
+      "inputFields": [
+        {
+          "type": {
+            "ofType": null,
+            "name": "DateTime",
+            "kind": "SCALAR"
+          },
+          "name": "endDateTime",
+          "description": null,
+          "defaultValue": null
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Int",
+            "kind": "SCALAR"
+          },
+          "name": "fromHeight",
+          "description": null,
+          "defaultValue": null
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "DateTime",
+            "kind": "SCALAR"
+          },
+          "name": "startDateTime",
+          "description": null,
+          "defaultValue": null
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Int",
+            "kind": "SCALAR"
+          },
+          "name": "toHeight",
+          "description": null,
+          "defaultValue": null
+        }
+      ],
+      "fields": null,
+      "enumValues": null,
+      "description": "Filters the records by block height or time."
+    },
+    {
+      "possibleTypes": null,
+      "name": "TransactionDirection",
+      "kind": "ENUM",
+      "interfaces": null,
+      "inputFields": null,
+      "fields": null,
+      "enumValues": [
+        {
+          "name": "MUTUAL",
+          "isDeprecated": false,
+          "description": "Informs the server to return transactions between two addresses.",
+          "deprecationReason": null
+        },
+        {
+          "name": "ONE_WAY",
+          "isDeprecated": false,
+          "description": "Informs the server to only return transactions sent from sender to receiver.",
+          "deprecationReason": null
+        },
+        {
+          "name": "UNION",
+          "isDeprecated": false,
+          "description": "Informs the server to return transactions sent by sender or received by receiver.",
+          "deprecationReason": null
+        }
+      ],
+      "description": "Represents the transaction direction."
     },
     {
       "possibleTypes": null,
@@ -2457,6 +2641,168 @@
     },
     {
       "possibleTypes": null,
+      "name": "__Directive",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__InputValue",
+              "kind": "OBJECT"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "args",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": {
+              "ofType": null,
+              "name": "__DirectiveLocation",
+              "kind": "ENUM"
+            },
+            "name": null,
+            "kind": "LIST"
+          },
+          "name": "locations",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onField",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FIELD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onFragment",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "onOperation",
+          "isDeprecated": true,
+          "description": null,
+          "deprecationReason": "Check `locations` field for enum value OPERATION",
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": "Represents a directive"
+    },
+    {
+      "possibleTypes": null,
+      "name": "__InputValue",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "defaultValue",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "__Type",
+            "kind": "OBJECT"
+          },
+          "name": "type",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": null
+    },
+    {
+      "possibleTypes": null,
       "name": "__DirectiveLocation",
       "kind": "ENUM",
       "interfaces": null,
@@ -2671,6 +3017,65 @@
     },
     {
       "possibleTypes": null,
+      "name": "__EnumValue",
+      "kind": "OBJECT",
+      "interfaces": [],
+      "inputFields": null,
+      "fields": [
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "deprecationReason",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "description",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "Boolean",
+            "kind": "SCALAR"
+          },
+          "name": "isDeprecated",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        },
+        {
+          "type": {
+            "ofType": null,
+            "name": "String",
+            "kind": "SCALAR"
+          },
+          "name": "name",
+          "isDeprecated": false,
+          "description": null,
+          "deprecationReason": null,
+          "args": []
+        }
+      ],
+      "enumValues": null,
+      "description": null
+    },
+    {
+      "possibleTypes": null,
       "name": "__Field",
       "kind": "OBJECT",
       "interfaces": [],
@@ -2834,227 +3239,6 @@
       ],
       "enumValues": null,
       "description": "Represents a schema"
-    },
-    {
-      "possibleTypes": null,
-      "name": "__Directive",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__InputValue",
-              "kind": "OBJECT"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "args",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": {
-              "ofType": null,
-              "name": "__DirectiveLocation",
-              "kind": "ENUM"
-            },
-            "name": null,
-            "kind": "LIST"
-          },
-          "name": "locations",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onField",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FIELD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onFragment",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value FRAGMENT_SPREAD",
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "onOperation",
-          "isDeprecated": true,
-          "description": null,
-          "deprecationReason": "Check `locations` field for enum value OPERATION",
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": "Represents a directive"
-    },
-    {
-      "possibleTypes": null,
-      "name": "__EnumValue",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "deprecationReason",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "Boolean",
-            "kind": "SCALAR"
-          },
-          "name": "isDeprecated",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": null
-    },
-    {
-      "possibleTypes": null,
-      "name": "__InputValue",
-      "kind": "OBJECT",
-      "interfaces": [],
-      "inputFields": null,
-      "fields": [
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "defaultValue",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "description",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "String",
-            "kind": "SCALAR"
-          },
-          "name": "name",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        },
-        {
-          "type": {
-            "ofType": null,
-            "name": "__Type",
-            "kind": "OBJECT"
-          },
-          "name": "type",
-          "isDeprecated": false,
-          "description": null,
-          "deprecationReason": null,
-          "args": []
-        }
-      ],
-      "enumValues": null,
-      "description": null
     }
   ],
   "subscriptionType": {
