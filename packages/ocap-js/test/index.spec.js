@@ -176,7 +176,6 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
         const { listBlocks: blocks2 } = await blocks.next();
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
-        expect(typeof blocks2.next === 'function').toBeFalsy();
         expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
       },
       8000
