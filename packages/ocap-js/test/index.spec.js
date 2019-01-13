@@ -65,7 +65,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
       expect(typeof client.accountByAddress).toEqual('function');
       expect(typeof client.blockByHash).toEqual('function');
       expect(typeof client.blockByHeight).toEqual('function');
-      expect(typeof client.blocksByHeight).toEqual('function');
+      expect(typeof client.listBlocks).toEqual('function');
       expect(typeof client.transactionByHash).toEqual('function');
     });
 
@@ -78,7 +78,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
       expect(typeof client.accountByAddress).toEqual('function');
       expect(typeof client.blockByHash).toEqual('function');
       expect(typeof client.blockByHeight).toEqual('function');
-      expect(typeof client.blocksByHeight).toEqual('function');
+      expect(typeof client.listBlocks).toEqual('function');
       expect(typeof client.transactionByHash).toEqual('function');
     });
 
@@ -155,28 +155,27 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
     );
 
     test(
-      'should query method {blocksByHeight} work as expected',
+      'should query method {listBlocks} work as expected',
       async () => {
         const client = new Client({
           httpEndpoint,
           dataSource: 'eth',
         });
 
-        const { blocksByHeight: blocks } = await client.blocksByHeight(
+        const { listBlocks: blocks } = await client.listBlocks(
+          { paging: { size: 1 } },
           {
             fromHeight: 1000000,
             toHeight: 1000019,
-          },
-          { paging: { size: 1 } }
+          }
         );
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
         expect(typeof blocks.next === 'function').toBeTruthy();
 
-        const { blocksByHeight: blocks2 } = await blocks.next();
+        const { listBlocks: blocks2 } = await blocks.next();
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
-        expect(typeof blocks2.next === 'function').toBeFalsy();
         expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
       },
       8000

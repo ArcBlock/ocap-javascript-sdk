@@ -12,10 +12,11 @@
   * [blockByHash](#blockbyhash)
   * [blockByHeight](#blockbyheight)
   * [blockchainInfo](#blockchaininfo)
-  * [blocksByHeight](#blocksbyheight)
   * [cryptoHistoryPrice](#cryptohistoryprice)
   * [emptyBlocks](#emptyblocks)
   * [genesisBlock](#genesisblock)
+  * [listBlocks](#listblocks)
+  * [listTransactions](#listtransactions)
   * [richestAccounts](#richestaccounts)
   * [transactionByHash](#transactionbyhash)
   * [transactionByIndex](#transactionbyindex)
@@ -53,74 +54,7 @@
     subKeys
     totalAmountReceived
     totalAmountSent
-    txsReceived {
-      data {
-        blockHash
-        blockHeight
-        fees
-        feesOverWeight
-        hash
-        historyPrice
-        index
-        lockTime
-        numberInputs
-        numberOutputs
-        priceInUsd
-        size
-        strippedSize
-        time
-        total
-        version
-        virtualSize
-        weight
-        witnessHash
-        inputs {
-          data {
-            account
-            blockHash
-            blockHeight
-            index
-            preOutput
-            preTx
-            script
-            scriptType
-            sequence
-            txHash
-            txIndex
-            value
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
-        outputs {
-          data {
-            account
-            blockHash
-            blockHeight
-            index
-            script
-            scriptType
-            txHash
-            txIndex
-            value
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
-      }
-      page {
-        cursor
-        next
-        total
-      }
-    }
-    txsSent {
+    transactions {
       data {
         blockHash
         blockHeight
@@ -231,6 +165,34 @@
       subKeys
       totalAmountReceived
       totalAmountSent
+      transactions {
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          historyPrice
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          time
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
     }
     transactions {
       data {
@@ -343,6 +305,34 @@
       subKeys
       totalAmountReceived
       totalAmountSent
+      transactions {
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          historyPrice
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          time
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
     }
     transactions {
       data {
@@ -507,88 +497,6 @@
 }
 ```
 
-### blocksByHeight
-
-#### 参数列表
-
-* **fromHeight**, **必须**, The height of block from which to return.
-* **paging**, 可选, Describes which page of data to return.
-* **toHeight**, 可选, The height of block to which to return.
-
-#### 查询串
-
-```graphql
-{
-  blocksByHeight(fromHeight: 123) {
-    data {
-      bits
-      fees
-      hash
-      height
-      historyPrice
-      medianTime
-      merkleRoot
-      nonce
-      numberTxs
-      preHash
-      priceInUsd
-      reward
-      size
-      strippedSize
-      time
-      total
-      version
-      weight
-      miner {
-        address
-        balance
-        numberTxsReceived
-        numberTxsSent
-        priceInUsd
-        pubKey
-        scriptType
-        subKeys
-        totalAmountReceived
-        totalAmountSent
-      }
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          fees
-          feesOverWeight
-          hash
-          historyPrice
-          index
-          lockTime
-          numberInputs
-          numberOutputs
-          priceInUsd
-          size
-          strippedSize
-          time
-          total
-          version
-          virtualSize
-          weight
-          witnessHash
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
-    }
-    page {
-      cursor
-      next
-      total
-    }
-  }
-}
-```
-
 ### cryptoHistoryPrice
 
 #### 参数列表
@@ -602,7 +510,7 @@
 
 ```graphql
 {
-  cryptoHistoryPrice(endDate: "2018-12-19T07:23:59.847Z", startDate: "2018-12-19T07:23:59.847Z", token: "abc") {
+  cryptoHistoryPrice(endDate: "2019-01-12T23:57:50.980Z", startDate: "2019-01-12T23:57:50.980Z", token: "abc") {
     data {
       date
       price
@@ -620,15 +528,14 @@
 
 #### 参数列表
 
-* **fromHeight**, **必须**, The height of block from which to return.
 * **paging**, 可选, Describes which page of data to return.
-* **toHeight**, 可选, The height of block to which to return.
+* **timeFilter**, 可选, Filters the records by block height or time.
 
 #### 查询串
 
 ```graphql
 {
-  emptyBlocks(fromHeight: 123) {
+  emptyBlocks {
     data {
       bits
       fees
@@ -659,6 +566,34 @@
         subKeys
         totalAmountReceived
         totalAmountSent
+        transactions {
+          data {
+            blockHash
+            blockHeight
+            fees
+            feesOverWeight
+            hash
+            historyPrice
+            index
+            lockTime
+            numberInputs
+            numberOutputs
+            priceInUsd
+            size
+            strippedSize
+            time
+            total
+            version
+            virtualSize
+            weight
+            witnessHash
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       transactions {
         data {
@@ -738,6 +673,34 @@
       subKeys
       totalAmountReceived
       totalAmountSent
+      transactions {
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          historyPrice
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          time
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
     }
     transactions {
       data {
@@ -810,29 +773,78 @@
 }
 ```
 
-### richestAccounts
+### listBlocks
 
 #### 参数列表
 
 * **paging**, 可选, Describes which page of data to return.
+* **timeFilter**, 可选, Filters the records by block height or time.
 
 #### 查询串
 
 ```graphql
 {
-  richestAccounts {
+  listBlocks {
     data {
-      address
-      balance
-      numberTxsReceived
-      numberTxsSent
+      bits
+      fees
+      hash
+      height
+      historyPrice
+      medianTime
+      merkleRoot
+      nonce
+      numberTxs
+      preHash
       priceInUsd
-      pubKey
-      scriptType
-      subKeys
-      totalAmountReceived
-      totalAmountSent
-      txsReceived {
+      reward
+      size
+      strippedSize
+      time
+      total
+      version
+      weight
+      miner {
+        address
+        balance
+        numberTxsReceived
+        numberTxsSent
+        priceInUsd
+        pubKey
+        scriptType
+        subKeys
+        totalAmountReceived
+        totalAmountSent
+        transactions {
+          data {
+            blockHash
+            blockHeight
+            fees
+            feesOverWeight
+            hash
+            historyPrice
+            index
+            lockTime
+            numberInputs
+            numberOutputs
+            priceInUsd
+            size
+            strippedSize
+            time
+            total
+            version
+            virtualSize
+            weight
+            witnessHash
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
+      }
+      transactions {
         data {
           blockHash
           blockHeight
@@ -860,7 +872,121 @@
           total
         }
       }
-      txsSent {
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+```
+
+### listTransactions
+
+#### 参数列表
+
+* **addressFilter**, 可选, Filter the records by addresses.
+* **paging**, 可选, Describes which page of data to return.
+* **timeFilter**, 可选, Filters the records by block height or time.
+
+#### 查询串
+
+```graphql
+{
+  listTransactions {
+    data {
+      blockHash
+      blockHeight
+      fees
+      feesOverWeight
+      hash
+      historyPrice
+      index
+      lockTime
+      numberInputs
+      numberOutputs
+      priceInUsd
+      size
+      strippedSize
+      time
+      total
+      version
+      virtualSize
+      weight
+      witnessHash
+      inputs {
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          preOutput
+          preTx
+          script
+          scriptType
+          sequence
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+      outputs {
+        data {
+          account
+          blockHash
+          blockHeight
+          index
+          script
+          scriptType
+          txHash
+          txIndex
+          value
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
+    }
+    page {
+      cursor
+      next
+      total
+    }
+  }
+}
+```
+
+### richestAccounts
+
+#### 参数列表
+
+* **paging**, 可选, Describes which page of data to return.
+
+#### 查询串
+
+```graphql
+{
+  richestAccounts {
+    data {
+      address
+      balance
+      numberTxsReceived
+      numberTxsSent
+      priceInUsd
+      pubKey
+      scriptType
+      subKeys
+      totalAmountReceived
+      totalAmountSent
+      transactions {
         data {
           blockHash
           blockHeight
@@ -1216,15 +1342,14 @@
 
 #### 参数列表
 
-* **fromHeight**, **必须**, The height of block from which to return.
 * **paging**, 可选, Describes which page of data to return.
-* **toHeight**, 可选, The height of block to which to return.
+* **timeFilter**, 可选, Filters the records by block height or time.
 
 #### 查询串
 
 ```graphql
 {
-  zeroFeesBlocks(fromHeight: 123) {
+  zeroFeesBlocks {
     data {
       bits
       fees
@@ -1255,6 +1380,34 @@
         subKeys
         totalAmountReceived
         totalAmountSent
+        transactions {
+          data {
+            blockHash
+            blockHeight
+            fees
+            feesOverWeight
+            hash
+            historyPrice
+            index
+            lockTime
+            numberInputs
+            numberOutputs
+            priceInUsd
+            size
+            strippedSize
+            time
+            total
+            version
+            virtualSize
+            weight
+            witnessHash
+          }
+          page {
+            cursor
+            next
+            total
+          }
+        }
       }
       transactions {
         data {
@@ -1556,6 +1709,34 @@ subscription {
       subKeys
       totalAmountReceived
       totalAmountSent
+      transactions {
+        data {
+          blockHash
+          blockHeight
+          fees
+          feesOverWeight
+          hash
+          historyPrice
+          index
+          lockTime
+          numberInputs
+          numberOutputs
+          priceInUsd
+          size
+          strippedSize
+          time
+          total
+          version
+          virtualSize
+          weight
+          witnessHash
+        }
+        page {
+          cursor
+          next
+          total
+        }
+      }
     }
     transactions {
       data {

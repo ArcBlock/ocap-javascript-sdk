@@ -111,7 +111,7 @@ const formatArgs = (values, specs = {}) => {
   });
   if (isRequiredMissing) {
     const message = `Missing required args {${missingArgs.toString()}} when generating query`;
-    // console.error(message, values); // eslint-disable-line
+    // console.error(message, values, specs); // eslint-disable-line
     throw new Error(message);
   }
 
