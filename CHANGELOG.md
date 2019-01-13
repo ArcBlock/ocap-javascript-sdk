@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-## 0.15.2 (December 12, 2018)
-  - (chore): upgrade ocap sdk
-=======
 ## 0.16.0 (January 13, 2019)
   - chore: upgrade to latest ocap schema [**Breaking Change**]
   - fix: test case
@@ -17,7 +13,6 @@
 
 ## 0.15.2 (December 17, 2018)
   - (feat): add new command export extended keys from mnemonic
->>>>>>> master
   - update readme
 
 ## 0.15.1 (December 03, 2018)
