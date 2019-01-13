@@ -1,3 +1,8 @@
+## 0.16.0 (January 13, 2019)
+  - chore: upgrade to latest ocap schema [**Breaking Change**]
+  - fix: test case
+  - fix: doc generating script
+
 ## 0.15.4 (December 19, 2018)
   - (chore): upgrade ocap schema
   - update readme
