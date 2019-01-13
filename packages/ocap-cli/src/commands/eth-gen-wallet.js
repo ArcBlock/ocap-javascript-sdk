@@ -3,27 +3,23 @@ const BIP39 = require('bip39');
 const chalk = require('chalk');
 const inquirer = require('inquirer');
 const EthWallet = require('ethereumjs-wallet');
-const { debug, printWallet, passwordValidator, saveKeystore } = require('../util');
+const { debug, printWallet, passwordValidator, saveKeystore, types } = require('../util');
 
 const action = async () => {
-  const TYPE_PRIVATE_KEY = 'Private Key';
-  const TYPE_KEY_STORE = 'Key Store File';
-  const TYPE_HD_WALLET = 'HD Wallet';
-
   const prompts = [
     {
       type: 'list',
       name: 'type',
-      default: TYPE_PRIVATE_KEY,
+      default: types.PRIVATE_KEY,
       message: 'Which kind of wallet do you want to generate',
-      choices: [TYPE_PRIVATE_KEY, TYPE_KEY_STORE, TYPE_HD_WALLET],
+      choices: [types.PRIVATE_KEY, types.KEY_STORE, types.HD_WALLET],
     },
     {
       type: 'password',
       name: 'password',
       message: 'Please enter the password for keystore',
       filter: x => x.trim(),
-      when: args => args.type === TYPE_KEY_STORE,
+      when: args => args.type === types.KEY_STORE,
       validate: x => {
         if (!x) {
           return 'password should not be empty';
@@ -35,13 +31,22 @@ const action = async () => {
         return true;
       },
     },
+    {
+      type: 'list',
+      name: 'entropyLength',
+      message: 'Select a mnemonic length',
+      default: '12',
+      filter: x => (x / 3) * 32,
+      when: args => args.type === types.HD_WALLET,
+      choices: [12, 15, 18, 21, 24].map(x => x.toString()),
+    },
   ];
 
   const args = await inquirer.prompt(prompts);
   debug('genWallet.args', args);
 
-  if (args.type === TYPE_HD_WALLET) {
-    const mnemonic = BIP39.generateMnemonic(128);
+  if (args.type === types.HD_WALLET) {
+    const mnemonic = BIP39.generateMnemonic(Number(args.entropyLength));
     console.log('');
     console.log(chalk.red('Please keep the following mnemonic words to somewhere safe'));
     console.log('='.repeat(80));
@@ -50,10 +55,10 @@ const action = async () => {
     console.log('');
   } else {
     const wallet = EthWallet.generate();
-    if (args.type === TYPE_PRIVATE_KEY) {
+    if (args.type === types.PRIVATE_KEY) {
       printWallet(wallet, true);
     }
-    if (args.type === TYPE_KEY_STORE) {
+    if (args.type === types.KEY_STORE) {
       saveKeystore(wallet, args.password);
     }
   }

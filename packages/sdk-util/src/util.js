@@ -61,6 +61,7 @@ const resolveFieldTree = (type, depth, map) => {
 const makeQuery = (fields, ignoreFields, argValues = {}) => `
   ${fields.scalar
     .filter(x => !ignoreFields.some(y => (y instanceof RegExp ? y.test(x.path) : y === x.path)))
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map(x => x.name)
     .join('\n')}
   ${
@@ -68,6 +69,7 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
       ? fields.object
           .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
           .filter(x => ignoreFields.includes(x.path) === false)
+          .sort((a, b) => a.name.localeCompare(b.name))
           .map(x => {
             const argStr = Object.keys(x.args).length
               ? `${formatArgs(argValues[x.path] || {}, x.args)}`
@@ -109,7 +111,7 @@ const formatArgs = (values, specs = {}) => {
   });
   if (isRequiredMissing) {
     const message = `Missing required args {${missingArgs.toString()}} when generating query`;
-    // console.error(message, values); // eslint-disable-line
+    // console.error(message, values, specs); // eslint-disable-line
     throw new Error(message);
   }
 

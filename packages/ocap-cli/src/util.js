@@ -32,6 +32,12 @@ passwordValidator
 
 const delay = (timeout = 1000) => new Promise(resolve => setTimeout(resolve, timeout));
 
+const types = Object.freeze({
+  PRIVATE_KEY: 'Private Key',
+  KEY_STORE: 'Key Store File',
+  HD_WALLET: 'HD Wallet',
+});
+
 function ensurePackageJson() {
   const filePath = path.join(process.cwd(), 'package.json');
   if (fs.existsSync(filePath) === false) {
@@ -94,24 +100,20 @@ function ensureCommand(commandName, installCommand, { forceLatest = false } = {}
 }
 
 async function ensureWallet() {
-  const TYPE_PRIVATE_KEY = 'Private Key';
-  const TYPE_KEY_STORE = 'Key Store File';
-  const TYPE_HD_WALLET = 'HD Wallet';
-
   const prompts = [
     {
       type: 'list',
       name: 'type',
-      default: TYPE_PRIVATE_KEY,
+      default: types.PRIVATE_KEY,
       message: 'How to unlock the ethereum wallet',
-      choices: [TYPE_PRIVATE_KEY, TYPE_KEY_STORE, TYPE_HD_WALLET],
+      choices: [types.PRIVATE_KEY, types.KEY_STORE, types.HD_WALLET],
     },
     {
       type: 'password',
       name: 'privateKey',
       message: 'Please enter the privateKey',
       filter: x => x.trim(),
-      when: args => args.type === TYPE_PRIVATE_KEY,
+      when: args => args.type === types.PRIVATE_KEY,
       validate: x => {
         if (!x) {
           return 'privateKey should not be empty';
@@ -127,7 +129,7 @@ async function ensureWallet() {
       type: 'password',
       name: 'mnemonic',
       message: 'Please enter the mnemonic for HD Wallet',
-      when: args => args.type === TYPE_HD_WALLET,
+      when: args => args.type === types.HD_WALLET,
       filter: x => x.trim(),
       validate: x => !!x,
     },
@@ -135,7 +137,7 @@ async function ensureWallet() {
       type: 'input',
       name: 'keystoreFile',
       message: 'Please enter the file path of key store file',
-      when: args => args.type === TYPE_KEY_STORE,
+      when: args => args.type === types.KEY_STORE,
       filter: x => x.trim(),
       validate: x => !!x && fs.existsSync(x),
     },
@@ -143,7 +145,7 @@ async function ensureWallet() {
       type: 'password',
       name: 'keystorePassword',
       message: 'Please enter key store file password',
-      when: args => args.type === TYPE_KEY_STORE,
+      when: args => args.type === types.KEY_STORE,
       filter: x => x.trim(),
       validate: x => !!x,
     },
@@ -153,19 +155,19 @@ async function ensureWallet() {
   debug('signMessage.args', args);
 
   let wallet = null;
-  if (args.type === TYPE_PRIVATE_KEY) {
+  if (args.type === types.PRIVATE_KEY) {
     try {
       wallet = EthWallet.fromExtendedPrivateKey(args.privateKey);
     } catch (e) {
       wallet = EthWallet.fromPrivateKey(EthUtil.toBuffer(args.privateKey));
     }
   }
-  if (args.type === TYPE_KEY_STORE) {
+  if (args.type === types.KEY_STORE) {
     const keystoreFile = fs.readFileSync(args.keystoreFile).toString();
     wallet = EthWallet.fromV3(keystoreFile, args.keystorePassword, true);
   }
 
-  if (args.type === TYPE_HD_WALLET) {
+  if (args.type === types.HD_WALLET) {
     const parentWallet = HDWallet.fromMasterSeed(BIP39.mnemonicToSeed(args.mnemonic));
     const wallets = {};
     const choices = [];
@@ -183,7 +185,7 @@ async function ensureWallet() {
       {
         type: 'list',
         name: 'address',
-        default: TYPE_PRIVATE_KEY,
+        default: '',
         message: 'Choose wallet address from the list',
         choices,
       },
@@ -235,4 +237,5 @@ module.exports = {
   cross,
   check,
   delay,
+  types,
 };
