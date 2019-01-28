@@ -248,6 +248,52 @@ const getMutationBuilders = ({ types, rootName, ignoreFields }) =>
 const getSubscriptionBuilders = ({ types, rootName, ignoreFields }) =>
   getGraphQLBuilders({ types, rootName, ignoreFields, type: 'subscription' });
 
+const randomArgs = (spec, types) => {
+  const args = {};
+  spec.inputFields.forEach(x => {
+    // If list, we do not force it to be NON_NULL
+    if (x.type.kind === 'LIST') {
+      args[x.name] = [randomArgs(types[x.type.ofType.name], types)];
+    }
+
+    // NULLABLE fields
+    if (x.type.kind === 'SCALAR') {
+      args[x.name] = randomArg(x.type, types);
+    }
+
+    // NON_NULLABLE fields
+    if (x.type.kind === 'NON_NULL') {
+      args[x.name] = randomArg(x.type.ofType, types);
+    }
+  });
+
+  // HACK: required here for single list
+  const keys = Object.keys(args);
+  if (keys.length === 1 && Array.isArray(args[keys[0]])) {
+    return args[keys[0]];
+  }
+
+  return args;
+};
+
+const randomArg = (field, types) => {
+  if (['String', 'HexString'].includes(field.name)) {
+    return 'abc';
+  }
+  if (field.name === 'Boolean') {
+    return true;
+  }
+  if (field.name === 'DateTime') {
+    return new Date().toISOString();
+  }
+  if (['BigNumber', 'Int', 'Float', 'Long'].includes(field.name)) {
+    return 123;
+  }
+  if (field.kind === 'INPUT_OBJECT') {
+    return randomArgs(types[field.name], types);
+  }
+};
+
 module.exports = {
   getQueryBuilders,
   getMutationBuilders,
@@ -257,4 +303,6 @@ module.exports = {
   resolveFieldTree,
   makeQuery,
   formatArgs,
+  randomArgs,
+  randomArg,
 };
