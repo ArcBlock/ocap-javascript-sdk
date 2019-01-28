@@ -2,10 +2,11 @@
 /* eslint indent:"off" */
 const fs = require('fs');
 const path = require('path');
-const util = require('util');
+// const util = require('util');
 const { parse, print } = require('graphql');
+const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
 const OCAPClient = require('../src/node');
-const $inspect = data => util.inspect(data, { depth: 8 });
+// const $inspect = data => util.inspect(data, { depth: 8 });
 
 const genSectionDoc = (title, methods, lang = 'en') => {
   return `
@@ -66,52 +67,6 @@ dataSources.map(dataSource => {
     return map;
   }, {});
 
-  const randomArgs = spec => {
-    const args = {};
-    spec.inputFields.forEach(x => {
-      // If list, we do not force it to be NON_NULL
-      if (x.type.kind === 'LIST') {
-        args[x.name] = [randomArgs(typesMap[x.type.ofType.name])];
-      }
-
-      // NULLABLE fields
-      if (x.type.kind === 'SCALAR') {
-        processArg(args, x.name, x.type);
-      }
-
-      // NON_NULLABLE fields
-      if (x.type.kind === 'NON_NULL') {
-        processArg(args, x.name, x.type.ofType);
-      }
-    });
-
-    // HACK: required here for single list
-    const keys = Object.keys(args);
-    if (keys.length === 1 && Array.isArray(args[keys[0]])) {
-      return args[keys[0]];
-    }
-
-    return args;
-  };
-
-  const processArg = (args, name, type) => {
-    if (['String', 'HexString'].includes(type.name)) {
-      args[name] = 'abc';
-    }
-    if (type.name === 'Boolean') {
-      args[name] = true;
-    }
-    if (type.name === 'DateTime') {
-      args[name] = new Date().toISOString();
-    }
-    if (['BigNumber', 'Int', 'Float', 'Long'].includes(type.name)) {
-      args[name] = 123;
-    }
-    if (type.kind === 'INPUT_OBJECT') {
-      args[name] = randomArgs(typesMap[type.name]);
-    }
-  };
-
   const getResultFormat = m => {
     const args = client[m].args;
     const argValues = Object.values(args)
@@ -122,12 +77,12 @@ dataSources.map(dataSource => {
         }
 
         if (x.type.ofType.kind === 'SCALAR') {
-          processArg(obj, x.name, x.type.ofType);
+          obj[x.name] = randomArg(x.type.ofType, typesMap);
         }
 
         // process input_object
         if (x.type.ofType.kind === 'INPUT_OBJECT') {
-          obj[x.name] = randomArgs(typesMap[x.type.ofType.name]);
+          obj[x.name] = randomArgs(typesMap[x.type.ofType.name], typesMap);
         }
 
         return obj;
