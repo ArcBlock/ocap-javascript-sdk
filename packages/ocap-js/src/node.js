@@ -1,7 +1,9 @@
 const crypto = require('crypto');
 const qs = require('querystring');
 const EventEmitter = require('events');
+const randomBytes = require('randombytes');
 const { Socket } = require('phoenix-channels');
+
 const OCAPBaseClient = require('./base');
 
 const sortObjectKeys = params => {
@@ -32,9 +34,24 @@ class OCAPClient extends OCAPBaseClient {
   }
 
   _getAuthHeaders(query, variables) {
+    const headers = {};
+    const signature = this._getSignature(query, variables);
+    if (signature) {
+      headers.Authorization = signature;
+    }
+
+    const password = this._getEncryptedPassword();
+    if (password) {
+      headers['X-Asset-Password'] = password;
+    }
+
+    return headers;
+  }
+
+  _getSignature(query, variables) {
     const { accessKey, accessSecret } = this.config;
     if (!accessKey || !accessSecret) {
-      return {};
+      return '';
     }
 
     const timestamp = Math.floor(Date.now() / 1000);
@@ -48,9 +65,21 @@ class OCAPClient extends OCAPBaseClient {
     hmac.update(qs.stringify(sortedParams));
 
     const digest = hmac.digest('base64');
-    return {
-      Authorization: `AB1-HMAC-SHA256 access_key=${accessKey},timestamp=${timestamp},signature=${digest}`,
-    };
+    return `AB1-HMAC-SHA256 access_key=${accessKey},timestamp=${timestamp},signature=${digest}`;
+  }
+
+  _getEncryptedPassword() {
+    const { assetPassword, encryptionKey } = this.config;
+    if (!assetPassword || !encryptionKey) {
+      return '';
+    }
+
+    const key = Buffer.from(encryptionKey, 'base64');
+    const iv = randomBytes(16);
+    const cipher = crypto.createCipheriv('aes-256-cbc', key, iv);
+    return `${iv.toString('hex')}${cipher.update(assetPassword, 'utf8', 'hex')}${cipher.final(
+      'hex'
+    )}`.toUpperCase();
   }
 }
 
