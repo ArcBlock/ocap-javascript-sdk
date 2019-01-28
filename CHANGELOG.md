@@ -1,3 +1,7 @@
+## 0.16.3 (January 28, 2019)
+  - fix: array fields should be processed first when formatArgs
+  - update readme
+
 ## 0.16.2 (January 28, 2019)
   - support asset password when do `sendTransaction`
 
