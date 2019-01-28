@@ -201,12 +201,8 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
 
   return map[rootName].fields.reduce((fns, x) => {
     const fields = resolveFieldTree(map[x.type.name], 0, map);
-    // if (x.name === 'createWallet') {
-    //   console.log(require('util').inspect(fields, { depth: 8, colors: true }));
-    // }
 
     addFieldsPath(fields);
-    // console.log(require('util').inspect(fields, { depth: 100 }));
 
     const argSpecs = x.args.reduce((obj, a) => {
       obj[a.name] = a;
