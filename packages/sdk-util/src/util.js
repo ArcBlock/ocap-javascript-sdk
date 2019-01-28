@@ -5,11 +5,11 @@ const { print, parse } = require('graphql');
  *
  * @param {*} kind
  */
-const getTypeFilter = kind => x => {
+const getTypeFilter = kinds => x => {
   if (x.type.ofType) {
-    return x.type.ofType.kind === kind;
+    return kinds.includes(x.type.ofType.kind);
   }
-  return x.type.kind === kind;
+  return kinds.includes(x.type.kind);
 };
 
 /**
@@ -22,13 +22,15 @@ const getTypeFilter = kind => x => {
  */
 const resolveFieldTree = (type, depth, map) => {
   const { fields } = type;
-  const scalarFields = (fields || []).filter(getTypeFilter('SCALAR')).map(x => ({ name: x.name }));
+  const scalarFields = (fields || [])
+    .filter(getTypeFilter(['SCALAR', 'ENUM']))
+    .map(x => ({ name: x.name }));
 
   if (depth >= 4) {
     return { scalar: scalarFields.filter(x => Boolean(x.name)) };
   }
 
-  const objectFields = (fields || []).filter(getTypeFilter('OBJECT')).map(x => {
+  const objectFields = (fields || []).filter(getTypeFilter(['OBJECT'])).map(x => {
     const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
     return {
       type: x.type.kind,
@@ -136,9 +138,7 @@ const formatArgs = (values, specs = {}) => {
       const type = specs[x].type.ofType ? specs[x].type.ofType.name : specs[x].type.name;
       const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
       let value = '';
-      if (kind === 'SCALAR') {
-        value = formatScalarArg(type, values[x]);
-      } else if (Array.isArray(values[x])) {
+      if (Array.isArray(values[x])) {
         value = `[${values[x]
           .map(v => {
             if (typeof v === 'object') {
@@ -147,6 +147,8 @@ const formatArgs = (values, specs = {}) => {
             return typeof v === 'number' ? v : `"${v}"`;
           })
           .join(',')}]`;
+      } else if (kind === 'SCALAR') {
+        value = formatScalarArg(type, values[x]);
       } else {
         value = formatObjectArg(values[x]);
       }
@@ -201,7 +203,6 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
     const fields = resolveFieldTree(map[x.type.name], 0, map);
 
     addFieldsPath(fields);
-    // console.log(require('util').inspect(fields, { depth: 100 }));
 
     const argSpecs = x.args.reduce((obj, a) => {
       obj[a.name] = a;
