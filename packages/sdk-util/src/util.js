@@ -136,9 +136,7 @@ const formatArgs = (values, specs = {}) => {
       const type = specs[x].type.ofType ? specs[x].type.ofType.name : specs[x].type.name;
       const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
       let value = '';
-      if (kind === 'SCALAR') {
-        value = formatScalarArg(type, values[x]);
-      } else if (Array.isArray(values[x])) {
+      if (Array.isArray(values[x])) {
         value = `[${values[x]
           .map(v => {
             if (typeof v === 'object') {
@@ -147,6 +145,8 @@ const formatArgs = (values, specs = {}) => {
             return typeof v === 'number' ? v : `"${v}"`;
           })
           .join(',')}]`;
+      } else if (kind === 'SCALAR') {
+        value = formatScalarArg(type, values[x]);
       } else {
         value = formatObjectArg(values[x]);
       }
