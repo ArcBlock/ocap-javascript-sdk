@@ -1,3 +1,8 @@
+## 0.16.1 (January 28, 2019)
+  - feat: move arg random related fns to sdk-util
+  - chore: add starter kit url
+  - update readme
+
 ## 0.16.0 (January 13, 2019)
   - chore: upgrade to latest ocap schema [**Breaking Change**]
   - fix: test case
