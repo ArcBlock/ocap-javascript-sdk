@@ -1,3 +1,6 @@
+## 0.16.2 (January 28, 2019)
+  - support asset password when do `sendTransaction`
+
 ## 0.16.1 (January 28, 2019)
   - feat: move arg random related fns to sdk-util
   - chore: add starter kit url
