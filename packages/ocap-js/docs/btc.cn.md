@@ -165,34 +165,6 @@
       subKeys
       totalAmountReceived
       totalAmountSent
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          fees
-          feesOverWeight
-          hash
-          historyPrice
-          index
-          lockTime
-          numberInputs
-          numberOutputs
-          priceInUsd
-          size
-          strippedSize
-          time
-          total
-          version
-          virtualSize
-          weight
-          witnessHash
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -305,34 +277,6 @@
       subKeys
       totalAmountReceived
       totalAmountSent
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          fees
-          feesOverWeight
-          hash
-          historyPrice
-          index
-          lockTime
-          numberInputs
-          numberOutputs
-          priceInUsd
-          size
-          strippedSize
-          time
-          total
-          version
-          virtualSize
-          weight
-          witnessHash
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -510,7 +454,7 @@
 
 ```graphql
 {
-  cryptoHistoryPrice(endDate: "2019-01-13T00:29:11.816Z", startDate: "2019-01-13T00:29:11.816Z", token: "abc") {
+  cryptoHistoryPrice(endDate: "2019-02-15T06:47:33.276Z", startDate: "2019-02-15T06:47:33.276Z", token: "abc") {
     data {
       date
       price
@@ -566,34 +510,6 @@
         subKeys
         totalAmountReceived
         totalAmountSent
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            fees
-            feesOverWeight
-            hash
-            historyPrice
-            index
-            lockTime
-            numberInputs
-            numberOutputs
-            priceInUsd
-            size
-            strippedSize
-            time
-            total
-            version
-            virtualSize
-            weight
-            witnessHash
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -673,34 +589,6 @@
       subKeys
       totalAmountReceived
       totalAmountSent
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          fees
-          feesOverWeight
-          hash
-          historyPrice
-          index
-          lockTime
-          numberInputs
-          numberOutputs
-          priceInUsd
-          size
-          strippedSize
-          time
-          total
-          version
-          virtualSize
-          weight
-          witnessHash
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -815,34 +703,6 @@
         subKeys
         totalAmountReceived
         totalAmountSent
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            fees
-            feesOverWeight
-            hash
-            historyPrice
-            index
-            lockTime
-            numberInputs
-            numberOutputs
-            priceInUsd
-            size
-            strippedSize
-            time
-            total
-            version
-            virtualSize
-            weight
-            witnessHash
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -1380,34 +1240,6 @@
         subKeys
         totalAmountReceived
         totalAmountSent
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            fees
-            feesOverWeight
-            hash
-            historyPrice
-            index
-            lockTime
-            numberInputs
-            numberOutputs
-            priceInUsd
-            size
-            strippedSize
-            time
-            total
-            version
-            virtualSize
-            weight
-            witnessHash
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -1709,34 +1541,6 @@ subscription {
       subKeys
       totalAmountReceived
       totalAmountSent
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          fees
-          feesOverWeight
-          hash
-          historyPrice
-          index
-          lockTime
-          numberInputs
-          numberOutputs
-          priceInUsd
-          size
-          strippedSize
-          time
-          total
-          version
-          virtualSize
-          weight
-          witnessHash
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {

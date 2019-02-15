@@ -162,83 +162,6 @@
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -338,83 +261,6 @@
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -624,83 +470,6 @@
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -709,83 +478,6 @@
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -804,7 +496,7 @@
 
 ```graphql
 {
-  cryptoHistoryPrice(endDate: "2019-01-13T00:29:11.844Z", startDate: "2019-01-13T00:29:11.844Z", token: "abc") {
+  cryptoHistoryPrice(endDate: "2019-02-15T06:47:33.299Z", startDate: "2019-02-15T06:47:33.299Z", token: "abc") {
     data {
       date
       price
@@ -863,40 +555,6 @@
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -1217,40 +875,6 @@
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       parent {
         difficulty
@@ -1307,40 +931,6 @@
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -1396,83 +986,6 @@ No arguments
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -1573,40 +1086,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -1713,40 +1192,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       to {
         address
@@ -1755,40 +1200,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -1847,40 +1258,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       parent {
         difficulty
@@ -1937,40 +1314,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -2105,83 +1448,6 @@ No arguments
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -2190,83 +1456,6 @@ No arguments
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -2319,83 +1508,6 @@ No arguments
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -2404,83 +1516,6 @@ No arguments
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -2532,40 +1567,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       parent {
         difficulty
@@ -2622,40 +1623,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -2715,40 +1682,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       parent {
         difficulty
@@ -2805,40 +1738,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -2893,40 +1792,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       to {
         address
@@ -2935,40 +1800,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
     }
     page {
@@ -3025,40 +1856,6 @@ No arguments
         numberTxsSent
         priceInUsd
         pubKey
-        transactions {
-          data {
-            blockHash
-            blockHeight
-            cumulativeGasUsed
-            fees
-            functionInput
-            functionSignature
-            gasLimit
-            gasPrice
-            gasUsed
-            hash
-            historyPrice
-            index
-            input
-            nonce
-            priceInUsd
-            publicKey
-            r
-            receiptStatus
-            s
-            size
-            standardV
-            time
-            total
-            txType
-            v
-          }
-          page {
-            cursor
-            next
-            total
-          }
-        }
       }
       transactions {
         data {
@@ -3168,83 +1965,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -3253,83 +1973,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -3416,83 +2059,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -3501,83 +2067,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -3628,83 +2117,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -3713,83 +2125,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -3839,83 +2174,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     transactions {
       data {
@@ -4035,83 +2293,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -4120,83 +2301,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -4241,83 +2345,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -4326,83 +2353,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
@@ -4448,83 +2398,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
     to {
       address
@@ -4533,83 +2406,6 @@ subscription {
       numberTxsSent
       priceInUsd
       pubKey
-      transactions {
-        data {
-          blockHash
-          blockHeight
-          cumulativeGasUsed
-          fees
-          functionInput
-          functionSignature
-          gasLimit
-          gasPrice
-          gasUsed
-          hash
-          historyPrice
-          index
-          input
-          nonce
-          priceInUsd
-          publicKey
-          r
-          receiptStatus
-          s
-          size
-          standardV
-          time
-          total
-          txType
-          v
-          from {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-          parent {
-            difficulty
-            extraData
-            extraDataPlain
-            fees
-            gasLimit
-            gasUsed
-            hash
-            height
-            historyPrice
-            mixHash
-            nonce
-            numberTxs
-            preHash
-            priceInUsd
-            receiptsRoot
-            reward
-            sealFields
-            sha3Uncles
-            size
-            stateRoot
-            time
-            total
-            totalDifficulty
-            transactionsRoot
-            uncleReward
-          }
-          to {
-            address
-            balance
-            isContract
-            numberTxsSent
-            priceInUsd
-            pubKey
-          }
-        }
-        page {
-          cursor
-          next
-          total
-        }
-      }
     }
   }
 }
