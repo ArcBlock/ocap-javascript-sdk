@@ -1,3 +1,7 @@
+## 0.16.4 (February 15, 2019)
+  - chore: update schema and default ignore
+  - update readme
+
 ## 0.16.3 (January 28, 2019)
   - fix: array fields should be processed first when formatArgs
   - update readme
