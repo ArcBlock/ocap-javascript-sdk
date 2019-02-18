@@ -65,13 +65,16 @@ const result = await client.doRawQuery(`{
 console.log('RawQuery', result);
 
 // 查询结果翻页
-const { blocksByHeight: blocks } = await client.blocksByHeight({
-  fromHeight: 1000000,
-  toHeight: 1000020,
+const blocks = await client.listBlocks({
+  timeFilter: {
+    fromHeight: 1000000,
+    toHeight: 1000020,
+  },
+  paging: { size: 5 },
 });
 console.log('PagedQuery.1', blocks.data.map(x => x.hash));
 if (typeof blocks.next === 'function') {
-  const { blocksByHeight: blocks2 } = await blocks.next();
+  const blocks2 = await blocks.next();
   console.log('PagedQuery.2', blocks2.data.map(x => x.hash));
 }
 
