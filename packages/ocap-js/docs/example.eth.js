@@ -110,24 +110,26 @@ const OCAPClient = require('../src/node');
   consoleOutput('RawQuery.BlockByHeight', result);
 
   // 4. paged result with shortcut query
-  const { blocksByHeight: blocks } = await client.blocksByHeight({
-    fromHeight: 1000000,
-    toHeight: 1000020,
+  const blocks = await client.listBlocks({
+    timeFilter: {
+      fromHeight: 1000000,
+      toHeight: 1000020,
+    },
   });
-  consoleOutput('PagedQuery.blocksByHeight.1', blocks.data.map(x => x.hash));
+  consoleOutput('PagedQuery.listBlocks.1', blocks.data.map(x => x.hash));
   if (typeof blocks.next === 'function') {
-    const { blocksByHeight: blocks2 } = await blocks.next();
-    consoleOutput('PagedQuery.blocksByHeight.2', blocks2.data.map(x => x.hash));
+    const blocks2 = await blocks.next();
+    consoleOutput('PagedQuery.listBlocks.2', blocks2.data.map(x => x.hash));
   }
 
   // 5. nested paged result with shortcut query
-  const { blockByHeight: block } = await client.blockByHeight({ height: 5000000 });
+  const block = await client.blockByHeight({ height: 5000000 });
   consoleOutput(
     'PagedSubQuery.blockByHeight.transactions.1',
     block.transactions.data.map(x => x.hash)
   );
   if (typeof block.transactions.next === 'function') {
-    const { blockByHeight: block2 } = await block.transactions.next();
+    const block2 = await block.transactions.next();
     consoleOutput(
       'PagedSubQuery.blockByHeight.transactions.2',
       block2.transactions.data.map(x => x.hash)

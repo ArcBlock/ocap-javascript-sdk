@@ -70,13 +70,15 @@ const OCAPClient = require('../src/node');
   consoleOutput('RawQuery', result);
 
   // 4. paged result with shortcut query
-  const { blocksByHeight: blocks } = await client.blocksByHeight({
-    fromHeight: 500000,
-    toHeight: 500020,
+  const blocks = await client.listBlocks({
+    timeFilter: {
+      fromHeight: 500000,
+      toHeight: 500020,
+    },
   });
   consoleOutput('PagedQuery.1', blocks.data.map(x => x.hash));
   if (typeof blocks.next === 'function') {
-    const { blocksByHeight: blocks2 } = await blocks.next();
+    const blocks2 = await blocks.next();
     consoleOutput('PagedQuery.2', blocks2.data.map(x => x.hash));
   }
 
