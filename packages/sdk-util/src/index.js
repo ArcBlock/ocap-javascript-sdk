@@ -68,10 +68,10 @@ class BaseClient {
    * @memberof BaseClient
    * @return Promise
    */
-  doRawQuery(query, requestOptions = {}) {
+  doRawQuery(query, requestOptions = {}, dataKey) {
     try {
       const cleanQuery = print(parse(query));
-      return this._doRequest(cleanQuery, requestOptions);
+      return this._doRequest(cleanQuery, requestOptions, dataKey);
     } catch (err) {
       throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
     }
@@ -92,7 +92,7 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const queryFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
-        const result = await this._doRequest(query, requestOptions);
+        const result = await this._doRequest(query, requestOptions, key);
         const pagedResult = this._getPagedResults({
           result,
           queryBuilder: builders[key],
@@ -181,7 +181,7 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const mutationFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
-        return this._doRequest(query, requestOptions);
+        return this._doRequest(query, requestOptions, key);
       };
 
       mutationFn.type = 'mutation';
@@ -195,12 +195,13 @@ class BaseClient {
   /**
    * Send a request to ocap service
    *
-   * @param {string} query
+   * @param {string} query raw graphql query string
    * @param {object} requestOptions
+   * @param {string} dataKey which field to extract if request success
    * @return Promise
    * @memberof BaseClient
    */
-  async _doRequest(query, requestOptions) {
+  async _doRequest(query, requestOptions, dataKey) {
     debug('doRequest.query', query);
     const httpEndpoint =
       typeof this.config.httpEndpoint === 'function'
@@ -215,9 +216,9 @@ class BaseClient {
 
     const res = await axios.post(httpEndpoint, { query }, options);
 
-    debug('doRequest.response', {
-      status: res.statusCode,
-      data: res.data.data,
+    debug('_doRequest.response', {
+      status: res.status,
+      // data: res.data.data,
       errors: res.data.errors,
     });
 
@@ -228,7 +229,7 @@ class BaseClient {
         throw error;
       }
 
-      return res.data.data;
+      return dataKey && res.data.data[dataKey] ? res.data.data[dataKey] : res.data.data;
     }
 
     throw new Error(`GraphQL Status Error ${res.status}`);
@@ -315,6 +316,8 @@ class BaseClient {
    * @memberof BaseClient
    */
   _getPagedResults({ result, queryBuilder, args, dataKey, prefix = '', requestOptions = {} }) {
+    this._attachNextFn({ result, queryBuilder, args, dataKey, prefix, requestOptions });
+
     const keys = Object.keys(result);
     keys.forEach(key => {
       if (!result[key] || typeof result[key] !== 'object' || Array.isArray(result[key])) {
@@ -323,31 +326,15 @@ class BaseClient {
 
       const prefixStr = [prefix, key].filter(Boolean).join('.');
       const argPrefixStr = prefixStr.replace(`${dataKey}`, '').replace(/^\./, '');
-
-      if (result[key].page && result[key].page.next && result[key].page.cursor) {
-        const pagingArgs = {
-          paging: Object.assign({}, args.paging || {}, { cursor: result[key].page.cursor }),
-        };
-        const newArgs = Object.assign(
-          {},
-          args,
-          argPrefixStr ? { [argPrefixStr]: pagingArgs } : pagingArgs
-        );
-        debug('_getPagedResults', { prefix, key, page: result[key].page, args, newArgs });
-
-        result[key].next = async () => {
-          const query = queryBuilder(newArgs);
-          const newResult = await this._doRequest(query, requestOptions);
-          return this._getPagedResults({
-            result: newResult,
-            queryBuilder,
-            args: newArgs,
-            dataKey,
-            prefix,
-            requestOptions,
-          });
-        };
-      }
+      this._attachNextFn({
+        result: result[key],
+        queryBuilder,
+        args,
+        dataKey,
+        prefix,
+        argPrefixStr,
+        requestOptions,
+      });
 
       // add pagination methods for nested fields
       this._getPagedResults({
@@ -360,6 +347,49 @@ class BaseClient {
     });
 
     return result;
+  }
+  _attachNextFn({
+    result,
+    queryBuilder,
+    args,
+    dataKey,
+    prefix = '',
+    argPrefixStr = '',
+    requestOptions = {},
+  }) {
+    if (
+      result.page &&
+      result.page.next &&
+      result.page.cursor &&
+      Array.isArray(result.data) &&
+      !result.next
+    ) {
+      const pagingArgs = {
+        paging: Object.assign({}, args.paging || {}, { cursor: result.page.cursor }),
+      };
+      const newArgs = Object.assign(
+        {},
+        args,
+        argPrefixStr ? { [argPrefixStr]: pagingArgs } : pagingArgs
+      );
+      debug(
+        '_attachNextFn',
+        JSON.stringify({ argPrefixStr, prefix, page: result.page, args, newArgs })
+      );
+
+      result.next = async () => {
+        const query = queryBuilder(newArgs);
+        const newResult = await this._doRequest(query, requestOptions, dataKey);
+        return this._getPagedResults({
+          result: newResult,
+          queryBuilder,
+          args: newArgs,
+          dataKey,
+          prefix,
+          requestOptions,
+        });
+      };
+    }
   }
 
   _getSchema() {

@@ -1,3 +1,7 @@
+## 0.17.0 (February 18, 2019)
+  - feat: wrap query response to save developers a few keys strokes
+  - update readme
+
 ## 0.16.4 (February 15, 2019)
   - chore: update schema and default ignore
   - update readme

@@ -14,15 +14,17 @@
 
 ## Table of Contents
 
-* [Notes](#notes)
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-* [Starter Templates](#starter-templates)
-* [CodeSandbox Projects](#codesandbox-projects)
-* [OCAP Service CheatSheet](#ocap-service-cheatsheet)
-* [Contributors](#contributors)
-* [License](#license)
+- [**@arcblock/ocap-js**](#arcblockocap-js)
+  - [Table of Contents](#table-of-contents)
+  - [Notes](#notes)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Documentation](#documentation)
+  - [Starter Templates](#starter-templates)
+  - [CodeSandbox Projects](#codesandbox-projects)
+  - [OCAP Service CheatSheet](#ocap-service-cheatsheet)
+  - [Contributors](#contributors)
+  - [License](#license)
 
 
 ## Notes
@@ -73,15 +75,16 @@ const result = await client.doRawQuery(`{
 console.log('RawQuery', result);
 
 // paged result with shortcut query
-const { blocksByHeight: blocks } = await client.blocksByHeight({
-  fromHeight: 1000000,
-  toHeight: 1000020,
-}, {
+const blocks = await client.listBlocks({
+  timeFilter: {
+    fromHeight: 1000000,
+    toHeight: 1000020,
+  },
   paging: { size: 5 },
 });
 console.log('PagedQuery.1', blocks.data.map(x => x.hash));
 if (typeof blocks.next === 'function') {
-  const { blocksByHeight: blocks2 } = await blocks.next();
+  const blocks2 = await blocks.next();
   console.log('PagedQuery.2', blocks2.data.map(x => x.hash));
 }
 

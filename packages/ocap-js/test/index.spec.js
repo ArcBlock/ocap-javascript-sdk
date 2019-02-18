@@ -90,12 +90,11 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           dataSource: 'btc',
         });
 
-        const result = await client.accountByAddress({
-          address: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-        });
+        const address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
+        const result = await client.accountByAddress({ address });
         expect(result).toBeTruthy();
-        expect(result.accountByAddress).toBeTruthy();
-        expect(result.accountByAddress.address).toBeTruthy();
+        expect(result.address).toBeTruthy();
+        expect(result.address).toEqual(address);
       },
       5000
     );
@@ -117,12 +116,10 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           }),
         ]);
         expect(result1).toBeTruthy();
-        expect(result1.blockByHash).toBeTruthy();
-        expect(result1.blockByHash.height).toBeTruthy();
+        expect(result1.height).toBeTruthy();
         expect(result2).toBeTruthy();
-        expect(result2.blockByHash).toBeTruthy();
-        expect(result2.blockByHash.height).toBeTruthy();
-        expect(result1.blockByHash.height).toEqual(result2.blockByHash.height);
+        expect(result2.height).toBeTruthy();
+        expect(result1.height).toEqual(result2.height);
       },
       5000
     );
@@ -144,12 +141,10 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           }),
         ]);
         expect(result1).toBeTruthy();
-        expect(result1.transactionByHash).toBeTruthy();
-        expect(result1.transactionByHash.hash).toBeTruthy();
+        expect(result1.hash).toBeTruthy();
         expect(result2).toBeTruthy();
-        expect(result2.transactionByHash).toBeTruthy();
-        expect(result2.transactionByHash.hash).toBeTruthy();
-        expect(result2.transactionByHash.hash).toEqual(result1.transactionByHash.hash);
+        expect(result2.hash).toBeTruthy();
+        expect(result2.hash).toEqual(result1.hash);
       },
       5000
     );
@@ -162,7 +157,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           dataSource: 'eth',
         });
 
-        const { listBlocks: blocks } = await client.listBlocks(
+        const blocks = await client.listBlocks(
           { paging: { size: 1 } },
           {
             fromHeight: 1000000,
@@ -173,7 +168,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
         expect(blocks.data).toBeTruthy();
         expect(typeof blocks.next === 'function').toBeTruthy();
 
-        const { listBlocks: blocks2 } = await blocks.next();
+        const blocks2 = await blocks.next();
         expect(blocks).toBeTruthy();
         expect(blocks.data).toBeTruthy();
         expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
@@ -189,12 +184,12 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           dataSource: 'eth',
         });
 
-        const { blockByHeight: block } = await client.blockByHeight({ height: 5000000 });
+        const block = await client.blockByHeight({ height: 5000000 });
         expect(block).toBeTruthy();
         expect(block.transactions).toBeTruthy();
         expect(typeof block.transactions.next === 'function').toBeTruthy();
 
-        const { blockByHeight: block2 } = await block.transactions.next();
+        const block2 = await block.transactions.next();
         expect(block2).toBeTruthy();
         expect(block2.transactions).toBeTruthy();
         expect(typeof block2.transactions.next === 'function').toBeTruthy();
@@ -212,7 +207,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
         });
 
         // we have a custom ignore on each call
-        const { transactionsByAddress: transactions } = await client.transactionsByAddress(
+        const transactions = await client.transactionsByAddress(
           { sender: '0x60dfe511ef939e25843471e34e856e5b2e07c92a' },
           {
             ignoreFields: ['data.parent', 'data.to', 'data.from'],
