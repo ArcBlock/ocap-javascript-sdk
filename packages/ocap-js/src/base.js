@@ -53,6 +53,7 @@ class OCAPBaseClient extends BaseClient {
       'txsReceived.data.parent',
       'txsReceived.data.logsBloom'
     );
+    ignoreFields.push('data.transactions');
     ignoreFields.push('miner.transactions');
     ignoreFields.push('to.transactions');
     ignoreFields.push('from.transactions');
