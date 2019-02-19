@@ -157,21 +157,31 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           dataSource: 'eth',
         });
 
-        const blocks = await client.listBlocks(
-          { paging: { size: 1 } },
-          {
-            fromHeight: 1000000,
-            toHeight: 1000019,
-          }
-        );
-        expect(blocks).toBeTruthy();
-        expect(blocks.data).toBeTruthy();
-        expect(typeof blocks.next === 'function').toBeTruthy();
+        try {
+          const blocks = await client.listBlocks(
+            {
+              paging: { size: 1 },
+              timeFilter: {
+                fromHeight: 1000000,
+                toHeight: 1000019,
+              },
+            },
+            {
+              ignoreFields: ['data.transactions'],
+            }
+          );
+          expect(blocks).toBeTruthy();
+          expect(blocks.data).toBeTruthy();
+          expect(typeof blocks.next === 'function').toBeTruthy();
 
-        const blocks2 = await blocks.next();
-        expect(blocks).toBeTruthy();
-        expect(blocks.data).toBeTruthy();
-        expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
+          const blocks2 = await blocks.next();
+          expect(blocks).toBeTruthy();
+          expect(blocks.data).toBeTruthy();
+          expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
+        } catch (err) {
+          console.error(JSON.stringify(err.errors)); // eslint-disable-line
+          expect(err).toBeFalsy();
+        }
       },
       8000
     );
