@@ -1,3 +1,8 @@
+## 0.18.0 (February 19, 2019)
+  - chore: add more test case, sdk-util branch coverage upto 65.45%
+  - feat: support union types when generate grapqhl query
+  - update readme
+
 ## 0.17.0 (February 18, 2019)
   - feat: wrap query response to save developers a few keys strokes
   - update readme
