@@ -43,12 +43,26 @@ const resolveFieldTree = (type, depth, map) => {
     };
   });
 
+  const unionFields = (fields || []).filter(getTypeFilter(['UNION'])).map(x => {
+    const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
+    return {
+      type: x.type.kind,
+      name: x.name,
+      possibleTypes: map[subType].possibleTypes.map(t => ({
+        name: t.name,
+        fields: resolveFieldTree(map[t.name], depth + 1, map),
+      })),
+    };
+  });
+
   scalarFields.sort((a, b) => a.name - b.name);
   objectFields.sort((a, b) => a.name - b.name);
+  unionFields.sort((a, b) => a.name - b.name);
 
   return {
     scalar: scalarFields,
     object: objectFields,
+    union: unionFields,
   };
 };
 
@@ -69,7 +83,12 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
   ${
     Array.isArray(fields.object)
       ? fields.object
-          .filter(x => (x.fields.scalar || []).length || (x.fields.object || []).length)
+          .filter(
+            x =>
+              (x.fields.scalar || []).length ||
+              (x.fields.object || []).length ||
+              (x.fields.union || []).length
+          )
           .filter(x => ignoreFields.includes(x.path) === false)
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(x => {
@@ -85,7 +104,28 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
           })
           .join('\n')
       : ''
-  }`;
+  }
+  ${
+    Array.isArray(fields.union) && fields.union.filter(x => x.possibleTypes.length).length
+      ? fields.union
+          .filter(x => x.possibleTypes.length)
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map(x => {
+            const subQueryStr = `${x.name} {
+              __typename
+              ${x.possibleTypes.map(
+                t => `... on ${t.name} {
+                ${makeQuery(t.fields, ignoreFields, argValues).trim()}
+              }`
+              )}
+            }`;
+
+            return subQueryStr;
+          })
+          .join('\n')
+      : ''
+  }
+  `;
 /* eslint-enable indent */
 
 /**
