@@ -26,6 +26,7 @@ class BaseClient {
         enableMutation: true,
         accessKey: '',
         accessSecret: '',
+        maxQueryDepth: 4,
       },
       config
     );
@@ -87,6 +88,7 @@ class BaseClient {
       types,
       rootName: queryType.name,
       ignoreFields: this._getIgnoreFields.bind(this),
+      maxDepth: this.config.maxQueryDepth,
     });
 
     Object.keys(builders).forEach(key => {
@@ -122,6 +124,7 @@ class BaseClient {
       types,
       rootName: subscriptionType.name,
       ignoreFields: this._getIgnoreFields.bind(this),
+      maxDepth: this.config.maxQueryDepth,
     });
 
     Object.keys(builders).forEach(key => {
@@ -176,6 +179,7 @@ class BaseClient {
       types,
       rootName: mutationType.name,
       ignoreFields: this._getIgnoreFields.bind(this),
+      maxDepth: this.config.maxQueryDepth,
     });
 
     Object.keys(builders).forEach(key => {

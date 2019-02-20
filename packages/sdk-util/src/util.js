@@ -20,13 +20,13 @@ const getTypeFilter = kinds => x => {
  * @param {*} map
  * @returns
  */
-const resolveFieldTree = (type, depth, map) => {
+const resolveFieldTree = (type, depth, map, maxDepth) => {
   const { fields } = type;
   const scalarFields = (fields || [])
     .filter(getTypeFilter(['SCALAR', 'ENUM']))
     .map(x => ({ name: x.name }));
 
-  if (depth >= 4) {
+  if (depth >= maxDepth) {
     return { scalar: scalarFields.filter(x => Boolean(x.name)) };
   }
 
@@ -39,7 +39,7 @@ const resolveFieldTree = (type, depth, map) => {
         args[arg.name] = arg;
         return args;
       }, {}),
-      fields: resolveFieldTree(map[subType], depth + 1, map),
+      fields: resolveFieldTree(map[subType], depth + 1, map, maxDepth),
     };
   });
 
@@ -50,7 +50,7 @@ const resolveFieldTree = (type, depth, map) => {
       name: x.name,
       possibleTypes: map[subType].possibleTypes.map(t => ({
         name: t.name,
-        fields: resolveFieldTree(map[t.name], depth + 1, map),
+        fields: resolveFieldTree(map[t.name], depth + 1, map, maxDepth),
       })),
     };
   });
@@ -225,7 +225,7 @@ const addFieldsPath = (fields, prefix = '') => {
  * @param {*} { types, rootName, ignoreFields, type }
  * @returns <queryName => queryGeneratorFn>
  */
-const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
+const getGraphQLBuilders = ({ types, rootName, ignoreFields, type, maxDepth = 4 }) => {
   const map = types.reduce((map, x) => {
     if (x.name.startsWith('__') === false) {
       map[x.name] = x;
@@ -240,7 +240,7 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
   }[type];
 
   return map[rootName].fields.reduce((fns, x) => {
-    const fields = resolveFieldTree(map[x.type.name], 0, map);
+    const fields = resolveFieldTree(map[x.type.name], 0, map, maxDepth || 4);
 
     addFieldsPath(fields);
 
@@ -280,14 +280,14 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type }) => {
   }, {});
 };
 
-const getQueryBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'query' });
+const getQueryBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
+  getGraphQLBuilders({ types, rootName, ignoreFields, maxDepth, type: 'query' });
 
-const getMutationBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'mutation' });
+const getMutationBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
+  getGraphQLBuilders({ types, rootName, ignoreFields, maxDepth, type: 'mutation' });
 
-const getSubscriptionBuilders = ({ types, rootName, ignoreFields }) =>
-  getGraphQLBuilders({ types, rootName, ignoreFields, type: 'subscription' });
+const getSubscriptionBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
+  getGraphQLBuilders({ types, rootName, ignoreFields, maxDepth, type: 'subscription' });
 
 const randomArgs = (spec, types) => {
   const args = {};
