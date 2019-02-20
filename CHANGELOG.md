@@ -1,3 +1,7 @@
+## 0.18.2 (February 20, 2019)
+  - feat: support custom maxQueryDepth when generate query
+  - update readme
+
 ## 0.18.1 (February 19, 2019)
 
 
