@@ -108,12 +108,19 @@ describe('#getQueryBuilders', () => {
   });
 
   test('should generate functions', () => {
-    const fns = getQueryBuilders({ types, rootName: queryType.name });
+    const fns = getQueryBuilders({ types, rootName: queryType.name, maxDepth: 4 });
     expect(typeof fns.listTransactions).toEqual('function');
     expect(typeof fns.getBlock).toEqual('function');
     expect(typeof fns.getBlocks).toEqual('function');
 
-    expect(fns.listTransactions({ paging: { size: 1 } })).toEqual(queryListTransactions);
+    expect(
+      fns.listTransactions({
+        paging: { size: 1 },
+        typeFilter: {
+          types: ['AccountMigrate', 'Transfer'],
+        },
+      })
+    ).toEqual(queryListTransactions);
   });
 });
 
@@ -123,7 +130,7 @@ describe('#getMutationBuilders', () => {
   });
 
   test('should generate functions', () => {
-    const fns = getMutationBuilders({ types, rootName: mutationType.name });
+    const fns = getMutationBuilders({ types, rootName: mutationType.name, maxDepth: 4 });
     expect(typeof fns.createWallet).toEqual('function');
     expect(typeof fns.createTx).toEqual('function');
 

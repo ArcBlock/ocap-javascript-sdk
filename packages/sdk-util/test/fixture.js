@@ -18,7 +18,7 @@ const mutationCreateWallet = `mutation {
 `;
 
 const queryListTransactions = `{
-  listTransactions(paging: {size: 1}) {
+  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}) {
     code
     page {
       cursor
@@ -54,9 +54,17 @@ const queryListTransactions = `{
             assets
             to
             value
+            data {
+              typeUrl
+              value
+            }
           }
           ... on SysUpgradeTx {
             gracePeriod
+            data {
+              typeUrl
+              value
+            }
             task {
               actions
               dataHash
@@ -74,6 +82,10 @@ const queryListTransactions = `{
           ... on ExchangeTx {
             expiredAt
             to
+            data {
+              typeUrl
+              value
+            }
             receiver {
               assets
               value
@@ -89,6 +101,10 @@ const queryListTransactions = `{
           ... on DeclareTx {
             moniker
             pk
+            data {
+              typeUrl
+              value
+            }
             type {
               address
               hash
@@ -105,6 +121,14 @@ const queryListTransactions = `{
             }
           }
           ... on ConsensusUpgradeTx {
+            maxBytes
+            maxCandidates
+            maxGas
+            maxValidators
+            data {
+              typeUrl
+              value
+            }
             validators {
               address
               power
