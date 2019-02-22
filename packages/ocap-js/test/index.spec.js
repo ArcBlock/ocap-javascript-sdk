@@ -91,7 +91,10 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
         });
 
         const address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
-        const result = await client.accountByAddress({ address });
+        const result = await client.accountByAddress(
+          { address },
+          { ignoreFields: ['transactions'] }
+        );
         expect(result).toBeTruthy();
         expect(result.address).toBeTruthy();
         expect(result.address).toEqual(address);
