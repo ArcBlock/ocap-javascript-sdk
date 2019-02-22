@@ -1,3 +1,7 @@
+## 0.19.0 (February 22, 2019)
+  - chore: upgrade graphql from v0.13.2 to v14.1.1
+  - update readme
+
 ## 0.18.2 (February 20, 2019)
   - feat: support custom maxQueryDepth when generate query
   - update readme
