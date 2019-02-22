@@ -1,3 +1,7 @@
+## 0.19.1 (February 23, 2019)
+  - fix: list scalar args are not properly formatted
+  - update readme
+
 ## 0.19.0 (February 22, 2019)
   - chore: upgrade graphql from v0.13.2 to v14.1.1
   - update readme

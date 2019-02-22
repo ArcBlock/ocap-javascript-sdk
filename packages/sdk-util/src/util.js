@@ -24,7 +24,7 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
   const { fields } = type;
   const scalarFields = (fields || [])
     .filter(getTypeFilter(['SCALAR', 'ENUM']))
-    .map(x => ({ name: x.name }));
+    .map(x => ({ name: x.name, kind: x.kind }));
 
   if (depth >= maxDepth) {
     return { scalar: scalarFields.filter(x => Boolean(x.name)) };
@@ -157,6 +157,19 @@ const formatArgs = (values, specs = {}) => {
     throw new Error(message);
   }
 
+  const formatArgValue = v => {
+    if (Array.isArray(v)) {
+      return `[${v.map(x => formatArgValue(x)).join(', ')}]`;
+    }
+
+    if (typeof v === 'number') {
+      return v;
+    }
+
+    // TODO: enum types not supported yet
+    return `"${v}"`;
+  };
+
   const formatScalarArg = (type, value) => {
     if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
       return `"${value.toString()}"`;
@@ -167,24 +180,24 @@ const formatArgs = (values, specs = {}) => {
 
   const formatObjectArg = arg => {
     return `{ ${Object.keys(arg)
-      .map(key => `${key}: ${typeof arg[key] === 'number' ? arg[key] : `"${arg[key]}"`}`)
+      .map(key => `${key}: ${formatArgValue(arg[key])}`)
       .join(', ')} }`;
   };
 
-  // TODO: enum types not supported yet
   return Object.keys(values || {})
     .filter(x => specs[x])
     .map(x => {
-      const type = specs[x].type.ofType ? specs[x].type.ofType.name : specs[x].type.name;
-      const kind = specs[x].type.ofType ? specs[x].type.ofType.kind : specs[x].type.kind;
+      const spec = specs[x];
+      const type = spec.type.ofType ? spec.type.ofType.name : spec.type.name;
+      const kind = spec.type.ofType ? spec.type.ofType.kind : spec.type.kind;
       let value = '';
-      if (Array.isArray(values[x])) {
+      if (spec.kind === 'LIST' && Array.isArray(values[x])) {
         value = `[${values[x]
           .map(v => {
             if (typeof v === 'object') {
               return formatObjectArg(v);
             }
-            return typeof v === 'number' ? v : `"${v}"`;
+            return formatArgValue(v);
           })
           .join(',')}]`;
       } else if (kind === 'SCALAR') {
