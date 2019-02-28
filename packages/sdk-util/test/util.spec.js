@@ -119,6 +119,11 @@ describe('#getQueryBuilders', () => {
         typeFilter: {
           types: ['AccountMigrate', 'Transfer'],
         },
+        addressFilter: {
+          sender: '123',
+          receiver: '123',
+          direction: 'UNION',
+        }
       })
     ).toEqual(queryListTransactions);
   });

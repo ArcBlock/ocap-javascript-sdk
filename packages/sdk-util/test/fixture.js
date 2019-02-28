@@ -18,7 +18,7 @@ const mutationCreateWallet = `mutation {
 `;
 
 const queryListTransactions = `{
-  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}) {
+  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}) {
     code
     page {
       cursor
@@ -113,6 +113,7 @@ const queryListTransactions = `{
             }
           }
           ... on CreateAssetTx {
+            expiredAt
             moniker
             readonly
             data {

@@ -178,9 +178,17 @@ const formatArgs = (values, specs = {}) => {
     }
   };
 
-  const formatObjectArg = arg => {
+  const formatObjectArg = (arg, fields = {}) => {
+    console.log('formatObjectArg', require('util').inspect({ fields, arg }, { depth: 8 }));
     return `{ ${Object.keys(arg)
-      .map(key => `${key}: ${formatArgValue(arg[key])}`)
+      .map(key => {
+        if (fields[key]) {
+          const { kind, name } = fields[key];
+          return `${key}: ${formatScalarArg(kind === 'ENUM' ? kind : name, arg[key])}`;
+        }
+
+        return `${key}: ${formatArgValue(arg[key])}`;
+      })
       .join(', ')} }`;
   };
 
@@ -195,7 +203,7 @@ const formatArgs = (values, specs = {}) => {
         value = `[${values[x]
           .map(v => {
             if (typeof v === 'object') {
-              return formatObjectArg(v);
+              return formatObjectArg(v, { [x]: spec.ofType.type });
             }
             return formatArgValue(v);
           })
@@ -203,7 +211,8 @@ const formatArgs = (values, specs = {}) => {
       } else if (kind === 'SCALAR') {
         value = formatScalarArg(type, values[x]);
       } else {
-        value = formatObjectArg(values[x]);
+        // console.log({ spec, type, kind });
+        value = formatObjectArg(values[x], spec.fields);
       }
 
       return `${x}: ${value}`;
@@ -259,6 +268,15 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type, maxDepth = 4 
 
     const argSpecs = x.args.reduce((obj, a) => {
       obj[a.name] = a;
+      const name = a.type.ofType ? a.type.ofType.name : a.type.name;
+      const kind = a.type.ofType ? a.type.ofType.kind : a.type.kind;
+      // FIXME: nested INPUT_OBJECT is not well supported here
+      if (kind === 'INPUT_OBJECT' && Array.isArray(map[name].inputFields)) {
+        a.fields = map[name].inputFields.reduce((acc, field) => {
+          acc[field.name] = field.type;
+          return acc;
+        }, {});
+      }
       return obj;
     }, {});
 
@@ -266,6 +284,8 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type, maxDepth = 4 
 
     /* eslint-disable indent */
     const fn = (argValues = {}, _ignoreFields = []) => {
+      // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+
       const argStr = x.args.length ? `${formatArgs(argValues, argSpecs)}` : '';
       const selection = makeQuery(
         fields,
