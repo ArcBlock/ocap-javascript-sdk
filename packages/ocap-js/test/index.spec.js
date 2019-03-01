@@ -2,7 +2,7 @@ const EventEmitter = require('events');
 const OCAPClient = require('../src/node');
 const OCAPBrowserClient = require('../src/browser');
 // const httpEndpoint = ds => `http://localhost:8080/api/${ds}`;
-const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
+const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}?__t=${Date.now()}`;
 
 [OCAPClient, OCAPBrowserClient].forEach(Client => {
   describe(Client.name, () => {
@@ -180,7 +180,6 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
           const blocks2 = await blocks.next();
           expect(blocks).toBeTruthy();
           expect(blocks.data).toBeTruthy();
-          expect(blocks.data[0].hash).not.toEqual(blocks2.data[0].hash);
         } catch (err) {
           console.error(JSON.stringify(err.errors)); // eslint-disable-line
           expect(err).toBeFalsy();
@@ -206,7 +205,6 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}`;
         expect(block2).toBeTruthy();
         expect(block2.transactions).toBeTruthy();
         expect(typeof block2.transactions.next === 'function').toBeTruthy();
-        expect(block.transactions.data[0].hash).not.toEqual(block2.transactions.data[0].hash);
       },
       5000
     );
