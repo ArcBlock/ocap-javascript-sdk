@@ -1,3 +1,6 @@
+## 0.19.3 (March 01, 2019)
+
+
 ## 0.19.2 (March 01, 2019)
   - fix: better support to format arbitary arguments
   - chore: try to support union type
