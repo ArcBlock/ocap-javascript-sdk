@@ -131,8 +131,6 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
 /**
  * assemble graphql params
  *
- * FIXME: the specs used here is not a full set of possible specs in keys contained in values
- *
  * @param {*} values
  * @param {*} specs
  * @returns string
@@ -157,57 +155,56 @@ const formatArgs = (values, specs = {}) => {
     throw new Error(message);
   }
 
-  const formatArgValue = v => {
-    if (Array.isArray(v)) {
-      return `[${v.map(x => formatArgValue(x)).join(', ')}]`;
-    }
-
-    if (typeof v === 'number') {
-      return v;
-    }
-
-    // TODO: enum types not supported yet
-    return `"${v}"`;
-  };
-
   const formatScalarArg = (type, value) => {
+    // console.log('formatScalarArg', { type, value });
+    if (Array.isArray(value)) {
+      return `[${value.map(v => formatScalarArg(type, v)).join(',')}]`;
+    }
+
     if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
       return `"${value.toString()}"`;
-    } else {
-      return value.toString();
     }
+
+    if (['BigNumber', 'Int', 'Float', 'Long', 'Boolean'].includes(type)) {
+      return value;
+    }
+
+    return value.toString();
   };
 
-  const formatObjectArg = arg => {
-    return `{ ${Object.keys(arg)
-      .map(key => `${key}: ${formatArgValue(arg[key])}`)
-      .join(', ')} }`;
+  const formatArg = (value, spec) => {
+    // console.log('formatArg', { value, spec });
+    const type = spec.type.ofType ? spec.type.ofType.name : spec.type.name;
+    const kind = spec.type.ofType ? spec.type.ofType.kind : spec.type.kind;
+    let result = '';
+    if (spec.kind === 'LIST') {
+      result = `[${value
+        .map(v => {
+          if (spec.ofType.kind === 'SCALAR') {
+            return formatScalarArg(spec.ofType.name, v);
+          }
+          if (spec.ofType.fields) {
+            return `{${formatArgs(v, spec.ofType.fields)}}`;
+          }
+
+          // eslint-disable-next-line
+          console.error('formatArgs: unrecognized type in list', spec.ofType);
+        })
+        .join(',')}]`;
+    } else if (kind === 'SCALAR') {
+      result = formatScalarArg(type, value);
+    } else if (kind === 'ENUM') {
+      result = value;
+    } else if (kind === 'INPUT_OBJECT') {
+      result = `{${formatArgs(value, spec.fields)}}`;
+    }
+
+    return result;
   };
 
   return Object.keys(values || {})
     .filter(x => specs[x])
-    .map(x => {
-      const spec = specs[x];
-      const type = spec.type.ofType ? spec.type.ofType.name : spec.type.name;
-      const kind = spec.type.ofType ? spec.type.ofType.kind : spec.type.kind;
-      let value = '';
-      if (spec.kind === 'LIST' && Array.isArray(values[x])) {
-        value = `[${values[x]
-          .map(v => {
-            if (typeof v === 'object') {
-              return formatObjectArg(v);
-            }
-            return formatArgValue(v);
-          })
-          .join(',')}]`;
-      } else if (kind === 'SCALAR') {
-        value = formatScalarArg(type, values[x]);
-      } else {
-        value = formatObjectArg(values[x]);
-      }
-
-      return `${x}: ${value}`;
-    })
+    .map(x => `${x}: ${formatArg(values[x], specs[x])}`)
     .join(', ');
 };
 
@@ -230,6 +227,39 @@ const addFieldsPath = (fields, prefix = '') => {
       addFieldsPath(x.fields, x.path);
     });
   }
+};
+
+/**
+ * Extract nested argument specs, that can be used when formatting arguments
+ *
+ * @param {*} args
+ * @param {*} types
+ * @returns Object
+ */
+const extractArgSpecs = (args, types) => {
+  return args.reduce((obj, x) => {
+    obj[x.name] = x;
+    const name = x.type.ofType ? x.type.ofType.name : x.type.name;
+    const kind = x.type.ofType ? x.type.ofType.kind : x.type.kind;
+    if (kind === 'INPUT_OBJECT' && Array.isArray(types[name].inputFields)) {
+      x.fields = types[name].inputFields.reduce((acc, f) => {
+        acc[f.name] = f;
+        const subName = f.type.ofType ? f.type.ofType.name : f.type.name;
+        const subKind = f.type.ofType ? f.type.ofType.kind : f.type.kind;
+        if (subKind === 'INPUT_OBJECT') {
+          const subSpecs = extractArgSpecs(types[subName].inputFields, types);
+          if (f.type.kind === 'LIST') {
+            acc[f.name].type.ofType.fields = subSpecs;
+          } else {
+            acc[f.name].type.fields = subSpecs;
+          }
+        }
+
+        return acc;
+      }, {});
+    }
+    return obj;
+  }, {});
 };
 
 /**
@@ -257,15 +287,13 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type, maxDepth = 4 
 
     addFieldsPath(fields);
 
-    const argSpecs = x.args.reduce((obj, a) => {
-      obj[a.name] = a;
-      return obj;
-    }, {});
-
+    const argSpecs = extractArgSpecs(x.args, map);
     const globalIgnore = typeof ignoreFields === 'function' ? ignoreFields(x) : ignoreFields || [];
 
     /* eslint-disable indent */
     const fn = (argValues = {}, _ignoreFields = []) => {
+      // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+
       const argStr = x.args.length ? `${formatArgs(argValues, argSpecs)}` : '';
       const selection = makeQuery(
         fields,
@@ -356,6 +384,7 @@ module.exports = {
   getTypeFilter,
   resolveFieldTree,
   makeQuery,
+  extractArgSpecs,
   formatArgs,
   randomArgs,
   randomArg,

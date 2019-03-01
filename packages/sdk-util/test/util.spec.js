@@ -4,13 +4,14 @@ const {
   makeQuery,
   formatArgs,
   randomArgs,
+  extractArgSpecs,
   resolveFieldTree,
   getQueryBuilders,
   getMutationBuilders,
   getSubscriptionBuilders,
   getGraphQLBuilders,
 } = require('../src/util');
-const { mutationCreateWallet, queryListTransactions } = require('./fixture');
+const { extractedArgSpecs, mutationCreateWallet, queryListTransactions } = require('./fixture');
 
 const typesMap = types.reduce((acc, x) => {
   acc[x.name] = x;
@@ -57,14 +58,6 @@ describe('#formatArgs', () => {
       },
       name: 'height',
     },
-    paging: {
-      type: {
-        ofType: null,
-        name: 'object',
-        kind: 'PagedInput',
-      },
-      name: 'paging',
-    },
   };
 
   test('should be a function', () => {
@@ -98,7 +91,86 @@ describe('#formatArgs', () => {
       { address: 'xxx', height: 123, paging: { size: 10, cursor: 'abc' } },
       specs
     );
-    expect(args).toEqual('address: "xxx", height: 123, paging: { size: 10, cursor: "abc" }');
+    expect(args).toEqual('address: "xxx", height: 123');
+  });
+});
+
+describe('#extractArgSpecs', () => {
+  test('should be a function', () => {
+    expect(typeof extractArgSpecs).toEqual('function');
+  });
+
+  test('should extract correct arg specs', () => {
+    const args = [
+      {
+        defaultValue: null,
+        description: '',
+        name: 'addressFilter',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'AddressFilter',
+          ofType: null,
+        },
+      },
+      {
+        defaultValue: null,
+        description: '',
+        name: 'paging',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'PageInput',
+          ofType: null,
+        },
+      },
+      {
+        defaultValue: null,
+        description: '',
+        name: 'timeFilter',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'TimeFilter',
+          ofType: null,
+        },
+      },
+      {
+        defaultValue: null,
+        description: '',
+        name: 'typeFilter',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'TypeFilter',
+          ofType: null,
+        },
+      },
+      {
+        defaultValue: null,
+        description: '',
+        name: 'token',
+        type: {
+          kind: 'SCALAR',
+          name: 'String',
+          ofType: null,
+        },
+      },
+      {
+        defaultValue: null,
+        description: null,
+        name: 'types',
+        type: {
+          kind: 'LIST',
+          name: null,
+          ofType: {
+            kind: 'SCALAR',
+            name: 'String',
+            ofType: null,
+          },
+        },
+      },
+    ];
+
+    const argSpecs = extractArgSpecs(args, typesMap);
+    // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+    expect(argSpecs).toEqual(extractedArgSpecs);
   });
 });
 
@@ -118,6 +190,11 @@ describe('#getQueryBuilders', () => {
         paging: { size: 1 },
         typeFilter: {
           types: ['AccountMigrate', 'Transfer'],
+        },
+        addressFilter: {
+          sender: '123',
+          receiver: '123',
+          direction: 'UNION',
         },
       })
     ).toEqual(queryListTransactions);
