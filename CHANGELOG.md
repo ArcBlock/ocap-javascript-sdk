@@ -1,3 +1,8 @@
+## 0.19.2 (March 01, 2019)
+  - fix: better support to format arbitary arguments
+  - chore: try to support union type
+  - update readme
+
 ## 0.19.1 (February 23, 2019)
   - fix: list scalar args are not properly formatted
   - update readme
