@@ -1,3 +1,7 @@
+## 0.19.4 (March 20, 2019)
+  - chore: reduce bundle size
+  - update readme
+
 ## 0.19.3 (March 01, 2019)
 
 
