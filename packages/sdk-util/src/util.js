@@ -1,4 +1,5 @@
-const { print, parse } = require('graphql');
+const { parse } = require('graphql/language/parser');
+const { print } = require('graphql/language/printer');
 
 /**
  * Make a field filter fn

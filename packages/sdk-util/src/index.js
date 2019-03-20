@@ -1,5 +1,6 @@
 const axios = require('axios');
-const { print, parse } = require('graphql');
+const { parse } = require('graphql/language/parser');
+const { print } = require('graphql/language/printer');
 const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
 
 const debug = require('debug')('BaseClient');
