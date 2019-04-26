@@ -4,60 +4,77 @@ README=$(TOP_DIR)/README.md
 VERSION=$(strip $(shell cat version))
 
 build:
-	@echo "Building the software..."
-	@yarn build
+	@echo  
+	echo "Building the software..."
+	yarn build
 
 init: install dep
-	@echo "Initializing the repo..."
+	@echo  
+	echo "Initializing the repo..."
 
 travis-init: install dep
-	@echo "Initialize software required for travis (normally ubuntu software)"
+	@echo  
+	echo "Initialize software required for travis (normally ubuntu software)"
 
 install:
-	@echo "Install software required for this repo..."
-	@npm install -g lerna
-	@npm install -g yarn
+	@echo  
+	echo "Install software required for this repo..."
+	npm install -g lerna
+	npm install -g yarn
 
 dep:
-	@echo "Install dependencies required for this repo..."
-	@lerna bootstrap
+	@echo  
+	echo "Install dependencies required for this repo..."
+	lerna bootstrap
 
 pre-build: install dep
-	@echo "Running scripts before the build..."
+	@echo  
+	echo "Running scripts before the build..."
 
 post-build:
-	@echo "Running scripts after the build is done..."
+	@echo  
+	echo "Running scripts after the build is done..."
 
 all: pre-build build post-build
+	@echo  
 
 test:
-	@echo "Running test suites..."
-	@yarn test
+	@echo  
+	echo "Running test suites..."
+	yarn test
 
 lint:
-	@echo "Linting the software..."
-	@yarn lint
+	@echo  
+	echo "Linting the software..."
+	yarn lint
 
 doc:
-	@echo "Building the documenation..."
+	@echo  
+	echo "Building the documenation..."
 
 precommit: dep lint doc build test
+	@echo  
 
 travis: precommit
+	@echo  
 
 travis-deploy:
-	@echo "Deploy the software by travis"
+	@echo  
+	echo "Deploy the software by travis"
 
 clean:
-	@echo "Cleaning the build..."
+	@echo  
+	echo "Cleaning the build..."
 
 watch:
-	@make build
-	@echo "Watching templates and slides changes..."
-	@fswatch -o packages/ | xargs -n1 -I{} make build
+	@echo  
+	make build
+	echo "Watching templates and slides changes..."
+	fswatch -o packages/ | xargs -n1 -I{} make build
 
 run:
-	@echo "Running the software..."
+	@echo  
+	echo "Running the software..."
 
 include .makefiles/*.mk
 
