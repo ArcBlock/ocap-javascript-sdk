@@ -36,7 +36,17 @@ describe('#makeQuery', () => {
   });
 });
 
-describe('#formatArgs', () => {
+describe('#formatArgs.response', () => {
+  const specs = types.reduce((acc, x) => {
+    acc[x.name] = x;
+    return acc;
+  }, {});
+
+  const result = randomArgs(specs.ResponseGetAccountState, specs, 'fields');
+  console.log(result);
+});
+
+describe('#formatArgs.args', () => {
   const specs = {
     address: {
       type: {

@@ -331,22 +331,41 @@ const getMutationBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
 const getSubscriptionBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
   getGraphQLBuilders({ types, rootName, ignoreFields, maxDepth, type: 'subscription' });
 
-const randomArgs = (spec, types) => {
+/**
+ * Generate a fake query arg object, or fake response object
+ *
+ * @param {object} spec - the spec of the object to fake
+ * @param {object} types - the whole type tree from graphql schema
+ * @param {string} [fieldName='inputFields']
+ * @returns {object} the fake message
+ */
+const randomArgs = (spec, types, fieldName = 'inputFields') => {
+  if (fieldName === 'fields') {
+    console.log({ spec, types });
+  }
   const args = {};
-  spec.inputFields.forEach(x => {
+  if (!Array.isArray(spec[fieldName])) {
+    return args;
+  }
+
+  spec[fieldName].forEach(x => {
     // If list, we do not force it to be NON_NULL
     if (x.type.kind === 'LIST') {
-      args[x.name] = [randomArgs(types[x.type.ofType.name], types)];
+      args[x.name] = [randomArgs(types[x.type.ofType.name], types, fieldName)];
     }
 
     // NULLABLE fields
     if (x.type.kind === 'SCALAR') {
-      args[x.name] = randomArg(x.type, types);
+      args[x.name] = randomArg(x.type, types, fieldName);
     }
 
     // NON_NULLABLE fields
     if (x.type.kind === 'NON_NULL') {
-      args[x.name] = randomArg(x.type.ofType, types);
+      args[x.name] = randomArg(x.type.ofType, types, fieldName);
+    }
+
+    if (x.type.kind === 'OBJECT') {
+      args[x.name] = randomArg(x.type, types, fieldName);
     }
   });
 
@@ -359,7 +378,7 @@ const randomArgs = (spec, types) => {
   return args;
 };
 
-const randomArg = (field, types) => {
+const randomArg = (field, types, fieldName) => {
   if (['String', 'HexString'].includes(field.name)) {
     return 'abc';
   }
@@ -373,7 +392,7 @@ const randomArg = (field, types) => {
     return 123;
   }
   if (field.kind === 'INPUT_OBJECT') {
-    return randomArgs(types[field.name], types);
+    return randomArgs(types[field.name], types, fieldName);
   }
 };
 
