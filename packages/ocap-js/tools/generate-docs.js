@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 // const util = require('util');
 const { parse, print } = require('graphql');
-const { randomArg, randomArgs } = require('@arcblock/sdk-util/lib/util');
+const { fakeField, fakeMessage } = require('@arcblock/sdk-util/lib/util');
 const OCAPClient = require('../src/node');
 // const $inspect = data => util.inspect(data, { depth: 8 });
 
@@ -77,12 +77,12 @@ dataSources.map(dataSource => {
         }
 
         if (x.type.ofType.kind === 'SCALAR') {
-          obj[x.name] = randomArg(x.type.ofType, typesMap);
+          obj[x.name] = fakeField(x.type.ofType, typesMap);
         }
 
         // process input_object
         if (x.type.ofType.kind === 'INPUT_OBJECT') {
-          obj[x.name] = randomArgs(typesMap[x.type.ofType.name], typesMap);
+          obj[x.name] = fakeMessage(typesMap[x.type.ofType.name], typesMap);
         }
 
         return obj;
