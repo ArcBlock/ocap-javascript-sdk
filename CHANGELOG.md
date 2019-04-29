@@ -1,3 +1,7 @@
+## 0.19.6 (April 29, 2019)
+  - fix: fakeMessage not handling list of scalar types correctly
+  - update readme
+
 ## 0.19.5 (April 29, 2019)
   - chore: update randomArgs usage
   - feat: support fakeMessage for both arguments and responses
