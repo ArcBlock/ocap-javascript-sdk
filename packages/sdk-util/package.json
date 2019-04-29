@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/sdk-util",
   "description": "Helpers and utilities shared across ArcBlock Javascript SDK",
-  "version": "0.19.5",
+  "version": "0.19.6",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/ocap-javascript-sdk/issues",
