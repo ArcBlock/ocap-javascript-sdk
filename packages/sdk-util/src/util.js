@@ -342,7 +342,7 @@ const getSubscriptionBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
 const fakeMessage = (spec, types, fieldSource = 'inputFields') => {
   const args = {};
   if (!Array.isArray(spec[fieldSource])) {
-    return args;
+    return fakeField(spec, types, fieldSource);
   }
 
   spec[fieldSource].forEach(x => {
