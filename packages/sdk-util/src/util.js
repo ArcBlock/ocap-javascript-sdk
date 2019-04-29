@@ -331,22 +331,41 @@ const getMutationBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
 const getSubscriptionBuilders = ({ types, rootName, ignoreFields, maxDepth }) =>
   getGraphQLBuilders({ types, rootName, ignoreFields, maxDepth, type: 'subscription' });
 
-const randomArgs = (spec, types) => {
+/**
+ * Generate a fake query arg object, or fake response object
+ *
+ * @param {object} spec - the spec of the object to fake
+ * @param {object} types - the whole type tree from graphql schema
+ * @param {string} [fieldSource='inputFields']
+ * @returns {object} the fake message
+ */
+const fakeMessage = (spec, types, fieldSource = 'inputFields') => {
   const args = {};
-  spec.inputFields.forEach(x => {
+  if (!Array.isArray(spec[fieldSource])) {
+    return args;
+  }
+
+  spec[fieldSource].forEach(x => {
     // If list, we do not force it to be NON_NULL
-    if (x.type.kind === 'LIST') {
-      args[x.name] = [randomArgs(types[x.type.ofType.name], types)];
-    }
-
-    // NULLABLE fields
-    if (x.type.kind === 'SCALAR') {
-      args[x.name] = randomArg(x.type, types);
-    }
-
-    // NON_NULLABLE fields
-    if (x.type.kind === 'NON_NULL') {
-      args[x.name] = randomArg(x.type.ofType, types);
+    // prettier-ignore
+    switch (x.type.kind) {
+    case 'LIST':
+      args[x.name] = [fakeMessage(types[x.type.ofType.name], types, fieldSource)];
+      break;
+    case 'SCALAR':
+      args[x.name] = fakeField(x.type, types, fieldSource);
+      break;
+    case 'NON_NULL':
+      args[x.name] = fakeField(x.type.ofType, types, fieldSource);
+      break;
+    case 'OBJECT':
+      args[x.name] = fakeField(types[x.type.name], types, fieldSource);
+      break;
+    case 'ENUM':
+      args[x.name] = fakeField(types[x.type.name], types, fieldSource);
+      break;
+    default:
+      break;
     }
   });
 
@@ -359,7 +378,7 @@ const randomArgs = (spec, types) => {
   return args;
 };
 
-const randomArg = (field, types) => {
+const fakeField = (field, types, fieldSource) => {
   if (['String', 'HexString'].includes(field.name)) {
     return 'abc';
   }
@@ -367,13 +386,16 @@ const randomArg = (field, types) => {
     return true;
   }
   if (field.name === 'DateTime') {
-    return new Date().toISOString();
+    return new Date('2019-04-29').toISOString();
   }
   if (['BigNumber', 'Int', 'Float', 'Long'].includes(field.name)) {
     return 123;
   }
-  if (field.kind === 'INPUT_OBJECT') {
-    return randomArgs(types[field.name], types);
+  if (field.kind === 'ENUM') {
+    return field.enumValues[0].name;
+  }
+  if (['INPUT_OBJECT', 'OBJECT'].includes(field.kind)) {
+    return fakeMessage(types[field.name], types, fieldSource);
   }
 };
 
@@ -387,6 +409,6 @@ module.exports = {
   makeQuery,
   extractArgSpecs,
   formatArgs,
-  randomArgs,
-  randomArg,
+  fakeMessage,
+  fakeField,
 };

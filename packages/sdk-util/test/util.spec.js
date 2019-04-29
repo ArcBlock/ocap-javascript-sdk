@@ -3,7 +3,7 @@ const {
   getTypeFilter,
   makeQuery,
   formatArgs,
-  randomArgs,
+  fakeMessage,
   extractArgSpecs,
   resolveFieldTree,
   getQueryBuilders,
@@ -229,15 +229,88 @@ describe('#getGraphQLBuilders', () => {
   });
 });
 
-describe('#randomArgs', () => {
+describe('#fakeMessage.arg', () => {
   test('should be a function', () => {
-    expect(typeof randomArgs).toEqual('function');
+    expect(typeof fakeMessage).toEqual('function');
   });
   test('should return arg corectly', () => {
-    expect(randomArgs(typesMap.PageInput, typesMap)).toEqual({
+    expect(fakeMessage(typesMap.PageInput, typesMap)).toEqual({
       cursor: 'abc',
       order: [{ field: 'abc', type: 'abc' }],
       size: 123,
+    });
+  });
+});
+
+describe('#fakeMessage.response', () => {
+  const specs = types.reduce((acc, x) => {
+    acc[x.name] = x;
+    return acc;
+  }, {});
+
+  test('should get fake response', () => {
+    const result = fakeMessage(specs.ResponseGetAccountState, specs, 'fields');
+    expect(result).toEqual({
+      code: 'ACCOUNT_MIGRATED',
+      state: {
+        address: 'abc',
+        balance: 'abc',
+        context: {
+          genesisTime: '2019-04-29T00:00:00.000Z',
+          genesisTx: {
+            code: 'ACCOUNT_MIGRATED',
+            hash: 'abc',
+            height: 123,
+            index: 123,
+            tags: [{ key: 'abc', value: 'abc' }],
+            tx: {
+              chainId: 123,
+              from: 'abc',
+              nonce: 123,
+              signature: 'abc',
+              signatures: [{ key: 'abc', value: 'abc' }],
+            },
+          },
+          renaissanceTime: '2019-04-29T00:00:00.000Z',
+          renaissanceTx: {
+            code: 'ACCOUNT_MIGRATED',
+            hash: 'abc',
+            height: 123,
+            index: 123,
+            tags: [{ key: 'abc', value: 'abc' }],
+            tx: {
+              chainId: 123,
+              from: 'abc',
+              nonce: 123,
+              signature: 'abc',
+              signatures: [{ key: 'abc', value: 'abc' }],
+            },
+          },
+        },
+        data: { typeUrl: 'abc', value: 'abc' },
+        migratedFrom: [{}],
+        migratedTo: [{}],
+        moniker: 'abc',
+        nonce: 123,
+        numAssets: 123,
+        numTxs: 123,
+        pinnedFiles: { circular: true, fifo: true, items: [{}], maxItems: 123, typeUrl: 'abc' },
+        pk: 'abc',
+        stake: {
+          recentReceivedStakes: {
+            circular: true,
+            fifo: true,
+            items: [{}],
+            maxItems: 123,
+            typeUrl: 'abc',
+          },
+          recentStakes: { circular: true, fifo: true, items: [{}], maxItems: 123, typeUrl: 'abc' },
+          totalReceivedStakes: 'abc',
+          totalStakes: 'abc',
+          totalUnstakes: 'abc',
+        },
+        type: { address: 'BASE16', hash: 'KECCAK', pk: 'ED25519', role: 'ROLE_ACCOUNT' },
+      },
     });
   });
 });

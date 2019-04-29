@@ -1,3 +1,9 @@
+## 0.19.5 (April 29, 2019)
+  - chore: update randomArgs usage
+  - feat: support fakeMessage for both arguments and responses
+  - feat: try to implement random result feature
+  - v0.19.4
+
 ## 0.19.4 (March 20, 2019)
   - chore: reduce bundle size
   - update readme
