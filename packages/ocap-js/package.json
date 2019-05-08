@@ -44,7 +44,7 @@
     "sdk",
     "nodejs"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "main": "./dist/node.js",
   "browser": "./lib/browser.js",
   "files": [
