@@ -1,3 +1,7 @@
+## 0.19.7 (May 08, 2019)
+  - chore: update license
+  - update readme
+
 ## 0.19.6 (April 29, 2019)
   - fix: fakeMessage not handling list of scalar types correctly
   - update readme
