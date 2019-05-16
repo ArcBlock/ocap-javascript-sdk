@@ -1513,7 +1513,7 @@
           "args": [],
           "deprecationReason": null,
           "description": null,
-          "isDeprecated": false,
+          "isDeprecated": true,
           "name": "type",
           "type": {
             "kind": "OBJECT",
@@ -2900,7 +2900,7 @@
           "args": [],
           "deprecationReason": null,
           "description": null,
-          "isDeprecated": false,
+          "isDeprecated": true,
           "name": "type",
           "type": {
             "kind": "OBJECT",

@@ -264,12 +264,6 @@ const queryListTransactions = `{
           }
           ... on AccountMigrateTx {
             pk
-            type {
-              address
-              hash
-              pk
-              role
-            }
           }
         }
       }

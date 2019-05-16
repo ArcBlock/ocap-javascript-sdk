@@ -7,6 +7,10 @@ const { print } = require('graphql/language/printer');
  * @param {*} kind
  */
 const getTypeFilter = kinds => x => {
+  if (x.isDeprecated) {
+    return false;
+  }
+
   if (x.type.ofType) {
     return kinds.includes(x.type.ofType.kind);
   }
