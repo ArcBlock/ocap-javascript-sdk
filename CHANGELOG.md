@@ -1,3 +1,7 @@
+## 0.20.0 (May 16, 2019)
+  - chore: donot include deprecated fields in generated query
+  - update readme
+
 ## 0.19.7 (May 08, 2019)
   - chore: update license
   - update readme
