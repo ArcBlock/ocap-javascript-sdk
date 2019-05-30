@@ -14,7 +14,7 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "debug": "^3.1.0",
     "graphql": "^14.1.1"
   },
