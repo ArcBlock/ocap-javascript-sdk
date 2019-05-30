@@ -1,3 +1,7 @@
+## 0.21.0 (May 31, 2019)
+  - chore: upgrade axios to fix security risk
+  - update readme
+
 ## 0.20.0 (May 16, 2019)
   - chore: donot include deprecated fields in generated query
   - update readme
