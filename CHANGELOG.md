@@ -1,3 +1,7 @@
+## 0.21.1 (June 18, 2019)
+  - chore: update debug dependency version
+  - update readme
+
 ## 0.21.0 (May 31, 2019)
   - chore: upgrade axios to fix security risk
   - update readme
