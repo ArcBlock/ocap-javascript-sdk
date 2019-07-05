@@ -1,4 +1,4 @@
-# [**@arcblock/sdk-util**](https://github.com/arcblock/ocap-javascript-sdk)
+![sdk-util](https://www.arcblock.io/.netlify/functions/badge/?text=sdk-util)
 
 [![build status](https://img.shields.io/travis/ArcBlock/ocap-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/ocap-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/ocap-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/ocap-javascript-sdk)
@@ -11,10 +11,11 @@
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Contributors](#contributors)
-- [License](#license)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Contributors](#Contributors)
+- [License](#License)
 
 ## Install
 

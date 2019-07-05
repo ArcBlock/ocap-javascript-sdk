@@ -8,8 +8,7 @@ const packageList = packages.map(x => {
 });
 
 const readmeFile = path.join(__dirname, '../README.md');
-const readmeContent = `
-# ocap-javascript-sdk
+const readmeContent = `![ocap-javascript-sdk](https://www.arcblock.io/.netlify/functions/badge/?text=ocap-javascript-sdk)
 
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
