@@ -1,4 +1,4 @@
-# [**@arcblock/ocap-js**](https://github.com/arcblock/ocap-javascript-sdk)
+![ocap-js](https://www.arcblock.io/.netlify/functions/badge/?text=ocap-js)
 
 [![build status](https://img.shields.io/travis/ArcBlock/ocap-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/ocap-javascript-sdk)
 [![code coverage](https://img.shields.io/codecov/c/github/ArcBlock/ocap-javascript-sdk.svg)](https://codecov.io/gh/ArcBlock/ocap-javascript-sdk)
@@ -14,17 +14,16 @@
 
 ## Table of Contents
 
-- [**@arcblock/ocap-js**](#arcblockocap-js)
-  - [Table of Contents](#table-of-contents)
-  - [Notes](#notes)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [Documentation](#documentation)
-  - [Starter Templates](#starter-templates)
-  - [CodeSandbox Projects](#codesandbox-projects)
-  - [OCAP Service CheatSheet](#ocap-service-cheatsheet)
-  - [Contributors](#contributors)
-  - [License](#license)
+- [Table of Contents](#Table-of-Contents)
+- [Notes](#Notes)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Documentation](#Documentation)
+- [Starter Templates](#Starter-Templates)
+- [CodeSandbox Projects](#CodeSandbox-Projects)
+- [OCAP Service CheatSheet](#OCAP-Service-CheatSheet)
+- [Contributors](#Contributors)
+- [License](#License)
 
 
 ## Notes

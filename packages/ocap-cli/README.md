@@ -1,4 +1,4 @@
-# OCAP CLI
+![ocap-cli](https://www.arcblock.io/.netlify/functions/badge/?text=ocap-cli)
 
 > Command line tools to ease development for ArcBlock Developers
 

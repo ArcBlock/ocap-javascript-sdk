@@ -1,4 +1,4 @@
-# [**@arcblock/ocap-schema**](https://github.com/arcblock/ocap-javascript-sdk)
+![ocap-schema](https://www.arcblock.io/.netlify/functions/badge/?text=ocap-schema)
 
 [![build status](https://img.shields.io/travis/ArcBlock/ocap-javascript-sdk.svg)](https://travis-ci.org/ArcBlock/ocap-javascript-sdk)
 [![code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
@@ -10,10 +10,11 @@
 
 ## Table of Contents
 
-- [Install](#install)
-- [Usage](#usage)
-- [Contributors](#contributors)
-- [License](#license)
+- [Table of Contents](#Table-of-Contents)
+- [Install](#Install)
+- [Usage](#Usage)
+- [Contributors](#Contributors)
+- [License](#License)
 
 ## Install
 
