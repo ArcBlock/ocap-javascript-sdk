@@ -33,8 +33,8 @@
     "jest": "^24.1.0",
     "prettier": "^1.6.1",
     "rimraf": "^2.6.2",
-    "webpack": "^3",
-    "webpack-cli": "^3.1.0"
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6"
   },
   "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",
   "keywords": [
@@ -45,8 +45,8 @@
     "nodejs"
   ],
   "license": "Apache-2.0",
-  "main": "./dist/node.js",
-  "browser": "./lib/browser.js",
+  "main": "./lib/node.js",
+  "browser": "./dist/browser.js",
   "files": [
     "dist",
     "lib"
@@ -58,8 +58,8 @@
   "scripts": {
     "lint": "eslint src",
     "clean": "rimraf lib && rimraf dist",
-    "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./lib --source-maps --copy-files && webpack -p",
-    "build-node": "babel ./src --out-dir ./dist --source-maps --copy-files",
+    "build-browser": "BABEL_ENV=browser babel ./src --out-dir ./dist --source-maps --copy-files && webpack -p && rm ./dist/node.*",
+    "build-node": "babel ./src --out-dir ./lib --source-maps --copy-files && rm ./lib/browser.*",
     "build": "yarn build-node && yarn build-browser",
     "generate-docs": "node tools/generate-docs.js",
     "precommit": "CI=1 yarn test",
