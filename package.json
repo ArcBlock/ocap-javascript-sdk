@@ -37,5 +37,8 @@
     "prepush": "lint-staged && lerna run prepush",
     "coverage": "lerna run coverage",
     "format-doc": "cd packages/ocap-js && remark . -o"
+  },
+  "dependencies": {
+    "axios": "^0.19.0"
   }
 }

@@ -1,6 +1,10 @@
-## 0.22.0 (July 05, 2019)
+## 0.22.0 (July 15, 2019)
 
 - chore: update readme with new badge
+
+## 0.21.2 (July 15, 2019)
+
+- chore: trigger cnpm sync on npm publish
 
 ## 0.21.1 (June 18, 2019)
 
