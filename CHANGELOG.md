@@ -1,3 +1,8 @@
+## 0.23.0 (July 22, 2019)
+
+- chore: allow exclude union type by name when make query
+- update readme
+
 ## 0.22.0 (July 15, 2019)
 
 - chore: update readme with new badge
