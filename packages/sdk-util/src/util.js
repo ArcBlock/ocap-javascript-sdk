@@ -118,7 +118,7 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
           .map(x => {
             const subQueryStr = `${x.name} {
               __typename
-              ${x.possibleTypes.map(
+              ${x.possibleTypes.filter(t => !ignoreFields.includes(t.name)).map(
                 t => `... on ${t.name} {
                 ${makeQuery(t.fields, ignoreFields, argValues).trim()}
               }`
