@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/ocap-js",
   "description": "Javascript SDK for OCAP Service by ArcBlock",
-  "version": "0.22.0",
+  "version": "0.23.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/ocap-javascript-sdk/issues",
@@ -14,8 +14,8 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/ocap-schema": "^0.22.0",
-    "@arcblock/sdk-util": "^0.22.0",
+    "@arcblock/ocap-schema": "^0.23.0",
+    "@arcblock/sdk-util": "^0.23.0",
     "babel-polyfill": "^6.26.0",
     "blueimp-md5": "^2.10.0",
     "phoenix": "^1.3.4",
