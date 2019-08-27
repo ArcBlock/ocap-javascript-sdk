@@ -11,7 +11,13 @@ const {
   getSubscriptionBuilders,
   getGraphQLBuilders,
 } = require('../src/util');
-const { extractedArgSpecs, mutationCreateWallet, queryListTransactions, queryListTransactionsNoUpgrade } = require('./fixture');
+const {
+  extractedArgSpecs,
+  mutationCreateWallet,
+  queryListTransactions,
+  queryListTransactionsNoUpgrade,
+  queryListTransactionsNoItx,
+} = require('./fixture');
 
 const typesMap = types.reduce((acc, x) => {
   acc[x.name] = x;
@@ -200,7 +206,7 @@ describe('#getQueryBuilders', () => {
     ).toEqual(queryListTransactions);
   });
 
-  test('should generate functions: ', () => {
+  test('should respect ignore on oneOf type', () => {
     const fns = getQueryBuilders({ types, rootName: queryType.name, maxDepth: 4 });
     expect(typeof fns.listTransactions).toEqual('function');
     expect(typeof fns.getBlock).toEqual('function');
@@ -219,9 +225,26 @@ describe('#getQueryBuilders', () => {
             direction: 'UNION',
           },
         },
-        ['ConsensusUpgradeTx'],
+        ['ConsensusUpgradeTx']
       )
     ).toEqual(queryListTransactionsNoUpgrade);
+
+    expect(
+      fns.listTransactions(
+        {
+          paging: { size: 1 },
+          typeFilter: {
+            types: ['AccountMigrate', 'Transfer'],
+          },
+          addressFilter: {
+            sender: '123',
+            receiver: '123',
+            direction: 'UNION',
+          },
+        },
+        [/\.itx$/]
+      )
+    ).toEqual(queryListTransactionsNoItx);
   });
 });
 

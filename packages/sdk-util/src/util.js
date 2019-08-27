@@ -71,6 +71,10 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
   };
 };
 
+const shouldIgnore = (fieldPath, blackList) => {
+  return blackList.some(x => (x instanceof RegExp ? x.test(fieldPath) : x === fieldPath));
+};
+
 /**
  * make graphql query string based on field list
  *
@@ -81,7 +85,7 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
 /* eslint-disable indent */
 const makeQuery = (fields, ignoreFields, argValues = {}) => `
   ${fields.scalar
-    .filter(x => !ignoreFields.some(y => (y instanceof RegExp ? y.test(x.path) : y === x.path)))
+    .filter(x => shouldIgnore(x.path, ignoreFields) === false)
     .sort((a, b) => a.name.localeCompare(b.name))
     .map(x => x.name)
     .join('\n')}
@@ -94,7 +98,7 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
               (x.fields.object || []).length ||
               (x.fields.union || []).length
           )
-          .filter(x => ignoreFields.includes(x.path) === false)
+          .filter(x => shouldIgnore(x.path, ignoreFields) === false)
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(x => {
             const argStr = Object.keys(x.args).length
@@ -114,6 +118,7 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
     Array.isArray(fields.union) && fields.union.filter(x => x.possibleTypes.length).length
       ? fields.union
           .filter(x => x.possibleTypes.length)
+          .filter(x => shouldIgnore(x.path, ignoreFields) === false)
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(x => {
             const subQueryStr = `${x.name} {
@@ -230,6 +235,12 @@ const addFieldsPath = (fields, prefix = '') => {
     fields.object.forEach(x => {
       x.path = [prefix, x.name].filter(Boolean).join('.');
       addFieldsPath(x.fields, x.path);
+    });
+  }
+
+  if (Array.isArray(fields.union)) {
+    fields.union.forEach(x => {
+      x.path = [prefix, x.name].filter(Boolean).join('.');
     });
   }
 };

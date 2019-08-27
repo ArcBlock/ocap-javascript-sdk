@@ -385,9 +385,39 @@ const queryListTransactionsNoUpgrade = `{
   }
 }
 `;
+
+const queryListTransactionsNoItx = `{
+  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}) {
+    code
+    page {
+      cursor
+      next
+      total
+    }
+    transactions {
+      hash
+      receiver
+      sender
+      time
+      type
+      tx {
+        chainId
+        from
+        nonce
+        signature
+        signatures {
+          key
+          value
+        }
+      }
+    }
+  }
+}
+`;
 module.exports = {
   extractedArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,
+  queryListTransactionsNoItx,
 };
