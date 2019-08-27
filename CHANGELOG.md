@@ -1,3 +1,8 @@
+## 0.24.0 (August 27, 2019)
+
+- fix: support ignore union type
+- update readme
+
 ## 0.23.0 (July 22, 2019)
 
 - chore: allow exclude union type by name when make query
