@@ -55,7 +55,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}?__t=${Date.now()}
     });
   });
 
-  describe('#query', () => {
+  describe.skip('#query', () => {
     test('should have basic query methods for btc', () => {
       const client = new Client({
         httpEndpoint,
@@ -235,7 +235,7 @@ const httpEndpoint = ds => `https://ocap.arcblock.io/api/${ds}?__t=${Date.now()}
     );
   });
 
-  describe('#subscription', () => {
+  describe.skip('#subscription', () => {
     const client = new Client({
       httpEndpoint,
       dataSource: 'eth',
