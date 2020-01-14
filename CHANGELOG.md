@@ -1,3 +1,7 @@
+## 0.25.0 (January 14, 2020)
+  - feat: support batch query
+  - update readme
+
 ## 0.24.0 (August 27, 2019)
 
 - fix: support ignore union type
