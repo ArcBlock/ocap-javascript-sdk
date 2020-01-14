@@ -1,4 +1,6 @@
 const axios = require('axios');
+const set = require('lodash.set');
+const get = require('lodash.get');
 const { parse } = require('graphql/language/parser');
 const { print } = require('graphql/language/printer');
 const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
@@ -77,6 +79,55 @@ class BaseClient {
     } catch (err) {
       throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
     }
+  }
+
+  /**
+   * Do multiple queries in a single http request
+   *
+   * @param {Object} queries - use method as key and arguments as value
+   * @param {Object} requestOptions
+   * @memberof BaseClient
+   */
+  doBatchQuery(queries, requestOptions) {
+    const methods = Object.keys(queries);
+    if (methods.length === 0) {
+      throw new Error('doBatchQuery requires at least one query');
+    }
+
+    methods.forEach(x => {
+      if (typeof this[x] !== 'function') {
+        throw new Error(`doBatchQuery got invalid query method ${x}`);
+      }
+      if (this[x].type !== 'query') {
+        throw new Error(`doBatchQuery got none query method ${x}`);
+      }
+    });
+
+    const documents = methods.map(x => {
+      const args = queries[x] || {};
+      const query = typeof args === 'string' ? args : this[x].builder(args, requestOptions);
+      return parse(query);
+    });
+
+    const base = documents.shift();
+
+    let variableDefinitions = get(base, 'definitions[0].variableDefinitions');
+    let directives = get(base, 'definitions[0].directives');
+    let selections = get(base, 'definitions[0].selectionSet.selections');
+
+    documents.forEach(x => {
+      variableDefinitions = variableDefinitions.concat(
+        get(x, 'definitions[0].variableDefinitions', [])
+      );
+      directives = directives.concat(get(x, 'definitions[0].directives', []));
+      selections = selections.concat(get(x, 'definitions[0].selectionSet.selections', []));
+    });
+
+    set(base, 'definitions[0].variableDefinitions', variableDefinitions);
+    set(base, 'definitions[0].directives', directives);
+    set(base, 'definitions[0].selectionSet.selections', selections);
+
+    return this._doRequest(print(base), requestOptions);
   }
 
   generateQueryFns() {
