@@ -1,3 +1,6 @@
+## 0.26.0 (March 30, 2020)
+  - update readme
+
 ## 0.25.0 (January 14, 2020)
   - feat: support batch query
   - update readme
