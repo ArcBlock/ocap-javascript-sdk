@@ -6,12 +6,11 @@ git remote add origin "https://$GITHUB_TOKEN@github.com/$TRAVIS_REPO_SLUG.git"
 
 changed=$(lerna changed)
 if [ "$changed" != "" ]; then
-  DEBUG=* node tools/setup-ci.js
-
   git checkout master
   git commit -am "update yarn.lock file"
 
   # publish
+  npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
   VERSION=$(cat version | awk '{$1=$1;print}')
   lerna run build
   lerna publish $VERSION --yes

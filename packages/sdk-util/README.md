@@ -31,6 +31,8 @@ yarn add @arcblock/sdk-util
 const BaseClient = require('@arcblock/sdk-util');
 ```
 
+Checkout our test file for more use case.
+
 ## Contributors
 
 | Name           | Website                    |
