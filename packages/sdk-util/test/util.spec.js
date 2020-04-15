@@ -1,5 +1,10 @@
 const { types, queryType, mutationType } = require('./schema.json');
 const {
+  types: nodeTypes,
+  queryType: nodeQueryType,
+  // mutationType: nodeMutationType,
+} = require('./graphql.json');
+const {
   getTypeFilter,
   makeQuery,
   formatArgs,
@@ -17,6 +22,9 @@ const {
   queryListTransactions,
   queryListTransactionsNoUpgrade,
   queryListTransactionsNoItx,
+  queryGetNodeInfo,
+  queryListBlocklets,
+  queryGetBlocklets,
 } = require('./fixture');
 
 const typesMap = types.reduce((acc, x) => {
@@ -245,6 +253,18 @@ describe('#getQueryBuilders', () => {
         [/\.itx$/]
       )
     ).toEqual(queryListTransactionsNoItx);
+  });
+
+  test('should respect list', () => {
+    const fns = getQueryBuilders({ types: nodeTypes, rootName: nodeQueryType.name, maxDepth: 4 });
+    expect(typeof fns.listBlocklets).toEqual('function');
+    expect(typeof fns.getBlocklet).toEqual('function');
+    expect(typeof fns.getBlocklets).toEqual('function');
+    expect(typeof fns.getNodeInfo).toEqual('function');
+
+    expect(fns.getNodeInfo()).toEqual(queryGetNodeInfo);
+    expect(fns.getBlocklets()).toEqual(queryGetBlocklets);
+    expect(fns.listBlocklets()).toEqual(queryListBlocklets);
   });
 });
 

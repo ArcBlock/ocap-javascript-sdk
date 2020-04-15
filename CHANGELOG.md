@@ -1,3 +1,6 @@
+## 0.27.0 (April 15, 2020)
+  - update readme
+
 ## 0.26.0 (March 30, 2020)
   - update readme
 

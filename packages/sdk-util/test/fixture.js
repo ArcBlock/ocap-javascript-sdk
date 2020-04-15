@@ -414,10 +414,143 @@ const queryListTransactionsNoItx = `{
   }
 }
 `;
+
+const queryGetNodeInfo = `{
+  getNodeInfo {
+    code
+    info {
+      createdAt
+      description
+      did
+      initialized
+      initializedAt
+      name
+      pk
+      startedAt
+      version
+      blockletOwner {
+        did
+        pk
+      }
+      diskInfo {
+        app
+        cache
+        data
+        log
+      }
+      geoInfo {
+        city
+        country
+        latitude
+        longitude
+      }
+      members {
+        approved
+        did
+        pk
+      }
+      nodeOwner {
+        did
+        pk
+      }
+    }
+  }
+}
+`;
+
+const queryListBlocklets = `{
+  listBlocklets {
+    code
+    blocklets {
+      adminUrl
+      author
+      configUrl
+      description
+      did
+      downloads
+      gitUrl
+      homepage
+      main
+      name
+      price
+      provider
+      publicUrl
+      version
+    }
+  }
+}
+`;
+
+const queryGetBlocklets = `{
+  getBlocklets {
+    code
+    blocklets {
+      addedAt
+      installedAt
+      pausedAt
+      startedAt
+      status
+      adminInterface {
+        external
+        internal
+      }
+      configInterface {
+        external
+        internal
+      }
+      configs {
+        key
+        value
+      }
+      diskInfo {
+        app
+        cache
+        data
+        log
+      }
+      environments {
+        key
+        value
+      }
+      meta {
+        adminUrl
+        author
+        configUrl
+        description
+        did
+        downloads
+        gitUrl
+        homepage
+        main
+        name
+        price
+        provider
+        publicUrl
+        version
+      }
+      publicInterface {
+        external
+        internal
+      }
+      runtimeInfo {
+        cpuUsage
+        memoryUsage
+        pid
+        port
+        uptime
+      }
+    }
+  }
+}
+`;
+
 module.exports = {
   extractedArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,
   queryListTransactionsNoItx,
+  queryGetNodeInfo,
+  queryListBlocklets,
+  queryGetBlocklets,
 };

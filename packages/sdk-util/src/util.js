@@ -12,6 +12,9 @@ const getTypeFilter = kinds => x => {
   }
 
   if (x.type.ofType) {
+    if (x.type.ofType.ofType) {
+      return kinds.includes(x.type.ofType.ofType.kind);
+    }
     return kinds.includes(x.type.ofType.kind);
   }
   return kinds.includes(x.type.kind);
@@ -36,9 +39,18 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
   }
 
   const objectFields = (fields || []).filter(getTypeFilter(['OBJECT'])).map(x => {
-    const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
+    const subType = x.type.ofType
+      ? x.type.ofType.ofType
+        ? x.type.ofType.ofType.name
+        : x.type.ofType.name
+      : x.type.name;
+    const kind = x.type.ofType
+      ? x.type.ofType.ofType
+        ? x.type.ofType.ofType.kind
+        : x.type.ofType.kind
+      : x.type.kind;
     return {
-      type: x.type.kind,
+      type: kind,
       name: x.name,
       args: (x.args || []).reduce((args, arg) => {
         args[arg.name] = arg;
