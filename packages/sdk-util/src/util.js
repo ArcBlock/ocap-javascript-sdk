@@ -1,6 +1,18 @@
 const { parse } = require('graphql/language/parser');
 const { print } = require('graphql/language/printer');
 
+const getTypeField = (root, key) => {
+  if (root.type.ofType) {
+    if (root.type.ofType.ofType) {
+      return root.type.ofType.ofType[key];
+    }
+
+    return root.type.ofType[key];
+  }
+
+  return root.type[key];
+};
+
 /**
  * Make a field filter fn
  *
@@ -11,13 +23,8 @@ const getTypeFilter = kinds => x => {
     return false;
   }
 
-  if (x.type.ofType) {
-    if (x.type.ofType.ofType) {
-      return kinds.includes(x.type.ofType.ofType.kind);
-    }
-    return kinds.includes(x.type.ofType.kind);
-  }
-  return kinds.includes(x.type.kind);
+  const kind = getTypeField(x, 'kind');
+  return kinds.includes(kind);
 };
 
 /**
@@ -39,16 +46,8 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
   }
 
   const objectFields = (fields || []).filter(getTypeFilter(['OBJECT'])).map(x => {
-    const subType = x.type.ofType
-      ? x.type.ofType.ofType
-        ? x.type.ofType.ofType.name
-        : x.type.ofType.name
-      : x.type.name;
-    const kind = x.type.ofType
-      ? x.type.ofType.ofType
-        ? x.type.ofType.ofType.kind
-        : x.type.ofType.kind
-      : x.type.kind;
+    const subType = getTypeField(x, 'name');
+    const kind = getTypeField(x, 'kind');
     return {
       type: kind,
       name: x.name,
@@ -61,7 +60,7 @@ const resolveFieldTree = (type, depth, map, maxDepth) => {
   });
 
   const unionFields = (fields || []).filter(getTypeFilter(['UNION'])).map(x => {
-    const subType = x.type.ofType ? x.type.ofType.name : x.type.name;
+    const subType = getTypeField(x, 'name');
     return {
       type: x.type.kind,
       name: x.name,
@@ -195,9 +194,8 @@ const formatArgs = (values, specs = {}) => {
   };
 
   const formatArg = (value, spec) => {
-    // console.log('formatArg', { value, spec });
-    const type = spec.type.ofType ? spec.type.ofType.name : spec.type.name;
-    const kind = spec.type.ofType ? spec.type.ofType.kind : spec.type.kind;
+    const type = getTypeField(spec, 'name');
+    const kind = getTypeField(spec, 'kind');
     let result = '';
     if (spec.kind === 'LIST') {
       result = `[${value
@@ -207,6 +205,20 @@ const formatArgs = (values, specs = {}) => {
           }
           if (spec.ofType.fields) {
             return `{${formatArgs(v, spec.ofType.fields)}}`;
+          }
+
+          // eslint-disable-next-line
+          console.error('formatArgs: unrecognized type in list', spec.ofType);
+        })
+        .join(',')}]`;
+    } else if (spec.type.kind === 'LIST') {
+      result = `[${value
+        .map(v => {
+          if (spec.type.ofType.kind === 'SCALAR') {
+            return formatScalarArg(spec.type.ofType.name, v);
+          }
+          if (spec.type.ofType.fields) {
+            return `{${formatArgs(v, spec.type.ofType.fields)}}`;
           }
 
           // eslint-disable-next-line
@@ -267,13 +279,15 @@ const addFieldsPath = (fields, prefix = '') => {
 const extractArgSpecs = (args, types) => {
   return args.reduce((obj, x) => {
     obj[x.name] = x;
-    const name = x.type.ofType ? x.type.ofType.name : x.type.name;
-    const kind = x.type.ofType ? x.type.ofType.kind : x.type.kind;
+    const name = getTypeField(x, 'name');
+    const kind = getTypeField(x, 'kind');
+
     if (kind === 'INPUT_OBJECT' && Array.isArray(types[name].inputFields)) {
       x.fields = types[name].inputFields.reduce((acc, f) => {
         acc[f.name] = f;
-        const subName = f.type.ofType ? f.type.ofType.name : f.type.name;
-        const subKind = f.type.ofType ? f.type.ofType.kind : f.type.kind;
+        const subName = getTypeField(f, 'name');
+        const subKind = getTypeField(f, 'kind');
+
         if (subKind === 'INPUT_OBJECT') {
           const subSpecs = extractArgSpecs(types[subName].inputFields, types);
           if (f.type.kind === 'LIST') {

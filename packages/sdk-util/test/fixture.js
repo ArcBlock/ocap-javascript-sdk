@@ -125,6 +125,55 @@ const extractedArgSpecs = {
   },
 };
 
+const extractedListArgSpecs = {
+  input: {
+    name: 'input',
+    description: null,
+    type: {
+      kind: 'INPUT_OBJECT',
+      name: 'RequestConfigBlockletInput',
+      ofType: null,
+    },
+    defaultValue: null,
+    fields: {
+      did: {
+        name: 'did',
+        description: null,
+        type: { kind: 'SCALAR', name: 'String', ofType: null },
+        defaultValue: null,
+      },
+      configs: {
+        name: 'configs',
+        description: null,
+        type: {
+          kind: 'LIST',
+          name: null,
+          ofType: {
+            kind: 'NON_NULL',
+            name: null,
+            ofType: { kind: 'INPUT_OBJECT', name: 'ConfigEntryInput', ofType: null },
+            fields: {
+              key: {
+                name: 'key',
+                description: null,
+                type: { kind: 'SCALAR', name: 'String', ofType: null },
+                defaultValue: null,
+              },
+              value: {
+                name: 'value',
+                description: null,
+                type: { kind: 'SCALAR', name: 'String', ofType: null },
+                defaultValue: null,
+              },
+            },
+          },
+        },
+        defaultValue: null,
+      },
+    },
+  },
+};
+
 const mutationCreateWallet = `mutation {
   createWallet(moniker: "wangshijun", passphrase: "1234556") {
     code
@@ -546,6 +595,7 @@ const queryGetBlocklets = `{
 
 module.exports = {
   extractedArgSpecs,
+  extractedListArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,

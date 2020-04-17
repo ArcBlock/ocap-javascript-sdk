@@ -18,6 +18,7 @@ const {
 } = require('../src/util');
 const {
   extractedArgSpecs,
+  extractedListArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,
@@ -28,6 +29,11 @@ const {
 } = require('./fixture');
 
 const typesMap = types.reduce((acc, x) => {
+  acc[x.name] = x;
+  return acc;
+}, {});
+
+const nodeTypesMap = nodeTypes.reduce((acc, x) => {
   acc[x.name] = x;
   return acc;
 }, {});
@@ -107,6 +113,14 @@ describe('#formatArgs', () => {
     );
     expect(args).toEqual('address: "xxx", height: 123');
   });
+
+  test('should process list types correctly', () => {
+    const args = formatArgs(
+      { input: { did: 'abc', configs: [{ key: 'key', value: 'value' }] } },
+      extractedListArgSpecs
+    );
+    expect(args).toEqual('input: {did: "abc", configs: [{key: "key", value: "value"}]}');
+  });
 });
 
 describe('#extractArgSpecs', () => {
@@ -185,6 +199,25 @@ describe('#extractArgSpecs', () => {
     const argSpecs = extractArgSpecs(args, typesMap);
     // console.log(require('util').inspect(argSpecs, { depth: 8 }));
     expect(argSpecs).toEqual(extractedArgSpecs);
+  });
+
+  test('should extract correct arg specs', () => {
+    const args = [
+      {
+        name: 'input',
+        description: null,
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'RequestConfigBlockletInput',
+          ofType: null,
+        },
+        defaultValue: null,
+      },
+    ];
+
+    const argSpecs = extractArgSpecs(args, nodeTypesMap);
+    // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+    expect(argSpecs).toEqual(extractedListArgSpecs);
   });
 });
 
