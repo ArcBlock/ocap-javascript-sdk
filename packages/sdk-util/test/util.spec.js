@@ -130,7 +130,7 @@ describe('#formatArgs', () => {
     expect(args).toEqual('input: {did: "abc", configs: [{key: "key", value: "value"}]}');
   });
 
-  test('should process list types correctly: nested', () => {
+  test('should process deeply nested types correctly', () => {
     const args = [
       {
         name: 'input',
@@ -149,15 +149,42 @@ describe('#formatArgs', () => {
     const formatted = formatArgs(
       {
         input: {
-          from: { domain: 'abc', path: '/' },
+          from: { domain: 'abc', pathPrefix: '/' },
           to: { port: 8089, type: 'blocklet', did: 'z123' },
         },
       },
       argSpecs
     );
     expect(formatted).toEqual(
-      'input: {from: {domain: "abc", path: "/"}, to: {port: 8089, type: blocklet, did: "z123"}}'
+      'input: {from: {domain: "abc", pathPrefix: "/"}, to: {port: 8089, type: blocklet, did: "z123"}}'
     );
+  });
+
+  test('should process nested list types correctly', () => {
+    const args = [
+      {
+        name: 'input',
+        description: null,
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'RequestRemoveRoutingRulesInput',
+          ofType: null,
+        },
+        defaultValue: null,
+      },
+    ];
+    const argSpecs = extractArgSpecs(args, nodeTypesMap);
+    // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+
+    const formatted = formatArgs(
+      {
+        input: {
+          ids: ['1', '2', '3'],
+        },
+      },
+      argSpecs
+    );
+    expect(formatted).toEqual('input: {ids: ["1","2","3"]}');
   });
 });
 

@@ -645,7 +645,7 @@ const queryGetBlocklets = `{
         id
         from {
           domain
-          path
+          pathPrefix
           header {
             key
             type

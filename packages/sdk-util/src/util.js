@@ -203,11 +203,11 @@ const formatArgs = (values, specs = {}) => {
     if (spec.kind === 'LIST') {
       result = `[${value
         .map(v => {
-          if (spec.ofType.kind === 'SCALAR') {
-            return formatScalarArg(spec.ofType.name, v);
+          if (kind === 'SCALAR') {
+            return formatScalarArg(type, v);
           }
-          if (spec.ofType.fields) {
-            return `{${formatArgs(v, spec.ofType.fields)}}`;
+          if (fields) {
+            return `{${formatArgs(v, fields)}}`;
           }
 
           // eslint-disable-next-line
@@ -222,6 +222,13 @@ const formatArgs = (values, specs = {}) => {
           }
           if (spec.type.ofType.fields) {
             return `{${formatArgs(v, spec.type.ofType.fields)}}`;
+          }
+
+          if (kind === 'SCALAR') {
+            return formatScalarArg(type, v);
+          }
+          if (fields) {
+            return `{${formatArgs(v, fields)}}`;
           }
 
           // eslint-disable-next-line

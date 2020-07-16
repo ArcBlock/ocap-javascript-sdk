@@ -1301,7 +1301,7 @@
           "deprecationReason": null
         },
         {
-          "name": "path",
+          "name": "pathPrefix",
           "description": null,
           "args": [],
           "type": {
@@ -3281,6 +3281,29 @@
           },
           "isDeprecated": false,
           "deprecationReason": null
+        },
+        {
+          "name": "removeRoutingRule",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestRemoveRoutingRuleInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseRoutingRules",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
         }
       ],
       "inputFields": null,
@@ -3562,7 +3585,7 @@
           "defaultValue": null
         },
         {
-          "name": "path",
+          "name": "pathPrefix",
           "description": null,
           "type": {
             "kind": "SCALAR",
@@ -4021,6 +4044,27 @@
                 "ofType": null
               }
             }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestRemoveRoutingRuleInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "id",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
           },
           "defaultValue": null
         }
