@@ -1,3 +1,6 @@
+## 0.28.3 (July 16, 2020)
+  - fix: formatArg not handling nested input objects properly
+
 ## 0.28.2 (April 21, 2020)
 
 
