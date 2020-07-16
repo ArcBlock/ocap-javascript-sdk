@@ -1,6 +1,10 @@
 {
-  "version": "0.28.2",
+  "version": "0.28.3",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "ignoreChanges": ["**/tools/**", "**/docs/**", "**/test/**"]
+  "ignoreChanges": [
+    "**/tools/**",
+    "**/docs/**",
+    "**/test/**"
+  ]
 }
