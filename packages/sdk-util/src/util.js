@@ -10,7 +10,7 @@ const getTypeField = (root, key) => {
     return root.type.ofType[key];
   }
 
-  return root.type[key];
+  return root.type[key] || root[key];
 };
 
 /**
@@ -163,7 +163,8 @@ const formatArgs = (values, specs = {}) => {
 
   const missingArgs = [];
   const isRequiredMissing = Object.keys(specs).some(x => {
-    const isMissing = specs[x].type.kind === 'NON_NULL' && typeof values[x] === 'undefined';
+    const isMissing =
+      getTypeField(specs[x], 'kind') === 'NON_NULL' && typeof values[x] === 'undefined';
     if (isMissing) {
       missingArgs.push(x);
     }
@@ -196,6 +197,8 @@ const formatArgs = (values, specs = {}) => {
   const formatArg = (value, spec) => {
     const type = getTypeField(spec, 'name');
     const kind = getTypeField(spec, 'kind');
+    const fields = getTypeField(spec, 'fields');
+
     let result = '';
     if (spec.kind === 'LIST') {
       result = `[${value
@@ -230,7 +233,7 @@ const formatArgs = (values, specs = {}) => {
     } else if (kind === 'ENUM') {
       result = value;
     } else if (kind === 'INPUT_OBJECT') {
-      result = `{${formatArgs(value, spec.fields)}}`;
+      result = `{${formatArgs(value, fields)}}`;
     }
 
     return result;

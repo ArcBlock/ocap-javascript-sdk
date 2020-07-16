@@ -159,6 +159,16 @@ const extractedListArgSpecs = {
                 type: { kind: 'SCALAR', name: 'String', ofType: null },
                 defaultValue: null,
               },
+              required: {
+                defaultValue: null,
+                description: null,
+                name: 'required',
+                type: {
+                  kind: 'SCALAR',
+                  name: 'Boolean',
+                  ofType: null,
+                },
+              },
               value: {
                 name: 'value',
                 description: null,
@@ -468,14 +478,20 @@ const queryGetNodeInfo = `{
   getNodeInfo {
     code
     info {
+      blockletRegistry
       createdAt
       description
       did
+      domain
+      https
       initialized
       initializedAt
+      ip
       name
       pk
+      port
       startedAt
+      uptime
       version
       blockletOwner {
         did
@@ -483,9 +499,15 @@ const queryGetNodeInfo = `{
       }
       diskInfo {
         app
+        blocklets
         cache
         data
         log
+      }
+      environments {
+        key
+        required
+        value
       }
       geoInfo {
         city
@@ -495,12 +517,19 @@ const queryGetNodeInfo = `{
       }
       members {
         approved
+        avatar
         did
+        email
+        name
         pk
+        role
       }
       nodeOwner {
         did
         pk
+      }
+      routing {
+        proxyType
       }
     }
   }
@@ -513,18 +542,35 @@ const queryListBlocklets = `{
     blocklets {
       adminUrl
       author
+      color
+      community
       configUrl
       description
       did
-      downloads
+      documentation
+      docUrl
+      folder
       gitUrl
+      group
       homepage
+      keywords
+      logoUrl
       main
       name
+      path
       price
       provider
       publicUrl
+      screenshots
+      support
+      title
       version
+      stats {
+        downloads
+        purchases
+        star
+        updatedAt
+      }
     }
   }
 }
@@ -535,51 +581,82 @@ const queryGetBlocklets = `{
     code
     blocklets {
       addedAt
+      adminInterface
+      configInterface
+      docInterface
       installedAt
       pausedAt
+      port
+      publicInterface
+      source
       startedAt
       status
-      adminInterface {
-        external
-        internal
-      }
-      configInterface {
-        external
-        internal
-      }
       configs {
         key
+        required
         value
       }
       diskInfo {
         app
+        blocklets
         cache
         data
         log
       }
       environments {
         key
+        required
         value
       }
       meta {
         adminUrl
         author
+        color
+        community
         configUrl
         description
         did
-        downloads
+        documentation
+        docUrl
+        folder
         gitUrl
+        group
         homepage
+        keywords
+        logoUrl
         main
         name
+        path
         price
         provider
         publicUrl
+        screenshots
+        support
+        title
         version
+        stats {
+          downloads
+          purchases
+          star
+          updatedAt
+        }
       }
-      publicInterface {
-        external
-        internal
+      routingRules {
+        id
+        from {
+          domain
+          path
+          header {
+            key
+            type
+            value
+          }
+        }
+        to {
+          did
+          port
+          type
+        }
       }
       runtimeInfo {
         cpuUsage

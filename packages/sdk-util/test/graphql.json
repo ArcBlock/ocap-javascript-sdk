@@ -9,9 +9,561 @@
   "types": [
     {
       "kind": "OBJECT",
-      "name": "__Schema",
-      "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+      "name": "Query",
+      "description": null,
       "fields": [
+        {
+          "name": "getBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getBlocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetBlocklets",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getBlockletsRoutingRules",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetBlockletsRoutingRules",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getNodeInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getEnvInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetEnvInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "listBlocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseListBlocklets",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "listPurchased",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseListBlocklets",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "listVersions",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestListVersionsInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseListVersions",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getNotifications",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestGetNotificationsInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNotifications",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "getRoutingRules",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseRoutingRules",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestBlockletInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "String",
+      "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseBlocklet",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklet",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "BlockletState",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "StatusCode",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "ok",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklet_not_found",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklet_not_purchased",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "forbidden",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "internal",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "timeout",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "BlockletState",
+      "description": null,
+      "fields": [
+        {
+          "name": "meta",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "BlockletMeta",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "status",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "BlockletStatus",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "addedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "installedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "startedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "pausedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "configInterface",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "adminInterface",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "publicInterface",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "environments",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConfigEntry",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "configs",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConfigEntry",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "diskInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "DiskInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "runtimeInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "RuntimeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "source",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "BlockletSource",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "port",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "docInterface",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "routingRules",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RoutingRule",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "BlockletMeta",
+      "description": null,
+      "fields": [
+        {
+          "name": "did",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "name",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "version",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
         {
           "name": "description",
           "description": null,
@@ -24,6 +576,3464 @@
           "isDeprecated": false,
           "deprecationReason": null
         },
+        {
+          "name": "adminUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "publicUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "configUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "gitUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "provider",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "author",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "main",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "stats",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "BlockletStats",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "homepage",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "price",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "color",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "path",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "community",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "documentation",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "support",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "screenshots",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "keywords",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "folder",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "group",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "logoUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "docUrl",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "title",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "BlockletStats",
+      "description": null,
+      "fields": [
+        {
+          "name": "downloads",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "star",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "purchases",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updatedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "Float32",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "BlockletStatus",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "added",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "downloading",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "downloaded",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "installing",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "installed",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "starting",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "running",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "stopping",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "stopped",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "error",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "upgrading",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ConfigEntry",
+      "description": null,
+      "fields": [
+        {
+          "name": "key",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "value",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "required",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "Boolean",
+      "description": "The `Boolean` scalar type represents `true` or `false`.",
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "DiskInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "app",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "data",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "log",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "cache",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "RuntimeInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "pid",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "port",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "uptime",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "memoryUsage",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "cpuUsage",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "BlockletSource",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "registry",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "local",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "upload",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "RoutingRule",
+      "description": null,
+      "fields": [
+        {
+          "name": "id",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "from",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "RoutingRuleFrom",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "to",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "RoutingRuleTo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "RoutingRuleFrom",
+      "description": null,
+      "fields": [
+        {
+          "name": "domain",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "path",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "header",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RoutingRuleHeader",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "RoutingRuleHeader",
+      "description": null,
+      "fields": [
+        {
+          "name": "key",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "value",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "type",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "HeaderMatchType",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "HeaderMatchType",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "exact",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "partial",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "regexp",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "RoutingRuleTo",
+      "description": null,
+      "fields": [
+        {
+          "name": "port",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Uint32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "type",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "BackendServiceType",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "did",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "Uint32",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "ENUM",
+      "name": "BackendServiceType",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": [
+        {
+          "name": "daemon",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklet",
+          "description": null,
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseGetBlocklets",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BlockletState",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseGetBlockletsRoutingRules",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BlockletRoutingRules",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "BlockletRoutingRules",
+      "description": null,
+      "fields": [
+        {
+          "name": "meta",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "BlockletMeta",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "routingRules",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RoutingRule",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseGetNodeInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "info",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "NodeState",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "NodeState",
+      "description": null,
+      "fields": [
+        {
+          "name": "did",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "pk",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "version",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "initialized",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "nodeOwner",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "WalletInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blockletOwner",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "WalletInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "createdAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "startedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "initializedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "geoInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "GeoInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "diskInfo",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "DiskInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "members",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "MemberInfo",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "name",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "description",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "domain",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "port",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "https",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "uptime",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blockletRegistry",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "environments",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "ConfigEntry",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "ip",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "routing",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "NodeRouting",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "WalletInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "did",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "pk",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "GeoInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "city",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "country",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "latitude",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "longitude",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Float32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "MemberInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "did",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "pk",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "role",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "avatar",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "name",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "email",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "approved",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "NodeRouting",
+      "description": null,
+      "fields": [
+        {
+          "name": "proxyType",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseGetEnvInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "info",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "EnvInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "EnvInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "ip",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "IPInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "os",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "location",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "docker",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "image",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "IPInfo",
+      "description": null,
+      "fields": [
+        {
+          "name": "internalV4",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "externalV4",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "internalV6",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "externalV6",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseListBlocklets",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklets",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BlockletMeta",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestListVersionsInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "includePrereleases",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseListVersions",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "versions",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "BlockletVersion",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "BlockletVersion",
+      "description": null,
+      "fields": [
+        {
+          "name": "version",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "publishedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestGetNotificationsInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "receiver",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "sender",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "read",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseGetNotifications",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "notifications",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Notification",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "Notification",
+      "description": null,
+      "fields": [
+        {
+          "name": "sender",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "receiver",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "title",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "description",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "action",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "entityType",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "entityId",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "read",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "createdAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updatedAt",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "id",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseRoutingRules",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "rules",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RoutingRule",
+                "ofType": null
+              }
+            }
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "Mutation",
+      "description": null,
+      "fields": [
+        {
+          "name": "installBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestVersionedBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "startBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "stopBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "reloadBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "restartBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "removeBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestRemoveBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "upgradeBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestVersionedBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "configBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestConfigBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseConfigBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updateBlocklet",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestUpdateBlockletInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseBlocklet",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "initNodeInfo",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "NodeInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updateNodeInfo",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "NodeInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "addNodeOwner",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "WalletInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "addNodeMember",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "MemberInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "removeNodeMember",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "MemberInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "approveNodeMember",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "MemberInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "rejectNodeMember",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "MemberInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "addBlockletOwner",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "WalletInfoInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updateNodeRouting",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestNodeRoutingInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseGetNodeInfo",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "readNotifications",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestReadNotificationsInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseReadNotifications",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "unreadNotifications",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestReadNotificationsInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseReadNotifications",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "addRoutingRule",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RoutingRuleInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseRoutingRule",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "updateRoutingRules",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestUpdateRoutingRulesInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseRoutingRules",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "removeRoutingRules",
+          "description": null,
+          "args": [
+            {
+              "name": "input",
+              "description": null,
+              "type": {
+                "kind": "INPUT_OBJECT",
+                "name": "RequestRemoveRoutingRulesInput",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "type": {
+            "kind": "OBJECT",
+            "name": "ResponseRoutingRules",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestVersionedBlockletInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "version",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestRemoveBlockletInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "keepData",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestConfigBlockletInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "configs",
+          "description": null,
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "ConfigEntryInput",
+                "ofType": null
+              }
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "ConfigEntryInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "key",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "value",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "required",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseConfigBlocklet",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "blocklet",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "BlockletState",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestUpdateBlockletInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "routingRules",
+          "description": null,
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "RoutingRuleInput",
+                "ofType": null
+              }
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RoutingRuleInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "id",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "from",
+          "description": null,
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "RoutingRuleFromInput",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "to",
+          "description": null,
+          "type": {
+            "kind": "INPUT_OBJECT",
+            "name": "RoutingRuleToInput",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RoutingRuleFromInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "domain",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "path",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "header",
+          "description": null,
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "RoutingRuleHeaderInput",
+                "ofType": null
+              }
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RoutingRuleHeaderInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "key",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "value",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "type",
+          "description": null,
+          "type": {
+            "kind": "ENUM",
+            "name": "HeaderMatchType",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RoutingRuleToInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "port",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Uint32",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "type",
+          "description": null,
+          "type": {
+            "kind": "ENUM",
+            "name": "BackendServiceType",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "NodeInfoInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "name",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "description",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "ip",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "blockletRegistry",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "port",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "WalletInfoInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "pk",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "MemberInfoInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "did",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "pk",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "role",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "avatar",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "name",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "email",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        },
+        {
+          "name": "approved",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "Boolean",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestNodeRoutingInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "proxyType",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestReadNotificationsInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "id",
+          "description": null,
+          "type": {
+            "kind": "SCALAR",
+            "name": "String",
+            "ofType": null
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseReadNotifications",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "numAffected",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "SCALAR",
+            "name": "Int32",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "SCALAR",
+      "name": "Int32",
+      "description": null,
+      "fields": null,
+      "inputFields": null,
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "ResponseRoutingRule",
+      "description": null,
+      "fields": [
+        {
+          "name": "code",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "ENUM",
+            "name": "StatusCode",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        },
+        {
+          "name": "rule",
+          "description": null,
+          "args": [],
+          "type": {
+            "kind": "OBJECT",
+            "name": "RoutingRule",
+            "ofType": null
+          },
+          "isDeprecated": false,
+          "deprecationReason": null
+        }
+      ],
+      "inputFields": null,
+      "interfaces": [],
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestUpdateRoutingRulesInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "rules",
+          "description": null,
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "RoutingRuleInput",
+                "ofType": null
+              }
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "INPUT_OBJECT",
+      "name": "RequestRemoveRoutingRulesInput",
+      "description": null,
+      "fields": null,
+      "inputFields": [
+        {
+          "name": "ids",
+          "description": null,
+          "type": {
+            "kind": "LIST",
+            "name": null,
+            "ofType": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            }
+          },
+          "defaultValue": null
+        }
+      ],
+      "interfaces": null,
+      "enumValues": null,
+      "possibleTypes": null
+    },
+    {
+      "kind": "OBJECT",
+      "name": "__Schema",
+      "description": "A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations.",
+      "fields": [
         {
           "name": "types",
           "description": "A list of all types supported by this server.",
@@ -115,16 +4125,6 @@
       ],
       "inputFields": null,
       "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "SCALAR",
-      "name": "String",
-      "description": "The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.",
-      "fields": null,
-      "inputFields": null,
-      "interfaces": null,
       "enumValues": null,
       "possibleTypes": null
     },
@@ -335,7 +4335,7 @@
         },
         {
           "name": "INTERFACE",
-          "description": "Indicates this type is an interface. `fields`, `interfaces`, and `possibleTypes` are valid fields.",
+          "description": "Indicates this type is an interface. `fields` and `possibleTypes` are valid fields.",
           "isDeprecated": false,
           "deprecationReason": null
         },
@@ -547,16 +4547,6 @@
       "possibleTypes": null
     },
     {
-      "kind": "SCALAR",
-      "name": "Boolean",
-      "description": "The `Boolean` scalar type represents `true` or `false`.",
-      "fields": null,
-      "inputFields": null,
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
       "kind": "OBJECT",
       "name": "__EnumValue",
       "description": "One possible value for a given Enum. Enum values are unique values, not a placeholder for a string or numeric value. However an Enum value is returned in a JSON response as a string.",
@@ -652,22 +4642,6 @@
             "kind": "SCALAR",
             "name": "String",
             "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "isRepeatable",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "NON_NULL",
-            "name": null,
-            "ofType": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            }
           },
           "isDeprecated": false,
           "deprecationReason": null
@@ -850,1863 +4824,6 @@
         }
       ],
       "possibleTypes": null
-    },
-    {
-      "kind": "SCALAR",
-      "name": "Float32",
-      "description": null,
-      "fields": null,
-      "inputFields": null,
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "ConfigEntryInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "key",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "value",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "MemberInfoInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "pk",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "approved",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "Boolean",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "NodeInfoInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "name",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "description",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "RequestBlockletInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "RequestConfigBlockletInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "configs",
-          "description": null,
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "ConfigEntryInput",
-                "ofType": null
-              }
-            }
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "RequestRemoveBlockletInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "keepData",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "Boolean",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "RequestVersionedBlockletInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "version",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "INPUT_OBJECT",
-      "name": "WalletInfoInput",
-      "description": null,
-      "fields": null,
-      "inputFields": [
-        {
-          "name": "did",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        },
-        {
-          "name": "pk",
-          "description": null,
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "defaultValue": null
-        }
-      ],
-      "interfaces": null,
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "BlockletInterface",
-      "description": null,
-      "fields": [
-        {
-          "name": "internal",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "external",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "BlockletMeta",
-      "description": null,
-      "fields": [
-        {
-          "name": "did",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "name",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "version",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "description",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "adminUrl",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "publicUrl",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "configUrl",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "gitUrl",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "provider",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "author",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "main",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "downloads",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "homepage",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "price",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "BlockletState",
-      "description": null,
-      "fields": [
-        {
-          "name": "meta",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletMeta",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "status",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "BlockletStatus",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "addedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "installedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "startedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "pausedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "configInterface",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletInterface",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "adminInterface",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletInterface",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "publicInterface",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletInterface",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "environments",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConfigEntry",
-                "ofType": null
-              }
-            }
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "configs",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "ConfigEntry",
-                "ofType": null
-              }
-            }
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "diskInfo",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "DiskInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "runtimeInfo",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "RuntimeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ConfigEntry",
-      "description": null,
-      "fields": [
-        {
-          "name": "key",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "value",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "DiskInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "app",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "data",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "log",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "cache",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "GeoInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "city",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "country",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "latitude",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "longitude",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "MemberInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "did",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "pk",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "approved",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Boolean",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "NodeState",
-      "description": null,
-      "fields": [
-        {
-          "name": "did",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "pk",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "version",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "initialized",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Boolean",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "nodeOwner",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "WalletInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blockletOwner",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "WalletInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "createdAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "startedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "initializedAt",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "geoInfo",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "GeoInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "diskInfo",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "DiskInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "members",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "MemberInfo",
-                "ofType": null
-              }
-            }
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "name",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "description",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ResponseBlocklet",
-      "description": null,
-      "fields": [
-        {
-          "name": "code",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "StatusCode",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklet",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletState",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ResponseConfigBlocklet",
-      "description": null,
-      "fields": [
-        {
-          "name": "code",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "StatusCode",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklet",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "BlockletState",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ResponseGetBlocklets",
-      "description": null,
-      "fields": [
-        {
-          "name": "code",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "StatusCode",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklets",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BlockletState",
-                "ofType": null
-              }
-            }
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ResponseGetNodeInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "code",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "StatusCode",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "info",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "NodeState",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "ResponseListBlocklets",
-      "description": null,
-      "fields": [
-        {
-          "name": "code",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "ENUM",
-            "name": "StatusCode",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklets",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "LIST",
-            "name": null,
-            "ofType": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "BlockletMeta",
-                "ofType": null
-              }
-            }
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "RuntimeInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "pid",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "port",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "uptime",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "memoryUsage",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "cpuUsage",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "Float32",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "WalletInfo",
-      "description": null,
-      "fields": [
-        {
-          "name": "did",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "pk",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "SCALAR",
-            "name": "String",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "ENUM",
-      "name": "BlockletStatus",
-      "description": null,
-      "fields": null,
-      "inputFields": null,
-      "interfaces": null,
-      "enumValues": [
-        {
-          "name": "added",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "downloading",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "downloaded",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "installing",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "installed",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "starting",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "running",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "stopping",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "stopped",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "error",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "possibleTypes": null
-    },
-    {
-      "kind": "ENUM",
-      "name": "StatusCode",
-      "description": null,
-      "fields": null,
-      "inputFields": null,
-      "interfaces": null,
-      "enumValues": [
-        {
-          "name": "ok",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklet_not_found",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "blocklet_not_purchased",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "forbidden",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "internal",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "timeout",
-          "description": null,
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "Mutation",
-      "description": null,
-      "fields": [
-        {
-          "name": "installBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestVersionedBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "startBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "stopBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "reloadBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "restartBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "removeBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestRemoveBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "upgradeBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestVersionedBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "configBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestConfigBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseConfigBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "initNodeInfo",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "NodeInfoInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "addNodeOwner",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "WalletInfoInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "addNodeMember",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "MemberInfoInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "removeNodeMember",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "MemberInfoInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "addBlockletOwner",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "WalletInfoInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
-    },
-    {
-      "kind": "OBJECT",
-      "name": "Query",
-      "description": null,
-      "fields": [
-        {
-          "name": "getBlocklet",
-          "description": null,
-          "args": [
-            {
-              "name": "input",
-              "description": null,
-              "type": {
-                "kind": "INPUT_OBJECT",
-                "name": "RequestBlockletInput",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseBlocklet",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "getBlocklets",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetBlocklets",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "getNodeInfo",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseGetNodeInfo",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "listBlocklets",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseListBlocklets",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        },
-        {
-          "name": "listPurchased",
-          "description": null,
-          "args": [],
-          "type": {
-            "kind": "OBJECT",
-            "name": "ResponseListBlocklets",
-            "ofType": null
-          },
-          "isDeprecated": false,
-          "deprecationReason": null
-        }
-      ],
-      "inputFields": null,
-      "interfaces": [],
-      "enumValues": null,
-      "possibleTypes": null
     }
   ],
   "directives": [
@@ -2759,7 +4876,7 @@
       "args": [
         {
           "name": "reason",
-          "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax, as specified by [CommonMark](https://commonmark.org/).",
+          "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/).",
           "type": {
             "kind": "SCALAR",
             "name": "String",

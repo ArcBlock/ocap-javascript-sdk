@@ -121,6 +121,44 @@ describe('#formatArgs', () => {
     );
     expect(args).toEqual('input: {did: "abc", configs: [{key: "key", value: "value"}]}');
   });
+
+  test('should process list types correctly', () => {
+    const args = formatArgs(
+      { input: { did: 'abc', configs: [{ key: 'key', value: 'value' }] } },
+      extractedListArgSpecs
+    );
+    expect(args).toEqual('input: {did: "abc", configs: [{key: "key", value: "value"}]}');
+  });
+
+  test('should process list types correctly: nested', () => {
+    const args = [
+      {
+        name: 'input',
+        description: null,
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'RoutingRuleInput',
+          ofType: null,
+        },
+        defaultValue: null,
+      },
+    ];
+    const argSpecs = extractArgSpecs(args, nodeTypesMap);
+    // console.log(require('util').inspect(argSpecs, { depth: 8 }));
+
+    const formatted = formatArgs(
+      {
+        input: {
+          from: { domain: 'abc', path: '/' },
+          to: { port: 8089, type: 'blocklet', did: 'z123' },
+        },
+      },
+      argSpecs
+    );
+    expect(formatted).toEqual(
+      'input: {from: {domain: "abc", path: "/"}, to: {port: 8089, type: blocklet, did: "z123"}}'
+    );
+  });
 });
 
 describe('#extractArgSpecs', () => {
