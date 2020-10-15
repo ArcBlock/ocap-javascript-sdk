@@ -183,7 +183,15 @@ const formatArgs = (values, specs = {}) => {
       return `[${value.map(v => formatScalarArg(type, v)).join(',')}]`;
     }
 
-    if (['String', 'DateTime', 'ID', 'HexString'].includes(type)) {
+    // escape slash(\) and double quotes (")
+    if ('String' === type) {
+      return `"${value
+        .toString()
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')}"`;
+    }
+
+    if (['DateTime', 'ID', 'HexString'].includes(type)) {
       return `"${value.toString()}"`;
     }
 
