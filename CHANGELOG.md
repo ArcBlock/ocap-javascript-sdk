@@ -1,3 +1,7 @@
+## 0.28.5 (October 15, 2020)
+
+- fix bug in format scalar argument when build graphql schema
+
 ## 0.28.4 (July 16, 2020)
 
 - fix: formatArg not handling nested list objects properly

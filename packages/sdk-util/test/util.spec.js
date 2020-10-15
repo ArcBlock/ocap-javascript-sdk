@@ -106,6 +106,16 @@ describe('#formatArgs', () => {
     expect(args).toEqual('address: "xxx", height: 123');
   });
 
+  test('should escape slash when process scalar types correctly', () => {
+    const args = formatArgs({ address: '\\arcblock\\', height: 123 }, specs);
+    expect(args).toEqual('address: "\\\\arcblock\\\\", height: 123');
+  });
+
+  test('should escape double quotation correctly when process scalar types correctly', () => {
+    const args = formatArgs({ address: '"xxx"', height: 123 }, specs);
+    expect(args).toEqual('address: "\\"xxx\\"", height: 123');
+  });
+
   test('should process object types correctly', () => {
     const args = formatArgs(
       { address: 'xxx', height: 123, paging: { size: 10, cursor: 'abc' } },
