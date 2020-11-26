@@ -1,3 +1,5 @@
+## 0.29.0 (November 27, 2020)
+- feat: dynamic inject axios in sdk-util
 ## 0.28.5 (October 15, 2020)
 
 - fix bug in format scalar argument when build graphql schema

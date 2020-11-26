@@ -30,6 +30,7 @@ class BaseClient {
         accessKey: '',
         accessSecret: '',
         maxQueryDepth: 4,
+        axios,
       },
       config
     );
@@ -270,7 +271,7 @@ class BaseClient {
     options.headers = Object.assign(options.headers || {}, authHeaders);
     debug('_doRequest.headers', options.headers);
 
-    const res = await axios.post(httpEndpoint, { query }, options);
+    const res = await this.config.axios.post(httpEndpoint, { query }, options);
 
     debug('_doRequest.response', {
       status: res.status,
