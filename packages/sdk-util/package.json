@@ -14,8 +14,8 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "axios": "^0.19.0",
-    "debug": "^4.1.1",
+    "axios": "^0.21.1",
+    "debug": "^4.3.1",
     "graphql": "14.6.0",
     "lodash.get": "^4.4.2",
     "lodash.set": "^4.3.2"
