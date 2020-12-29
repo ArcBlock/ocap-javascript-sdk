@@ -1,5 +1,13 @@
+## 0.29.1 (December 30, 2020)
+
+- chore: improve debug
+- fix: getTypeField error in sdk-util
+- chore: bump axios and debug version
+
 ## 0.29.0 (November 27, 2020)
+
 - feat: dynamic inject axios in sdk-util
+
 ## 0.28.5 (October 15, 2020)
 
 - fix bug in format scalar argument when build graphql schema
@@ -10,26 +18,26 @@
 
 ## 0.28.3 (July 16, 2020)
 
- - fix: formatArg not handling nested input objects properly
+- fix: formatArg not handling nested input objects properly
 
 ## 0.28.2 (April 21, 2020)
 
-
 ## 0.28.1 (April 17, 2020)
-
 
 ## 0.28.0 (April 15, 2020)
 
-
 ## 0.27.0 (April 15, 2020)
-  - update readme
+
+- update readme
 
 ## 0.26.0 (March 30, 2020)
-  - update readme
+
+- update readme
 
 ## 0.25.0 (January 14, 2020)
-  - feat: support batch query
-  - update readme
+
+- feat: support batch query
+- update readme
 
 ## 0.24.0 (August 27, 2019)
 
