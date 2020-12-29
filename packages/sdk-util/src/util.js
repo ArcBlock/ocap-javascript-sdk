@@ -223,7 +223,13 @@ const formatArgs = (values, specs = {}) => {
           }
 
           // eslint-disable-next-line
-          console.error('formatArgs: unrecognized type in list', spec.ofType);
+          console.error('formatArgs: unrecognized type in list', {
+            value,
+            spec,
+            type,
+            kind,
+            fields,
+          });
         })
         .join(',')}]`;
     } else if (spec.type.kind === 'LIST') {
@@ -244,10 +250,13 @@ const formatArgs = (values, specs = {}) => {
           }
 
           // eslint-disable-next-line
-          console.error(
-            'formatArgs: unrecognized type in list',
-            JSON.stringify({ value, spec, type, kind, fields }, null, 2)
-          );
+          console.error('formatArgs: unrecognized type in list', {
+            value,
+            spec,
+            type,
+            kind,
+            fields,
+          });
         })
         .join(',')}]`;
     } else if (kind === 'SCALAR') {
