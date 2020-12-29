@@ -19,6 +19,7 @@ const {
 const {
   extractedArgSpecs,
   extractedListArgSpecs,
+  extractedComplexArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,
@@ -293,6 +294,57 @@ describe('#extractArgSpecs', () => {
     const argSpecs = extractArgSpecs(args, nodeTypesMap);
     // console.log(require('util').inspect(argSpecs, { depth: 8 }));
     expect(argSpecs).toEqual(extractedListArgSpecs);
+  });
+
+  test.skip('should extract correct arg specs', () => {
+    const args = [
+      {
+        name: 'input',
+        description: '',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'RequestUpdateRoutingRuleInput',
+          ofType: null,
+        },
+        defaultValue: null,
+      },
+    ];
+
+    const argSpecs = extractArgSpecs(args, nodeTypesMap);
+    // console.log(require('util').inspect(argSpecs, { depth: 100 }));
+    expect(argSpecs).toEqual(extractedComplexArgSpecs);
+
+    const formatted = formatArgs(
+      {
+        input: {
+          id: 'l2OXw5cqXrfoNbfL',
+          rule: {
+            id: '4bf366ac-c87f-4b17-904a-5360a27b2a2d',
+            from: { pathPrefix: '/' },
+            to: {
+              type: 'blocklet',
+              port: 5556,
+              did: 'z8ia4e5vAeDsQEE2P26bQqz9oWR1Lxg9qUMaV',
+              interfaceName: 'publicUrl',
+            },
+            services: [
+              {
+                configJson: '{}',
+                configSchema: '{}',
+                description: 'Login service shared by all blocklets running inside ABT Node',
+                name: '@abtnode/login-service',
+                version: '1.1.8',
+              },
+            ],
+          },
+        },
+      },
+      argSpecs
+    );
+
+    expect(formatted).toEqual(
+      'input: {id: "l2OXw5cqXrfoNbfL", rule: {id: "4bf366ac-c87f-4b17-904a-5360a27b2a2d", from: {pathPrefix: "/"}, to: {type: blocklet, port: 5556, did: "z8ia4e5vAeDsQEE2P26bQqz9oWR1Lxg9qUMaV", interfaceName: "publicUrl"}, services: [{configJson: "{}", configSchema: "{}", description: "Login service shared by all blocklets running inside ABT Node", name: "@abtnode/login-service", version: "1.1.8"}]}}'
+    );
   });
 });
 

@@ -184,6 +184,265 @@ const extractedListArgSpecs = {
   },
 };
 
+const extractedComplexArgSpecs = {
+  input: {
+    name: 'input',
+    description: '',
+    type: {
+      kind: 'INPUT_OBJECT',
+      name: 'RequestUpdateRoutingRuleInput',
+      ofType: null
+    },
+    defaultValue: null,
+    fields: {
+      id: {
+        name: 'id',
+        description: '',
+        type: { kind: 'SCALAR', name: 'String', ofType: null },
+        defaultValue: null
+      },
+      rule: {
+        name: 'rule',
+        description: '',
+        type: {
+          kind: 'INPUT_OBJECT',
+          name: 'RoutingRuleInput',
+          ofType: null,
+          fields: {
+            id: {
+              name: 'id',
+              description: '',
+              type: { kind: 'SCALAR', name: 'String', ofType: null },
+              defaultValue: null
+            },
+            from: {
+              name: 'from',
+              description: '',
+              type: {
+                kind: 'INPUT_OBJECT',
+                name: 'RoutingRuleFromInput',
+                ofType: null
+              },
+              defaultValue: null,
+              fields: {
+                pathPrefix: {
+                  name: 'pathPrefix',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                header: {
+                  name: 'header',
+                  description: '',
+                  type: {
+                    kind: 'LIST',
+                    name: null,
+                    ofType: {
+                      kind: 'NON_NULL',
+                      name: null,
+                      ofType: {
+                        kind: 'INPUT_OBJECT',
+                        name: 'RoutingRuleHeaderInput',
+                        ofType: null
+                      },
+                      fields: {
+                        key: {
+                          name: 'key',
+                          description: '',
+                          type: {
+                            kind: 'SCALAR',
+                            name: 'String',
+                            ofType: null
+                          },
+                          defaultValue: null
+                        },
+                        value: {
+                          name: 'value',
+                          description: '',
+                          type: {
+                            kind: 'SCALAR',
+                            name: 'String',
+                            ofType: null
+                          },
+                          defaultValue: null
+                        },
+                        type: {
+                          name: 'type',
+                          description: '',
+                          type: {
+                            kind: 'ENUM',
+                            name: 'HeaderMatchType',
+                            ofType: null
+                          },
+                          defaultValue: null
+                        }
+                      }
+                    }
+                  },
+                  defaultValue: null
+                }
+              }
+            },
+            to: {
+              name: 'to',
+              description: '',
+              type: {
+                kind: 'INPUT_OBJECT',
+                name: 'RoutingRuleToInput',
+                ofType: null
+              },
+              defaultValue: null,
+              fields: {
+                port: {
+                  name: 'port',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'Uint32', ofType: null },
+                  defaultValue: null
+                },
+                type: {
+                  name: 'type',
+                  description: '',
+                  type: {
+                    kind: 'ENUM',
+                    name: 'BackendServiceType',
+                    ofType: null
+                  },
+                  defaultValue: null
+                },
+                did: {
+                  name: 'did',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                url: {
+                  name: 'url',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                redirectCode: {
+                  name: 'redirectCode',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'Int32', ofType: null },
+                  defaultValue: null
+                },
+                interfaceName: {
+                  name: 'interfaceName',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                }
+              }
+            },
+            isProtected: {
+              name: 'isProtected',
+              description: '',
+              type: { kind: 'SCALAR', name: 'Boolean', ofType: null },
+              defaultValue: null
+            },
+            interfaces: {
+              name: 'interfaces',
+              description: '',
+              type: {
+                kind: 'LIST',
+                name: null,
+                ofType: {
+                  kind: 'NON_NULL',
+                  name: null,
+                  ofType: {
+                    kind: 'INPUT_OBJECT',
+                    name: 'BlockletStateInterfaceInput',
+                    ofType: null
+                  }
+                }
+              },
+              defaultValue: null,
+              fields: {
+                ruleId: {
+                  name: 'ruleId',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                type: {
+                  name: 'type',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                name: {
+                  name: 'name',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                url: {
+                  name: 'url',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                }
+              }
+            },
+            services: {
+              name: 'services',
+              description: '',
+              type: {
+                kind: 'LIST',
+                name: null,
+                ofType: {
+                  kind: 'NON_NULL',
+                  name: null,
+                  ofType: {
+                    kind: 'INPUT_OBJECT',
+                    name: 'BlockletServiceInput',
+                    ofType: null
+                  }
+                }
+              },
+              defaultValue: null,
+              fields: {
+                name: {
+                  name: 'name',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                description: {
+                  name: 'description',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                version: {
+                  name: 'version',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                configJson: {
+                  name: 'configJson',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                },
+                configSchema: {
+                  name: 'configSchema',
+                  description: '',
+                  type: { kind: 'SCALAR', name: 'String', ofType: null },
+                  defaultValue: null
+                }
+              }
+            }
+          }
+        },
+        defaultValue: null
+      }
+    }
+  }
+};
+
 const mutationCreateWallet = `mutation {
   createWallet(moniker: "wangshijun", passphrase: "1234556") {
     code
@@ -673,6 +932,7 @@ const queryGetBlocklets = `{
 module.exports = {
   extractedArgSpecs,
   extractedListArgSpecs,
+  extractedComplexArgSpecs,
   mutationCreateWallet,
   queryListTransactions,
   queryListTransactionsNoUpgrade,

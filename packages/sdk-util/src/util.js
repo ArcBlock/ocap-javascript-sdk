@@ -4,10 +4,14 @@ const { print } = require('graphql/language/printer');
 const getTypeField = (root, key) => {
   if (root.type.ofType) {
     if (root.type.ofType.ofType) {
-      return root.type.ofType.ofType[key];
+      if (root.type.ofType.ofType[key]) {
+        return root.type.ofType.ofType[key];
+      }
     }
 
-    return root.type.ofType[key];
+    if (root.type.ofType[key]) {
+      return root.type.ofType[key];
+    }
   }
 
   return root.type[key] || root[key];
@@ -240,7 +244,10 @@ const formatArgs = (values, specs = {}) => {
           }
 
           // eslint-disable-next-line
-          console.error('formatArgs: unrecognized type in list', spec.ofType);
+          console.error(
+            'formatArgs: unrecognized type in list',
+            JSON.stringify({ value, spec, type, kind, fields }, null, 2)
+          );
         })
         .join(',')}]`;
     } else if (kind === 'SCALAR') {
