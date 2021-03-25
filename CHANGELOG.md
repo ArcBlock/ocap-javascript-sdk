@@ -1,3 +1,7 @@
+## 0.29.2 (March 25, 2021)
+
+- fix: graphql client should throw when detailed error
+
 ## 0.29.1 (December 30, 2020)
 
 - chore: improve debug
