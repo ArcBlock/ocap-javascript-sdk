@@ -280,10 +280,11 @@ class BaseClient {
     });
 
     if (res.status === 200) {
-      if (Array.isArray(res.data.errors) && res.data.errors.length) {
-        const error = new Error('GraphQL Response Error');
-        error.errors = res.data.errors;
-        throw error;
+      const { errors } = res.data;
+      if (Array.isArray(errors) && errors.length) {
+        const err = new Error(`GraphQLError: ${errors.map(x => x.message).join('; ')}`);
+        err.errors = errors;
+        throw err;
       }
 
       return dataKey && res.data.data[dataKey] ? res.data.data[dataKey] : res.data.data;
