@@ -1,3 +1,7 @@
+## 0.29.3 (April 26, 2021)
+
+- fix: should support single item for array input
+
 ## 0.29.2 (March 25, 2021)
 
 - fix: graphql client should throw when detailed error

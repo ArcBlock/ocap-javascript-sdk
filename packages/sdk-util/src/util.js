@@ -206,6 +206,8 @@ const formatArgs = (values, specs = {}) => {
     return value.toString();
   };
 
+  const ensureList = v => (Array.isArray(v) ? v : [v]);
+
   const formatArg = (value, spec) => {
     const type = getTypeField(spec, 'name');
     const kind = getTypeField(spec, 'kind');
@@ -213,7 +215,7 @@ const formatArgs = (values, specs = {}) => {
 
     let result = '';
     if (spec.kind === 'LIST') {
-      result = `[${value
+      result = `[${ensureList(value)
         .map(v => {
           if (kind === 'SCALAR') {
             return formatScalarArg(type, v);
@@ -233,7 +235,7 @@ const formatArgs = (values, specs = {}) => {
         })
         .join(',')}]`;
     } else if (spec.type.kind === 'LIST') {
-      result = `[${value
+      result = `[${ensureList(value)
         .map(v => {
           if (spec.type.ofType.kind === 'SCALAR') {
             return formatScalarArg(spec.type.ofType.name, v);
