@@ -1,3 +1,7 @@
+## 0.29.4 (September 03, 2021)
+
+- feat: support extra payload in sdk util
+
 ## 0.29.3 (April 26, 2021)
 
 - fix: should support single item for array input
