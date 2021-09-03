@@ -271,7 +271,9 @@ class BaseClient {
     options.headers = Object.assign(options.headers || {}, authHeaders);
     debug('_doRequest.headers', options.headers);
 
-    const res = await this.config.axios.post(httpEndpoint, { query }, options);
+    // combine custom payload and graphql query
+    const payload = Object.assign(await this._getExtraPayload(query), { query });
+    const res = await this.config.axios.post(httpEndpoint, payload, options);
 
     debug('_doRequest.response', {
       status: res.status,
@@ -475,6 +477,10 @@ class BaseClient {
   }
 
   _getAuthHeaders() {
+    return {};
+  }
+
+  _getExtraPayload() {
     return {};
   }
 }
