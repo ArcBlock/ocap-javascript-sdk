@@ -1,3 +1,8 @@
+## 0.30.0 (September 18, 2021)
+
+- feat: use cross-fetch instead of axios to make things work in service-worder
+- chore: remove useless ocap-cli
+
 ## 0.29.4 (September 03, 2021)
 
 - feat: support extra payload in sdk util
