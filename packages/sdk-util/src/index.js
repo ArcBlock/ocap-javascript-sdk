@@ -1,4 +1,4 @@
-const axios = require('axios');
+const fetch = require('cross-fetch');
 const set = require('lodash.set');
 const get = require('lodash.get');
 const { parse } = require('graphql/language/parser');
@@ -30,7 +30,6 @@ class BaseClient {
         accessKey: '',
         accessSecret: '',
         maxQueryDepth: 4,
-        axios,
       },
       config
     );
@@ -273,23 +272,29 @@ class BaseClient {
 
     // combine custom payload and graphql query
     const payload = Object.assign(await this._getExtraPayload(query), { query });
-    const res = await this.config.axios.post(httpEndpoint, payload, options);
-
-    debug('_doRequest.response', {
-      status: res.status,
-      // data: res.data.data,
-      errors: res.data.errors,
+    const res = await fetch(httpEndpoint, {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      credentials: 'same-origin',
+      headers: Object.assign(
+        {
+          'Content-Type': 'application/json',
+        },
+        options.headers
+      ),
     });
 
     if (res.status === 200) {
-      const { errors } = res.data;
-      if (Array.isArray(errors) && errors.length) {
-        const err = new Error(`GraphQLError: ${errors.map(x => x.message).join('; ')}`);
-        err.errors = errors;
+      const json = await res.json();
+      debug('_doRequest.response', { status: res.status, errors: json.errors });
+
+      if (Array.isArray(json.errors) && json.errors.length) {
+        const err = new Error(`GraphQLError: ${json.errors.map(x => x.message).join('; ')}`);
+        err.errors = json.errors;
         throw err;
       }
 
-      return dataKey && res.data.data[dataKey] ? res.data.data[dataKey] : res.data.data;
+      return dataKey && json.data[dataKey] ? json.data[dataKey] : json.data;
     }
 
     throw new Error(`GraphQL Status Error ${res.status}`);
