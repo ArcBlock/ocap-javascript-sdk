@@ -38,6 +38,10 @@ jobs:
           git config --local user.name "bot"
           git config --local user.email "bot@arcblock.io"
 
+      - name: Build packages
+        run: |
+          make build
+
       - name: Publish to NPM
         run: |
           npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
