@@ -1,3 +1,7 @@
+## 0.31.0 (July 26, 2022)
+
+- chore: upgrade graphql to latest
+
 ## 0.30.0 (September 18, 2021)
 
 - feat: use cross-fetch instead of axios to make things work in service-worder
