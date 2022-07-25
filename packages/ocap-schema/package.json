@@ -17,8 +17,8 @@
     "eslint": "^5.3.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
-    "graphql": "14.6.0",
-    "graphql-request": "^1.8.2",
+    "graphql": "16.5.0",
+    "graphql-request": "^4.3.0",
     "prettier": "^1.6.1"
   },
   "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",

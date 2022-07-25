@@ -459,11 +459,14 @@ const mutationCreateWallet = `mutation {
       }
     }
   }
-}
-`;
+}`;
 
 const queryListTransactions = `{
-  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}) {
+  listTransactions(
+    paging: {size: 1}
+    typeFilter: {types: ["AccountMigrate", "Transfer"]}
+    addressFilter: {sender: "123", receiver: "123", direction: UNION}
+  ) {
     code
     page {
       cursor
@@ -587,11 +590,14 @@ const queryListTransactions = `{
       }
     }
   }
-}
-`;
+}`;
 
 const queryListTransactionsNoUpgrade = `{
-  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}) {
+  listTransactions(
+    paging: {size: 1}
+    typeFilter: {types: ["AccountMigrate", "Transfer"]}
+    addressFilter: {sender: "123", receiver: "123", direction: UNION}
+  ) {
     code
     page {
       cursor
@@ -701,11 +707,14 @@ const queryListTransactionsNoUpgrade = `{
       }
     }
   }
-}
-`;
+}`;
 
 const queryListTransactionsNoItx = `{
-  listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate", "Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}) {
+  listTransactions(
+    paging: {size: 1}
+    typeFilter: {types: ["AccountMigrate", "Transfer"]}
+    addressFilter: {sender: "123", receiver: "123", direction: UNION}
+  ) {
     code
     page {
       cursor
@@ -730,8 +739,7 @@ const queryListTransactionsNoItx = `{
       }
     }
   }
-}
-`;
+}`;
 
 const queryGetNodeInfo = `{
   getNodeInfo {
@@ -792,8 +800,7 @@ const queryGetNodeInfo = `{
       }
     }
   }
-}
-`;
+}`;
 
 const queryListBlocklets = `{
   listBlocklets {
@@ -832,8 +839,7 @@ const queryListBlocklets = `{
       }
     }
   }
-}
-`;
+}`;
 
 const queryGetBlocklets = `{
   getBlocklets {
@@ -926,8 +932,7 @@ const queryGetBlocklets = `{
       }
     }
   }
-}
-`;
+}`;
 
 module.exports = {
   extractedArgSpecs,
