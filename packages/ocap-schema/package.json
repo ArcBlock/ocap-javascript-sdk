@@ -14,12 +14,12 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "devDependencies": {
-    "eslint": "^5.3.0",
+    "eslint": "^5.16.0",
     "eslint-config-prettier": "latest",
     "eslint-plugin-prettier": "latest",
     "graphql": "16.5.0",
     "graphql-request": "^4.3.0",
-    "prettier": "^1.6.1"
+    "prettier": "^1.19.1"
   },
   "homepage": "https://github.com/ArcBlock/ocap-javascript-sdk",
   "keywords": [
