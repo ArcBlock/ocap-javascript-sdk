@@ -1,10 +1,14 @@
+## 0.33.0 (November 02, 2022)
+
+- fix: request headers should overwrite global headers
+
 ## 0.32.0 (August 02, 2022)
 
 - chore: update all deps to latest safely
-- chore(deps): bump glob-parent from 2.0.0 to 5.1.2 in  [skip ci] (#164)
-- chore(deps): bump tmpl from 1.0.4 to 1.0.5 [skip ci] (#152)
-- chore(deps): bump moment from 2.22.2 to 2.29.4 [skip ci] (#161)
-- chore(deps): bump terser from 4.1.2 to 4.8.1 [skip ci] (#162)
+- chore(deps): bump glob-parent from 2.0.0 to 5.1.2 in [skip ci](#164)
+- chore(deps): bump tmpl from 1.0.4 to 1.0.5 [skip ci](#152)
+- chore(deps): bump moment from 2.22.2 to 2.29.4 [skip ci](#161)
+- chore(deps): bump terser from 4.1.2 to 4.8.1 [skip ci](#162)
 
 ## 0.31.0 (July 26, 2022)
 
