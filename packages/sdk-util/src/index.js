@@ -267,7 +267,7 @@ class BaseClient {
     // combine custom headers and auth headers
     const options = requestOptions || {};
     const authHeaders = this._getAuthHeaders(query);
-    options.headers = Object.assign(options.headers || {}, authHeaders);
+    options.headers = Object.assign({}, authHeaders || {}, options.headers || {});
     debug('_doRequest.headers', options.headers);
 
     // combine custom payload and graphql query
