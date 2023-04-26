@@ -1,3 +1,8 @@
+## 0.34.0 (April 27, 2023)
+
+- fix(sdk): should not throw error when format null value for scalar
+- chore: cleanup useless yarn.lock [skip ci]
+
 ## 0.33.0 (November 02, 2022)
 
 - fix: request headers should overwrite global headers
