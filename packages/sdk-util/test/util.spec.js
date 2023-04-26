@@ -107,6 +107,16 @@ describe('#formatArgs', () => {
     expect(args).toEqual('address: "xxx", height: 123');
   });
 
+  test('should process null scalar values correctly', () => {
+    const args = formatArgs({ address: null, height: 123 }, specs);
+    expect(args).toEqual('address: null, height: 123');
+  });
+
+  test('should process null scalar values correctly', () => {
+    const args = formatArgs({ address: 'abc', height: null }, specs);
+    expect(args).toEqual('address: "abc", height: null');
+  });
+
   test('should escape slash when process scalar types correctly', () => {
     const args = formatArgs({ address: '\\arcblock\\', height: 123 }, specs);
     expect(args).toEqual('address: "\\\\arcblock\\\\", height: 123');

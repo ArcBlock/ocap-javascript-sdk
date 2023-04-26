@@ -1,3 +1,4 @@
+const isNull = require('lodash.isnull');
 const { parse } = require('graphql/language/parser');
 const { print } = require('graphql/language/printer');
 
@@ -189,21 +190,21 @@ const formatArgs = (values, specs = {}) => {
 
     // escape slash(\) and double quotes (")
     if ('String' === type) {
-      return `"${value
+      return isNull(value) ? null : `"${value
         .toString()
         .replace(/\\/g, '\\\\')
         .replace(/"/g, '\\"')}"`;
     }
 
     if (['DateTime', 'ID', 'HexString'].includes(type)) {
-      return `"${value.toString()}"`;
+      return isNull(value) ? null : `"${value.toString()}"`;
     }
 
     if (['BigNumber', 'Int', 'Float', 'Long', 'Boolean'].includes(type)) {
       return value;
     }
 
-    return value.toString();
+    return isNull(value) ? value : value.toString();
   };
 
   const ensureList = v => (Array.isArray(v) ? v : [v]);
