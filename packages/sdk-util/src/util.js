@@ -190,10 +190,12 @@ const formatArgs = (values, specs = {}) => {
 
     // escape slash(\) and double quotes (")
     if ('String' === type) {
-      return isNull(value) ? null : `"${value
+      const container = isNull(value) ? null : value.includes('\n') ? '"""' : '"';
+
+      return isNull(value) ? null : `${container}${value
         .toString()
         .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')}"`;
+        .replace(/"/g, '\\"')}${container}`;
     }
 
     if (['DateTime', 'ID', 'HexString'].includes(type)) {

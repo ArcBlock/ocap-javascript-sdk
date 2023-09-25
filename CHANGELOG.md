@@ -1,3 +1,6 @@
+## 0.34.1 (September 25, 2023)
+- fix: input string should can have \n in gql query
+
 ## 0.34.0 (April 27, 2023)
 
 - fix(sdk): should not throw error when format null value for scalar
