@@ -1,5 +1,9 @@
 {
-  "version": "0.34.0",
+  "version": "0.34.1",
   "npmClient": "yarn",
-  "ignoreChanges": ["**/tools/**", "**/docs/**", "**/test/**"]
+  "ignoreChanges": [
+    "**/tools/**",
+    "**/docs/**",
+    "**/test/**"
+  ]
 }
