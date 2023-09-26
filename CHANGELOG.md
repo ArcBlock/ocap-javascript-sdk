@@ -1,3 +1,6 @@
+## 0.34.2 (September 26, 2023)
+- fix: gql request crashes when formatting scalar args
+
 ## 0.34.1 (September 25, 2023)
 - fix: input string should can have \n in gql query
 
