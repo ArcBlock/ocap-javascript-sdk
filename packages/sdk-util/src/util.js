@@ -139,11 +139,13 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
           .map(x => {
             const subQueryStr = `${x.name} {
               __typename
-              ${x.possibleTypes.filter(t => !ignoreFields.includes(t.name)).map(
-                t => `... on ${t.name} {
+              ${x.possibleTypes
+                .filter(t => !ignoreFields.includes(t.name))
+                .map(
+                  t => `... on ${t.name} {
                 ${makeQuery(t.fields, ignoreFields, argValues).trim()}
               }`
-              )}
+                )}
             }`;
 
             return subQueryStr;
@@ -190,12 +192,14 @@ const formatArgs = (values, specs = {}) => {
 
     // escape slash(\) and double quotes (")
     if ('String' === type) {
-      const container = isNull(value) ? null : (value || '').includes('\n') ? '"""' : '"';
+      const container = isNull(value) ? null : String(value).includes('\n') ? '"""' : '"';
 
-      return isNull(value) ? null : `${container}${value
-        .toString()
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')}${container}`;
+      return isNull(value)
+        ? null
+        : `${container}${value
+            .toString()
+            .replace(/\\/g, '\\\\')
+            .replace(/"/g, '\\"')}${container}`;
     }
 
     if (['DateTime', 'ID', 'HexString'].includes(type)) {
