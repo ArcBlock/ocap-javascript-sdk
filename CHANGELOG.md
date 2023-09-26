@@ -1,3 +1,6 @@
+## 0.34.3 (September 26, 2023)
+- fix: gql request crashes when formatting scalar args
+
 ## 0.34.2 (September 26, 2023)
 - fix: gql request crashes when formatting scalar args
 
