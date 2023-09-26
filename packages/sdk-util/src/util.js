@@ -190,7 +190,7 @@ const formatArgs = (values, specs = {}) => {
 
     // escape slash(\) and double quotes (")
     if ('String' === type) {
-      const container = isNull(value) ? null : (value || '').includes('\n') ? '"""' : '"';
+      const container = isNull(value) ? null : String(value).includes('\n') ? '"""' : '"';
 
       return isNull(value) ? null : `${container}${value
         .toString()
