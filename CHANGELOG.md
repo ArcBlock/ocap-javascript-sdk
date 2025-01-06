@@ -1,10 +1,17 @@
+## 0.34.4 (一月 06, 2025)
+
+- chore: bump cross-fetch to latest
+
 ## 0.34.3 (September 26, 2023)
+
 - fix: gql request crashes when formatting scalar args
 
 ## 0.34.2 (September 26, 2023)
+
 - fix: gql request crashes when formatting scalar args
 
 ## 0.34.1 (September 25, 2023)
+
 - fix: input string should can have \n in gql query
 
 ## 0.34.0 (April 27, 2023)
