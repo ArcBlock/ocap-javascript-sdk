@@ -1,3 +1,7 @@
+## 0.34.5 (四月 08, 2025)
+
+- fix(sdk): handle graphql errors properly
+
 ## 0.34.4 (一月 06, 2025)
 
 - chore: bump cross-fetch to latest
