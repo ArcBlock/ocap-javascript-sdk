@@ -284,20 +284,42 @@ class BaseClient {
       ),
     });
 
-    if (res.status === 200) {
-      const json = await res.json();
-      debug('_doRequest.response', { status: res.status, errors: json.errors });
-
-      if (Array.isArray(json.errors) && json.errors.length) {
-        const err = new Error(`GraphQLError: ${json.errors.map(x => x.message).join('; ')}`);
-        err.errors = json.errors;
-        throw err;
-      }
-
-      return dataKey && json.data[dataKey] ? json.data[dataKey] : json.data;
+    let json;
+    try {
+      json = await res.json();
+      debug('_doRequest.response', { status: res.status, errors: json ? json.errors : undefined });
+    } catch (err) {
+      json = {};
     }
 
-    throw new Error(`GraphQL Status Error ${res.status}`);
+    // Handle GraphQL errors regardless of HTTP status
+    if (Array.isArray(json.errors) && json.errors.length) {
+      const errorMessages = json.errors.map(x => x.message);
+      const hasSchemaError = errorMessages.some(msg => msg.includes('Cannot query field'));
+
+      let message = errorMessages.join('\n');
+      if (hasSchemaError) {
+        message = `Schema Compatibility Error: ${message}\nThis error typically indicates you are using an incompatible GraphQL client version. Please ensure your client version matches the server schema version.`;
+      } else {
+        message = `GraphQLError: ${message}`;
+      }
+
+      const err = new Error(message);
+      err.errors = json.errors;
+      err.status = res.status;
+      throw err;
+    }
+
+    // Handle HTTP errors
+    if (res.status !== 200) {
+      const message = json.error || json.message || `GraphQL Status Error ${res.status}`;
+      const err = new Error(message);
+      err.status = res.status;
+      err.response = json;
+      throw err;
+    }
+
+    return dataKey && json.data[dataKey] ? json.data[dataKey] : json.data;
   }
 
   /**
@@ -491,4 +513,3 @@ class BaseClient {
 }
 
 module.exports = BaseClient;
-//# sourceMappingURL=index.js.map
