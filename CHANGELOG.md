@@ -1,3 +1,7 @@
+## 0.35.0 (六月 03, 2025)
+
+- feat: support retry for socket hang up errors
+
 ## 0.34.5 (四月 08, 2025)
 
 - fix(sdk): handle graphql errors properly
