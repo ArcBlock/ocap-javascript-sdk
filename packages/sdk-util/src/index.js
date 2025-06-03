@@ -1,4 +1,4 @@
-const fetch = require('cross-fetch');
+const pRetry = require('p-retry');
 const set = require('lodash.set');
 const get = require('lodash.get');
 const { parse } = require('graphql/language/parser');
@@ -51,6 +51,38 @@ class BaseClient {
     if (this.config.enableMutation) {
       this.generateMutationFns(this.schema);
     }
+
+    this._doRequestWithRetry = (...args) =>
+      pRetry(
+        async () => {
+          try {
+            return await this._doRequest(...args);
+          } catch (err) {
+            // Only retry on "socket hang up"
+            if (
+              err &&
+              typeof err.message === 'string' &&
+              err.message.toLowerCase().includes('socket hang up')
+            ) {
+              throw err;
+            }
+            throw new pRetry.AbortError(err);
+          }
+        },
+        {
+          retries: +this.config.retries ? +this.config.retries : 3,
+          factor: 2,
+          minTimeout: 100,
+          maxTimeout: 1000,
+          onFailedAttempt: err => {
+            // eslint-disable-next-line no-console
+            console.error(
+              `GraphQL request attempt #${err.attemptNumber} failed, ${err.retriesLeft} retries left.`,
+              err
+            );
+          },
+        }
+      );
   }
 
   getQueries() {
@@ -75,7 +107,7 @@ class BaseClient {
   doRawQuery(query, requestOptions = {}, dataKey) {
     try {
       const cleanQuery = print(parse(query));
-      return this._doRequest(cleanQuery, requestOptions, dataKey);
+      return this._doRequestWithRetry(cleanQuery, requestOptions, dataKey);
     } catch (err) {
       throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
     }
@@ -127,7 +159,7 @@ class BaseClient {
     set(base, 'definitions[0].directives', directives);
     set(base, 'definitions[0].selectionSet.selections', selections);
 
-    return this._doRequest(print(base), requestOptions);
+    return this._doRequestWithRetry(print(base), requestOptions);
   }
 
   generateQueryFns() {
@@ -146,7 +178,7 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const queryFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
-        const result = await this._doRequest(query, requestOptions, key);
+        const result = await this._doRequestWithRetry(query, requestOptions, key);
         const pagedResult = this._getPagedResults({
           result,
           queryBuilder: builders[key],
@@ -237,7 +269,7 @@ class BaseClient {
     Object.keys(builders).forEach(key => {
       const mutationFn = async (args, requestOptions = {}) => {
         const query = builders[key](this._sanitizeArgs(args), (requestOptions || {}).ignoreFields);
-        return this._doRequest(query, requestOptions, key);
+        return this._doRequestWithRetry(query, requestOptions, key);
       };
 
       mutationFn.type = 'mutation';
@@ -304,7 +336,7 @@ class BaseClient {
         message = `GraphQLError: ${message}`;
       }
 
-      const err = new Error(message);
+      const err = res.status >= 500 ? new Error(message) : new pRetry.AbortError(message);
       err.errors = json.errors;
       err.status = res.status;
       throw err;
@@ -313,7 +345,7 @@ class BaseClient {
     // Handle HTTP errors
     if (res.status !== 200) {
       const message = json.error || json.message || `GraphQL Status Error ${res.status}`;
-      const err = new Error(message);
+      const err = res.status >= 500 ? new Error(message) : new pRetry.AbortError(message);
       err.status = res.status;
       err.response = json;
       throw err;
@@ -466,7 +498,7 @@ class BaseClient {
 
       result.next = async () => {
         const query = queryBuilder(newArgs);
-        const newResult = await this._doRequest(query, requestOptions, dataKey);
+        const newResult = await this._doRequestWithRetry(query, requestOptions, dataKey);
         return this._getPagedResults({
           result: newResult,
           queryBuilder,

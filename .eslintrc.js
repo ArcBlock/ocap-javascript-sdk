@@ -15,4 +15,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
   },
+  globals: {
+    fetch: true,
+  },
 };
