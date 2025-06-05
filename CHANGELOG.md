@@ -1,3 +1,7 @@
+## 0.35.1 (六月 05, 2025)
+
+- feat: always retry for 5xx errors
+
 ## 0.35.0 (六月 03, 2025)
 
 - feat: support retry for socket hang up errors
