@@ -30,6 +30,7 @@ class BaseClient {
         accessKey: '',
         accessSecret: '',
         maxQueryDepth: 4,
+        retries: 3,
       },
       config
     );
@@ -53,36 +54,19 @@ class BaseClient {
     }
 
     this._doRequestWithRetry = (...args) =>
-      pRetry(
-        async () => {
-          try {
-            return await this._doRequest(...args);
-          } catch (err) {
-            // Only retry on "socket hang up"
-            if (
-              err &&
-              typeof err.message === 'string' &&
-              err.message.toLowerCase().includes('socket hang up')
-            ) {
-              throw err;
-            }
-            throw new pRetry.AbortError(err);
-          }
+      pRetry(() => this._doRequest(...args), {
+        retries: +this.config.retries ? +this.config.retries : 3,
+        factor: 2,
+        minTimeout: 100,
+        maxTimeout: 1000,
+        onFailedAttempt: err => {
+          // eslint-disable-next-line no-console
+          console.error(
+            `GraphQL request attempt #${err.attemptNumber} failed, ${err.retriesLeft} retries left.`,
+            err
+          );
         },
-        {
-          retries: +this.config.retries ? +this.config.retries : 3,
-          factor: 2,
-          minTimeout: 100,
-          maxTimeout: 1000,
-          onFailedAttempt: err => {
-            // eslint-disable-next-line no-console
-            console.error(
-              `GraphQL request attempt #${err.attemptNumber} failed, ${err.retriesLeft} retries left.`,
-              err
-            );
-          },
-        }
-      );
+      });
   }
 
   getQueries() {
