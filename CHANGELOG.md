@@ -1,3 +1,7 @@
+## 0.36.0 (六月 06, 2025)
+
+- fix: throw original error in pRetry
+
 ## 0.35.1 (六月 05, 2025)
 
 - feat: always retry for 5xx errors
