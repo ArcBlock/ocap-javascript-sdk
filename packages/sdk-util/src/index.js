@@ -320,18 +320,23 @@ class BaseClient {
         message = `GraphQLError: ${message}`;
       }
 
-      const err = res.status >= 500 ? new Error(message) : new pRetry.AbortError(message);
-      err.errors = json.errors;
-      err.status = res.status;
+      const originalError = new Error(message);
+      originalError.errors = json.errors;
+      originalError.status = res.status;
+
+      const err = res.status >= 500 ? originalError : new pRetry.AbortError(originalError);
       throw err;
     }
 
     // Handle HTTP errors
     if (res.status !== 200) {
       const message = json.error || json.message || `GraphQL Status Error ${res.status}`;
-      const err = res.status >= 500 ? new Error(message) : new pRetry.AbortError(message);
-      err.status = res.status;
-      err.response = json;
+
+      const originalError = new Error(message);
+      originalError.status = res.status;
+      originalError.response = json;
+
+      const err = res.status >= 500 ? originalError : new pRetry.AbortError(originalError);
       throw err;
     }
 
