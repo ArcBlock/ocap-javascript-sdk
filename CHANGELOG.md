@@ -1,3 +1,7 @@
+## 0.36.1 (九月 28, 2025)
+
+- feat: support async getAuthHeaders
+
 ## 0.36.0 (六月 06, 2025)
 
 - fix: throw original error in pRetry
