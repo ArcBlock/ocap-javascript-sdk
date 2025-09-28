@@ -282,7 +282,7 @@ class BaseClient {
 
     // combine custom headers and auth headers
     const options = requestOptions || {};
-    const authHeaders = this._getAuthHeaders(query);
+    const authHeaders = await this._getAuthHeaders(query);
     options.headers = Object.assign({}, authHeaders || {}, options.headers || {});
     debug('_doRequest.headers', options.headers);
 
@@ -524,7 +524,7 @@ class BaseClient {
     throw new Error('_getQueryId must be implemented in sub class');
   }
 
-  _getAuthHeaders() {
+  async _getAuthHeaders() {
     return {};
   }
 
