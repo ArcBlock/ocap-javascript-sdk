@@ -30,7 +30,7 @@ class BaseClient {
         accessKey: '',
         accessSecret: '',
         maxQueryDepth: 4,
-        retries: 3,
+        retries: process.env.NODE_ENV === 'test' ? 0 : 3,
       },
       config
     );
@@ -55,7 +55,7 @@ class BaseClient {
 
     this._doRequestWithRetry = (...args) =>
       pRetry(() => this._doRequest(...args), {
-        retries: +this.config.retries ? +this.config.retries : 3,
+        retries: this.config.retries !== undefined ? +this.config.retries : 3,
         factor: 2,
         minTimeout: 100,
         maxTimeout: 1000,

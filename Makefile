@@ -39,7 +39,7 @@ lint:
 	@yarn lint
 
 doc:
-	@echo "Building the documenation..."
+	@echo "Building the documentation..."
 
 precommit: dep lint doc build test
 
