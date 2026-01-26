@@ -1,3 +1,7 @@
+## 0.36.2 (一月 26, 2026)
+
+- fix: disable retry in test env
+
 ## 0.36.1 (九月 28, 2025)
 
 - feat: support async getAuthHeaders
