@@ -1,4 +1,3 @@
-const isNull = require('lodash.isnull');
 const { parse } = require('graphql/language/parser');
 const { print } = require('graphql/language/printer');
 
@@ -139,11 +138,13 @@ const makeQuery = (fields, ignoreFields, argValues = {}) => `
           .map(x => {
             const subQueryStr = `${x.name} {
               __typename
-              ${x.possibleTypes.filter(t => !ignoreFields.includes(t.name)).map(
-                t => `... on ${t.name} {
+              ${x.possibleTypes
+                .filter(t => !ignoreFields.includes(t.name))
+                .map(
+                  t => `... on ${t.name} {
                 ${makeQuery(t.fields, ignoreFields, argValues).trim()}
               }`
-              )}
+                )}
             }`;
 
             return subQueryStr;
@@ -190,23 +191,23 @@ const formatArgs = (values, specs = {}) => {
 
     // escape slash(\) and double quotes (")
     if ('String' === type) {
-      const container = isNull(value) ? null : String(value).includes('\n') ? '"""' : '"';
-
-      return isNull(value) ? null : `${container}${value
+      if (value === null) return null;
+      const container = String(value).includes('\n') ? '"""' : '"';
+      return `${container}${value
         .toString()
         .replace(/\\/g, '\\\\')
         .replace(/"/g, '\\"')}${container}`;
     }
 
     if (['DateTime', 'ID', 'HexString'].includes(type)) {
-      return isNull(value) ? null : `"${value.toString()}"`;
+      return value === null ? null : `"${value.toString()}"`;
     }
 
     if (['BigNumber', 'Int', 'Float', 'Long', 'Boolean'].includes(type)) {
       return value;
     }
 
-    return isNull(value) ? value : value.toString();
+    return value === null ? value : value.toString();
   };
 
   const ensureList = v => (Array.isArray(v) ? v : [v]);

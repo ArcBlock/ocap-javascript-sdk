@@ -14,12 +14,9 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "debug": "^4.3.4",
-    "graphql": "16.5.0",
-    "lodash.get": "^4.4.2",
-    "lodash.isnull": "^3.0.0",
-    "lodash.set": "^4.3.2",
-    "p-retry": "4"
+    "debug": "^4.4.3",
+    "graphql": "^16.13.2",
+    "p-retry": "^4.6.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.9",

@@ -1,6 +1,4 @@
 const pRetry = require('p-retry');
-const set = require('lodash.set');
-const get = require('lodash.get');
 const { parse } = require('graphql/language/parser');
 const { print } = require('graphql/language/printer');
 const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
@@ -126,22 +124,22 @@ class BaseClient {
     });
 
     const base = documents.shift();
+    const baseOp = base.definitions[0];
 
-    let variableDefinitions = get(base, 'definitions[0].variableDefinitions');
-    let directives = get(base, 'definitions[0].directives');
-    let selections = get(base, 'definitions[0].selectionSet.selections');
+    let variableDefinitions = baseOp.variableDefinitions || [];
+    let directives = baseOp.directives || [];
+    let selections = baseOp.selectionSet.selections || [];
 
     documents.forEach(x => {
-      variableDefinitions = variableDefinitions.concat(
-        get(x, 'definitions[0].variableDefinitions', [])
-      );
-      directives = directives.concat(get(x, 'definitions[0].directives', []));
-      selections = selections.concat(get(x, 'definitions[0].selectionSet.selections', []));
+      const op = x.definitions[0];
+      variableDefinitions = variableDefinitions.concat(op.variableDefinitions || []);
+      directives = directives.concat(op.directives || []);
+      selections = selections.concat(op.selectionSet.selections || []);
     });
 
-    set(base, 'definitions[0].variableDefinitions', variableDefinitions);
-    set(base, 'definitions[0].directives', directives);
-    set(base, 'definitions[0].selectionSet.selections', selections);
+    baseOp.variableDefinitions = variableDefinitions;
+    baseOp.directives = directives;
+    baseOp.selectionSet.selections = selections;
 
     return this._doRequestWithRetry(print(base), requestOptions);
   }
