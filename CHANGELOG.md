@@ -1,3 +1,7 @@
+## 0.36.3 (四月 11, 2026)
+
+- chore: drop lodash.* deps from sdk-util and bump graphql/debug/p-retry
+
 ## 0.36.2 (一月 26, 2026)
 
 - fix: disable retry in test env
