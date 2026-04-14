@@ -191,7 +191,7 @@ const extractedComplexArgSpecs = {
     type: {
       kind: 'INPUT_OBJECT',
       name: 'RequestUpdateRoutingRuleInput',
-      ofType: null
+      ofType: null,
     },
     defaultValue: null,
     fields: {
@@ -199,7 +199,7 @@ const extractedComplexArgSpecs = {
         name: 'id',
         description: '',
         type: { kind: 'SCALAR', name: 'String', ofType: null },
-        defaultValue: null
+        defaultValue: null,
       },
       rule: {
         name: 'rule',
@@ -213,7 +213,7 @@ const extractedComplexArgSpecs = {
               name: 'id',
               description: '',
               type: { kind: 'SCALAR', name: 'String', ofType: null },
-              defaultValue: null
+              defaultValue: null,
             },
             from: {
               name: 'from',
@@ -221,7 +221,7 @@ const extractedComplexArgSpecs = {
               type: {
                 kind: 'INPUT_OBJECT',
                 name: 'RoutingRuleFromInput',
-                ofType: null
+                ofType: null,
               },
               defaultValue: null,
               fields: {
@@ -229,7 +229,7 @@ const extractedComplexArgSpecs = {
                   name: 'pathPrefix',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 header: {
                   name: 'header',
@@ -243,7 +243,7 @@ const extractedComplexArgSpecs = {
                       ofType: {
                         kind: 'INPUT_OBJECT',
                         name: 'RoutingRuleHeaderInput',
-                        ofType: null
+                        ofType: null,
                       },
                       fields: {
                         key: {
@@ -252,9 +252,9 @@ const extractedComplexArgSpecs = {
                           type: {
                             kind: 'SCALAR',
                             name: 'String',
-                            ofType: null
+                            ofType: null,
                           },
-                          defaultValue: null
+                          defaultValue: null,
                         },
                         value: {
                           name: 'value',
@@ -262,9 +262,9 @@ const extractedComplexArgSpecs = {
                           type: {
                             kind: 'SCALAR',
                             name: 'String',
-                            ofType: null
+                            ofType: null,
                           },
-                          defaultValue: null
+                          defaultValue: null,
                         },
                         type: {
                           name: 'type',
@@ -272,16 +272,16 @@ const extractedComplexArgSpecs = {
                           type: {
                             kind: 'ENUM',
                             name: 'HeaderMatchType',
-                            ofType: null
+                            ofType: null,
                           },
-                          defaultValue: null
-                        }
-                      }
-                    }
+                          defaultValue: null,
+                        },
+                      },
+                    },
                   },
-                  defaultValue: null
-                }
-              }
+                  defaultValue: null,
+                },
+              },
             },
             to: {
               name: 'to',
@@ -289,7 +289,7 @@ const extractedComplexArgSpecs = {
               type: {
                 kind: 'INPUT_OBJECT',
                 name: 'RoutingRuleToInput',
-                ofType: null
+                ofType: null,
               },
               defaultValue: null,
               fields: {
@@ -297,7 +297,7 @@ const extractedComplexArgSpecs = {
                   name: 'port',
                   description: '',
                   type: { kind: 'SCALAR', name: 'Uint32', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 type: {
                   name: 'type',
@@ -305,41 +305,41 @@ const extractedComplexArgSpecs = {
                   type: {
                     kind: 'ENUM',
                     name: 'BackendServiceType',
-                    ofType: null
+                    ofType: null,
                   },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 did: {
                   name: 'did',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 url: {
                   name: 'url',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 redirectCode: {
                   name: 'redirectCode',
                   description: '',
                   type: { kind: 'SCALAR', name: 'Int32', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 interfaceName: {
                   name: 'interfaceName',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
-                }
-              }
+                  defaultValue: null,
+                },
+              },
             },
             isProtected: {
               name: 'isProtected',
               description: '',
               type: { kind: 'SCALAR', name: 'Boolean', ofType: null },
-              defaultValue: null
+              defaultValue: null,
             },
             interfaces: {
               name: 'interfaces',
@@ -353,9 +353,9 @@ const extractedComplexArgSpecs = {
                   ofType: {
                     kind: 'INPUT_OBJECT',
                     name: 'BlockletStateInterfaceInput',
-                    ofType: null
-                  }
-                }
+                    ofType: null,
+                  },
+                },
               },
               defaultValue: null,
               fields: {
@@ -363,27 +363,27 @@ const extractedComplexArgSpecs = {
                   name: 'ruleId',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 type: {
                   name: 'type',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 name: {
                   name: 'name',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 url: {
                   name: 'url',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
-                }
-              }
+                  defaultValue: null,
+                },
+              },
             },
             services: {
               name: 'services',
@@ -397,9 +397,9 @@ const extractedComplexArgSpecs = {
                   ofType: {
                     kind: 'INPUT_OBJECT',
                     name: 'BlockletServiceInput',
-                    ofType: null
-                  }
-                }
+                    ofType: null,
+                  },
+                },
               },
               defaultValue: null,
               fields: {
@@ -407,532 +407,357 @@ const extractedComplexArgSpecs = {
                   name: 'name',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 description: {
                   name: 'description',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 version: {
                   name: 'version',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 configJson: {
                   name: 'configJson',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
+                  defaultValue: null,
                 },
                 configSchema: {
                   name: 'configSchema',
                   description: '',
                   type: { kind: 'SCALAR', name: 'String', ofType: null },
-                  defaultValue: null
-                }
-              }
-            }
-          }
+                  defaultValue: null,
+                },
+              },
+            },
+          },
         },
-        defaultValue: null
-      }
-    }
-  }
+        defaultValue: null,
+      },
+    },
+  },
 };
 
-const mutationCreateWallet = `mutation {
-  createWallet(moniker: "wangshijun", passphrase: "1234556") {
-    code
-    token
-    wallet {
-      address
-      pk
-      sk
-      type {
-        address
-        hash
-        pk
-        role
-      }
-    }
-  }
-}`;
+const mutationCreateWallet = `mutation{createWallet(moniker: "wangshijun", passphrase: "1234556"){code
+token
+  wallet  {address
+pk
+sk
+  type  {address
+hash
+pk
+role}}}}`;
 
-const queryListTransactions = `{
-  listTransactions(
-    paging: {size: 1}
-    typeFilter: {types: ["AccountMigrate", "Transfer"]}
-    addressFilter: {sender: "123", receiver: "123", direction: UNION}
-  ) {
-    code
-    page {
-      cursor
-      next
-      total
-    }
-    transactions {
-      hash
-      receiver
-      sender
-      time
-      type
-      tx {
-        chainId
-        from
-        nonce
-        signature
-        signatures {
-          key
-          value
-        }
-        itx {
-          __typename
-          ... on UpdateAssetTx {
-            address
-            moniker
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on TransferTx {
-            assets
-            to
-            value
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on SysUpgradeTx {
-            gracePeriod
-            data {
-              typeUrl
-              value
-            }
-            task {
-              actions
-              dataHash
-              type
-            }
-          }
-          ... on StakeTx {
-            message
-            to
-            value
-            data {
-              type
-            }
-          }
-          ... on ExchangeTx {
-            expiredAt
-            to
-            data {
-              typeUrl
-              value
-            }
-            receiver {
-              assets
-              value
-            }
-            sender {
-              assets
-              value
-            }
-          }
-          ... on DeclareFileTx {
-            hash
-          }
-          ... on DeclareTx {
-            moniker
-            pk
-            data {
-              typeUrl
-              value
-            }
-            type {
-              address
-              hash
-              pk
-              role
-            }
-          }
-          ... on CreateAssetTx {
-            expiredAt
-            moniker
-            readonly
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on ConsensusUpgradeTx {
-            maxBytes
-            maxCandidates
-            maxGas
-            maxValidators
-            data {
-              typeUrl
-              value
-            }
-            validators {
-              address
-              power
-            }
-          }
-          ... on AccountMigrateTx {
-            pk
-          }
-        }
-      }
-    }
-  }
-}`;
+const queryListTransactions = `{listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate","Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}){code
+  page  {cursor
+next
+total}
+transactions  {hash
+receiver
+sender
+time
+type
+  tx  {chainId
+from
+nonce
+signature
+  signatures  {key
+value}
+  itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+moniker
+  data  {typeUrl
+value}
+              },... on TransferTx {
+                assets
+to
+value
+  data  {typeUrl
+value}
+              },... on SysUpgradeTx {
+                gracePeriod
+  data  {typeUrl
+value}
+task  {actions
+dataHash
+type}
+              },... on StakeTx {
+                message
+to
+value
+  data  {type}
+              },... on ExchangeTx {
+                expiredAt
+to
+  data  {typeUrl
+value}
+receiver  {assets
+value}
+sender  {assets
+value}
+              },... on DeclareFileTx {
+                hash
+              },... on DeclareTx {
+                moniker
+pk
+  data  {typeUrl
+value}
+type  {address
+hash
+pk
+role}
+              },... on CreateAssetTx {
+                expiredAt
+moniker
+readonly
+  data  {typeUrl
+value}
+              },... on ConsensusUpgradeTx {
+                maxBytes
+maxCandidates
+maxGas
+maxValidators
+  data  {typeUrl
+value}
+validators  {address
+power}
+              },... on AccountMigrateTx {
+                pk
+              }
+            }}}}}`;
 
-const queryListTransactionsNoUpgrade = `{
-  listTransactions(
-    paging: {size: 1}
-    typeFilter: {types: ["AccountMigrate", "Transfer"]}
-    addressFilter: {sender: "123", receiver: "123", direction: UNION}
-  ) {
-    code
-    page {
-      cursor
-      next
-      total
-    }
-    transactions {
-      hash
-      receiver
-      sender
-      time
-      type
-      tx {
-        chainId
-        from
-        nonce
-        signature
-        signatures {
-          key
-          value
-        }
-        itx {
-          __typename
-          ... on UpdateAssetTx {
-            address
-            moniker
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on TransferTx {
-            assets
-            to
-            value
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on SysUpgradeTx {
-            gracePeriod
-            data {
-              typeUrl
-              value
-            }
-            task {
-              actions
-              dataHash
-              type
-            }
-          }
-          ... on StakeTx {
-            message
-            to
-            value
-            data {
-              type
-            }
-          }
-          ... on ExchangeTx {
-            expiredAt
-            to
-            data {
-              typeUrl
-              value
-            }
-            receiver {
-              assets
-              value
-            }
-            sender {
-              assets
-              value
-            }
-          }
-          ... on DeclareFileTx {
-            hash
-          }
-          ... on DeclareTx {
-            moniker
-            pk
-            data {
-              typeUrl
-              value
-            }
-            type {
-              address
-              hash
-              pk
-              role
-            }
-          }
-          ... on CreateAssetTx {
-            expiredAt
-            moniker
-            readonly
-            data {
-              typeUrl
-              value
-            }
-          }
-          ... on AccountMigrateTx {
-            pk
-          }
-        }
-      }
-    }
-  }
-}`;
+const queryListTransactionsNoUpgrade = `{listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate","Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}){code
+  page  {cursor
+next
+total}
+transactions  {hash
+receiver
+sender
+time
+type
+  tx  {chainId
+from
+nonce
+signature
+  signatures  {key
+value}
+  itx {
+              __typename
+              ... on UpdateAssetTx {
+                address
+moniker
+  data  {typeUrl
+value}
+              },... on TransferTx {
+                assets
+to
+value
+  data  {typeUrl
+value}
+              },... on SysUpgradeTx {
+                gracePeriod
+  data  {typeUrl
+value}
+task  {actions
+dataHash
+type}
+              },... on StakeTx {
+                message
+to
+value
+  data  {type}
+              },... on ExchangeTx {
+                expiredAt
+to
+  data  {typeUrl
+value}
+receiver  {assets
+value}
+sender  {assets
+value}
+              },... on DeclareFileTx {
+                hash
+              },... on DeclareTx {
+                moniker
+pk
+  data  {typeUrl
+value}
+type  {address
+hash
+pk
+role}
+              },... on CreateAssetTx {
+                expiredAt
+moniker
+readonly
+  data  {typeUrl
+value}
+              },... on AccountMigrateTx {
+                pk
+              }
+            }}}}}`;
 
-const queryListTransactionsNoItx = `{
-  listTransactions(
-    paging: {size: 1}
-    typeFilter: {types: ["AccountMigrate", "Transfer"]}
-    addressFilter: {sender: "123", receiver: "123", direction: UNION}
-  ) {
-    code
-    page {
-      cursor
-      next
-      total
-    }
-    transactions {
-      hash
-      receiver
-      sender
-      time
-      type
-      tx {
-        chainId
-        from
-        nonce
-        signature
-        signatures {
-          key
-          value
-        }
-      }
-    }
-  }
-}`;
+const queryListTransactionsNoItx = `{listTransactions(paging: {size: 1}, typeFilter: {types: ["AccountMigrate","Transfer"]}, addressFilter: {sender: "123", receiver: "123", direction: UNION}){code
+  page  {cursor
+next
+total}
+transactions  {hash
+receiver
+sender
+time
+type
+  tx  {chainId
+from
+nonce
+signature
+  signatures  {key
+value}}}}}`;
 
-const queryGetNodeInfo = `{
-  getNodeInfo {
-    code
-    info {
-      blockletRegistry
-      createdAt
-      description
-      did
-      domain
-      https
-      initialized
-      initializedAt
-      ip
-      name
-      pk
-      port
-      startedAt
-      uptime
-      version
-      blockletOwner {
-        did
-        pk
-      }
-      diskInfo {
-        app
-        blocklets
-        cache
-        data
-        log
-      }
-      environments {
-        key
-        required
-        value
-      }
-      geoInfo {
-        city
-        country
-        latitude
-        longitude
-      }
-      members {
-        approved
-        avatar
-        did
-        email
-        name
-        pk
-        role
-      }
-      nodeOwner {
-        did
-        pk
-      }
-      routing {
-        proxyType
-      }
-    }
-  }
-}`;
+const queryGetNodeInfo = `{getNodeInfo{code
+  info  {blockletRegistry
+createdAt
+description
+did
+domain
+https
+initialized
+initializedAt
+ip
+name
+pk
+port
+startedAt
+uptime
+version
+  blockletOwner  {did
+pk}
+diskInfo  {app
+blocklets
+cache
+data
+log}
+environments  {key
+required
+value}
+geoInfo  {city
+country
+latitude
+longitude}
+members  {approved
+avatar
+did
+email
+name
+pk
+role}
+nodeOwner  {did
+pk}
+routing  {proxyType}}}}`;
 
-const queryListBlocklets = `{
-  listBlocklets {
-    code
-    blocklets {
-      adminUrl
-      author
-      color
-      community
-      configUrl
-      description
-      did
-      documentation
-      docUrl
-      folder
-      gitUrl
-      group
-      homepage
-      keywords
-      logoUrl
-      main
-      name
-      path
-      price
-      provider
-      publicUrl
-      screenshots
-      support
-      title
-      version
-      stats {
-        downloads
-        purchases
-        star
-        updatedAt
-      }
-    }
-  }
-}`;
+const queryListBlocklets = `{listBlocklets{code
+  blocklets  {adminUrl
+author
+color
+community
+configUrl
+description
+did
+documentation
+docUrl
+folder
+gitUrl
+group
+homepage
+keywords
+logoUrl
+main
+name
+path
+price
+provider
+publicUrl
+screenshots
+support
+title
+version
+  stats  {downloads
+purchases
+star
+updatedAt}}}}`;
 
-const queryGetBlocklets = `{
-  getBlocklets {
-    code
-    blocklets {
-      addedAt
-      adminInterface
-      configInterface
-      docInterface
-      installedAt
-      pausedAt
-      port
-      publicInterface
-      source
-      startedAt
-      status
-      configs {
-        key
-        required
-        value
-      }
-      diskInfo {
-        app
-        blocklets
-        cache
-        data
-        log
-      }
-      environments {
-        key
-        required
-        value
-      }
-      meta {
-        adminUrl
-        author
-        color
-        community
-        configUrl
-        description
-        did
-        documentation
-        docUrl
-        folder
-        gitUrl
-        group
-        homepage
-        keywords
-        logoUrl
-        main
-        name
-        path
-        price
-        provider
-        publicUrl
-        screenshots
-        support
-        title
-        version
-        stats {
-          downloads
-          purchases
-          star
-          updatedAt
-        }
-      }
-      routingRules {
-        id
-        from {
-          domain
-          pathPrefix
-          header {
-            key
-            type
-            value
-          }
-        }
-        to {
-          did
-          port
-          type
-        }
-      }
-      runtimeInfo {
-        cpuUsage
-        memoryUsage
-        pid
-        port
-        uptime
-      }
-    }
-  }
-}`;
+const queryGetBlocklets = `{getBlocklets{code
+  blocklets  {addedAt
+adminInterface
+configInterface
+docInterface
+installedAt
+pausedAt
+port
+publicInterface
+source
+startedAt
+status
+  configs  {key
+required
+value}
+diskInfo  {app
+blocklets
+cache
+data
+log}
+environments  {key
+required
+value}
+meta  {adminUrl
+author
+color
+community
+configUrl
+description
+did
+documentation
+docUrl
+folder
+gitUrl
+group
+homepage
+keywords
+logoUrl
+main
+name
+path
+price
+provider
+publicUrl
+screenshots
+support
+title
+version
+  stats  {downloads
+purchases
+star
+updatedAt}}
+routingRules  {id
+  from  {domain
+pathPrefix
+  header  {key
+type
+value}}
+to  {did
+port
+type}}
+runtimeInfo  {cpuUsage
+memoryUsage
+pid
+port
+uptime}}}}`;
 
 module.exports = {
   extractedArgSpecs,

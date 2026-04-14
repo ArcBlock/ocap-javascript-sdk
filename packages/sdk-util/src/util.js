@@ -1,6 +1,3 @@
-const { parse } = require('graphql/language/parser');
-const { print } = require('graphql/language/printer');
-
 const getTypeField = (root, key) => {
   if (root.type.ofType) {
     if (root.type.ofType.ofType) {
@@ -387,13 +384,7 @@ const getGraphQLBuilders = ({ types, rootName, ignoreFields, type, maxDepth = 4 
         selection ? `{${selection}}` : ''
       }}`;
 
-      try {
-        return print(parse(queryStr));
-      } catch (err) {
-        // eslint-disable-next-line
-        console.error('GraphQLBuilder Error:', queryStr);
-        throw err;
-      }
+      return queryStr;
     };
     /* eslint-enable indent */
 

@@ -13,11 +13,7 @@
   "contributors": [
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
-  "dependencies": {
-    "debug": "^4.4.3",
-    "graphql": "16.11.0",
-    "p-retry": "^4.6.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.22.9",
     "@babel/core": "^7.22.9",

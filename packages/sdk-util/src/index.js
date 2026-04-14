@@ -1,9 +1,47 @@
-const pRetry = require('p-retry');
-const { parse } = require('graphql/language/parser');
-const { print } = require('graphql/language/printer');
 const { getQueryBuilders, getMutationBuilders, getSubscriptionBuilders } = require('./util');
 
-const debug = require('debug')('BaseClient');
+// Lightweight debug replacement: activate with DEBUG=BaseClient or DEBUG=*
+// Lightweight debug: supports process.env.DEBUG (Node) and localStorage.debug (browser)
+const debug = (() => {
+  const env =
+    (typeof process !== 'undefined' && process.env && process.env.DEBUG) ||
+    (typeof localStorage !== 'undefined' && localStorage.debug) || // eslint-disable-line no-undef
+    '';
+  if (!env) return () => {};
+  const enabled = env.split(',').some(p => {
+    p = p.trim();
+    return (
+      p === '*' ||
+      p === 'BaseClient' ||
+      (p.endsWith('*') && 'BaseClient'.startsWith(p.slice(0, -1)))
+    );
+  });
+  return enabled ? (...args) => console.error('[BaseClient]', ...args) : () => {}; // eslint-disable-line no-console
+})();
+
+// Lightweight p-retry replacement: exponential backoff with abort support
+async function pRetry(
+  fn,
+  { retries = 3, factor = 2, minTimeout = 1000, maxTimeout = Infinity, onFailedAttempt } = {}
+) {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (err.abort) throw err;
+
+      const retriesLeft = retries - (attempt - 1);
+      err.attemptNumber = attempt;
+      err.retriesLeft = retriesLeft;
+
+      if (onFailedAttempt) onFailedAttempt(err);
+      if (retriesLeft <= 0) throw err;
+
+      const delay = Math.min(minTimeout * Math.pow(factor, attempt - 1), maxTimeout);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
 
 class BaseClient {
   constructor(config) {
@@ -87,12 +125,7 @@ class BaseClient {
    * @return Promise
    */
   doRawQuery(query, requestOptions = {}, dataKey) {
-    try {
-      const cleanQuery = print(parse(query));
-      return this._doRequestWithRetry(cleanQuery, requestOptions, dataKey);
-    } catch (err) {
-      throw new Error(`BaseClient: invalid raw query ${err.message || err.toString()}`);
-    }
+    return this._doRequestWithRetry(query.trim(), requestOptions, dataKey);
   }
 
   /**
@@ -117,31 +150,18 @@ class BaseClient {
       }
     });
 
-    const documents = methods.map(x => {
+    const selections = methods.map(x => {
       const args = queries[x] || {};
       const query = typeof args === 'string' ? args : this[x].builder(args, requestOptions);
-      return parse(query);
+      const trimmed = query.trim();
+      // Extract content inside the outermost { }
+      // Builder output always starts with '{' (query type has empty prefix)
+      const first = trimmed.indexOf('{');
+      const last = trimmed.lastIndexOf('}');
+      return trimmed.slice(first + 1, last).trim();
     });
 
-    const base = documents.shift();
-    const baseOp = base.definitions[0];
-
-    let variableDefinitions = baseOp.variableDefinitions || [];
-    let directives = baseOp.directives || [];
-    let selections = baseOp.selectionSet.selections || [];
-
-    documents.forEach(x => {
-      const op = x.definitions[0];
-      variableDefinitions = variableDefinitions.concat(op.variableDefinitions || []);
-      directives = directives.concat(op.directives || []);
-      selections = selections.concat(op.selectionSet.selections || []);
-    });
-
-    baseOp.variableDefinitions = variableDefinitions;
-    baseOp.directives = directives;
-    baseOp.selectionSet.selections = selections;
-
-    return this._doRequestWithRetry(print(base), requestOptions);
+    return this._doRequestWithRetry(`{ ${selections.join('\n')} }`, requestOptions);
   }
 
   generateQueryFns() {
@@ -321,9 +341,8 @@ class BaseClient {
       const originalError = new Error(message);
       originalError.errors = json.errors;
       originalError.status = res.status;
-
-      const err = res.status >= 500 ? originalError : new pRetry.AbortError(originalError);
-      throw err;
+      if (res.status < 500) originalError.abort = true; // Don't retry client errors
+      throw originalError;
     }
 
     // Handle HTTP errors
@@ -333,9 +352,8 @@ class BaseClient {
       const originalError = new Error(message);
       originalError.status = res.status;
       originalError.response = json;
-
-      const err = res.status >= 500 ? originalError : new pRetry.AbortError(originalError);
-      throw err;
+      if (res.status < 500) originalError.abort = true; // Don't retry client errors
+      throw originalError;
     }
 
     return dataKey && json.data[dataKey] ? json.data[dataKey] : json.data;
