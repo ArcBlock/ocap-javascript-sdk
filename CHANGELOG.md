@@ -1,3 +1,7 @@
+## 0.36.4 (四月 14, 2026)
+
+- refactor(@arcblock/sdk-util): remove all runtime dependencies
+
 ## 0.36.3 (四月 11, 2026)
 
 - chore: drop lodash.* deps from sdk-util and bump graphql/debug/p-retry
